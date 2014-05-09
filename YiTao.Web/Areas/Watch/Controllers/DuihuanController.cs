@@ -62,7 +62,9 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 Description = "积分兑换",
                 JiFen = dh.JiFen,
                 Type=3,
-                AccountName = acc.Name
+                AccountName = acc.Name,
+                ItemId = dh.DuiHuanItemId,
+                WhetherDealed = 0
             };
             db.Entry(acc).State = EntityState.Modified;
             db.JiFenLiShis.Add(newOne);
@@ -89,7 +91,8 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 AccountName = acc.Name,
                 Description = "抽奖减积分",
                 Type = 2,
-                JiFen = 1
+                JiFen = 1,
+                WhetherDealed = 0
             };
             if (val == 1)
             {

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="442d0420debe4a6d9c6c17c6f147f35b" Name="Diagram1">
+      <Diagram DiagramId="ebb2b62ba9c642cf9f5f6255b2727a12" Name="Diagram1">
         <EntityTypeShape EntityType="YiTaoModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="YiTaoModel.AppImage" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="YiTaoModel.ChouJiangItem" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
@@ -22,9 +22,9 @@
         <EntityTypeShape EntityType="YiTaoModel.ShangPin" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="YiTaoModel.ThreeLei" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="YiTaoModel.TowLei" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YiTaoModel.ZhuanTi" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YiTaoModel.ZhuanTiItem" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YiTaoModel.UserAddress" Width="1.5" PointX="9.375" PointY="11.75" />
+        <EntityTypeShape EntityType="YiTaoModel.UserAddress" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YiTaoModel.ZhuanTi" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YiTaoModel.ZhuanTiItem" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

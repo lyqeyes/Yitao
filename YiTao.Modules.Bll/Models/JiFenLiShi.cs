@@ -22,5 +22,6 @@ namespace YiTao.Modules.Bll.Models
         public int Type { get; set; }
         public Nullable<int> ItemId { get; set; }
         public string AccountName { get; set; }
+        public int WhetherDealed { get; set; }
     }
 }

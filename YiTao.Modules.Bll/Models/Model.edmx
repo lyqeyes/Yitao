@@ -116,6 +116,7 @@
           <Property Name="Type" Type="int" Nullable="false" />
           <Property Name="ItemId" Type="int" />
           <Property Name="AccountName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="WhetherDealed" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="JuZheKouItem">
           <Key>
@@ -211,11 +212,11 @@
           <Key>
             <PropertyRef Name="UserAddressId" />
           </Key>
-          <Property Name="UserAddressId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserAddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="ConsigneeName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="ZhuanTi">
@@ -385,6 +386,7 @@
           <Property Name="Type" Type="Int32" Nullable="false" />
           <Property Name="ItemId" Type="Int32" />
           <Property Name="AccountName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WhetherDealed" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="JuZheKouItem">
           <Key>
@@ -476,6 +478,17 @@
           <Property Name="DaLeiId" Type="Int32" Nullable="false" />
           <Property Name="ImageUrl" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserAddress">
+          <Key>
+            <PropertyRef Name="UserAddressId" />
+          </Key>
+          <Property Name="UserAddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ConsigneeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="ZhuanTi">
           <Key>
             <PropertyRef Name="ZhuanTiId" />
@@ -524,21 +537,10 @@
           <EntitySet Name="ShangPins" EntityType="Self.ShangPin" />
           <EntitySet Name="ThreeLeis" EntityType="Self.ThreeLei" />
           <EntitySet Name="TowLeis" EntityType="Self.TowLei" />
+          <EntitySet Name="UserAddresses" EntityType="Self.UserAddress" />
           <EntitySet Name="ZhuanTis" EntityType="Self.ZhuanTi" />
           <EntitySet Name="ZhuanTiItems" EntityType="Self.ZhuanTiItem" />
-          <EntitySet Name="UserAddresses" EntityType="YiTaoModel.UserAddress" />
         </EntityContainer>
-        <EntityType Name="UserAddress">
-          <Key>
-            <PropertyRef Name="UserAddressId" />
-          </Key>
-          <Property Name="UserAddressId" Type="Guid" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="ConsigneeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -656,6 +658,7 @@
           <EntitySetMapping Name="JiFenLiShis">
             <EntityTypeMapping TypeName="YiTaoModel.JiFenLiShi">
               <MappingFragment StoreEntitySet="JiFenLiShi">
+                <ScalarProperty Name="WhetherDealed" ColumnName="WhetherDealed" />
                 <ScalarProperty Name="JiFenLiShiId" ColumnName="JiFenLiShiId" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -764,6 +767,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UserAddresses">
+            <EntityTypeMapping TypeName="YiTaoModel.UserAddress">
+              <MappingFragment StoreEntitySet="UserAddress">
+                <ScalarProperty Name="UserAddressId" ColumnName="UserAddressId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ConsigneeName" ColumnName="ConsigneeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ZhuanTis">
             <EntityTypeMapping TypeName="YiTaoModel.ZhuanTi">
               <MappingFragment StoreEntitySet="ZhuanTi">
@@ -793,18 +808,6 @@
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="FanJiFen" ColumnName="FanJiFen" />
                 <ScalarProperty Name="BaoYou" ColumnName="BaoYou" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserAddresses">
-            <EntityTypeMapping TypeName="YiTaoModel.UserAddress">
-              <MappingFragment StoreEntitySet="UserAddress">
-                <ScalarProperty Name="ConsigneeName" ColumnName="ConsigneeName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="UserAddressId" ColumnName="UserAddressId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

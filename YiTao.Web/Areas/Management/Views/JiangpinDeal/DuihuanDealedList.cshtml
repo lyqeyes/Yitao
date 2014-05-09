@@ -1,0 +1,48 @@
+﻿@model List<YiTao.Web.Areas.Management.Models.JiangpinInfor>
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-edit"></i>已处理兑换商品</div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">用户名</th>
+                            <th class="col-md-2">电话</th>
+                            <th class="col-md-3">地址</th>
+                            <th class="col-md-1">收件人</th>
+                            <th class="col-md-1">兑换商品</th>
+                            <th class="col-md-2">商品图片</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th class="col-md-1">@item.AccountName</th>
+                                <th class="col-md-2">@item.Phone</th>
+                                <th class="col-md-3">@item.Address</th>
+                                <th class="col-md-1">@item.ShouhuorenName</th>
+                                <th class="col-md-1">@item.JiangpinName</th>
+                                <th class="col-md-2"><img src="@item.JiangPinImg" /></th>
+                            </tr>
+                        }
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PageSpecificJavascriptIncludes{
+    <script>
+        $("#index").removeClass("open");
+        $("#goodSet").addClass("open");
+    </script>
+}

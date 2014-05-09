@@ -14,11 +14,11 @@ namespace YiTao.Modules.Bll.Models
     
     public partial class UserAddress
     {
-        public System.Guid UserAddressId { get; set; }
+        public int UserAddressId { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public System.DateTime CreateTime { get; set; }
-        public System.Guid UserId { get; set; }
+        public int UserId { get; set; }
         public string ConsigneeName { get; set; }
     }
 }

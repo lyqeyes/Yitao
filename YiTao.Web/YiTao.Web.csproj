@@ -133,7 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Management\Models\" />
     <Folder Include="Areas\Management\Views\Upload\" />
     <Folder Include="assets\plugins\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="Models\" />
@@ -146,12 +145,14 @@
     <Compile Include="Areas\Management\Common\HttpWebResponseUtility.cs" />
     <Compile Include="Areas\Management\Common\NoLoginAttribute.cs" />
     <Compile Include="Areas\Management\Controllers\AppWelcomeController.cs" />
+    <Compile Include="Areas\Management\Controllers\JiangpinDealController.cs" />
     <Compile Include="Areas\Management\Controllers\ShangPinController.cs" />
     <Compile Include="Areas\Management\Controllers\UploadController.cs" />
     <Compile Include="Areas\Management\Controllers\AccountController.cs" />
     <Compile Include="Areas\Management\Controllers\AuthController.cs" />
     <Compile Include="Areas\Management\Controllers\MainPageController.cs" />
     <Compile Include="Areas\Management\ManagementAreaRegistration.cs" />
+    <Compile Include="Areas\Management\Models\JiangpinInfor.cs" />
     <Compile Include="Areas\Watch\Common\BaseController.cs" />
     <Compile Include="Areas\Watch\Common\NoLoginAttribute.cs" />
     <Compile Include="Areas\Watch\Controllers\AuthController.cs" />
@@ -2488,6 +2489,10 @@
     <Content Include="Areas\Watch\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Watch\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Watch\Views\Auth\ForgetPassword.cshtml" />
+    <Content Include="Areas\Management\Views\JiangpinDeal\ZhongjiangList.cshtml" />
+    <Content Include="Areas\Management\Views\JiangpinDeal\DuihuanList.cshtml" />
+    <Content Include="Areas\Management\Views\JiangpinDeal\ZhongjiangDealedList.cshtml" />
+    <Content Include="Areas\Management\Views\JiangpinDeal\DuihuanDealedList.cshtml" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\yitao - FTP.pubxml" />
