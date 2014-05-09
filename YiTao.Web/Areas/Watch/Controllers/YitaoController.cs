@@ -88,14 +88,19 @@ namespace YiTao.Web.Areas.Watch.Controllers
         {
             //轮播
             ViewData["lunbolist"] = db.LunBoes.ToList();
-            return View(db.TowLeis.ToList());
+            return View(db.TowLeis.Where(t=>t.DaLeiId==id).ToList());
         }
         [NoLogin]
         public ActionResult ThreeLei(int id)
         {
-            List<ShangPin> allShangpin = db.ShangPins.ToList();
-            ViewData["xiaoleiList"] = (from d in db.ThreeLeis where d.TwoLeiId == id select d).ToList();
-            ViewBag.DaleiName = db.TowLeis.Where(a => a.DaLeiId == id).FirstOrDefault().Name;
+            var v = from d in db.ThreeLeis where d.TwoLeiId == id select d;
+            ViewData["xiaoleiList"] = (v).ToList();
+             List<ShangPin> allShangpin = new List<ShangPin>();
+            foreach (var item in v)
+            {
+                allShangpin.AddRange(db.ShangPins.Where(s => s.XiaoLeiId == item.ThreeLeiId));
+            }            
+            ViewBag.DaleiName = db.TowLeis.Where(a => a.TwoLeiId == id).FirstOrDefault().Name;
             return View(allShangpin);
         }
 
