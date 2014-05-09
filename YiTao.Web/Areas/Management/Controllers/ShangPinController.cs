@@ -40,12 +40,13 @@ namespace YiTao.Web.Areas.Management.Controllers
             return RedirectToAction("Dalei");
         }
 
-        public ActionResult DaLeiDel(DaLei delItem)
+        public ActionResult DaLeiDel(int id)
         {
-            var dalei = db.DaLeis.First(a => a.DaLeiId == delItem.DaLeiId);
+            var dalei = db.DaLeis.First(a => a.DaLeiId == id);
             if (dalei == null)
                 return RedirectToAction("Dalei");
             db.DaLeis.Remove(dalei);
+            db.SaveChanges();
             return RedirectToAction("Dalei");
         }
 
@@ -84,9 +85,9 @@ namespace YiTao.Web.Areas.Management.Controllers
             return RedirectToAction("xiaolei", new { daleiID = TempData["daleiID"] });
         }
 
-        public ActionResult XiaoLeiDel(int XiaoLeiId)
+        public ActionResult XiaoLeiDel(int id)
         {
-            var xiaolei = db.TowLeis.Find(XiaoLeiId);
+            var xiaolei = db.TowLeis.Find(id);
             if (xiaolei == null)
                 return RedirectToAction("xiaolei", new { daleiID = TempData["daleiID"] });
             db.TowLeis.Remove(xiaolei);
@@ -136,9 +137,9 @@ namespace YiTao.Web.Areas.Management.Controllers
             return RedirectToAction("ThreeLei", new { daleiID = TempData["daleiID"] });
         }
 
-        public ActionResult ThreeLeiDel(int XiaoLeiId)
+        public ActionResult ThreeLeiDel(int id)
         {
-            var xiaolei = db.ThreeLeis.Find(XiaoLeiId);
+            var xiaolei = db.ThreeLeis.Find(id);
             if (xiaolei == null)
                 return RedirectToAction("xiaolei", new { daleiID = TempData["daleiID"] });
             db.ThreeLeis.Remove(xiaolei);

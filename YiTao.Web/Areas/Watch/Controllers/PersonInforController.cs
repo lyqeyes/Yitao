@@ -105,5 +105,10 @@ namespace YiTao.Web.Areas.Watch.Controllers
             db.SaveChanges();
             return RedirectToAction("index");
         }
+
+        public ActionResult Info()
+        {
+            return View();
+        }
 	}
 }

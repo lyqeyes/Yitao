@@ -84,11 +84,12 @@ namespace YiTao.Web.Areas.Watch.Controllers
             return RedirectToAction("index", "yitao", new { area = "Watch" });
         }
 
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger("Loggering");
         public ActionResult ForgetPassword(string email)
         {
             Guid g = Guid.NewGuid();
             HttpRuntime.Cache.Insert(g.ToString(), email, null, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(30));
-            //TempData["sendeamil"] = "已将新密码发送到您的邮箱. 请在30分钟内登录邮箱验证.";
+            log.Info(@"这里是重置密码连接 " + String.Format("http://yitao.oureda.cn/Home/FindPassword/"+"{0}",g.ToString()) + "，30分钟内有效，请尽快更改密码");
             return View();
         }
 	}
