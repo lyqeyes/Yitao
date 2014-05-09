@@ -49,50 +49,32 @@
             </div>
             <div class="portlet-body" align="center">
                 <table class="table table-bordered table-hover" align="center">
-                            <thead>
-                                <tr>
-                                    <th class="col-md-4">
-                                        <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
-                                            <div class="tile-body">
-                                                <img id="imageCover" alt="@Model.ImageUrl" src="@Model.ImageUrl">
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th class="col-md-8">
-                                        <div>
-                                            <input id="HaoDianId" value="@Model.HaoDianId" type="text" hidden="hidden" />
-                                            <table>
-                                                <tr>                                             
-                                                    <th class="col-md-2">
-                                                        <div class="btns">
-                                                            <div id="picker">选择图片</div>
-                                                        </div>
-                                                    </th>
-                                                    <th class="col-md-2">
-                                                        <button id="save" class="btn green" data-toggle="modal">
-                                                            保存修改
-                                                        </button>
-                                                    </th>
-                                                    <th class="col-md-4" colspan="4">
-                                                        <input id="Name" value="@Model.Name" type="text" class="form-control my-form-control" placeholder="好店名称" />
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <th colspan="8">
-                                                        <input id="Url" value="@Model.Url" type="text" class="form-control my-form-control" placeholder="好店链接" />
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <th colspan="8">
-                                                        <input id="Description" value="@Model.Description" type="text" class="form-control my-form-control" placeholder="好店描述" />
-                                                    </th>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </thead>
-                        </table>
+                    <tr>
+                        <th class="col-md-4">
+                            <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
+                                <div class="tile-body">
+                                    <img id="imageCover" alt="@Model.ImageUrl" src="@Model.ImageUrl">
+                                </div>
+                            </div>
+                            <br />
+                            <div class="btns">
+                                <div id="picker">选择图片</div>
+                            </div>
+                        </th>
+                        <th class="col-md-8">
+                            <input id="HaoDianId" value="@Model.HaoDianId" type="text" hidden="hidden" />
+                            <span>好店名</span>
+                            <input id="Name" value="@Model.Name" type="text" class="form-control my-form-control" placeholder="好店名称" />
+                            <span>好店链接</span>
+                            <input id="Url" value="@Model.Url" type="text" class="form-control my-form-control" placeholder="好店链接" />
+                            <span>好店描述</span>
+                            <input id="Description" value="@Model.Description" type="text" class="form-control my-form-control" placeholder="好店描述" />
+                            <button id="save" class="btn green" data-toggle="modal">
+                                保存修改
+                            </button>
+                        </th>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

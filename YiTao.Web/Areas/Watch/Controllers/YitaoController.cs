@@ -90,7 +90,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
             ViewData["lunbolist"] = db.LunBoes.ToList();
             return View(db.TowLeis.ToList());
         }
-
+        [NoLogin]
         public ActionResult ThreeLei(int id)
         {
             List<ShangPin> allShangpin = db.ShangPins.ToList();
