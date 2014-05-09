@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿@{
+    Layout = null;
+}
+<!doctype html>
 <html>
 <head>
     @model YiTao.Modules.Bll.Models.Account
@@ -63,6 +66,13 @@
                     </div>
                 }
             }
+            <div class="login-eixt sign" id="Qiandao">
+                <a href="/watch/auth/logout" name="name_sign" class="sign_bg">
+                    <img src="/img/buttons/sign01.png" width="152" height="153" alt="" />
+                    <span>信息管理</span>
+                </a>
+            </div>
+
             <div class="login-eixt sign" id="Qiandao" >
                 <!--注销-->
                 <a href="/watch/auth/logout" name="name_sign" class="sign_bg">

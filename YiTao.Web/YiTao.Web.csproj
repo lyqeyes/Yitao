@@ -2488,6 +2488,7 @@
     <Content Include="Areas\Watch\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Watch\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Watch\Views\Auth\ForgetPassword.cshtml" />
+    <Content Include="Areas\Watch\Views\PersonInfor\Info.cshtml" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\yitao - FTP.pubxml" />
