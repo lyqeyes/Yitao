@@ -94,6 +94,11 @@ namespace YiTao.Web.Controllers
                 return "error";
             }
         }
+
+        public ActionResult Getinfo() 
+        {
+            return View();
+        }
             
     }
 }
