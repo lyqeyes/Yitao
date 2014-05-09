@@ -44,5 +44,6 @@ namespace YiTao.Modules.Bll.Models
         public virtual DbSet<TowLei> TowLeis { get; set; }
         public virtual DbSet<ZhuanTi> ZhuanTis { get; set; }
         public virtual DbSet<ZhuanTiItem> ZhuanTiItems { get; set; }
+        public virtual DbSet<UserAddress> UserAddresses { get; set; }
     }
 }
