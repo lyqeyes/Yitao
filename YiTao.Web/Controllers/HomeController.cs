@@ -12,6 +12,10 @@ namespace YiTao.Web.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// 哈哈
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return RedirectToAction("Index", "YiTao", new { Area = "Watch" });
