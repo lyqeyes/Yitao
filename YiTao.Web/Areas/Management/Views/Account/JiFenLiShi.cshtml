@@ -1,0 +1,75 @@
+﻿@model List<YiTao.Modules.Bll.Models.JiFenLiShi>
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-edit"></i>积分历史管理</div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="javascript:;" class="remove"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-bordered table-hover" id="sample_1">
+                    <thead>
+                        <tr>
+                            <th class="col-md-2">用户名</th>
+                            <th class="col-md-4">操作描述</th>
+                            <th class="col-md-1">积分值</th>
+                            <th class="col-md-2">操作类型</th>
+                            <th class="col-md-2">商品ID</th>
+                            <th class="col-md-1">管理</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.AccountName</th>
+                                <th>@item.Description</th>
+                                <th>@item.JiFen</th>                            
+                                <th hidden="hidden">@item.Type</th>
+                                @switch(item.Type)
+                                {
+                                    case 1:
+                                        {
+                                            <th>管理员后台操作</th> 
+                                            break;
+                                        }
+                                    case 2:
+                                        {
+                                            <th>积分抽奖操作</th> 
+                                            break;
+                                        }
+                                    case 3:
+                                        {
+                                            <th>积分兑换操作</th> 
+                                            break;
+                                        }
+                                    default:
+                                        {
+                                            <th>其他操作</th> 
+                                            break;
+                                        }
+                                }
+                                <th>@item.ItemId</th>
+                                <th>
+                                    <button class="btn green" data-toggle="modal">
+                                        处理 <i class="fa fa-edit"></i>
+                                    </button>
+                                </th>                                
+                            </tr>
+                        }
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<script>
+    $("#index").removeClass("open");
+    $("#userManage").addClass("open");
+</script>

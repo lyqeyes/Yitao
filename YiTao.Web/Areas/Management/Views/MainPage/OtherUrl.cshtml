@@ -1,0 +1,229 @@
+﻿@model List<YiTao.Modules.Bll.Models.OtherUrl>
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-edit"></i>主页其他链接管理</div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="javascript:;" class="remove"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="btn-group">
+                        <button id="sample_editable_1_new" class="btn green" data-toggle="modal" href="#basic">
+                            新建链接 <i class="fa fa-plus"></i>
+                        </button>
+
+                    </div>
+                </div>
+                <table class="table table-bordered table-hover" id="sample_1">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">链接缩略图</th>
+                            <th class="col-md-2">链接名称</th>
+                            <th class="col-md-4">链接地址</th>
+                            <th class="col-md-2">描述</th>
+                            <th class="col-md-1">权重</th>
+                            <th class="col-md-2">管理</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th class="col-md-1">
+                                    <div class="suoluetu">
+                                        <img src=@item.ImageUrl />
+                                    </div>
+                                </th>
+                                <th hidden="hidden">@item.OtherUrlId</th>
+                                <th class="col-md-2">@item.Name</th>
+                                <th class="col-md-4">@item.Url</th>
+                                <th class="col-md-2">@item.Description</th>
+                                <th class="col-md-1">@item.Weight</th>
+                                <th>
+                                    <button my="del" class="btn green" data-toggle="modal">
+                                        删除 <i class="glyphicon glyphicon-remove"></i>
+                                    </button>
+                                </th>
+                            </tr>
+                        }
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+<div class="modal fade" id="basic" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">创建新链接</h4>
+            </div>
+            <div class="modal-body">
+                <form action="~/Management/MainPage/OtherUrlCreate" method="post" id="form_sample_3" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div>
+                                <div class=" tile image double selected" style="vertical-align: middle; max-height: 100px; max-width: 200px;">
+                                    <div class="tile-body">
+                                        <img id="imageCover" alt="" src="">
+                                    </div>
+                                    @*@Html.Hidden("ImageUrl");*@
+                                    <input id="ImageUrl123" name="ImageUrl" value="" hidden />
+                                </div>
+                                <div class="editor-label">
+                                    <span id="uploadify"></span>
+                                </div>
+                                <div class="editor-field">
+                                    <div id="imagediv" style=" margin-left: 210px;"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">链接名称</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                @Html.TextBox("Name", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "链接名称", id = "Name", name = "Name" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">链接地址</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                @Html.TextBox("Url", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "链接地址", id = "Url", name = "Url" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">描述</label>
+                            <div class="input-icon">
+                                @Html.TextArea("Description", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "链接描述", id = "Description", name = "Description" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">权重</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                @Html.TextBox("Weight", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "权重", id = "Weight", name = "Weight" })
+                            </div>
+                        </div>                    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn blue">创建新链接</button>
+                        <button type="button" class="btn default" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="basic3" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">确认删除?</h4>
+            </div>
+            <div class="modal-body">
+                <form action="~/management/MainPage/OtherUrlDel" method="post" id="form_sample_3" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group" hidden="hidden">
+                            <label class="control-label visible-ie8 visible-ie9">链接ID</label>
+                            <div class="input-icon">
+                                <i class="fa fa-user"></i>
+                                <input class="form-control placeholder-no-fix" type="text" readonly="readonly" autocomplete="off" placeholder="商品ID" id="OtherUrlId" name="OtherUrlId" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">链接名称</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                @Html.TextBox("Name", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", @readonly="readonly",placeholder = "链接名称", id = "Name", name = "Name" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">链接地址</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                @Html.TextBox("Url", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off",@readonly="readonly", placeholder = "链接地址", id = "Url", name = "Url" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">描述</label>
+                            <div class="input-icon">
+                                @Html.TextArea("Description", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", @readonly = "readonly", placeholder = "链接描述", id = "Description", name = "Description" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">权重</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                @Html.TextBox("Weight", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", @readonly = "readonly", placeholder = "权重", id = "Weight", name = "Weight" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn blue">删除</button>
+                        <button type="button" class="btn default" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section PageSpecificJavascriptIncludes{
+    <script type="text/javascript">
+        $('button[my="del"]', '#sample_1').die().live('click', function () {
+            $("#basic3").find("#OtherUrlId").val($(this).parents("th").parents("tr").children("th").eq(1).text());
+            $("#basic3").find("#Name").val($(this).parents("th").parents("tr").children("th").eq(2).text());
+            $("#basic3").find("#Url").val($(this).parents("th").parents("tr").children("th").eq(3).text());
+            $("#basic3").find("#Description").val($(this).parents("th").parents("tr").children("th").eq(4).text());
+            $("#basic3").find("#Weight").val($(this).parents("th").parents("tr").children("th").eq(5).text());
+            $("#basic3").modal('show');
+        });
+    </script>
+    <script src="~/Scripts/uploadify-v3.1/jquery.uploadify-3.1.min.js"></script>
+    <link href="~/Scripts/uploadify-v3.1/uploadify.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $('#uploadify').uploadify({
+                uploader: '/Home/Upload',           // 服务器端处理地址
+                swf: '/Scripts/uploadify-v3.1/uploadify.swf',    // 上传使用的 Flash
+                width: 100,                          // 按钮的宽度
+                height: 40,                         // 按钮的高度
+                buttonText: "上传图片",                 // 按钮上的文字
+                buttonCursor: 'hand',                // 按钮的鼠标图标
+                fileObjName: 'Filedata',            // 上传参数名称
+                // 两个配套使用
+                fileTypeExts: "*.gif; *.jpg; *.png;*.bmp;*.jpeg;",             // 扩展名
+                fileTypeDesc: "图片文件",     // 文件说明
+                auto: true,                // 选择之后，自动开始上传
+                multi: false,               // 是否支持同时上传多个文件
+                //queueSizeLimit: 5,          // 允许多文件上传的时候，同时上传文件的个数
+                removeTimeout: 0,
+                'onUploadSuccess': function (file, data, response) {
+                    if (data == "1") {
+                        alert('服务器错误，请重新上传');
+                    }
+                    else {
+                        console.log(data);
+                        $("#imageCover").attr("src", data);
+                        $("#ImageUrl123").attr("value", data);
+                    }
+                }
+            });
+        });
+    </script>
+}

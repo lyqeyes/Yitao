@@ -1,0 +1,232 @@
+﻿@model List<YiTao.Modules.Bll.Models.Account>
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-edit"></i>会员积分管理</div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="javascript:;" class="remove"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-bordered table-hover" id="sample_1">
+                    <thead>
+                        <tr>
+                            <th class="col-md-3">用户名</th>
+                            <th class="col-md-3">当前积分</th>
+                            <th class="col-md-3">增加积分</th>
+                            <th class="col-md-3">减少积分</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.Name</th>
+                                <th>@item.JiFen</th>
+                                <th>
+                                    <button my="add" class="btn green" data-toggle="modal">
+                                        增加 <i class="fa fa-edit"></i>
+                                    </button>
+                                </th>
+                                <th>
+                                    <button my="reduce" class="btn green" id="del1" data-toggle="modal">
+                                        减少 <i class="fa fa-edit"></i>
+                                    </button>
+                                </th>
+                            </tr>
+                        }
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+<div class="modal fade" id="basic2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">增加积分</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="form_sample_3" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                            <label class="control-label visible-ie8 visible-ie9">用户名</label>
+                            <div class="input-icon">
+                                <i class="fa fa-user"></i>
+                                <input class="form-control placeholder-no-fix" type="text" readonly="readonly" autocomplete="off" placeholder="用户名" id="username" name="username" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">积分</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                <input class="form-control placeholder-no-fix" type="text" readonly="readonly" autocomplete="off" placeholder="积分" id="jifen" name="jifen" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">新增积分</label>
+                            <div class="input-icon">
+                                @*<i class="fa fa-lock"></i>*@
+                                <i class="glyphicon glyphicon-circle-arrow-up"></i>
+                                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="新增积分" id="add" name="add" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="edit2" class="btn blue">新增</button>
+                        <button type="button" id="edit3" class="btn default" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="basic3" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">减少积分</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="form_sample_3" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                            <label class="control-label visible-ie8 visible-ie9">用户名</label>
+                            <div class="input-icon">
+                                <i class="fa fa-user"></i>
+                                <input class="form-control placeholder-no-fix" type="text" readonly="readonly" autocomplete="off" placeholder="用户名" id="username" name="username" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">积分</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                <input class="form-control placeholder-no-fix" type="text" readonly="readonly" autocomplete="off" placeholder="积分" id="jifen" name="jifen" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">减少积分</label>
+                            <div class="input-icon">
+                                <i class="glyphicon glyphicon-circle-arrow-down"></i>
+                                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="减少积分" id="reduce" name="reduce" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="del2" class="btn blue">减少</button>
+                        <button type="button" id="del3" class="btn default" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section PageSpecificJavascriptIncludes{
+    <script type="text/javascript">
+        $('button[my="add"]', '#sample_1').die().live('click', function () {
+            $("#basic2").find("#username").val($(this).parents("th").parents("tr").children("th").eq(0).text());
+            $("#basic2").find("#jifen").val($(this).parents("th").parents("tr").children("th").eq(1).text());
+            $("#basic2").modal('show');
+        });
+    </script>
+    <script type="text/javascript">
+        $("#edit2").click(function () {
+            $.ajax(
+                     {
+                         url: "/Management/Account/Add",
+                         type: "POST",
+                         data:
+                             {
+                                name: $("#username", "#basic2").val(),
+                                add: $("#add", "#basic2").val()
+                             },
+                         beforeSend: function (XMLHttpRequest) {
+                             $("#basic2").modal('hide');
+                         },
+                         success: function (data, textStatus) {
+                             if (data == "200") {
+                                 location.reload()
+                             } else if (data == "100") {
+                                 alert("无该用户！");
+                             } else {
+                                 alert("未知原因");
+                             }
+                         },
+                         complete: function (XMLHttpRequest, textStatus) {
+                             location.reload()
+                         },
+                         error: function () {
+                             alert("好像出错了，请刷新页面重试");
+                         }
+                     })
+        });
+    </script>
+    <script type="text/javascript">
+        $("#edit3").click(function () {
+            $("#basic2").modal('hide');
+        });
+    </script>
+    <script type="text/javascript">
+        $('button[my="reduce"]', '#sample_1').die().live('click', function () {
+            $("#basic3").find("#username").val($(this).parents("tr").children("th").eq(0).text());
+            $("#basic3").find("#jifen").val($(this).parents("tr").children("th").eq(1).text());
+            $("#basic3").modal('show');
+        });
+    </script>
+    <script type="text/javascript">
+        $("#del2").click(function () {
+            $.ajax(
+                     {
+                         url: "/Management/Account/Reduce",
+                         type: "POST",
+                         data:
+                             {
+                                 name: $("#username", "#basic3").val(),
+                                 reduce: $("#reduce", "#basic3").val()
+                             },
+                         beforeSend: function (XMLHttpRequest) {
+                             $("#basic3").modal('hide');
+                         },
+                         success: function (data, textStatus) {
+                             if (data == "200") {
+                                 location.reload()
+                             } else if (data == "100") {
+                                 alert("无该用户！");
+                             } else if (data == "50") {
+                                 alert("当前账户无法删除！");
+                             } else {
+                                 alert("未知原因");
+                             }
+                         },
+                         complete: function (XMLHttpRequest, textStatus) {
+                             location.reload()
+                         },
+                         error: function () {
+                             alert("好像出错了，请刷新页面重试");
+                         }
+                     })
+        });
+    </script>
+    <script type="text/javascript">
+        $("#del3").click(function () {
+            $("#basic3").modal('hide');
+        });
+        $("#index").removeClass("open");
+        $("#userManage").addClass("open");
+    </script>
+}

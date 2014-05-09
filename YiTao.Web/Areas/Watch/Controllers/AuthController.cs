@@ -1,0 +1,85 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using YiTao.Web.Areas.Watch.Common;
+using YiTao.Modules.Bll.Models;
+using System.Data.Entity;
+
+namespace YiTao.Web.Areas.Watch.Controllers
+{
+    public class AuthController : BaseController
+    {
+        //登陆账户
+        [HttpGet]
+        [NoLogin]
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        [NoLogin]
+        public ActionResult Login(YiTao.Modules.Bll.Models.Account newAccount)
+        {
+            var account = db.Accounts.FirstOrDefault(e => e.Name == newAccount.Name && e.Password == newAccount.Password);
+            if (account != null)
+            {
+                //关闭浏览器Cookie即失效
+                HttpCookie hc = new HttpCookie("LoginInfo");
+                hc.Values["UserName"] = account.Name;
+                hc.Values["Password"] = account.Password;
+                Response.Cookies.Add(hc);
+                //TODO: 重定向位置得改
+                Response.AppendHeader("Cache-Control", "no-cache");
+                return RedirectToAction("index", new { controller = "yitao", area = "watch" });
+                //return RedirectPermanent("/Watch/yitao/index");
+            }
+            else
+            {
+                ViewBag.Error = "用户名或密码错误";
+                return View(newAccount);
+            }
+        }
+
+        //注册新会员
+        [HttpGet]
+        [NoLogin]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [NoLogin]
+        public ActionResult Register(YiTao.Modules.Bll.Models.Account account)
+        {
+            if (db.Accounts.Count(e=>e.Name == account.Name) != 0)
+            {
+                TempData["register"] = "用户名已被注册";
+                return View();
+            }
+            else
+            {
+                TempData["register"] = "注册成功!请登录";
+                db.Accounts.Add(account);
+                db.SaveChanges();
+                return RedirectToAction("login");
+            }
+        }
+
+        //注销
+        public ActionResult Logout()
+        {
+            //清除Cookie并永久重定向
+            var c = new HttpCookie("LoginInfo")
+            {
+                Expires = DateTime.Now.AddDays(-1)
+            };
+            Response.Cookies.Add(c);
+            //return RedirectPermanent("/Watch/yitao/index");
+            Response.AppendHeader("Cache-Control", "no-cache"); 
+            return RedirectToAction("index", "yitao", new { area = "Watch" });
+        }
+	}
+}

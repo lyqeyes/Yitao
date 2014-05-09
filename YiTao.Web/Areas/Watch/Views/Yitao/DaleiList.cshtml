@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>商品分类</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="/css/common.css" rel="stylesheet">
+</head>
+@using YiTao.Modules.Bll.Models
+@model List<DaLei>
+<body>
+    <div class="warp">
+        <!------------------	Header ------------------------------>
+        <div class="header">
+            <h1 class="city">大连市</h1>
+            <a href="http://www.baidu.com">
+                <img src="/img/buttons/01.png" class="header_right_pic">
+            </a>
+            <div id="clear"></div>
+            <span class="pagetitle">亿淘</span>
+        </div>
+        <div id="blank"></div><!--Blank area -->
+        <!----------------------	Header End 	-------------------     ->
+        <!--------------	banner ----------------------->
+        <div class="banner">
+            <div class="container">
+                <div class="flexslider">
+                    <ul class="slides">
+                        @foreach (LunBo item in ViewData["lunbolist"] as List<LunBo>)
+                        {
+                            <li>
+                                <!--ClickUrl的值不对-->
+                                <a href="@item.ClickUrl"><img src="@item.ImageUrl" /></a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--------------	banner ----------------------->
+        <div id="goods_category">
+            <!--商品分类-->
+            @{
+                if (Model.Count() != null)
+                {
+                    foreach (DaLei item in Model)
+                    {
+                        <div class="goods_list">
+                            <!--块-->
+                            <a href="/watch/yitao/xiaoleilist/@item.DaLeiId"><img src="@item.ImageUrl" alt="" /></a>
+                            <a href="/watch/yitao/xiaoleilist/@item.DaLeiId" class="goods_title">@item.Name</a>
+                        </div><!--块-->
+                    }
+                }
+            }
+        </div><!--商品分类-->
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+</body>
+</html>

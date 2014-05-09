@@ -1,0 +1,47 @@
+﻿<!doctype html>
+<html>
+<head>
+    @model YiTao.Modules.Bll.Models.ZhuanTiItem
+    <meta charset="utf-8">
+    <title>商品详情</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="/css/common.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="warp">
+        <!------------------	Header ------------------------------>
+        <div class="header">
+            <a href="javascript:history.go(-1)">
+                <img src="/img/buttons/09.png" class="header_left_pic">
+            </a>
+            @*<div id="clear"></div>*@
+            <span class="pagetitle">宝贝详情</span>
+        </div>
+        <div id="blank" style="height:50px;"></div><!--Blank area -->
+        <!----------------------	Header End 	-------------------->
+        <!---------------------- 商品详情 --------------------------->
+        <div id="merchandise_news">
+            <img class="product_01" src="@Model.ImageUrl" width="1920" height="1175" alt="" />
+            <div class="product_bottom" id="div_product">
+                <div class="product_lucency">收藏数：<i>@Model.CollectCount</i></div>
+                <div class="product_lucency">月销量：<i>@Model.MonthlySales</i></div>
+            </div>
+            <div class="news_title">@Model.Name</div>
+            <div class="news_con">
+                <div class="news_font">促销：<span class="news_font01">￥<i>@Model.Price</i></span></div>
+                <div class="news_font">原价：<span class="news_font02">￥<i>@Model.YuanPrice</i></span></div>
+                <div class="news_font03">运费：<span>至 @Model.ToWhere</span></div>
+                <div class="news_font04">@Model.TransportationPrice</div>
+            </div>
+            <a class="purchase" href="@Model.Url"><img class="purchase01" src="/img/buttons/purchase01.png" width="1724" height="186" alt="" /></a>  
+            <br />         
+        </div>
+        <!---------------------- 商品详情 结束------------------------>
+        @Html.Action("CommentList", new { Shangpinid = Model.ZhuanTiItemId, type = 2 })
+    </div>    
+</body>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+</html>

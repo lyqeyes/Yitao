@@ -1,0 +1,154 @@
+﻿@model YiTao.Modules.Bll.Models.ShangPin
+
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+</head>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN SAMPLE FORM PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i> 创建商品
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">淘宝链接</label>
+                    <input type="text" class="form-control" id="taobaourl" placeholder="输入淘宝商品页面链接" />
+                    <button class="btn blue" id="taobao">从淘宝得到商品信息</button>
+                </div>
+                <form role="form" action="~/Management/ShangPin/CreateShangPin" method="post">
+                    <input type="hidden" value="@Model.CreateTime" name="CreateTime">
+                    <input type="hidden" value="@Model.XiaoLeiId" name="XiaoLeiId">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">商品名</label>
+                            <input type="text" class="form-control" value="@Model.Name" name="Name" id="Name">
+                            <span class="help-block">A block of help text.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">返积分</label>
+                            <input type="text" class="form-control" value="@Model.FanJiFen" name="FanJiFen">
+                            <span class="help-block">A block of help text.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">月销量</label>
+                            <input type="text" class="form-control" value="@Model.MonthlySales" name="MonthlySales">
+                            <span class="help-block">A block of help text.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">促销价</label>
+                            <input type="text" class="form-control" value="@Model.Price" name="Price">
+                            <span class="help-block">A block of help text.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">原价</label>
+                            <input type="text" class="form-control" value="@Model.YuanPrice" name="YuanPrice" id="YuanPrice">
+                            <span class="help-block">A block of help text.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">商品淘宝连接</label>
+                            <input type="text" class="form-control" value="@Model.Url" name="Url" id="Url">
+                            <span class="help-block">A block of help text.</span>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" value="@Model.ImageUrl" name="ImageUrl" id="inputCover">
+                            <img id="imageCover" src="@Model.ImageUrl" />
+                            <span id="uploadify" class="btn dark fileinput-button">
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>商品描述</label>
+                            <input type="text" class="form-control" value="@Model.Description" name="Description">
+                        </div>
+                        <div class="form-group">
+                            <label class="">是否包邮</label>
+                            <div class="radio-list">
+                                <label class="radio-inline">
+                                    <div class="radio" id="uniform-optionsRadios4"><span class="checked"><input type="radio" name="BaoYou" value="1" checked=""></span></div>是
+                                </label>
+                                <label class="radio-inline">
+                                    <div class="radio" id="uniform-optionsRadios5"><span><input type="radio" name="BaoYou" value="2"></span></div> 否
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn default">返回</button>
+                        <button type="submit" class="btn blue">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<p style="display:none" id="type">@ViewBag.type</p>
+@section PageSpecificJavascriptIncludes{
+    <script src="~/Scripts/uploadify-v3.1/jquery.uploadify-3.1.min.js"></script>
+    <link href="~/Scripts/uploadify-v3.1/uploadify.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#uploadify').uploadify({
+                uploader: '/Home/Upload',           // 服务器端处理地址
+                swf: '/Scripts/uploadify.swf',    // 上传使用的 Flash
+                //width: 60,                          // 按钮的宽度
+                //height: 23,                         // 按钮的高度
+                buttonText: "上传封面",                 // 按钮上的文字
+                buttonCursor: 'hand',                // 按钮的鼠标图标
+                fileObjName: 'Filedata',            // 上传参数名称
+                // 两个配套使用
+                fileTypeExts: "*.gif; *.jpg; *.png;*.bmp;*.jpeg;",             // 扩展名
+                fileTypeDesc: "请选择 jpg png 文件",     // 文件说明
+                auto: true,                // 选择之后，自动开始上传
+                multi: false,               // 是否支持同时上传多个文件
+                removeTimeout: 0,
+                'onUploadSuccess': function (file, data, response) {
+                    if (data == "error") {
+                        alert('服务器错误，请重新上传');
+                    } else {
+                        $("#imageCover").attr("src", data);
+                        $("#inputCover").attr("value", data);
+                    }
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $("#taobao").click(function () {
+            $.ajax({
+                url: "/Management/MainPage/CreateJuZheKouAjax",
+                type: "GET",
+                data: {
+                    url: $("#taobaourl").val(),
+                },
+                beforeSend: function (XMLHttpRequest) {
+                    //$("#loading").style.display = "block";
+                    $("#basic").modal('hide');
+                },
+                success: function (data, textStatus) {
+                    if (data == "0") {
+                        alert("链接不能为空");
+                    } else {
+                        var object = $.parseJSON(data);
+                        $("#YuanPrice").val(object.price);
+                        $("#Name").val(object.title);
+                        $("#Url").val(object.url);
+                        $("#inputCover").val(object.src)
+                        $("#imageCover").attr("src", object.src);
+                    }
+
+                },
+                error: function () {
+                    alert("链接不能为空");
+                }
+            })
+        })
+    </script>
+}
+

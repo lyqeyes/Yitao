@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{A048DC1F-6E22-409C-8AE5-C3C076D825F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YiTao.Web", "YiTao.Web\YiTao.Web.csproj", "{9F0FFE4B-88C0-4C28-9004-1B5C8FF664D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{6F15AA22-16F3-4118-80A4-12665432546B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YiTao.Modules.Bll", "YiTao.Modules.Bll\YiTao.Modules.Bll.csproj", "{169D7147-4323-4D7F-9F29-E5ABBBBD0A8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F0FFE4B-88C0-4C28-9004-1B5C8FF664D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F0FFE4B-88C0-4C28-9004-1B5C8FF664D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F0FFE4B-88C0-4C28-9004-1B5C8FF664D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F0FFE4B-88C0-4C28-9004-1B5C8FF664D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{169D7147-4323-4D7F-9F29-E5ABBBBD0A8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{169D7147-4323-4D7F-9F29-E5ABBBBD0A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{169D7147-4323-4D7F-9F29-E5ABBBBD0A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{169D7147-4323-4D7F-9F29-E5ABBBBD0A8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9F0FFE4B-88C0-4C28-9004-1B5C8FF664D4} = {A048DC1F-6E22-409C-8AE5-C3C076D825F9}
+		{169D7147-4323-4D7F-9F29-E5ABBBBD0A8F} = {6F15AA22-16F3-4118-80A4-12665432546B}
+	EndGlobalSection
+EndGlobal

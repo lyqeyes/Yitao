@@ -1,0 +1,93 @@
+﻿@model List<YiTao.Modules.Bll.Models.ShangPin>
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <a class="btn btn-primary btn-lg" data-toggle="modal" href="~/Management/ShangPin/CreateShangPin?XiaoLeiId=@ViewBag.id">上传商品</a>
+    <hr />
+</div>
+
+@if (Model == null)
+{
+    <p>没有商品，赶紧上传一个吧！</p>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <div>
+                    <p style="display:none">@item.ShangPinId</p>
+                    <p style="display:none">@item.XiaoLeiId</p>
+                    @*<div class="editor-field  admininput">
+                            <h3 style="color:#000000;">商品地址:</h3>
+                            <p>@item.Url</p>
+                        </div>*@
+                    @*<div class="editor-field  admininput">
+                        <img src="@item.ImageUrl" />
+                    </div>*@
+                    <div class="editor-field  admininput">
+                        <h3 style="color:#000000;">商品名:</h3>
+                        <p>@item.Name</p>
+                    </div>
+                    <div class="editor-field  admininput">
+                        <h3 style="color:#000000;">描述:</h3>
+                        <p>@item.Description</p>
+                    </div>
+                    <div class="editor-label  admininput">
+                        <h3 style="color:#000000;">原价:</h3>
+                        <p>@item.YuanPrice</p>
+                    </div>
+                    <div class="editor-field  admininput">
+                        <h3 style="color:#000000;">促销价:</h3>
+                        <p>@item.Price</p>
+                    </div>
+                    <div class="editor-field  admininput">
+                        <h3 style="color:#000000;">返积分:</h3>
+                        <p>@item.FanJiFen</p>
+                    </div>
+                    <div class="editor-field  admininput">
+                        <h3 style="color:#000000;">是否包邮:</h3>
+                        @{
+        if (item.BaoYou == 1)
+        {
+            <p>是</p>
+        }
+        else
+        {
+            <p>否</p>
+        }
+                        }
+                    </div>
+                    @*<div class="editor-field  admininput">
+                        <h3 style="color:#000000;">收藏数</h3>
+                        <p>@item.CollectCount</p>
+                    </div>*@
+                    <div>
+                        <a onclick="javascript:return confirm('确认删除?')" class="btn btn-primary btn-lg btn-success" href="/Management/Shangpin/CommonShangPinDel?ShangPinId=@item.ShangPinId">删除</a>
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <div class="col-md-6">                
+                <div class="imgConunt" style="margin:0 auto;vertical-align: middle;">
+                    <div class="tile-body">
+                        <img src="@item.ImageUrl" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    <hr />
+    }
+}
+<style type="text/css">
+    .admininput {
+        font-size: 18px;
+    }
+
+    h3, p {
+        display: inline-block;
+    }
+</style>
+

@@ -1,0 +1,44 @@
+﻿<!doctype html>
+<html>
+<head>
+    @using YiTao.Modules.Bll.Models
+    @model List<OtherUrl>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="/css/common.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="warp">         
+        <div class="header">
+            <h1 class="city">大连市</h1>
+            <a href="http://www.baidu.com">
+                <img src="/img/buttons/01.png" class="header_right_pic">
+            </a>
+            <div id="clear"></div>
+            <span class="pagetitle">亿淘</span>
+        </div>       
+        <div class="friendlink">
+            <ul style="margin-top:2em;">
+                @foreach (OtherUrl item in Model)
+                {
+                    <li class="link">
+                        <a href="@item.Url"><img class="item" src="@item.ImageUrl"></a>
+                        <a href="@item.Url" class="linktext">@item.Name</a>
+                    </li>
+                }
+            </ul>
+            <div id="clear"></div>
+        </div>
+        <!------------------	FriendLink End---------->
+    </div>
+    <style>
+        .item {
+            width: 22%;
+        }
+    </style>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<html>
+<head>
+    @using YiTao.Modules.Bll.Models
+    @model List<ShangPin>
+    <meta charset="utf-8">
+    <title>二级商品目录</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="/css/common.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="warp">
+        <!------------------	Header ------------------------------>
+        <div class="header">
+            <a href="javascript:history.go(-1)">
+                <img src="/img/buttons/09.png" class="header_left_pic">
+            </a>
+            <h2 class="pagetitle" style="margin-top:0.2em;">@ViewBag.DaleiName</h2>
+            @*<img src="/img/title/08.png" class="pagetitle">*@
+            <a href="http://www.baidu.com">
+                <img src="/img/buttons/01.png" class="header_right_pic">
+            </a>
+            <div id="clear"></div>
+        </div>
+        <div id="blank" style="height:50px;"></div><!--Blank area -->
+        <!----------------------	Header End 	-------------------->
+        @foreach (ThreeLei xiaoleiItem in ViewData["xiaoleiList"] as List<ThreeLei>)
+        {
+            <div class="second">
+                <div class="second_title"><h1>@xiaoleiItem.Name</h1></div>
+                @foreach (ShangPin shangpinItem in Model)
+                {
+                    if (shangpinItem.XiaoLeiId == xiaoleiItem.ThreeLeiId)
+                    {
+                        <div class="second_list">
+                            <!--块-->
+                            <a href="/watch/yitao/ShangpinDetail/@shangpinItem.ShangPinId"><img src="@shangpinItem.ImageUrl" @*width="393" height="393"*@ alt="" /></a>
+                            <a href="/watch/yitao/ShangpinDetail/@shangpinItem.ShangPinId" class="list_a">@shangpinItem.Name</a>
+                        </div><!--块-->
+                    }
+                }
+            </div>
+        }
+    </div>
+    <style>
+        a {
+            color: #000000;
+        }
+
+            a:visited {
+                color: #000000;
+            }
+    </style>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+</body>
+</html>

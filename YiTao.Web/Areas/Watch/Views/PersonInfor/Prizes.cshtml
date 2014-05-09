@@ -1,0 +1,47 @@
+﻿<!doctype html>
+<html>
+<head>
+    @using YiTao.Web.Areas.Watch.Models
+    @model List<JiangpinDetail>
+    <meta charset="utf-8">
+    <title>中奖信息列表</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="/css/common.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="warp">
+        <!------------------	Header ------------------------------>
+        <div class="header">
+            <a href="/watch/personinfor/index"><img src="/img/buttons/09.png" class="header_left_pic"></a>
+                     
+            <div id="clear"></div>
+            <span  class="pagetitle">中奖历史</span>   
+        </div>
+        <div id="blank"></div><!--Blank area -->        
+        <!-----------product list----------------------->
+        <div class="product_list">
+            @foreach (JiangpinDetail item in Model)
+            {
+                <div class="list_box">                    
+                    <a href="#"><img class="box_left" src="@item.ImageUrl" alt="" /></a>
+                    <ul class="box_right">
+                        <li>
+                            <a href="#" class="title" style="font-size:12px;">@item.Name</a>
+                        </li> 
+                        <li name="name_font" class="font">
+                            <span><i>@item.CreateTime</i></span>
+                            <div class="right_font">
+                                
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            }
+        </div>
+        <!-----------product list End------------------->
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+</html>

@@ -1,0 +1,26 @@
+﻿@using YiTao.Modules.Bll.Models
+@model List<OtherUrl>
+<ul>
+    @foreach (OtherUrl item in Model)
+    {
+        <li class="link">
+            <a href="@item.Url"><img class="item" src="@item.ImageUrl"></a>
+            <a href="@item.Url" class="linktext">@item.Name</a>
+        </li>
+    }
+    <li class="link">
+        <a href="/watch/yitao/moreFuwu"><img class="item" src="/img/icon/icon_04.png"></a>
+        <a class="linktext"> 更多 </a>
+    </li>
+</ul>
+<style>
+    .item {
+        width:22%;
+    }
+    a {
+        color:#000000;
+    }
+        a:visited {
+            color:#000000;
+        }
+</style>

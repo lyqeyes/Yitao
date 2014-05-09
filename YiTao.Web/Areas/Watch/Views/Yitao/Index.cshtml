@@ -1,0 +1,127 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>亿淘</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="/css/common.css" rel="stylesheet">
+</head>
+@using YiTao.Modules.Bll.Models
+<body>
+        <div class="warp">
+            <!------------------	Header ------------------------------>
+            <div class="header">
+                <h1 class="city">大连市</h1>
+                <a href="/watch/personInfor">
+                    <img src="/img/buttons/02.png" class="header_left_pic">
+                </a>
+                <a href="http://www.baidu.com">
+                    <img src="/img/buttons/01.png" class="header_right_pic">
+                </a>
+                <div id="clear"></div>
+                <span class="pagetitle">亿淘</span>
+            </div>
+            <div id="blank"></div><!--Blank area -->
+            <!----------------------	Header End 	-------------------->
+            <!--------------	banner ----------------------->
+            <div class="banner">
+                <div class="container">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            @foreach (LunBo item in ViewData["lunbolist"] as List<LunBo>)
+                            {
+                                <li>
+                                    <a href="@item.ClickUrl"><img src="@item.ImageUrl" /></a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--------------	banner ----------------------->
+            <!------------------	FriendLink --------------->
+            <div class="friendlink">
+                @Html.Action("fuwu")
+                <div id="clear"></div>
+            </div>
+            <!------------------	FriendLink End---------->
+            <!--------- 	conter	------------------------>
+            <div class="conter">
+                <div class="conter_left">
+                    @foreach (ZhuanTi item in ViewData["zhuantilist"] as List<ZhuanTi>)
+                    {
+                        if (item.Type == 4)
+                        {
+                            <a href="/watch/yitao/Productlist/4">
+                                <img src="@item.ImageUrl" />
+                            </a>
+                        }
+                    }
+                </div>
+                <div class="conter_right">
+                    <div class="conter_right_top">
+                        @foreach (ZhuanTi item in ViewData["zhuantilist"] as List<ZhuanTi>)
+                        {
+                            if (item.Type == 1)
+                            {
+                                <a href="/watch/yitao/Productlist/1">
+                                    <img src="@item.ImageUrl" />
+                                </a>
+                            }
+                        }
+                    </div>
+                    <div class="conter_right_bottom">
+                        @foreach (ZhuanTi item in ViewData["zhuantilist"] as List<ZhuanTi>)
+                        {
+                            if (item.Type == 2)
+                            {
+                                <a href="/watch/yitao/Productlist/2">
+                                    <img src="@item.ImageUrl" class="conter_r_b_l" />
+                                </a>
+                            }
+                        }
+                        @foreach (ZhuanTi item in ViewData["zhuantilist"] as List<ZhuanTi>)
+                        {
+                            if (item.Type == 3)
+                            {
+                                <a href="/watch/yitao/Productlist/3">
+                                    <img src="@item.ImageUrl" class="conter_r_b_r" />
+                                </a>
+                            }
+                        }
+                        <div id="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <!--------- 	conter	End--------------------->
+            <!-----------	collect	------------------------>
+            <div class="collect">
+                @{
+                    //HaoDian hao = ViewData["haodian"] as HaoDian;
+                    <a href="@ViewBag.Haodian"><img src="/img/buttons/goods_shop.jpg" class="collect_left" style="width:36%;height:auto;"></a>
+    <a href="http://h5.m.taobao.com/fav/index.htm?spm=0.0.0.0&sprefer=p23590#!goods/queryColGood-1"><img src="/img/buttons/my_collect.jpg" class="collect_right" style="width:62%;height:auto;"></a>
+}
+                <div id="clear"></div>
+            </div>
+            <!-----------	collect	End--------------------->
+            <h1 class="title_h1"><a href="/watch/yitao/moreJuzekou">聚折扣</a></h1>
+            <!-----------product list----------------------->
+            <div class="product_list">
+                @Html.Action("Juzekou")
+            </div>
+            <!-----------product list End------------------->
+        </div>
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+        <script type="text/javascript" src="/js/common.js"></script>
+        <style>
+            a {
+                color: #000000;
+            }
+
+                a:visited {
+                    color: #000000;
+                }
+        </style>
+</body>
+</html>

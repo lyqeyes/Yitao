@@ -1,0 +1,301 @@
+﻿@model List<YiTao.Modules.Bll.Models.Management>
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-edit"></i>管理员管理</div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="javascript:;" class="remove"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="btn-group">
+                        <button id="sample_editable_1_new" class="btn green" data-toggle="modal" href="#basic">
+                            新建账号 <i class="fa fa-plus"></i>
+                        </button>
+
+                    </div>
+                </div>
+                <table class="table table-bordered table-hover" id="sample_1">
+                    <thead>
+                        <tr>
+                            <th>用户名</th>
+                            <th>密码</th>
+                            <th>创建时间</th>
+                        <th colspan="2">管理</th>
+                        </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th>@item.UserName</th>
+                                    <th>@item.Password</th>
+                                    <th>@item.CreateTime</th>
+                                <th>
+                                    <button my="edit" class="btn green" data-toggle="modal">
+                                        修改密码 <i class="fa fa-edit"></i>
+                                    </button>
+                                </th>
+                                <th>
+                                    <button my="del" class="btn green" id="del1" data-toggle="modal">
+                                        删除账号 <i class="fa fa-times"></i>
+                                    </button>
+                                </th>
+                            </tr>
+                            }
+                    </thead>                    
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+<div class="modal fade" id="basic" tabindex="-1"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">创建新用户</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="form_sample_3" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                            <label class="control-label visible-ie8 visible-ie9">用户名</label>
+                            <div class="input-icon">
+                                <i class="fa fa-user"></i>
+                                    @Html.TextBox("username", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "用户名", id = "username", name = "username" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">密码</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                    @Html.Password("password", String.Empty, new { @class = "form-control placeholder-no-fix", type = "password", autocomplete = "off", placeholder = "密码", id = "password", name = "password" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="register" class="btn blue">创建新账户</button>
+                        <button type="submit" class="btn default" data-dismiss="modal">取消</button>                       
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="basic2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="form_sample_3" class="form-horizontal" role="form">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                            <label for="username" class="control-label visible-ie8 visible-ie9">用户名</label>
+                            <div class="input-icon">
+                                <i class="fa fa-user"></i>
+                                <input class="form-control placeholder-no-fix" type="text" readonly="readonly" autocomplete="off" placeholder="用户名" id="username" name="username" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">密码</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                <input class="form-control placeholder-no-fix" type="text" readonly="readonly" autocomplete="off" placeholder="密码" id="oldpassword" name="oldpassword" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">新密码</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                <input class="form-control placeholder-no-fix" type="text"  autocomplete="off" placeholder="新密码" id="password" name="password" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="edit2" class="btn blue">修改</button>
+                        <button type="button" id="edit3" class="btn default" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="basic3" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">确认删除</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="form_sample_3" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                            <label class="control-label visible-ie8 visible-ie9">用户名</label>
+                            <div class="input-icon">
+                                <i class="fa fa-user"></i>
+                                <input class="form-control placeholder-no-fix" type="text" readonly="readonly" autocomplete="off" placeholder="用户名" id="username" name="username" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label visible-ie8 visible-ie9">密码</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                <input class="form-control placeholder-no-fix" type="text" readonly="readonly" autocomplete="off" placeholder="密码" id="password" name="password" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="del2" class="btn blue">删除</button>
+                        <button type="button" id="del3" class="btn default" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section PageSpecificJavascriptIncludes{
+<script type="text/javascript">
+    $("#register").click(function () {
+        $.ajax(
+            {
+                url: "/Management/Auth/Register",
+                type: "POST",
+                data:
+                    {
+                        UserName: $("#username", "#basic").val(),
+                        Password: $("#password", "#basic").val()
+                    },
+                beforeSend: function (XMLHttpRequest) {
+                    $("#basic").modal('hide');
+                },
+                success: function (data, textStatus) {
+                    if (data == "200") {
+                        location.reload()
+                    } else if (data == "100") {
+                        alert("已有该用户名！");
+                    } else {
+                        alert("未知原因");
+                    }
+                },
+                complete: function (XMLHttpRequest, textStatus) {
+                    location.reload()
+                },
+                error: function () {
+                    alert("好像出错了，请刷新页面重试");
+                }
+            })
+    });
+</script>
+<script type="text/javascript">
+    $('button[my="edit"]', '#sample_1').die().live('click', function ()
+    {
+        $("#basic2").find("#username").val($(this).parents("th").parents("tr").children("th").eq(0).text());
+        $("#basic2").find("#oldpassword").val($(this).parents("th").parents("tr").children("th").eq(1).text());
+        $("#basic2").modal('show');
+    });
+</script>
+<script type="text/javascript">
+    $("#edit2").click(function () {
+        $.ajax(
+                 {
+                     url: "/Management/Auth/Edit",
+                     type: "POST",
+                     data:
+                         {
+                             UserName: $("#username","#basic2").val(),
+                             Password: $("#password","#basic2").val()
+                         },
+                     beforeSend: function (XMLHttpRequest) {
+                         $("#basic2").modal('hide');
+                     },
+                     success: function (data, textStatus) {
+                         if (data == "200") {
+                             location.reload()
+                         } else if (data == "100") {
+                             alert("无该用户！");
+                         } else {
+                             alert("未知原因");
+                         }
+                     },
+                     complete: function (XMLHttpRequest, textStatus) {
+                         location.reload()
+                     },
+                     error: function () {
+                         alert("好像出错了，请刷新页面重试");
+                     }
+                 })
+    });
+</script>
+<script type="text/javascript">
+    $("#edit3").click(function () {
+        $("#basic2").modal('hide');
+    });
+</script>
+<script type="text/javascript">
+    $('button[my="del"]', '#sample_1').die().live('click', function () {
+        $("#basic3").find("#username").val($(this).parents("tr").children("th").eq(0).text());
+        $("#basic3").find("#password").val($(this).parents("tr").children("th").eq(1).text());
+        $("#basic3").modal('show');
+    });
+</script>
+<script type="text/javascript">
+    $("#del2").click(function () {
+        $.ajax(
+                 {
+                     url: "/Management/Auth/Del",
+                     type: "POST",
+                     data:
+                         {
+                             UserName: $("#username", "#basic3").val(),
+                             Password: $("#password","#basic3").val()
+                         },
+                     beforeSend: function (XMLHttpRequest) {
+                         $("#basic3").modal('hide');
+                     },
+                     success: function (data, textStatus) {
+                         if (data == "200") {
+                             location.reload()
+                         } else if (data == "100") {
+                             alert("无该用户！");
+                         } else if (data == "50") {
+                             alert("当前账户无法删除！");
+                         } else {
+                             alert("未知原因");
+                         }
+                     },
+                     complete: function (XMLHttpRequest, textStatus) {
+                         location.reload()
+                     },
+                     error: function () {
+                         alert("好像出错了，请刷新页面重试");
+                     }
+                 })
+    });
+</script>
+<script type="text/javascript">
+    $("#del3").click(function () {
+        $("#basic2").modal('hide');
+    });
+</script>
+}

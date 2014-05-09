@@ -1,0 +1,133 @@
+﻿@model YiTao.Modules.Bll.Models.HaoDian
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Scripts/webuploader/webuploader.css">
+    <script src="http://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/webuploader/webuploader.js"></script>
+    <script type="text/javascript">
+        // 文件上传
+        $(function () {
+            var uploader1;
+            uploader1 = WebUploader.create({
+                // 自动上传。
+                auto: true,
+                // 不压缩image
+                resize: false,
+                multiple: false,
+                // swf文件路径
+                swf: '~/Scripts/webuploader/Uploader.swf',
+                // 文件接收服务端。
+                server: '/Home/Upload',
+                // 选择文件的按钮。
+                pick: '#picker',
+                threads: 1
+            });
+            uploader1.on('uploadAccept', function (object, ret) {
+                if (ret._raw == "error")
+                    alert("好像出错了，请刷新页面重试");
+                else {
+                    $("#imageCover").attr("src", ret._raw);
+                }
+            });
+            uploader1.on('uploadError', function (file) {
+                alert("好像出错了，请刷新页面重试");
+            });
+        });
+    </script>
+</head>
+<div class="row">
+    <div class=".col-md-12">
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-edit"></i>好店管理</div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="javascript:;" class="remove"></a>
+                </div>
+            </div>
+            <div class="portlet-body" align="center">
+                <table class="table table-bordered table-hover" align="center">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-4">
+                                        <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
+                                            <div class="tile-body">
+                                                <img id="imageCover" alt="@Model.ImageUrl" src="@Model.ImageUrl">
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th class="col-md-8">
+                                        <div>
+                                            <input id="HaoDianId" value="@Model.HaoDianId" type="text" hidden="hidden" />
+                                            <table>
+                                                <tr>                                             
+                                                    <th class="col-md-2">
+                                                        <div class="btns">
+                                                            <div id="picker">选择图片</div>
+                                                        </div>
+                                                    </th>
+                                                    <th class="col-md-2">
+                                                        <button id="save" class="btn green" data-toggle="modal">
+                                                            保存修改
+                                                        </button>
+                                                    </th>
+                                                    <th class="col-md-4" colspan="4">
+                                                        <input id="Name" value="@Model.Name" type="text" class="form-control my-form-control" placeholder="好店名称" />
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="8">
+                                                        <input id="Url" value="@Model.Url" type="text" class="form-control my-form-control" placeholder="好店链接" />
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="8">
+                                                        <input id="Description" value="@Model.Description" type="text" class="form-control my-form-control" placeholder="好店描述" />
+                                                    </th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section PageSpecificJavascriptIncludes{
+    <script type="text/javascript">
+        $("#save").click(function () {
+            $.ajax(
+                {
+                    url: "/Management/MainPage/HaoDian",
+                    type: "POST",
+                    data:
+                        {
+                            HaoDianId: $("#HaoDianId").val(),
+                            Name: $("#Name").val(),
+                            Url: $("#Url").val(),
+                            Description: $("#Description").val(),
+                            ImageUrl: $("#imageCover").attr("src")
+                        },
+                    success: function (data, textStatus) {
+                        if (data == "200") {
+                            location.reload()
+                        } else if (data == "100") {
+                            alert("请重新编辑！");
+                        } else {
+                            alert("未知原因");
+                        }
+                    },
+                    complete: function (XMLHttpRequest, textStatus) {
+                        location.reload()
+                    },
+                    error: function () {
+                        alert("好像出错了，请刷新页面重试");
+                    }
+                })
+        });
+    </script>
+}

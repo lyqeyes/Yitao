@@ -1,0 +1,51 @@
+﻿@using YiTao.Modules.Bll.Models
+@model List<JuZheKouItem>
+
+
+@{
+    if (Model.Count() > 0)
+    {
+        foreach (JuZheKouItem item in Model)
+        {
+            <div class="list_box">
+                <!--产品类表-->
+                <a href="/watch/yitao/JuzekouDetail/@item.JuZheKouItemId"><img class="box_left" src="@item.ImageUrl" alt="" /></a>
+                <ul class="box_right">
+                    <li><a href="/watch/yitao/JuzekouDetail/@item.JuZheKouItemId" class="title" style="font-size:12px;">@item.Name</a></li>
+                    <!------	返积分 和 包邮 ----------------------->
+                    <li class="pic">
+                        <a href="#" class="pic_a">
+                            <img src="/img/buttons/integral_pic.png" alt="" />
+                        </a>
+                        <a href="#" class="pic_span">返积分: @item.FanJiFen</a>
+                        <a href="#" class="pic_a">
+                            <img src="/img/buttons/post_pic.png" alt="" />
+                        </a>
+                        @{
+            if (item.BaoYou == 1)
+            {
+                <a href="#" class="pic_span">包邮</a>
+            }
+            else
+            {
+                <a href="#" class="pic_span">不包邮</a>
+            }
+                        }
+                    </li>
+                    <!------	返积分 和 包邮 End---------------->
+                    <li name="name_font" class="font">
+                        <span>￥<i>@item.Price</i></span>
+                        <div class="right_font">
+                            <a href="/watch/yitao/JuzekouDetail/@item.JuZheKouItemId"><img src="/img/buttons/input_01.png" alt="" /></a>
+                            <span class="delete">￥@item.YuanPrice</span>
+                        </div>
+                    </li>
+                </ul>
+            </div><!--产品类表结束-->
+        }
+    }
+    else
+    {
+        <p>暂时没有聚折扣商品</p>
+    }
+}

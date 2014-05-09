@@ -1,0 +1,75 @@
+﻿@model List<YiTao.Modules.Bll.Models.JuZheKouItem>
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-edit"></i>聚折扣管理</div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="javascript:;" class="remove"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="btn-group">
+                        <a id="sample_editable_1_new" class="btn green" data-toggle="modal" href="/Management/MainPage/CreateJuZheKouItem">
+                            新建商品 <i class=" fa fa-plus">
+                            </i>
+                        </a>
+                    </div>
+                </div>
+                @if (Model == null)
+                {
+                    <p>没有商品，赶紧上传一个吧！</p>
+                }
+                else
+                {
+                    <table class="table table-bordered table-hover" id="sample_1">
+                        <thead>
+                            <tr>
+                                <th>缩略图</th>
+                                <th>收藏数</th>
+                                <th>商品描述</th>
+                                <th>返积分</th>
+                                <th>商品名称</th>
+                                <th>折扣价</th>
+                                <th>商品链接</th>
+                                <th>原价</th>
+                                <th>是否包邮</th>
+                                <th>管理</th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th class="col-md-4">
+                                        <div class="suoluetu-bg">
+                                            <img src=@item.ImageUrl />
+                                        </div>
+                                    </th>
+                                    <th>@item.CollectCount</th>
+                                    <th>@item.Description</th>
+                                    <th>@item.FanJiFen</th>
+                                    <th>@item.Name</th>
+                                    <th>@item.Price</th>
+                                    <th>@item.Url</th>
+                                    <th>@item.YuanPrice</th>
+                                    <th>@item.BaoYou</th>
+                                    <th>
+                                        <a class="btn green" data-toggle="modal" href="/Management/MainPage/DeleteJuZheKo?id=@item.JuZheKouItemId">
+                                            删除 <i class="fa fa-edit"></i>
+                                        </a>
+                                    </th>
+                                </tr>
+                            }
+                        </thead>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>

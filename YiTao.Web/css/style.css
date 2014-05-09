@@ -1,0 +1,38 @@
+body, div{
+	margin: 0;
+	padding: 0;color: #444444;
+	font: 14px/1.5 Microsoft YaHei, Helvitica, Verdana, Arial, san-serif;
+}
+.out {
+	position: relative;
+	width: 100%;
+	top: 20px;
+	margin-bottom: 30px;
+}
+.in {
+	position: absolute;
+	width: 100%;
+	top: 70px;
+}
+.out1 {
+	height: 227px;
+    margin: 0 auto;
+    max-width: 227px;
+    width: 227px;
+}
+.in1 {
+	cursor: pointer;
+    height: 110px;
+    margin: 0 auto;
+    max-width:150px;
+    width: 130px;
+}
+.out1 img, .in1 img {
+	display: block;
+	margin: 0 auto;
+}
+
+.main img {
+	max-width: 100%;
+	border: 0 none;
+}
