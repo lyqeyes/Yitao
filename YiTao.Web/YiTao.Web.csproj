@@ -2493,6 +2493,12 @@
     <Content Include="Areas\Management\Views\JiangpinDeal\DuihuanList.cshtml" />
     <Content Include="Areas\Management\Views\JiangpinDeal\ZhongjiangDealedList.cshtml" />
     <Content Include="Areas\Management\Views\JiangpinDeal\DuihuanDealedList.cshtml" />
+    <Content Include="Areas\Watch\Views\PersonInfor\ChangePassWord.cshtml" />
+    <Content Include="Areas\Watch\Views\PersonInfor\SerAddress.cshtml" />
+    <Content Include="Areas\Watch\Views\PersonInfor\Info.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Watch\Views\Duihuan\SetAddressBeforChou.cshtml" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\yitao - FTP.pubxml" />

@@ -19,7 +19,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
             var v = HttpContext.Request.Cookies["LoginInfo"];
             string UserName = v["UserName"];
             string Password = v["Password"];
-            Account acc = db.Accounts.FirstOrDefault(e => e.Name == UserName && e.Password == Password); 
+            Account acc = db.Accounts.FirstOrDefault(e => e.Name == UserName && e.Password == Password);
 
             //检测今日是否签到
             JiFenLiShi qiandaoLast = (from d in db.JiFenLiShis where d.AccountId == acc.AccountId && d.Type == 1 select d).OrderByDescending(a => a.CreateTime).Take(1).FirstOrDefault();
@@ -27,7 +27,8 @@ namespace YiTao.Web.Areas.Watch.Controllers
             {
                 ViewBag.whetherQiandao = "0";
             }
-            else {
+            else
+            {
                 ViewBag.whetherQiandao = "1";
             }
             return View(acc);
@@ -51,7 +52,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         /// <returns></returns>
         public ActionResult Prizes(int id)
         {
-            List<JiangpinDetail> prezis = (from d in db.JiFenLiShis where d.AccountId == id && d.Type == 2 && d.ItemId != null select new JiangpinDetail{CreateTime = d.CreateTime, itemId=(int)d.ItemId}).ToList();
+            List<JiangpinDetail> prezis = (from d in db.JiFenLiShis where d.AccountId == id && d.Type == 2 && d.ItemId != null select new JiangpinDetail { CreateTime = d.CreateTime, itemId = (int)d.ItemId }).ToList();
             foreach (JiangpinDetail item in prezis)
             {
                 var temp = db.ChouJiangItems.FirstOrDefault(a => a.ChouJiangId == item.itemId);
@@ -108,7 +109,75 @@ namespace YiTao.Web.Areas.Watch.Controllers
 
         public ActionResult Info()
         {
+            var v = HttpContext.Request.Cookies["LoginInfo"];
+            string UserName = v["UserName"];
+            string Password = v["Password"];
+            ViewBag.Name = UserName;
+            Account acc = db.Accounts.FirstOrDefault(e => e.Name == UserName && e.Password == Password);
+            ViewBag.JiFen = (acc.JiFen / 100);
+            ViewBag.NowJiFen = acc.JiFen;
+            ViewBag.Phone = acc.Phone;
             return View();
         }
-	}
+
+        public ActionResult ChangePassWord()
+        {
+            return View();
+
+        }
+
+        public ActionResult SetPassWord(string password, string newpassword, string checkpassword)
+        {
+            if (newpassword != checkpassword)
+            {
+                ModelState.AddModelError("error", "两次输入的密码不对");
+            }
+            else
+            {
+                var v = HttpContext.Request.Cookies["LoginInfo"];
+                string name = v.Values["UserName"];
+                var account = db.Accounts.FirstOrDefault(a => a.Name == name && password == a.Password);
+                if (account == null)
+                {
+                    ModelState.AddModelError("error", "原密码不正确");
+                }
+                else
+                {
+                    account.Password = newpassword;
+                    db.Entry(account).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Info");
+                }
+            }
+            return View();
+        }
+
+        public ActionResult SerAddress()
+        {
+            var v = HttpContext.Request.Cookies["LoginInfo"];
+            string name = v.Values["UserName"];
+            var account = db.Accounts.FirstOrDefault(a => a.Name == name);
+            var address = db.UserAddresses.Where(u => u.UserId == account.AccountId);
+            return View(address.ToList());
+        }
+
+        public ActionResult DelAddress(int id)
+        {
+            db.UserAddresses.Remove(db.UserAddresses.FirstOrDefault(u => u.UserAddressId == id));
+            db.SaveChanges();
+            return RedirectToAction("SerAddress");
+        }
+
+        public ActionResult SetAddress(UserAddress useraddress)
+        {
+            useraddress.CreateTime = DateTime.Now;
+            var v = HttpContext.Request.Cookies["LoginInfo"];
+            string name = v.Values["UserName"];
+            var account = db.Accounts.FirstOrDefault(a => a.Name == name);
+            useraddress.UserId = db.Accounts.FirstOrDefault(a => a.Name == name).AccountId;
+            db.UserAddresses.Add(useraddress);
+            db.SaveChanges();
+            return RedirectToAction("Info");
+        }
+    }
 }
