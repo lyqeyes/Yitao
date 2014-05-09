@@ -135,7 +135,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Management\Models\" />
     <Folder Include="Areas\Management\Views\Upload\" />
-    <Folder Include="Areas\Watch\Views\Shared\" />
     <Folder Include="assets\plugins\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -2486,6 +2485,9 @@
     <Content Include="Areas\Management\Views\ShangPin\ThreeLei.cshtml" />
     <Content Include="Areas\Management\Views\ShangPin\ThreeLeiEdit.cshtml" />
     <Content Include="Areas\Watch\Views\Yitao\ThreeLei.cshtml" />
+    <Content Include="Areas\Watch\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Watch\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Watch\Views\Auth\ForgetPassword.cshtml" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

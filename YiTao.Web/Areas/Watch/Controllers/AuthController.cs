@@ -61,6 +61,8 @@ namespace YiTao.Web.Areas.Watch.Controllers
             }
             else
             {
+                account.CreateTime = DateTime.Now;
+                account.JiFen = 0;
                 TempData["register"] = "注册成功!请登录";
                 db.Accounts.Add(account);
                 db.SaveChanges();
@@ -80,6 +82,14 @@ namespace YiTao.Web.Areas.Watch.Controllers
             //return RedirectPermanent("/Watch/yitao/index");
             Response.AppendHeader("Cache-Control", "no-cache"); 
             return RedirectToAction("index", "yitao", new { area = "Watch" });
+        }
+
+        public ActionResult ForgetPassword(string email)
+        {
+            Guid g = Guid.NewGuid();
+            HttpRuntime.Cache.Insert(g.ToString(), email, null, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(30));
+            //TempData["sendeamil"] = "已将新密码发送到您的邮箱. 请在30分钟内登录邮箱验证.";
+            return View();
         }
 	}
 }

@@ -41,17 +41,6 @@ namespace YiTao.Web.Areas.Management.Controllers
             }
         }
 
-        public ActionResult ForgetPassword()
-        {
-            return View();
-        }
-
-        public ActionResult ForgetPasswordByTwo(string email)
-        {
-            Guid g = Guid.NewGuid();
-            HttpRuntime.Cache.Insert(g.ToString(), email, null, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(30));
-            return View();
-        }
         [HttpGet]
         public ActionResult Manage()
         {
