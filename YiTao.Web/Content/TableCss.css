@@ -34,3 +34,7 @@ table tr td img {
 pre {
     border:none !important;
 }
+.smallImg {
+            width: 100%;
+            height: 80px;
+        }

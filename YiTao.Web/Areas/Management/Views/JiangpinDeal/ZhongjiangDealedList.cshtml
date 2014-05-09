@@ -30,7 +30,7 @@
                                 <th class="col-md-3">@item.Address</th>
                                 <th class="col-md-1">@item.ShouhuorenName</th>
                                 <th class="col-md-1">@item.JiangpinName</th>
-                                <th class="col-md-2"><img src="@item.JiangPinImg" /></th>
+                                <th class="col-md-2"><img class="smallImg" src="@item.JiangPinImg" /></th>
                             </tr>
                         }
                     </thead>
@@ -41,43 +41,10 @@
 </div>
 
 @section PageSpecificJavascriptIncludes{
-    <script type="text/javascript">
-        $("#register").click(function () {
-            $.ajax(
-                {
-                    url: "/Management/Account/Register",
-                    type: "POST",
-                    data:
-                        {
-                            Name: $("#username", "#basic").val(),
-                            Password: $("#password", "#basic").val(),
-                            Email: $("#email", "#basic").val(),
-                            Phone: $("#phone", "#basic").val()
-                        },
-                    beforeSend: function (XMLHttpRequest) {
-                        $("#basic").modal('hide');
-                    },
-                    success: function (data, textStatus) {
-                        if (data == "200") {
-                            location.reload()
-                        } else if (data == "100") {
-                            alert("已有该用户名！");
-                        } else {
-                            alert("未知原因");
-                        }
-                    },
-                    complete: function (XMLHttpRequest, textStatus) {
-                        location.reload()
-                    },
-                    error: function () {
-                        alert("好像出错了，请刷新页面重试");
-                    }
-                })
-        });
-    </script>
-
     <script>
         $("#index").removeClass("open");
-        $("#goodSet").addClass("open");
-    </script>
+        $("#JiangpinDeal").addClass("open");
+        $("#JiangpinDeal_1").addClass("open");
+        $("#JiangpinDeal_2").addClass("open");
+</script>
 }
