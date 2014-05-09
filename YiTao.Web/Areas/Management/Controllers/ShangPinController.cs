@@ -46,7 +46,6 @@ namespace YiTao.Web.Areas.Management.Controllers
             if (dalei == null)
                 return RedirectToAction("Dalei");
             db.DaLeis.Remove(dalei);
-            db.SaveChanges();
             return RedirectToAction("Dalei");
         }
 

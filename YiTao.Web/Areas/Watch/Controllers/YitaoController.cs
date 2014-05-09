@@ -86,8 +86,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         [NoLogin]
         public ActionResult XiaoleiList(int id)
         {
-            //轮播
-            ViewData["lunbolist"] = db.LunBoes.ToList();
+            ViewBag.DaleiName = db.DaLeis.FirstOrDefault(d => d.DaLeiId == id).Name;
             return View(db.TowLeis.Where(t=>t.DaLeiId==id).ToList());
         }
         [NoLogin]
