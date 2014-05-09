@@ -30,7 +30,7 @@
                                 <th class="col-md-3">@item.Address</th>
                                 <th class="col-md-1">@item.ShouhuorenName</th>
                                 <th class="col-md-1">@item.JiangpinName</th>
-                                <th class="col-md-2"><img src="@item.JiangPinImg" /></th>
+                                <th class="col-md-2"><img class="smallImg" src="@item.JiangPinImg" /></th>
                             </tr>
                         }
                     </thead>
@@ -43,6 +43,8 @@
 @section PageSpecificJavascriptIncludes{
     <script>
         $("#index").removeClass("open");
-        $("#goodSet").addClass("open");
+        $("#JiangpinDeal").addClass("open");
+        $("#JiangpinDeal_1").addClass("open");
+        $("#JiangpinDeal_2").addClass("open");
     </script>
 }
