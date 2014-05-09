@@ -2487,8 +2487,10 @@
     <Content Include="Areas\Management\Views\ShangPin\ThreeLei.cshtml" />
     <Content Include="Areas\Management\Views\ShangPin\ThreeLeiEdit.cshtml" />
     <Content Include="Areas\Watch\Views\Yitao\ThreeLei.cshtml" />
-    <None Include="Properties\PublishProfiles\3.27.pubxml" />
+    <None Include="Properties\PublishProfiles\5.9.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Include="Properties\PublishProfiles\yitao - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\yitao - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\browse-btn.png" />
     <Content Include="Scripts\formCheck.js" />
@@ -2800,6 +2802,7 @@
     <Content Include="Scripts\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Scripts\ueditor\third-party\video-js\font\vjs.woff" />
     <Content Include="Views\Home\FindPassword.cshtml" />
+    <Content Include="Views\Home\Getinfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\YiTao.Modules.Bll\YiTao.Modules.Bll.csproj">

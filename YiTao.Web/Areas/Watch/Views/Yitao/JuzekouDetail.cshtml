@@ -34,7 +34,7 @@
                 <div class="news_font03">运费：<span>至 @Model.ToWhere</span></div>
                 <div class="news_font04">@Model.TransportationPrice</div>
             </div>
-            <a class="purchase" href="@Model.Url"><img class="purchase01" src="/img/buttons/purchase01.png" width="1724" height="186" alt="" /></a>
+            <a class="purchase" target="_blank" href="@Model.Url"><img class="purchase01" src="/img/buttons/purchase01.png" width="1724" height="186" alt="" /></a>
         </div>
         <!---------------------- 商品详情 结束------------------------>
         @Html.Action("CommentList", new { Shangpinid = Model.JuZheKouItemId, type = 1 })
