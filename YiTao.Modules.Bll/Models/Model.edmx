@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="YiTaoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="YiTaoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="AccountId" />
@@ -207,6 +207,17 @@
           <Property Name="DaLeiId" Type="int" Nullable="false" />
           <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserAddress">
+          <Key>
+            <PropertyRef Name="UserAddressId" />
+          </Key>
+          <Property Name="UserAddressId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ConsigneeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="ZhuanTi">
           <Key>
             <PropertyRef Name="ZhuanTiId" />
@@ -255,11 +266,11 @@
           <EntitySet Name="ShangPin" EntityType="Self.ShangPin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThreeLei" EntityType="Self.ThreeLei" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TowLei" EntityType="Self.TowLei" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAddress" EntityType="Self.UserAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZhuanTi" EntityType="Self.ZhuanTi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZhuanTiItem" EntityType="Self.ZhuanTiItem" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="YiTaoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -515,7 +526,19 @@
           <EntitySet Name="TowLeis" EntityType="Self.TowLei" />
           <EntitySet Name="ZhuanTis" EntityType="Self.ZhuanTi" />
           <EntitySet Name="ZhuanTiItems" EntityType="Self.ZhuanTiItem" />
+          <EntitySet Name="UserAddresses" EntityType="YiTaoModel.UserAddress" />
         </EntityContainer>
+        <EntityType Name="UserAddress">
+          <Key>
+            <PropertyRef Name="UserAddressId" />
+          </Key>
+          <Property Name="UserAddressId" Type="Guid" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="ConsigneeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -770,6 +793,18 @@
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="FanJiFen" ColumnName="FanJiFen" />
                 <ScalarProperty Name="BaoYou" ColumnName="BaoYou" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAddresses">
+            <EntityTypeMapping TypeName="YiTaoModel.UserAddress">
+              <MappingFragment StoreEntitySet="UserAddress">
+                <ScalarProperty Name="ConsigneeName" ColumnName="ConsigneeName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UserAddressId" ColumnName="UserAddressId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
