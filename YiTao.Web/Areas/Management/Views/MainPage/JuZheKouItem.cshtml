@@ -29,10 +29,10 @@
                 }
                 else
                 {
-                    <table class="table table-bordered table-hover" id="sample_1">
+                    <table class="table table-bordered" id="sample_1">
                         <thead>
                             <tr>
-                                <th>缩略图</th>
+                                <th class="col-md-2">缩略图</th>
                                 <th>收藏数</th>
                                 <th>商品描述</th>
                                 <th>返积分</th>
@@ -43,30 +43,30 @@
                                 <th>是否包邮</th>
                                 <th>管理</th>
                             </tr>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <th class="col-md-4">
-                                        <div class="suoluetu-bg">
-                                            <img src=@item.ImageUrl />
-                                        </div>
-                                    </th>
-                                    <th>@item.CollectCount</th>
-                                    <th>@item.Description</th>
-                                    <th>@item.FanJiFen</th>
-                                    <th>@item.Name</th>
-                                    <th>@item.Price</th>
-                                    <th>@item.Url</th>
-                                    <th>@item.YuanPrice</th>
-                                    <th>@item.BaoYou</th>
-                                    <th>
-                                        <a class="btn green" data-toggle="modal" href="/Management/MainPage/DeleteJuZheKo?id=@item.JuZheKouItemId">
-                                            删除 <i class="fa fa-edit"></i>
-                                        </a>
-                                    </th>
-                                </tr>
-                            }
                         </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th class="col-md-2">
+                                    <div class="suoluetu-bg">
+                                        <img src=@item.ImageUrl />
+                                    </div>
+                                </th>
+                                <th>@item.CollectCount</th>
+                                <th>@item.Description</th>
+                                <th>@item.FanJiFen</th>
+                                <th>@item.Name</th>
+                                <th>@item.Price</th>
+                                <th>@item.Url</th>
+                                <th>@item.YuanPrice</th>
+                                <th>@item.BaoYou</th>
+                                <th>
+                                    <a class="btn green" data-toggle="modal" href="/Management/MainPage/DeleteJuZheKo?id=@item.JuZheKouItemId">
+                                        删除 <i class="fa fa-edit"></i>
+                                    </a>
+                                </th>
+                            </tr>
+                        }
                     </table>
                 }
             </div>

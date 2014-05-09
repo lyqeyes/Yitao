@@ -118,49 +118,32 @@
                     </div>
                     <div class="portlet-body">
                         <table class="table table-bordered table-hover" align="center">
-                            <thead>
-                                <tr>
-                                    <th class="col-md-4">
-                                        <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
-                                            <div class="tile-body">
-                                                <img id="imageCover1" alt="@Model[0].ImageUrl" src="@Model[0].ImageUrl">
-                                            </div>
+                            <tr>
+                                <th class="col-md-4">
+                                    <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
+                                        <div class="tile-body">
+                                            <img id="imageCover1" alt="@Model[0].ImageUrl" src="@Model[0].ImageUrl">
                                         </div>
-                                    </th>
-                                    <th class="col-md-8">
-                                        <div>
-                                            <input id="ChouJiangId1" value="@Model[0].ChouJiangId" type="text" hidden="hidden" />
-                                            <table>
-                                                <tr>
-                                                    <th class="col-md-4" colspan="4">
-                                                        <input id="Name1" value="@Model[0].Name" type="text" class="form-control my-form-control" placeholder="奖品名" />
-                                                    </th>
-                                                    <th class="col-md-4" colspan="4">
-                                                        <input id="Count1" value="@Model[0].Count" type="text" class="form-control my-form-control" placeholder="奖品数量" />
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <th colspan="8">
-                                                        <input id="Description1" value="@Model[0].Description" type="text" class="form-control my-form-control" placeholder="奖品描述" />
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <th class="col-md-1">
-                                                        <div class="btns">
-                                                            <div id="picker1">选择图片</div>
-                                                        </div>
-                                                    </th>
-                                                    <th class="col-md-1">
-                                                        <button id="save1" class="btn green" data-toggle="modal">
-                                                            保存修改
-                                                        </button>
-                                                    </th>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </thead>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="btns">
+                                        <div id="picker1">选择图片</div>
+                                    </div>
+                                </th>
+                                <th class="col-md-8">
+                                    <input id="ChouJiangId1" value="@Model[0].ChouJiangId" type="text" hidden="hidden" />
+                                    <span>奖品名</span>
+                                    <input id="Name1" value="@Model[0].Name" type="text" class="form-control my-form-control" placeholder="奖品名" />
+                                    <span>奖品数量</span>
+                                    <input id="Count1" value="@Model[0].Count" type="text" class="form-control my-form-control" placeholder="奖品数量" />
+                                    <span>奖品描述</span>
+                                    <input id="Description1" value="@Model[0].Description" type="text" class="form-control my-form-control" placeholder="奖品描述" />
+                                    <button id="save1" class="btn green" data-toggle="modal">
+                                        保存修改
+                                    </button>
+                                </th>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -174,53 +157,35 @@
                     </div>
                     <div class="portlet-body">
                         <table class="table table-bordered table-hover" align="center">
-                            <thead>
-                                <tr>
-                                    <th class="col-md-4">
-                                        <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
-                                            <div class="tile-body">
-                                                <img id="imageCover2" alt="@Model[1].ImageUrl" src="@Model[1].ImageUrl">
-                                            </div>
+                            <tr>
+                                <th class="col-md-4">
+                                    <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
+                                        <div class="tile-body">
+                                            <img id="imageCover2" alt="@Model[1].ImageUrl" src="@Model[1].ImageUrl">
                                         </div>
-                                    </th>
-                                    <th class="col-md-8">
-                                        <div>
-                                            <input id="ChouJiangId2" value="@Model[1].ChouJiangId" type="text" hidden="hidden" />
-                                            <table>
-                                                <tr>
-                                                    <th class="col-md-4" colspan="4">
-                                                        <input id="Name2" value="@Model[1].Name" type="text" class="form-control my-form-control" placeholder="奖品名" />
-                                                    </th>
-                                                    <th class="col-md-4" colspan="4">
-                                                        <input id="Count2" value="@Model[1].Count" type="text" class="form-control my-form-control" placeholder="奖品数量" />
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <th colspan="8">
-                                                        <intput id="Description2" value="@Model[1].Description" text="text" class="form-control my-form-control" placeholder="奖品描述" />
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <th class="col-md-1">
-                                                        <div class="btns">
-                                                            <div id="picker2">选择图片</div>
-                                                        </div>
-                                                    </th>
-                                                    <th class="col-md-1">
-                                                        <button id="save2" class="btn green" data-toggle="modal">
-                                                            保存修改
-                                                        </button>
-                                                    </th>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </thead>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="btns">
+                                        <div id="picker2">选择图片</div>
+                                    </div>
+                                </th>
+                                <th class="col-md-8">
+                                    <input id="ChouJiangId2" value="@Model[1].ChouJiangId" type="text" hidden="hidden" />
+                                    <span>奖品名</span>
+                                    <input id="Name2" value="@Model[1].Name" type="text" class="form-control my-form-control" placeholder="奖品名" />
+                                    <span>奖品数量</span>
+                                    <input id="Count2" value="@Model[1].Count" type="text" class="form-control my-form-control" placeholder="奖品数量" />
+                                    <span>奖品描述</span>
+                                    <input id="Description2" value="@Model[1].Description" type="text" class="form-control my-form-control" placeholder="奖品描述" />
+                                    <button id="save2" class="btn green" data-toggle="modal">
+                                        保存修改
+                                    </button>
+                                </th>
+                            </tr>
                         </table>
                     </div>
                 </div>
-
                 <div class="portlet">
                     <div class="portlet-title">
                         <div class="caption"><i class="fa fa-edit"></i>三等奖</div>
@@ -231,49 +196,32 @@
                     </div>
                     <div class="portlet-body">
                         <table class="table table-bordered table-hover" align="center">
-                            <thead>
-                                <tr>
-                                    <th class="col-md-4">
-                                        <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
-                                            <div class="tile-body">
-                                                <img id="imageCover3" alt="@Model[2].ImageUrl" src="@Model[2].ImageUrl">
-                                            </div>
+                            <tr>
+                                <th class="col-md-4">
+                                    <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
+                                        <div class="tile-body">
+                                            <img id="imageCover3" alt="@Model[0].ImageUrl" src="@Model[2].ImageUrl">
                                         </div>
-                                    </th>
-                                    <th class="col-md-8">
-                                        <div>
-                                            <input id="ChouJiangId3" value="@Model[2].ChouJiangId" type="text" hidden="hidden" />
-                                            <table>
-                                                <tr>
-                                                    <th class="col-md-4" colspan="4">
-                                                        <input id="Name3" value="@Model[2].Name" type="text" class="form-control my-form-control" placeholder="奖品名" />
-                                                    </th>
-                                                    <th class="col-md-4" colspan="4">
-                                                        <input id="Count3" value="@Model[2].Count" type="text" class="form-control my-form-control" placeholder="奖品数量" />
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <th colspan="8">
-                                                        <input id="Description3" value="@Model[2].Description" type="text" class="form-control my-form-control" placeholder="奖品描述" />
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <th class="col-md-1">
-                                                        <div class="btns">
-                                                            <div id="picker3">选择图片</div>
-                                                        </div>
-                                                    </th>
-                                                    <th class="col-md-1">
-                                                        <button id="save3" class="btn green" data-toggle="modal">
-                                                            保存修改
-                                                        </button>
-                                                    </th>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </thead>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="btns">
+                                        <div id="picker3">选择图片</div>
+                                    </div>
+                                </th>
+                                <th class="col-md-8">
+                                    <input id="ChouJiangId3" value="@Model[2].ChouJiangId" type="text" hidden="hidden" />
+                                    <span>奖品名</span>
+                                    <input id="Name3" value="@Model[2].Name" type="text" class="form-control my-form-control" placeholder="奖品名" />
+                                    <span>奖品数量</span>
+                                    <input id="Count3" value="@Model[2].Count" type="text" class="form-control my-form-control" placeholder="奖品数量" />
+                                    <span>奖品描述</span>
+                                    <input id="Description3" value="@Model[2].Description" type="text" class="form-control my-form-control" placeholder="奖品描述" />
+                                    <button id="save3" class="btn green" data-toggle="modal">
+                                        保存修改
+                                    </button>
+                                </th>
+                            </tr>
                         </table>
                     </div>
                 </div>
