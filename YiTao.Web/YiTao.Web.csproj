@@ -2816,6 +2816,7 @@
     <Content Include="Scripts\ueditor\third-party\video-js\font\vjs.woff" />
     <Content Include="Views\Home\FindPassword.cshtml" />
     <Content Include="Views\Home\Getinfo.cshtml" />
+    <Content Include="Views\Home\PasswordOk.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\YiTao.Modules.Bll\YiTao.Modules.Bll.csproj">

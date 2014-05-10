@@ -54,7 +54,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         [NoLogin]
         public ActionResult Register(YiTao.Modules.Bll.Models.Account account)
         {
-            if (db.Accounts.Count(e=>e.Name == account.Name) != 0)
+            if (db.Accounts.Count(e => e.Name == account.Name) != 0)
             {
                 TempData["register"] = "用户名已被注册";
                 return View();
@@ -80,17 +80,25 @@ namespace YiTao.Web.Areas.Watch.Controllers
             };
             Response.Cookies.Add(c);
             //return RedirectPermanent("/Watch/yitao/index");
-            Response.AppendHeader("Cache-Control", "no-cache"); 
+            Response.AppendHeader("Cache-Control", "no-cache");
             return RedirectToAction("index", "yitao", new { area = "Watch" });
         }
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger("Loggering");
+
+        [NoLogin]
         public ActionResult ForgetPassword(string email)
         {
-            Guid g = Guid.NewGuid();
-            HttpRuntime.Cache.Insert(g.ToString(), email, null, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(30));
-            log.Info(@"这里是重置密码连接 " + String.Format("http://yitao.oureda.cn/Home/FindPassword/"+"{0}",g.ToString()) + "，30分钟内有效，请尽快更改密码");
+            var account = db.Accounts.FirstOrDefault(a => a.Email == email);
+            if (account!=null)
+            {
+                Guid g = Guid.NewGuid();
+                HttpRuntime.Cache.Insert(g.ToString(), email, null, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(30));
+                log.Info(@"这里是重置密码连接 " + String.Format("http://yitao.oureda.cn/Home/FindPassword/" + "{0}", g.ToString()) + "，30分钟内有效，请尽快更改密码");
+                return View();
+            }
+            ViewBag.msg = "1";
             return View();
         }
-	}
+    }
 }

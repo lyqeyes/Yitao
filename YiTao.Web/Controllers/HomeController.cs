@@ -62,12 +62,16 @@ namespace YiTao.Web.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger("Loggering");
-
-        public ActionResult test()
+        public ActionResult PasswordOk(string name, string password, string newpassword)
         {
-            log.Info(@"这里是重置密码连接 "+" <a href='http://www.baicu.com'>重置密码连接</a> "+"，30分钟内有效，请尽快更改密码");
-            return Content("1");
+            using (YiTaoContext db = new YiTaoContext())
+            {
+                var account = db.Accounts.FirstOrDefault(a => a.Name == name);
+                account.Password = password;
+                db.Entry(account).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return View();
+            }
         }
 
         public string Upload()
