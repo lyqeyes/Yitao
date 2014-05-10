@@ -22,7 +22,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
             HttpCookie v = HttpContext.Request.Cookies["LoginInfo"];
             string UserName = v["UserName"].ToString();
             ViewData["account"] = db.Accounts.Where(a => a.Name == UserName).FirstOrDefault();
-            return View(db.DuiHuanItems.ToList());
+            return View(db.DuiHuanItems.Where(a=>a.Count > 0).ToList());
         }
 
         public ActionResult ChouJiang()
@@ -46,13 +46,14 @@ namespace YiTao.Web.Areas.Watch.Controllers
             HttpCookie h = Request.Cookies["LoginInfo"];
             string name = h["UserName"];
             Account acc = db.Accounts.FirstOrDefault(a => a.Name == name);
-            if (acc.JiFen > dh.JiFen)
+            if (acc.JiFen > dh.JiFen && dh.Count > 0)
             {
+                dh.Count--;   //数量减少
                 acc.JiFen = acc.JiFen - dh.JiFen;
                 TempData["infor"] = "兑换成功";
             }
             else {
-                TempData["infor"] = "您的积分不够. 先努力赚积分吧";
+                TempData["infor"] = acc.JiFen>dh.JiFen? "商品已经被兑换完毕":"您的积分不够. 先努力赚积分吧";
                 return RedirectToAction("Index");
             }
             JiFenLiShi newOne = new JiFenLiShi()
@@ -67,6 +68,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 WhetherDealed = 0
             };
             db.Entry(acc).State = EntityState.Modified;
+            db.Entry(db).State = EntityState.Modified;
             db.JiFenLiShis.Add(newOne);
             db.SaveChanges();
             return RedirectToAction("index");
@@ -96,21 +98,54 @@ namespace YiTao.Web.Areas.Watch.Controllers
             };
             if (val == 1)
             {
-                newOne.ItemId = db.ChouJiangItems.First(e => e.Type == 1).ChouJiangId;
+                ChouJiangItem item = db.ChouJiangItems.FirstOrDefault(e => e.Type == 1);
+                if (item==null || item.Count == 0)
+                {
+                    newOne.ItemId = null;
+                    db.JiFenLiShis.Add(newOne);
+                    db.SaveChanges();
+                    return "0";
+                }
+                item.Count--;
+                db.Entry(item).State = EntityState.Modified;
+
+                newOne.ItemId = item.ChouJiangId;
                 db.JiFenLiShis.Add(newOne);
                 db.SaveChanges();
                 return "1";
             }
             else if (val > 1 && val < 7)
             {
-                newOne.ItemId = db.ChouJiangItems.First(e => e.Type == 2).ChouJiangId;
+                ChouJiangItem item = db.ChouJiangItems.FirstOrDefault(e => e.Type == 2);
+                if (item == null || item.Count == 0)
+                {
+                    newOne.ItemId = null;
+                    db.JiFenLiShis.Add(newOne);
+                    db.SaveChanges();
+                    return "0";
+                }
+                item.Count--;
+                db.Entry(item).State = EntityState.Modified;
+
+                newOne.ItemId = item.ChouJiangId;
                 db.JiFenLiShis.Add(newOne);
                 db.SaveChanges();
                 return "2";
             }
             else if (val >= 7 && val < 17)
             {
-                newOne.ItemId = db.ChouJiangItems.First(e => e.Type == 3).ChouJiangId;
+                ChouJiangItem item = db.ChouJiangItems.FirstOrDefault(e => e.Type == 3);
+                if (item == null || item.Count == 0)
+                {
+                    newOne.ItemId = null;
+                    db.JiFenLiShis.Add(newOne);
+                    db.SaveChanges();
+                    return "0";
+                }
+                item.Count--;
+                db.Entry(item).State = EntityState.Modified;
+
+                newOne.ItemId = item.ChouJiangId;
                 db.JiFenLiShis.Add(newOne);
                 db.SaveChanges();
                 return "3";
