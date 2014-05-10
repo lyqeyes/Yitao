@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using YiTao.Web.Areas.Watch.Common;
 using YiTao.Modules.Bll.Models;
 using System.Data.Entity;
+using AuctionStation.Framework.Utility;
 
 namespace YiTao.Web.Areas.Watch.Controllers
 {
@@ -98,7 +99,16 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 HttpRuntime.Cache.Insert(g.ToString(), email, null, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(30));
                 //log.Info(@"这里是重置密码连接 " + String.Format("http://yitao.oureda.cn/Home/FindPassword/" + "{0}", g.ToString()) + "，30分钟内有效，请尽快更改密码");
                 string msg = "这里是重置密码连接 " + String.Format("http://yitao.oureda.cn/Home/FindPassword/" + "{0}", g.ToString()) + "，30分钟内有效，请尽快更改密码";
-                AuctionStation.Framework.Utility.MailHelper.SendEmail("smtp.qq.com", "2064760020@qq.com", email, "亿淘", "yitao123", "亿淘密码重置", msg);
+                //AuctionStation.Framework.Utility.MailHelper.SendEmail("smtp.qq.com", "2064760020@qq.com", email, "亿淘", "yitao123", "亿淘密码重置", msg);
+                Email sendemail = new Email();
+                sendemail.mailFrom = "807754634@qq.com";
+                sendemail.mailPwd = "a807754634";
+                sendemail.mailSubject = "邮件主题";
+                sendemail.mailBody = "邮件内容";
+                sendemail.isbodyHtml = true;    //是否是HTML
+                sendemail.host = "smtp.qq.com";//如果是QQ邮箱则：smtp:qq.com,依次类推
+                sendemail.mailToArray = new string[] { "ximing@oureda.cn" };//接收者邮件集合
+                sendemail.Send();
                 return View();
             }
             ViewBag.msg = "1";
