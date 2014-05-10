@@ -157,6 +157,7 @@
     <Compile Include="Areas\Management\ManagementAreaRegistration.cs" />
     <Compile Include="Areas\Management\Models\JiangpinInfor.cs" />
     <Compile Include="Areas\Watch\Common\BaseController.cs" />
+    <Compile Include="Areas\Watch\Common\EmailHelper.cs" />
     <Compile Include="Areas\Watch\Common\NoLoginAttribute.cs" />
     <Compile Include="Areas\Watch\Controllers\AuthController.cs" />
     <Compile Include="Areas\Watch\Controllers\DuihuanController.cs" />
@@ -166,7 +167,6 @@
     <Compile Include="Areas\Watch\Models\Prezis.cs" />
     <Compile Include="Areas\Watch\WatchAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MailHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

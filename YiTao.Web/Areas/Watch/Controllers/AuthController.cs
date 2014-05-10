@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using YiTao.Web.Areas.Watch.Common;
 using YiTao.Modules.Bll.Models;
 using System.Data.Entity;
-using AuctionStation.Framework.Utility;
 
 namespace YiTao.Web.Areas.Watch.Controllers
 {
