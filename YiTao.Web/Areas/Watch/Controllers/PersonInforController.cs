@@ -171,6 +171,14 @@ namespace YiTao.Web.Areas.Watch.Controllers
 
         public ActionResult SetAddress(UserAddress useraddress)
         {
+            if (useraddress.UserAddressId>0)
+            {
+                useraddress.CreateTime = DateTime.Now;
+                db.UserAddresses.Attach(useraddress);
+                db.Entry(useraddress).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Info");
+            }
             useraddress.CreateTime = DateTime.Now;
             var v = HttpContext.Request.Cookies["LoginInfo"];
             string name = v.Values["UserName"];

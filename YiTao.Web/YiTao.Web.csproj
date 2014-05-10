@@ -171,6 +171,7 @@
     <Compile Include="Scripts\ueditor\net\Uploader.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Watch\Views\PersonInfor\ChangePassWord.cshtml" />
     <Content Include="assets\css\animate.css" />
     <Content Include="assets\css\custom.css" />
     <Content Include="assets\css\pages\about-us.css" />
@@ -2493,7 +2494,6 @@
     <Content Include="Areas\Management\Views\JiangpinDeal\DuihuanList.cshtml" />
     <Content Include="Areas\Management\Views\JiangpinDeal\ZhongjiangDealedList.cshtml" />
     <Content Include="Areas\Management\Views\JiangpinDeal\DuihuanDealedList.cshtml" />
-    <Content Include="Areas\Watch\Views\PersonInfor\ChangePassWord.cshtml" />
     <Content Include="Areas\Watch\Views\PersonInfor\SerAddress.cshtml" />
     <Content Include="Areas\Watch\Views\PersonInfor\Info.cshtml">
       <SubType>Code</SubType>
