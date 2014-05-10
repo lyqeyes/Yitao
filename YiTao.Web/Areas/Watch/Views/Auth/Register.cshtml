@@ -46,7 +46,8 @@
     <!-- BEGIN LOGIN -->
     <div class="content">
         <!-- BEGIN LOGIN FORM -->
-        <form name="register" class="login-form" action="register" method="post"> @*onsubmit="return false;"*@
+        <form name="register" class="login-form" action="register" method="post">
+            @*onsubmit="return false;"*@
             <h3 class="form-title">注册亿淘</h3>
             <p style="color:red;">@TempData["register"]</p>
             @if (ViewBag.Error != null)
@@ -67,11 +68,11 @@
                     <i class="fa fa-user"></i>
                     @if (Model == null)
                     {
-                        @Html.TextBox("name", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "on", placeholder = "用户名(只能以数字加字母命名)", name = "name" })
+                        @Html.TextBox("name", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "on", placeholder = "用户名", name = "name" })
                     }
                     else
                     {
-                        @Html.TextBox("name", Model.Name, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "on", placeholder = "用户名(只能以数字加字母命名)", name = "name" })
+                        @Html.TextBox("name", Model.Name, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "on", placeholder = "用户名", name = "name" })
                     }
                 </div>
             </div>
@@ -114,7 +115,7 @@
                 <label class="control-label visible-ie8 visible-ie9">邮箱</label>
                 <div class="input-icon">
                     <i class="fa fa-lock"></i>
-                    @Html.TextBoxFor(a=>a.Email,new { @class = "form-control placeholder-no-fix", autocomplete = "off", placeholder = "注册邮箱地址"})
+                    @Html.TextBoxFor(a => a.Email, new { @class = "form-control placeholder-no-fix", autocomplete = "off", placeholder = "注册邮箱地址" })
                 </div>
             </div>
 
@@ -128,20 +129,20 @@
         <script>
             var regBox = {
                 regEmail: /^([a-z0-9_\.-]+)@@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
-                regName : /^[a-z0-9_-]{3,16}$/,//用户名
-                regMobile : /^0?1[3|4|5|8][0-9]\d{8}$/,//手机
-                regTel : /^0[\d]{2,3}-[\d]{7,8}$/
+                regName: /^[a-z0-9_-]{3,16}$/,//用户名
+                regMobile: /^0?1[3|4|5|8][0-9]\d{8}$/,//手机
+                regTel: /^0[\d]{2,3}-[\d]{7,8}$/
             }
-            function Check()
-            {
+            function Check() {
                 var phone = $("#Phone").val();
                 var email = $("#Email").val();
                 var name = $("#Name").val();
                 var same = $("#password").val() == $("#password_2").val() ? true : false;
-                if (!regBox.regName.test(name)){
-                    $("#errorInfor").html("用户名只能以字母和数字开头..");
-                }
-                else if (same == false) {
+                //if (!regBox.regName.test(name)){
+                //    $("#errorInfor").html("用户名只能以字母和数字开头..");
+                //}
+                //else
+                if (same == false) {
                     $("#errorInfor").html("两次输入的密码不一样..");
                     //return false;
                 }
