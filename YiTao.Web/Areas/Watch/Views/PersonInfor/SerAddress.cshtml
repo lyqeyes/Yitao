@@ -1,0 +1,78 @@
+﻿@model List<YiTao.Modules.Bll.Models.UserAddress>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>个人信息</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="~/css/common.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="warp">
+        <!------------------	Header ------------------------------>
+        <div class="header">
+            <a href="javascript:history.go(-1)">
+                <img src="/img/buttons/09.png" class="header_left_pic">
+            </a>
+            <h2 class="pagetitle" style="margin-top:0.2em;">用户地址</h2>
+            @*<img src="/img/title/08.png" class="pagetitle">*@
+            <div id="clear"></div>
+        </div>
+        <div id="blank" style="height:50px;"></div><!--Blank area -->
+        <br />
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <p class="well well-sm">收货人:@item.ConsigneeName</p>
+                                    <p>@item.Address</p>
+                                    <p><a onclick="return confirm('确认删除？')" href="~/Watch/PersonInfor/DelAddress/@item.UserAddressId" class="col-xs-offset-8 btn btn-danger" role="button">删除</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-xs-5">
+                    <h4><code><strong>创建新收货地址</strong></code></h4>
+                </div>
+            </div>
+            <div class="row">
+                <form role="form" action="SetAddress">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">收件人</label>
+                        <input type="text" class="form-control" name="ConsigneeName" id="exampleInputPassword1" placeholder="">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">收货地址</label>
+                        <input type="text" class="form-control" name="Address" id="exampleInputEmail1" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">联系电话</label>
+                        <input type="text" class="form-control" name="Phone" id="exampleInputPassword1" placeholder="">
+                        @Html.ValidationMessage("error", new { @class = "help-block" })
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-lg btn-block">创建地址</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="~/js/common.js"></script>
+</body>
+</html>

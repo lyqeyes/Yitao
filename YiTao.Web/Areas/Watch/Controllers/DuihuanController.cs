@@ -29,17 +29,37 @@ namespace YiTao.Web.Areas.Watch.Controllers
         {
             HttpCookie v = HttpContext.Request.Cookies["LoginInfo"];
             string UserName = v["UserName"].ToString();
-            ViewData["account"] = db.Accounts.Where(a => a.Name == UserName).FirstOrDefault();
-
+            var account = db.Accounts.FirstOrDefault(a=>a.Name == UserName);
+            db.UserAddresses.Where(u => u.UserId == account.AccountId);
+            if (db.UserAddresses.Count()==0)
+            {
+                return RedirectToAction("SetAddressBeforChou");
+            }
+            ViewData["account"] = account;
             //奖项
             Prezis p = new Prezis();
             p.firstPrize = db.ChouJiangItems.First(e => e.Type == 1).Name;
             p.secondPrize = db.ChouJiangItems.First(e => e.Type == 2).Name;
-            p.thirdPrize = db.ChouJiangItems.First(e => e.Type == 3).Name;  
-          
+            p.thirdPrize = db.ChouJiangItems.First(e => e.Type == 3).Name;           
             return View(p);
         }
 
+
+        public ActionResult SetAddressBeforChou()
+        {
+            return View();
+        }
+        public ActionResult SetAddress(UserAddress useraddress)
+        {
+            useraddress.CreateTime = DateTime.Now;
+            var v = HttpContext.Request.Cookies["LoginInfo"];
+            string name = v.Values["UserName"];
+            var account = db.Accounts.FirstOrDefault(a => a.Name == name);
+            useraddress.UserId = db.Accounts.FirstOrDefault(a => a.Name == name).AccountId;
+            db.UserAddresses.Add(useraddress);
+            db.SaveChanges();
+            return RedirectToAction("ChouJiang");
+        }
         public ActionResult HuanGou(int id)
         {
             DuiHuanItem dh = db.DuiHuanItems.Find(id);
