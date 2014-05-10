@@ -94,7 +94,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         {
             var v = from d in db.ThreeLeis where d.TwoLeiId == id select d;
             ViewData["xiaoleiList"] = (v).ToList();
-             List<ShangPin> allShangpin = new List<ShangPin>();
+            List<ShangPin> allShangpin = new List<ShangPin>();
             foreach (var item in v)
             {
                 allShangpin.AddRange(db.ShangPins.Where(s => s.XiaoLeiId == item.ThreeLeiId));

@@ -47,6 +47,11 @@ li {display: list-item;text-align: -webkit-match-parent;}
 		margin:0 auto;
         cursor:pointer;
 	}
+     .my_pagetitle{
+		font-family:"Microsoft YaHei UI";
+		color:#ea662e;
+		font-size:28px;
+	}
 	.header .header_right_pic{
 		float:right;
 		margin-top:4px;
