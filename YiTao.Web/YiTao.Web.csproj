@@ -2499,6 +2499,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Areas\Watch\Views\Duihuan\SetAddressBeforChou.cshtml" />
+    <Content Include="Areas\Watch\Views\PersonInfor\JiFenHistory.cshtml" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\yitao - FTP.pubxml" />

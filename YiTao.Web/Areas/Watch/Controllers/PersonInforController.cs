@@ -7,6 +7,7 @@ using YiTao.Web.Areas.Watch.Common;
 using YiTao.Modules.Bll.Models;
 using System.Data.Entity;
 using YiTao.Web.Areas.Watch.Models;
+using Webdiyer.WebControls.Mvc;
 namespace YiTao.Web.Areas.Watch.Controllers
 {
     public class PersonInforController : BaseController
@@ -178,6 +179,17 @@ namespace YiTao.Web.Areas.Watch.Controllers
             db.UserAddresses.Add(useraddress);
             db.SaveChanges();
             return RedirectToAction("Info");
+        }
+        /// <summary>
+        /// 用户的积分历史记录
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult JiFenHistory(int? id,int userId)
+        {
+            var jifenlishiList = db.JiFenLiShis.Where(a => a.AccountId == userId).OrderByDescending(a => a.CreateTime);
+            PagedList<JiFenLiShi> m = jifenlishiList.ToPagedList(id ?? 1, 10);
+            return View(m);
         }
     }
 }

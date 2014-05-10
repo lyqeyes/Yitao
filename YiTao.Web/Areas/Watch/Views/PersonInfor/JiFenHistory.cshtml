@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<YiTao.Modules.Bll.Models.JiFenLiShi>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="~/css/common.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>个人积分历史</title>
+</head>
+<body>
+    <div class="col-md-10">
+        <div class="header">
+            <a href="/watch/personInfor/index">
+                <img src="/img/buttons/09.png" class="header_left_pic">
+            </a>
+            <h2 style="margin-top:0.2em;">积分记录</h2>
+            <div id="clear"></div>
+        </div>
+        <div id="blank" style="height:50px;"></div><!--Blank area -->
+        <div class="col-md-12">
+            @foreach (var item in Model)
+            {
+                <div class="wellJifen">
+                    <p>
+                        <span class="name">积分数量: @item.JiFen</span>
+                    </p>
+                    <p class="later"> @item.Description</p>
+                    <p style="text-align:right;margin-right:2em; font-size:smaller">时间: @item.CreateTime</p>
+                </div>
+            }
+            <div style="text-align:center; margin-left:-2em;">
+                @Html.Pager(Model, new PagerOptions
+                 {
+                     HorizontalAlign = "center",
+                     ShowFirstLast = false,
+                     CssClass = "pagination pagination-sm",
+                     NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                     ContainerTagName = "ul",
+                     PageIndexParameterName = "id",
+                     ShowPageIndexBox = false,
+                     PrevPageText = "<<",
+                     NumericPagerItemCount = 3,
+                     Id = "pages",
+                     NextPageText = ">>",
+                     CurrentPagerItemWrapperFormatString = "<li class=\"active\"> <a>{0}</a> </li>",
+                     NumericPagerItemWrapperFormatString = "<li> {0}</li>",
+                 }, new { style = "margin-top:2em;margin-bottom:2em" })
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="/Content/style.css" />
+    <link rel="stylesheet" href="/Content/bootstrap.css">
+    <link rel="stylesheet" href="/Content/TableCss.css">
+</body>
+</html>
