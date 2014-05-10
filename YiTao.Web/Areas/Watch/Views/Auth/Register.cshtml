@@ -67,11 +67,11 @@
                     <i class="fa fa-user"></i>
                     @if (Model == null)
                     {
-                        @Html.TextBox("name", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "on", placeholder = "用户名", name = "name" })
+                        @Html.TextBox("name", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "on", placeholder = "用户名(只能以数字加字母命名)", name = "name" })
                     }
                     else
                     {
-                        @Html.TextBox("name", Model.Name, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "on", placeholder = "用户名", name = "name" })
+                        @Html.TextBox("name", Model.Name, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "on", placeholder = "用户名(只能以数字加字母命名)", name = "name" })
                     }
                 </div>
             </div>
@@ -136,8 +136,12 @@
             {
                 var phone = $("#Phone").val();
                 var email = $("#Email").val();
+                var name = $("#Name").val();
                 var same = $("#password").val() == $("#password_2").val() ? true : false;
-                if (same == false) {
+                if (!regBox.regName.test(name)){
+                    $("#errorInfor").html("用户名只能以字母和数字开头..");
+                }
+                else if (same == false) {
                     $("#errorInfor").html("两次输入的密码不一样..");
                     //return false;
                 }
