@@ -92,9 +92,12 @@ namespace YiTao.Web.Areas.Watch.Controllers
             var account = db.Accounts.FirstOrDefault(a => a.Email == email);
             if (account!=null)
             {
+                
                 Guid g = Guid.NewGuid();
                 HttpRuntime.Cache.Insert(g.ToString(), email, null, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(30));
-                log.Info(@"这里是重置密码连接 " + String.Format("http://yitao.oureda.cn/Home/FindPassword/" + "{0}", g.ToString()) + "，30分钟内有效，请尽快更改密码");
+                //log.Info(@"这里是重置密码连接 " + String.Format("http://yitao.oureda.cn/Home/FindPassword/" + "{0}", g.ToString()) + "，30分钟内有效，请尽快更改密码");
+                string msg = "这里是重置密码连接 " + String.Format("http://yitao.oureda.cn/Home/FindPassword/" + "{0}", g.ToString()) + "，30分钟内有效，请尽快更改密码";
+                AuctionStation.Framework.Utility.MailHelper.SendEmail("smtp.qq.com", "yitaomsg@oureda.cn", email, "亿淘", "yitao123456", "亿淘密码重置", msg);
                 return View();
             }
             ViewBag.msg = "1";
