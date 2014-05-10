@@ -85,7 +85,7 @@ namespace YiTao.Web.Areas.Management.Controllers
         [HttpPost]
         public string Del(YiTao.Modules.Bll.Models.Management newManagement)
         {
-            if (newManagement.UserName == HttpContext.Request.Cookies["LoginInfo"]["UserName"])
+            if (newManagement.UserName == HttpUtility.UrlDecode(HttpContext.Request.Cookies["LoginInfo"]["UserName"]))
             {
                 return "50";
             }

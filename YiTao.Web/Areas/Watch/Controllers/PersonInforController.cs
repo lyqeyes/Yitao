@@ -18,7 +18,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         {
             //根据cookie读取个人信息
             var v = HttpContext.Request.Cookies["LoginInfo"];
-            string UserName = v["UserName"];
+            string UserName = HttpUtility.UrlDecode(v["UserName"]);
             string Password = v["Password"];
             Account acc = db.Accounts.FirstOrDefault(e => e.Name == UserName && e.Password == Password);
 
@@ -87,7 +87,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         public ActionResult Qiandao()
         {
             var v = HttpContext.Request.Cookies["LoginInfo"];
-            string UserName = v["UserName"];
+            string UserName = HttpUtility.UrlDecode(v["UserName"]);
             string Password = v["Password"];
             Account acc = db.Accounts.FirstOrDefault(e => e.Name == UserName && e.Password == Password);
             //签到加多少分?
@@ -111,7 +111,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         public ActionResult Info()
         {
             var v = HttpContext.Request.Cookies["LoginInfo"];
-            string UserName = v["UserName"];
+            string UserName = HttpUtility.UrlDecode(v["UserName"]);
             string Password = v["Password"];
             ViewBag.Name = UserName;
             Account acc = db.Accounts.FirstOrDefault(e => e.Name == UserName && e.Password == Password);
@@ -136,7 +136,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
             else
             {
                 var v = HttpContext.Request.Cookies["LoginInfo"];
-                string name = v.Values["UserName"];
+                string name = HttpUtility.UrlDecode(v.Values["UserName"]);
                 var account = db.Accounts.FirstOrDefault(a => a.Name == name && password == a.Password);
                 if (account == null)
                 {
@@ -156,7 +156,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         public ActionResult SerAddress()
         {
             var v = HttpContext.Request.Cookies["LoginInfo"];
-            string name = v.Values["UserName"];
+            string name = HttpUtility.UrlDecode(v.Values["UserName"]);
             var account = db.Accounts.FirstOrDefault(a => a.Name == name);
             var address = db.UserAddresses.Where(u => u.UserId == account.AccountId);
             return View(address.ToList());
@@ -181,7 +181,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
             }
             useraddress.CreateTime = DateTime.Now;
             var v = HttpContext.Request.Cookies["LoginInfo"];
-            string name = v.Values["UserName"];
+            string name = HttpUtility.UrlDecode(v.Values["UserName"]);
             var account = db.Accounts.FirstOrDefault(a => a.Name == name);
             useraddress.UserId = db.Accounts.FirstOrDefault(a => a.Name == name).AccountId;
             db.UserAddresses.Add(useraddress);

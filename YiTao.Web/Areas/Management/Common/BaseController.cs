@@ -28,7 +28,7 @@ namespace YiTao.Web.Areas.Management.Common
                 filterContext.Result = RedirectPermanent("/Management/Auth/Login");
                 return;
             }
-            string UserName = v["UserName"];
+            string UserName = HttpUtility.UrlDecode(v["UserName"]);
             string Password = v["Password"];
             if (UserName == null || Password == null)
             {

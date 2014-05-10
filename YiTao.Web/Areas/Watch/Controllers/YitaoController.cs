@@ -153,7 +153,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         {
             newCom.CreateTime = DateTime.Now;
             var v = HttpContext.Request.Cookies["LoginInfo"];
-            newCom.UserName = v["UserName"];
+            newCom.UserName = HttpUtility.UrlDecode(v["UserName"]);
             db.Comments.Add(newCom);
             db.SaveChanges();
             if (newCom.Type == 1)

@@ -20,7 +20,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         public ActionResult Index()
         {            
             HttpCookie v = HttpContext.Request.Cookies["LoginInfo"];
-            string UserName = v["UserName"].ToString();
+            string UserName = HttpUtility.UrlDecode(v["UserName"]).ToString();
             ViewData["account"] = db.Accounts.Where(a => a.Name == UserName).FirstOrDefault();
             return View(db.DuiHuanItems.Where(a=>a.Count > 0).ToList());
         }
@@ -28,7 +28,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         public ActionResult ChouJiang()
         {
             HttpCookie v = HttpContext.Request.Cookies["LoginInfo"];
-            string UserName = v["UserName"].ToString();
+            string UserName = HttpUtility.UrlDecode(v["UserName"]).ToString();
             var account = db.Accounts.FirstOrDefault(a=>a.Name == UserName);
             db.UserAddresses.Where(u => u.UserId == account.AccountId);
             if (db.UserAddresses.Count()==0)
@@ -53,7 +53,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         {
             useraddress.CreateTime = DateTime.Now;
             var v = HttpContext.Request.Cookies["LoginInfo"];
-            string name = v.Values["UserName"];
+            string name = HttpUtility.UrlDecode(v.Values["UserName"]);
             var account = db.Accounts.FirstOrDefault(a => a.Name == name);
             useraddress.UserId = db.Accounts.FirstOrDefault(a => a.Name == name).AccountId;
             db.UserAddresses.Add(useraddress);
@@ -64,7 +64,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         {
             DuiHuanItem dh = db.DuiHuanItems.Find(id);
             HttpCookie h = Request.Cookies["LoginInfo"];
-            string name = h["UserName"];
+            string name = HttpUtility.UrlDecode(h["UserName"]);
             Account acc = db.Accounts.FirstOrDefault(a => a.Name == name);
             if (acc.JiFen > dh.JiFen && dh.Count > 0)
             {
@@ -97,7 +97,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         public string ChoujiangResult()
         {
             HttpCookie h = Request.Cookies["LoginInfo"];
-            string name = h["UserName"];
+            string name = HttpUtility.UrlDecode(h["UserName"]);
             Account acc = db.Accounts.FirstOrDefault(a => a.Name == name);
             //一次扣一分            
             if (acc.JiFen == 0)

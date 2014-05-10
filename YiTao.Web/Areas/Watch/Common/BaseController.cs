@@ -29,7 +29,7 @@ namespace YiTao.Web.Areas.Watch.Common
                 //filterContext.Result = RedirectPermanent("/Watch/Auth/Login");
                 return;
             }
-            string UserName = v["UserName"];
+            string UserName = HttpUtility.UrlDecode(v["UserName"]);
             string Password = v["Password"];
             if (UserName == null || Password == null)
             {

@@ -27,7 +27,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
             {
                 //关闭浏览器Cookie即失效
                 HttpCookie hc = new HttpCookie("LoginInfo");
-                hc.Values["UserName"] = account.Name;
+                hc.Values["UserName"] =  HttpUtility.UrlDecode(account.Name);
                 hc.Values["Password"] = account.Password;
                 Response.Cookies.Add(hc);
                 //TODO: 重定向位置得改
