@@ -106,7 +106,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 sendemail.mailBody = "邮件内容";
                 sendemail.isbodyHtml = true;    //是否是HTML
                 sendemail.host = "smtp.qq.com";//如果是QQ邮箱则：smtp:qq.com,依次类推
-                sendemail.mailToArray = new string[] { "ximing@oureda.cn" };//接收者邮件集合
+                sendemail.mailToArray = new string[] { email };//接收者邮件集合
                 sendemail.Send();
                 return View();
             }
