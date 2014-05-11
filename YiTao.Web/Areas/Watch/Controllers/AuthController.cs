@@ -33,8 +33,22 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 Response.Cookies.Add(hc);
                 //TODO: 重定向位置得改
                 Response.AppendHeader("Cache-Control", "no-cache");
+
+                //eyes 返回到原始页面
+                var temp = HttpRuntime.Cache.Get("originalURL");
+                if(temp != null)
+                {
+                    string[] divideAddress = temp.ToString().Split("/".ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                    if (divideAddress.Length == 4)
+                    {
+                        return RedirectToAction("index", new { controller = divideAddress[3], area = divideAddress[2] });
+                    }
+                    else {
+                        return RedirectToAction(divideAddress[4], new { controller = divideAddress[3], area = divideAddress[2] });
+                    }
+                }
+
                 return RedirectToAction("index", new { controller = "yitao", area = "watch" });
-                //return RedirectPermanent("/Watch/yitao/index");
             }
             else
             {

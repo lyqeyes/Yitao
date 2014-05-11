@@ -25,6 +25,8 @@ namespace YiTao.Web.Areas.Watch.Common
             var v = HttpContext.Request.Cookies["LoginInfo"];
             if (v == null)
             {
+                HttpRuntime.Cache.Insert("originalURL", Request.Url, null, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(30));
+
                 filterContext.Result = RedirectToAction("Login", new { controller = "Auth", area = "watch" });
                 //filterContext.Result = RedirectPermanent("/Watch/Auth/Login");
                 return;
