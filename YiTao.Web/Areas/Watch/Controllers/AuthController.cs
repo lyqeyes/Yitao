@@ -100,8 +100,8 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 string msg = "这里是重置密码连接 " + String.Format("http://yitao.oureda.cn/Home/FindPassword/" + "{0}", g.ToString()) + "，30分钟内有效，请尽快更改密码";
                 //AuctionStation.Framework.Utility.MailHelper.SendEmail("smtp.qq.com", "2064760020@qq.com", email, "亿淘", "yitao123", "亿淘密码重置", msg);
                 Email sendemail = new Email();
-                sendemail.mailFrom = "807754634@qq.com";
-                sendemail.mailPwd = "a807754634";
+                sendemail.mailFrom = "yitao_service@163.com";
+                sendemail.mailPwd = "yitao123";
                 sendemail.mailSubject = "邮件主题";
                 sendemail.mailBody = "邮件内容";
                 sendemail.isbodyHtml = true;    //是否是HTML
