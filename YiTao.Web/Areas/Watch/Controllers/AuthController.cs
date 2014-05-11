@@ -103,7 +103,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 sendemail.mailFrom = "yitao_service@163.com";
                 sendemail.mailPwd = "yitao123";
                 sendemail.mailSubject = "亿淘重置密码连接";
-                sendemail.mailBody = "msg";
+                sendemail.mailBody = msg;
                 sendemail.isbodyHtml = true;    //是否是HTML
                 sendemail.host = "smtp.163.com";//如果是QQ邮箱则：smtp:qq.com,依次类推
                 sendemail.mailToArray = new string[] { email };//接收者邮件集合
