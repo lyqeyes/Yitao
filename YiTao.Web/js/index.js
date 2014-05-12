@@ -1,4 +1,4 @@
-﻿
+﻿<!--banner-->
 var $ = function (id) {
     return "string" == typeof id ? document.getElementById(id) : id;
 };

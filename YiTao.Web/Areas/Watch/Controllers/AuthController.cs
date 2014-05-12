@@ -71,6 +71,11 @@ namespace YiTao.Web.Areas.Watch.Controllers
             }
         }
 
+        [NoLogin]
+        public ActionResult ForgetPass()
+        {
+            return View();
+        }
         //注销
         public ActionResult Logout()
         {

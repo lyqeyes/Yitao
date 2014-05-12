@@ -1,168 +1,26 @@
-﻿@model YiTao.Modules.Bll.Models.Account
-@{
-    Layout = null;
-}
-<!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en" class="no-js">
-<!--<![endif]-->
-<!-- BEGIN HEAD -->
+﻿@{Layout = null;}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    <title>登陆亿淘</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
-    <meta name="MobileOptimized" content="320">
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="~/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
-    <!-- END GLOBAL MANDATORY STYLES -->
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    <link rel="stylesheet" type="text/css" href="~/assets/plugins/select2/select2_metro.css" />
-    <!-- END PAGE LEVEL SCRIPTS -->
-    <!-- BEGIN THEME STYLES -->
-    <link href="~/assets/css/style-metronic.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/css/style-responsive.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/css/plugins.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color" />
-    <link href="~/assets/css/pages/login.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/css/custom.css" rel="stylesheet" type="text/css" />
-    <!-- END THEME STYLES -->
-    <link rel="shortcut icon" href="favicon.ico" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>亿淘app</title>
+    <link type="text/css" href="~/style/unify.css" rel="stylesheet" />
+    <link type="text/css" href="~/style/user-base.css" rel="stylesheet" />
 </head>
-<!-- BEGIN BODY -->
-<body class="login">
-    <!-- BEGIN LOGO -->
-    <div class="logo">
-        @*<img src="~/assets/img/logo-big.png" alt="" />*@
+
+<body>
+    <div id="warp">
+        <div id="search">
+            <div class="login_01"><img src="~/img/login_01.png" /></div>
+            <form action="Login" method="post">
+                <input name="name" class="log_button01" type="text" value="用户名" onclick="this.value='';focus()" onblur="if(!value) {value=defaultValue; this.type='text';}" />
+                <input name="password" class="log_button01" type="text" value="密码" onfocus="if(this.value==defaultValue) {this.value='';this.type='password'}" onblur="if(!value) {value=defaultValue; this.type='text';}" />
+                <input class="log_button02" type="submit" value="登录" />
+            </form>
+
+            <div class="log_hre"><a class="hre_a02" href="~/Watch/Auth/ForgetPass/">忘记密码？</a></div>
+        </div>
     </div>
-    <!-- END LOGO -->
-    <!-- BEGIN LOGIN -->
-    <div class="content">
-        <!-- BEGIN LOGIN FORM -->
-        <form class="login-form" action="Login" method="post">
-            <h3 class="form-title">登陆亿淘</h3>
-            <p style="color:red">@TempData["register"]</p>
-            @if (ViewBag.Error != null)
-            {
-                <div class="alert alert-danger">
-                    <button class="close" data-close="alert"></button>
-                    <span>@ViewBag.Error</span>
-                </div>
-            }
-            <div class="alert alert-danger display-hide">
-                <button class="close" data-close="alert"></button>
-                <span>请输入用户名及密码</span>
-            </div>
-            <div class="form-group">
-                <h3>@TempData["sendeamil"]</h3>
-                <h3>@ViewBag.sendemail</h3>
-                <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                <label class="control-label visible-ie8 visible-ie9">用户名</label>
-                <div class="input-icon">
-                    <i class="fa fa-user"></i>
-                    @if (Model == null)
-                    {
-                        @Html.TextBox("name", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "on", placeholder = "用户名", name = "name" })
-                    }
-                    else
-                    {
-                        @Html.TextBox("name", Model.Name, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "on", placeholder = "用户名", name = "name" })
-                    }
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">密码</label>
-                <div class="input-icon">
-                    <i class="fa fa-lock"></i>
-                    @if (Model == null)
-                    {
-                        @Html.Password("password", String.Empty, new { @class = "form-control placeholder-no-fix", type = "password", autocomplete = "off", placeholder = "密码", name = "password" })
-                    }
-                    else
-                    {
-                        @Html.Password("password", Model.Password, new { @class = "form-control placeholder-no-fix", type = "password", autocomplete = "off", placeholder = "密码", name = "password" })
-                    }
-                </div>
-            </div>
-            <div class="form-actions">
-                <button type="submit" class="btn green pull-right">
-                    登陆 <i class="m-icon-swapright m-icon-white"></i>
-                </button>
-                <a href="/watch/auth/register" class="btn green pull-left">
-                   <i class="m-icon-swapleft m-icon-white"></i>去注册
-                </a>
-            </div>
-            <div class="forget-password">
-                <h4>忘记密码 ?</h4>
-                <p>
-                    不要担心, 点击 <a href="javascript:;" id="forget-password">这里</a>
-                    找回密码
-                </p>
-            </div>
-        </form>
-        <!-- END LOGIN FORM -->
-        <form class="forget-form" action="ForgetPassword" method="post">
-            <h3>忘记密码?</h3>
-            <p>输入您的注册邮箱以重置密码</p>
-            <div class="form-group">
-                <div class="input-icon">
-                    <i class="fa fa-envelope"></i>
-                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" />
-                </div>
-            </div>
-            <div class="form-actions">
-                <button type="button" id="back-btn" class="btn">
-                    <i class="m-icon-swapleft"></i> 返回
-                </button>
-                <button type="submit" class="btn blue pull-right">
-                    确认 <i class="m-icon-swapright m-icon-white"></i>
-                </button>
-            </div>
-        </form>
-    </div>
-    <!-- END LOGIN -->
-    <!-- BEGIN COPYRIGHT -->
-    <div class="copyright">
-        2014 &copy; 亿淘APP用户平台
-    </div>
-    <!-- END COPYRIGHT -->
-    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-    <!-- BEGIN CORE PLUGINS -->
-    <!--[if lt IE 9]>
-    <script src="~/assets/plugins/respond.min.js"></script>
-    <script src="~/assets/plugins/excanvas.min.js"></script>
-    <![endif]-->
-    <script src="~/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-    <!-- END CORE PLUGINS -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="~/assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="~/assets/plugins/select2/select2.min.js"></script>
-    <!-- END PAGE LEVEL PLUGINS -->
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="~/assets/scripts/app.js" type="text/javascript"></script>
-    <script src="~/assets/scripts/login.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL SCRIPTS -->
-    <script>
-        jQuery(document).ready(function () {
-            App.init();
-            Login.init();
-        });
-    </script>
-    <!-- END JAVASCRIPTS -->
 </body>
-<!-- END BODY -->
 </html>
