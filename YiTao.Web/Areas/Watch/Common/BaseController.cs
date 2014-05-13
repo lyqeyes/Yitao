@@ -25,10 +25,19 @@ namespace YiTao.Web.Areas.Watch.Common
             var v = HttpContext.Request.Cookies["LoginInfo"];
             if (v == null)
             {
-                HttpRuntime.Cache.Insert("originalURL", Request.Url, null, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(30));
-
+                //说明: 
+                //如果当前操作是要发送数据(即表单内容不空), 则登录后返回登录前页面.
+                //如果是请求一个页面, 则登录后返回当前所请求的页面
+                //大眼睛留  5.13
+                if (Request.Form.ToString() == "")
+                {
+                    HttpRuntime.Cache.Insert("originalURL", Request.Url, null, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(30));
+                }
+                else
+                {
+                    HttpRuntime.Cache.Insert("originalURL", Request.UrlReferrer, null, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(30));
+                }
                 filterContext.Result = RedirectToAction("Login", new { controller = "Auth", area = "watch" });
-                //filterContext.Result = RedirectPermanent("/Watch/Auth/Login");
                 return;
             }
             string sss = HttpUtility.UrlDecode(v.Value);

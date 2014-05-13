@@ -43,8 +43,13 @@ namespace YiTao.Web.Areas.Watch.Controllers
                     {
                         return RedirectToAction("index", new { controller = divideAddress[3], area = divideAddress[2] });
                     }
-                    else {
+                    else if (divideAddress.Length == 5)
+                    {
                         return RedirectToAction(divideAddress[4], new { controller = divideAddress[3], area = divideAddress[2] });
+                    }
+                    else
+                    {
+                        return RedirectToAction(divideAddress[4], new { controller = divideAddress[3], area = divideAddress[2], id = divideAddress[5] });
                     }
                 }
 
