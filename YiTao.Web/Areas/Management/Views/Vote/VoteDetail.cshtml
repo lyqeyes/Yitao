@@ -1,0 +1,25 @@
+﻿@model IEnumerable<YiTao.Modules.Bll.Models.VoteItem>
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>VoteDetail</title>
+</head>
+<body>
+    <div> 
+        @foreach (var item in Model)
+        {
+            <div>
+                <img src="@item.ImgURL" />
+                <p>@item.ItemName</p>
+                <p>@item.Count</p>
+            </div> 
+        }
+    </div>
+    <!--然后再画一个饼-->
+</body>
+</html>

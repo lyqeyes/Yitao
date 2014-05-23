@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>VoteList</title>
+</head>
+<body>
+    <div> 
+        @foreach (var item in Model)
+        {
+            <div>
+                <a href="/Watch/Vote/VoteDetail/@item"></a>
+            </div> 
+        }
+    </div>
+</body>
+</html>

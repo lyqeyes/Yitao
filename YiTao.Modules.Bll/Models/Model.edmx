@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="YiTaoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="YiTaoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="AccountId" />
@@ -137,6 +137,28 @@
           <Property Name="FanJiFen" Type="int" />
           <Property Name="BaoYou" Type="int" />
         </EntityType>
+        <EntityType Name="LiuYan">
+          <Key>
+            <PropertyRef Name="LiuYanId" />
+          </Key>
+          <Property Name="LiuYanId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Detail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LiuYanComment">
+          <Key>
+            <PropertyRef Name="LiuYanCommentId" />
+          </Key>
+          <Property Name="LiuYanCommentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LiuYanId" Type="bigint" Nullable="false" />
+          <Property Name="Detail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AccountId" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="LunBo">
           <Key>
             <PropertyRef Name="LunBoId" />
@@ -219,6 +241,36 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="ConsigneeName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="VoteAccount">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="int" Nullable="false" />
+          <Property Name="VoteGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VoteCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VoteItem">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="ImgURL" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VoteTopic">
+          <Key>
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Name="TopicId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TopicName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TopicGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="IsStoped" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ZhuanTi">
           <Key>
             <PropertyRef Name="ZhuanTiId" />
@@ -261,6 +313,8 @@
           <EntitySet Name="HaoDian" EntityType="Self.HaoDian" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JiFenLiShi" EntityType="Self.JiFenLiShi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JuZheKouItem" EntityType="Self.JuZheKouItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LiuYan" EntityType="Self.LiuYan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LiuYanComment" EntityType="Self.LiuYanComment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LunBo" EntityType="Self.LunBo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Management" EntityType="Self.Management" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OtherUrl" EntityType="Self.OtherUrl" Schema="dbo" store:Type="Tables" />
@@ -268,10 +322,14 @@
           <EntitySet Name="ThreeLei" EntityType="Self.ThreeLei" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TowLei" EntityType="Self.TowLei" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAddress" EntityType="Self.UserAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VoteAccount" EntityType="Self.VoteAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VoteItem" EntityType="Self.VoteItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VoteTopic" EntityType="Self.VoteTopic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZhuanTi" EntityType="Self.ZhuanTi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZhuanTiItem" EntityType="Self.ZhuanTiItem" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="YiTaoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -407,6 +465,28 @@
           <Property Name="FanJiFen" Type="Int32" />
           <Property Name="BaoYou" Type="Int32" />
         </EntityType>
+        <EntityType Name="LiuYan">
+          <Key>
+            <PropertyRef Name="LiuYanId" />
+          </Key>
+          <Property Name="LiuYanId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LiuYanComment">
+          <Key>
+            <PropertyRef Name="LiuYanCommentId" />
+          </Key>
+          <Property Name="LiuYanCommentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LiuYanId" Type="Int64" Nullable="false" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountId" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         <EntityType Name="LunBo">
           <Key>
             <PropertyRef Name="LunBoId" />
@@ -489,6 +569,36 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="ConsigneeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
+        <EntityType Name="VoteAccount">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int32" Nullable="false" />
+          <Property Name="VoteGuid" Type="Guid" Nullable="false" />
+          <Property Name="VoteCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VoteItem">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemGuid" Type="Guid" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="ImgURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VoteTopic">
+          <Key>
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Name="TopicId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TopicName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TopicGuid" Type="Guid" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsStoped" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="ZhuanTi">
           <Key>
             <PropertyRef Name="ZhuanTiId" />
@@ -531,6 +641,8 @@
           <EntitySet Name="HaoDians" EntityType="Self.HaoDian" />
           <EntitySet Name="JiFenLiShis" EntityType="Self.JiFenLiShi" />
           <EntitySet Name="JuZheKouItems" EntityType="Self.JuZheKouItem" />
+          <EntitySet Name="LiuYans" EntityType="Self.LiuYan" />
+          <EntitySet Name="LiuYanComments" EntityType="Self.LiuYanComment" />
           <EntitySet Name="LunBoes" EntityType="Self.LunBo" />
           <EntitySet Name="Managements" EntityType="Self.Management" />
           <EntitySet Name="OtherUrls" EntityType="Self.OtherUrl" />
@@ -538,6 +650,9 @@
           <EntitySet Name="ThreeLeis" EntityType="Self.ThreeLei" />
           <EntitySet Name="TowLeis" EntityType="Self.TowLei" />
           <EntitySet Name="UserAddresses" EntityType="Self.UserAddress" />
+          <EntitySet Name="VoteAccounts" EntityType="Self.VoteAccount" />
+          <EntitySet Name="VoteItems" EntityType="Self.VoteItem" />
+          <EntitySet Name="VoteTopics" EntityType="Self.VoteTopic" />
           <EntitySet Name="ZhuanTis" EntityType="Self.ZhuanTi" />
           <EntitySet Name="ZhuanTiItems" EntityType="Self.ZhuanTiItem" />
         </EntityContainer>
@@ -658,7 +773,6 @@
           <EntitySetMapping Name="JiFenLiShis">
             <EntityTypeMapping TypeName="YiTaoModel.JiFenLiShi">
               <MappingFragment StoreEntitySet="JiFenLiShi">
-                <ScalarProperty Name="WhetherDealed" ColumnName="WhetherDealed" />
                 <ScalarProperty Name="JiFenLiShiId" ColumnName="JiFenLiShiId" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -667,6 +781,7 @@
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="WhetherDealed" ColumnName="WhetherDealed" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -687,6 +802,30 @@
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="FanJiFen" ColumnName="FanJiFen" />
                 <ScalarProperty Name="BaoYou" ColumnName="BaoYou" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LiuYans">
+            <EntityTypeMapping TypeName="YiTaoModel.LiuYan">
+              <MappingFragment StoreEntitySet="LiuYan">
+                <ScalarProperty Name="LiuYanId" ColumnName="LiuYanId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LiuYanComments">
+            <EntityTypeMapping TypeName="YiTaoModel.LiuYanComment">
+              <MappingFragment StoreEntitySet="LiuYanComment">
+                <ScalarProperty Name="LiuYanCommentId" ColumnName="LiuYanCommentId" />
+                <ScalarProperty Name="LiuYanId" ColumnName="LiuYanId" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -776,6 +915,39 @@
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ConsigneeName" ColumnName="ConsigneeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoteAccounts">
+            <EntityTypeMapping TypeName="YiTaoModel.VoteAccount">
+              <MappingFragment StoreEntitySet="VoteAccount">
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="VoteGuid" ColumnName="VoteGuid" />
+                <ScalarProperty Name="VoteCount" ColumnName="VoteCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoteItems">
+            <EntityTypeMapping TypeName="YiTaoModel.VoteItem">
+              <MappingFragment StoreEntitySet="VoteItem">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemGuid" ColumnName="ItemGuid" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ImgURL" ColumnName="ImgURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoteTopics">
+            <EntityTypeMapping TypeName="YiTaoModel.VoteTopic">
+              <MappingFragment StoreEntitySet="VoteTopic">
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
+                <ScalarProperty Name="TopicGuid" ColumnName="TopicGuid" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsStoped" ColumnName="IsStoped" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -154,6 +154,7 @@
     <Compile Include="Areas\Management\Controllers\AccountController.cs" />
     <Compile Include="Areas\Management\Controllers\AuthController.cs" />
     <Compile Include="Areas\Management\Controllers\MainPageController.cs" />
+    <Compile Include="Areas\Management\Controllers\VoteController.cs" />
     <Compile Include="Areas\Management\ManagementAreaRegistration.cs" />
     <Compile Include="Areas\Management\Models\JiangpinInfor.cs" />
     <Compile Include="Areas\Watch\Common\BaseController.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="Areas\Watch\Controllers\AuthController.cs" />
     <Compile Include="Areas\Watch\Controllers\DuihuanController.cs" />
     <Compile Include="Areas\Watch\Controllers\PersonInforController.cs" />
+    <Compile Include="Areas\Watch\Controllers\VoteController.cs" />
     <Compile Include="Areas\Watch\Controllers\YitaoController.cs" />
     <Compile Include="Areas\Watch\Models\JiangpinDetail.cs" />
     <Compile Include="Areas\Watch\Models\Prezis.cs" />
@@ -2538,6 +2540,10 @@
     <Content Include="Areas\Watch\Views\Duihuan\SetAddressBeforChou.cshtml" />
     <Content Include="Areas\Watch\Views\PersonInfor\JiFenHistory.cshtml" />
     <Content Include="Areas\Watch\Views\Auth\ForgetPass.cshtml" />
+    <Content Include="Areas\Management\Views\Vote\AddVote.cshtml" />
+    <Content Include="Areas\Management\Views\Vote\VoteList.cshtml" />
+    <Content Include="Areas\Management\Views\Vote\VoteDetail.cshtml" />
+    <Content Include="Areas\Watch\Views\Vote\VoteList.cshtml" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\yitao - FTP.pubxml" />

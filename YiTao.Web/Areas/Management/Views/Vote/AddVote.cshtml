@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <form action="AddVotePost" method="post">
+        <label>投票主题:</label>
+        <input type="text" name="VoteTopic" />
+        <br />
+        <label>单人最多投票数:</label>
+        <input type="text" name="Type" value="1" />
+        <br />
+        <label>投票选项:</label>
+        <div id="itemArea">
+            @*<input type="text" name="items" />
+                <br />
+                <input type="text" name="items" />*@
+            @*<input type="text" hidden="hidden" name="ImgURLs" value="" />*@
+        </div>
+        @*<input type="hidden" value="" id="inputCover" name="url" />
+        <img id="imageCover" alt="" src="" width="320" height="460">*@
+        <span id="uploadify" class="btn dark fileinput-button"></span>
+
+        <input type="submit" value="确认创建" />
+    </form>
+</div>
+@section PageSpecificJavascriptIncludes{
+    <script>
+        $("#addItem").click(function () {
+            var addItem = $("<p><input type='text' name='items' /><input type='button' onclick='$(this).parent().remove()' value='移除' /> </p>");
+            $("#itemArea").append(addItem);
+        });
+    </script>
+    <script src="~/Scripts/uploadify-v3.1/jquery.uploadify-3.1.min.js"></script>
+    <link href="~/Scripts/uploadify-v3.1/uploadify.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#uploadify').uploadify({
+                uploader: '/Home/Upload',           // 服务器端处理地址
+                swf: '/Scripts/uploadify-v3.1/uploadify.swf',    // 上传使用的 Flash
+                //width: 60,                          // 按钮的宽度
+                //height: 23,                         // 按钮的高度
+                buttonText: "增加选项",                 // 按钮上的文字
+                buttonCursor: 'hand',                // 按钮的鼠标图标
+                fileObjName: 'Filedata',            // 上传参数名称
+                // 两个配套使用
+                fileTypeExts: "*.gif; *.jpg; *.png;*.bmp;*.jpeg;",             // 扩展名
+                fileTypeDesc: "请选择 jpg png 文件",     // 文件说明
+                auto: true,                // 选择之后，自动开始上传
+                multi: false,               // 是否支持同时上传多个文件
+                removeTimeout: 0,
+                'onUploadSuccess': function (file, data, response) {
+                    if (data == "error") {
+                        alert('服务器错误，请刷新后重新上传');
+                    } else {
+                        var addItem = $("<p> <input type='text' hidden='hidden' name='ImgURLs' value='" + data + "' /> <img src='" + data + "' /> <input type='text' name='ItemNames' /><input type='button' onclick='$(this).parent().remove()' value='移除' /> </p>");
+                        $("#itemArea").append(addItem);
+                        //$("#imageCover").attr("src", data);
+                        //$("#inputCover").attr("value", data);
+                    }
+                }
+            });
+        });
+    </script>
+}
