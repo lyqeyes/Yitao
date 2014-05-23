@@ -1,0 +1,21 @@
+﻿@model IEnumerable<YiTao.Modules.Bll.Models.VoteTopic>
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>VoteList</title>
+</head>
+<body>
+    <div>
+        @foreach (var item in Model)
+        {
+            <a href="/Management/Vote/VoteDetail/@item.TopicGuid">@item.TopicName</a>
+        }
+    </div>
+</body>
+</html>
