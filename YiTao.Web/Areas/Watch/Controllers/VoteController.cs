@@ -65,6 +65,20 @@ namespace YiTao.Web.Areas.Watch.Controllers
             //如果投票总数没到
             if (voteAccount == null || voteAccount.Count() < topic.Type)
             {
+                //积分操作
+                user.JiFen++;
+                JiFenLiShi newOne = new JiFenLiShi()
+                {
+                    AccountId = user.AccountId,
+                    AccountName = user.Name,
+                    Description = "投票加积分",
+                    Type = 10,  //投票加积分的类型10
+                    JiFen = 1,
+                    CreateTime = System.DateTime.Now
+                };
+                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                db.JiFenLiShis.Add(newOne);
+                //投票记录
                 VoteAccount a = new VoteAccount()
                 {
                     AccountId = user.AccountId,
