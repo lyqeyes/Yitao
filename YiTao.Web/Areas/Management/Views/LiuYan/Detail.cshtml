@@ -1,0 +1,121 @@
+﻿@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+@using YiTao.Modules.Bll.Models;
+@using Webdiyer.WebControls.Mvc
+@{      var liuYan = ViewData["LiuYan"] as LiuYan;
+        var liuYanComment = ViewData["LiuYanComment"] as PagedList<LiuYanComment>;
+}
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-edit"></i>留言详情</div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="javascript:;" class="remove"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div>
+                        <p>标题：@liuYan.Title</p>
+                    </div>
+                    <div>
+                        <p>开始时间：@liuYan.StartTime.ToString("yyyy-MM-dd")</p>
+                    </div>
+                    <div>
+                        <p>结束时间：@liuYan.EndTime.ToString("yyyy-MM-dd")</p>
+                    </div>
+                    <div>
+                        <p>状态：
+                        @if (liuYan.StartTime > DateTime.Now)
+                        {
+                            <span>未开始</span>
+                        }
+                        else if (liuYan.EndTime < DateTime.Now)
+                        {
+                            <span> 已结束</span>
+                        }
+                        else
+                        {
+                            <span>进行中</span>
+                        }
+                        </p>
+                    </div>
+                    <div>
+                        <p>评论数：@liuYan.Count</p>
+                    </div>
+                    <div>
+                        <p>内容：</p>
+                        <div>@Html.Raw(liuYan.Detail)</div>
+                    </div>
+                    <br />
+                    <div>
+                        <div class="btn-group">
+                            <a class="btn green" data-toggle="modal" href="/Management/LiuYan/Edit?LiuYanId=@liuYan.LiuYanId">
+                                编辑 <i class=" fa fa-plus">
+                                </i>
+                            </a>
+                            <a class="btn green" data-toggle="modal" href="/Management/LiuYan/Del?LiuYanId=@liuYan.LiuYanId">
+                                删除 <i class=" fa fa-times">
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <div>
+                @if (liuYanComment == null || liuYanComment.Count == 0)
+                {
+                    <p>没有评论</p>
+                }
+                else
+                {
+                    <p>评论：</p>
+                    <table class="table table-bordered table-hover table-scrollable">
+                        <thead>
+                            <tr>
+                                <th>评论者</th>
+                                <th class="col-md-8">评论内容</th>
+                                <th>创建时间</th>
+                                <th>管理</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in liuYanComment)
+                        {
+                            <tr>
+                                <th>@item.AccountName</th>
+                                <th>@item.Detail</th>
+                                <th>@item.CreateTime.ToString("yyyy-MM-dd")</th>
+                                <th>
+                                    <a class="btn green" data-toggle="modal" href="/Management/LiuYan/DelComment?LiuYanCommentId=@item.LiuYanCommentId">
+                                        删除 <i class="fa fa-times"></i>
+                                    </a>
+                                </th>
+                            </tr>
+                        }
+                    </table>
+                    <div style="text-align:center; margin-left:-2em;">
+                    @Html.Pager(liuYanComment, new PagerOptions
+                 {
+                     HorizontalAlign = "center",
+                     ShowFirstLast = false,
+                     CssClass = "pagination pagination-sm",
+                     NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                     ContainerTagName = "ul",
+                     PageIndexParameterName = "id",
+                     ShowPageIndexBox = false,
+                     PrevPageText = "<<",
+                     NumericPagerItemCount = 3,
+                     Id = "pages",
+                     NextPageText = ">>",
+                     CurrentPagerItemWrapperFormatString = "<li class=\"active\"> <a>{0}</a> </li>",
+                     NumericPagerItemWrapperFormatString = "<li> {0}</li>",
+                 }, new { style = "margin-top:2em;margin-bottom:2em" })
+            </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

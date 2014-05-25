@@ -199,5 +199,62 @@ namespace YiTao.Web.Areas.Watch.Controllers
             PagedList<JiFenLiShi> m = jifenlishiList.ToPagedList(id ?? 1, 10);
             return View(m);
         }
+
+        #region  留言部分
+        //留言列表
+        public ActionResult LiuYanIndex(int? id)
+        {
+            var LiuYanList = db.LiuYan.Where(e=>e.StartTime < DateTime.Now && e.EndTime > DateTime.Now).OrderByDescending(e=>e.CreateTime).ToList();
+            PagedList<LiuYan> m = LiuYanList.ToPagedList(id ?? 1, 5);
+            return View(m);
+        }
+        //留言详情
+        public ActionResult LiuYanDetail()
+        {
+            long LiuYanId = db.LiuYan.Max(e => e.LiuYanId);
+            var liuYan = db.LiuYan.First(e => e.LiuYanId == LiuYanId);
+            var liuYanCommentList = db.LiuYanComment.Where(e => e.LiuYanId == LiuYanId).OrderByDescending(e => e.CreateTime).ToList();
+            ViewData["LiuYan"] = liuYan;
+            ViewData["LiuYanCommentList"] = liuYanCommentList;
+            return View();
+        }
+        //发布评论
+        [HttpPost]
+        public ActionResult LiuYanCommentCreate(LiuYanComment liuYanComment)
+        {
+            var liuYan = db.LiuYan.Find(liuYanComment.LiuYanId);
+            liuYan.Count += 1;
+            var v = HttpContext.Request.Cookies["LoginInfo"];
+            liuYanComment.AccountName = HttpUtility.UrlDecode(v["UserName"]); 
+            liuYanComment.CreateTime = DateTime.Now;
+            db.LiuYanComment.Add(liuYanComment);
+            db.Entry(liuYan).State = EntityState.Modified;
+            //积分处理
+
+            string UserName = HttpUtility.UrlDecode(v["UserName"]);
+            string Password = v["Password"];
+            Account acc = db.Accounts.FirstOrDefault(e => e.Name == UserName && e.Password == Password);
+            if (db.LiuYanComment.Count(e => e.AccountName == UserName && e.LiuYanId == liuYan.LiuYanId) < 6)
+            {
+                //最多加6分
+                acc.JiFen += 1;
+                JiFenLiShi newOne = new JiFenLiShi()
+                {
+                    AccountId = acc.AccountId,
+                    AccountName = acc.Name,
+                    Description = "留言加积分",
+                    Type = 20,
+                    JiFen = 1,
+                    CreateTime = System.DateTime.Now,
+                };
+                db.Entry(acc).State = EntityState.Modified;
+                db.JiFenLiShis.Add(newOne);
+            }
+            db.SaveChanges();
+            //永久重定向
+            Response.AppendHeader("Cache-Control", "no-cache");
+            return RedirectPermanent("/Watch/PersonInfor/LiuYanDetail");
+        }
+        #endregion
     }
 }

@@ -18,5 +18,6 @@ namespace YiTao.Modules.Bll.Models
         public int AccountId { get; set; }
         public System.DateTime CreateTime { get; set; }
         public int ShangPinId { get; set; }
+        public int Type { get; set; }
     }
 }

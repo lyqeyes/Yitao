@@ -45,6 +45,7 @@
           <Property Name="AccountId" Type="int" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
           <Property Name="ShangPinId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -136,6 +137,28 @@
           <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="FanJiFen" Type="int" />
           <Property Name="BaoYou" Type="int" />
+        </EntityType>
+        <EntityType Name="LiuYan">
+          <Key>
+            <PropertyRef Name="LiuYanId" />
+          </Key>
+          <Property Name="LiuYanId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Detail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LiuYanComment">
+          <Key>
+            <PropertyRef Name="LiuYanCommentId" />
+          </Key>
+          <Property Name="LiuYanCommentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LiuYanId" Type="bigint" Nullable="false" />
+          <Property Name="Detail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="LunBo">
           <Key>
@@ -261,6 +284,8 @@
           <EntitySet Name="HaoDian" EntityType="Self.HaoDian" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JiFenLiShi" EntityType="Self.JiFenLiShi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JuZheKouItem" EntityType="Self.JuZheKouItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LiuYan" EntityType="Self.LiuYan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LiuYanComment" EntityType="Self.LiuYanComment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LunBo" EntityType="Self.LunBo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Management" EntityType="Self.Management" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OtherUrl" EntityType="Self.OtherUrl" Schema="dbo" store:Type="Tables" />
@@ -315,6 +340,7 @@
           <Property Name="AccountId" Type="Int32" Nullable="false" />
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ShangPinId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -540,7 +566,31 @@
           <EntitySet Name="UserAddresses" EntityType="Self.UserAddress" />
           <EntitySet Name="ZhuanTis" EntityType="Self.ZhuanTi" />
           <EntitySet Name="ZhuanTiItems" EntityType="Self.ZhuanTiItem" />
+          <EntitySet Name="LiuYan" EntityType="YiTaoModel.LiuYan" />
+          <EntitySet Name="LiuYanComment" EntityType="YiTaoModel.LiuYanComment" />
         </EntityContainer>
+        <EntityType Name="LiuYan">
+          <Key>
+            <PropertyRef Name="LiuYanId" />
+          </Key>
+          <Property Name="LiuYanId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Detail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LiuYanComment">
+          <Key>
+            <PropertyRef Name="LiuYanCommentId" />
+          </Key>
+          <Property Name="LiuYanCommentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LiuYanId" Type="Int64" Nullable="false" />
+          <Property Name="Detail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AccountName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -585,6 +635,7 @@
           <EntitySetMapping Name="Collections">
             <EntityTypeMapping TypeName="YiTaoModel.Collection">
               <MappingFragment StoreEntitySet="Collection">
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="CollertionId" ColumnName="CollertionId" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
@@ -811,6 +862,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="LiuYan">
+            <EntityTypeMapping TypeName="YiTaoModel.LiuYan">
+              <MappingFragment StoreEntitySet="LiuYan">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="LiuYanId" ColumnName="LiuYanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LiuYanComment">
+            <EntityTypeMapping TypeName="YiTaoModel.LiuYanComment">
+              <MappingFragment StoreEntitySet="LiuYanComment">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="LiuYanId" ColumnName="LiuYanId" />
+                <ScalarProperty Name="LiuYanCommentId" ColumnName="LiuYanCommentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -825,7 +900,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
