@@ -27,7 +27,17 @@
         <div id="merchandise_news">
             <img class="product_01" src="@Model.ImageUrl" width="1920" height="1175" alt="" />
             <div class="product_bottom" id="div_product">
-                <div class="product_lucency">收藏数：<i>@Model.CollectCount</i></div>
+                @{
+                    if (Model.CollectCount.HasValue)
+                    {
+                        <div class="product_lucency">收藏数：@Model.CollectCount<i></i></div>
+                    }
+                    else
+                    {
+                        <div class="product_lucency">收藏数：0<i></i></div>
+                    }
+                }
+                
                 <div class="product_lucency">月销量：<i>@Model.MonthlySales</i></div>
             </div>
             <div class="row">
@@ -48,11 +58,11 @@
                                 CollectedClass = "";
                             }
 
-                            <a class="ToCollect collect-img @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@Model.ShangPinId">
+                            <a class="ToCollect collect-img @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="0" data-shangpinid="@Model.ShangPinId">
                                 <img src="../../../img/collect.png" />
                             </a>
-                            <a class="ToCollect @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@Model.ShangPinId">收藏</a>
-                            <a class="pic_a Anti-Collect  collect-img @CollectedClass " data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@Model.ShangPinId">
+                            <a class="ToCollect @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="0" data-shangpinid="@Model.ShangPinId">收藏</a>
+                            <a class="pic_a Anti-Collect  collect-img @CollectedClass " data-account="@ViewBag.AccountId" data-type="0" data-shangpinid="@Model.ShangPinId">
                                 <img src="../../../img/Collected.png" />
                             </a>
         

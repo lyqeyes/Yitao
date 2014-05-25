@@ -146,15 +146,11 @@ namespace YiTao.Web.Areas.Watch.Controllers
             //判断是否已登陆
             var logininfo = HttpContext.Request.Cookies["LoginInfo"];
             var item = db.ShangPins.Find(id);
-            Statistic<ShangPin> data = new Statistic<ShangPin>()
-            {
-                data = item,
-                IsCollected = 0
-            };
             if (logininfo == null)
             {
                 //未登录直接全部显示未收藏
                 ViewBag.AllCollectStatus = 0;
+                ViewBag.IsCollected = 0;
             }
             else
             {
@@ -162,9 +158,9 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 Account account = db.Accounts.FirstOrDefault(a => a.Name == name);
                 ViewBag.AccountId = account.AccountId;
                 ViewBag.AllCollectStatus = 1;
-                data.IsCollected = db.Collections.Where(b => b.Type == (int)EnumCollectionType.NormalShangpin && b.AccountId == account.AccountId && b.ShangPinId == id).Count();
+                ViewBag.IsCollected = db.Collections.Where(b => b.Type == (int)EnumCollectionType.NormalShangpin && b.AccountId == account.AccountId && b.ShangPinId == id).Count();
             }
-            return View(data);
+            return View(item);
              
         }
 

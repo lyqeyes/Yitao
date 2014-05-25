@@ -83,6 +83,45 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 CreateTime = DateTime.Now,
                 Type = type
             });
+            if (type == (int)EnumCollectionType.Juzhekou)
+            {
+                var data = db.JuZheKouItems.Find(ShangpinId);
+                if(data.CollectCount.HasValue)
+                {
+                    data.CollectCount++;
+                }
+                else
+                {
+                    data.CollectCount = 0;
+                }
+                db.Entry(data).State = EntityState.Modified;
+            }
+            else if (type == (int)EnumCollectionType.NormalShangpin)
+            {
+                var data = db.ShangPins.Find(ShangpinId);
+                if (data.CollectCount.HasValue)
+                {
+                    data.CollectCount ++;
+                }
+                else
+                {
+                    data.CollectCount = 0;
+                }
+                db.Entry(data).State = EntityState.Modified;
+            }
+            else if (type == (int)EnumCollectionType.ZhuantiItem)
+            {
+                var data = db.ZhuanTiItems.Find(ShangpinId);
+                if (data.CollectCount.HasValue)
+                {
+                    data.CollectCount++;
+                }
+                else
+                {
+                    data.CollectCount = 0;
+                }
+                db.Entry(data).State = EntityState.Modified;
+            }
             db.SaveChanges();
             return "ok";
         }
@@ -105,6 +144,24 @@ namespace YiTao.Web.Areas.Watch.Controllers
             if (c == null)
             {
                 return "error";
+            }
+            if (type == (int)EnumCollectionType.Juzhekou)
+            {
+                var data = db.JuZheKouItems.Find(ShangpinId);
+                data.CollectCount -= 1;
+                db.Entry(data).State = EntityState.Modified;
+            }
+            else if (type == (int)EnumCollectionType.NormalShangpin)
+            {
+                var data = db.ShangPins.Find(ShangpinId);
+                data.CollectCount -= 1;
+                db.Entry(data).State = EntityState.Modified;
+            }
+            else if (type == (int)EnumCollectionType.ZhuantiItem)
+            {
+                var data = db.ZhuanTiItems.Find(ShangpinId);
+                data.CollectCount -= 1;
+                db.Entry(data).State = EntityState.Modified;
             }
             var del = db.Collections.Remove(c);
             db.Entry(del).State = EntityState.Deleted;
