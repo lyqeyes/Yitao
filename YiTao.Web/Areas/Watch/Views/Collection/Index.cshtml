@@ -1,0 +1,144 @@
+﻿@using YiTao.Modules.Bll
+@using YiTao.Web.Areas.Watch.Models;
+@model List<CollectionStatistic>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>亿淘</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="/css/common.css" rel="stylesheet">
+</head>
+<body>
+    <div class="warp">
+        <!------------------	Header ------------------------------>
+        <div class="header">
+            <a href="javascript:history.go(-1)">
+                <img src="/img/buttons/09.png" class="header_left_pic">
+            </a>
+            <div id="clear"></div>
+            <span class="pagetitle">我的收藏</span>
+        </div>
+        <div id="blank"></div><!--Blank area -->
+        <!----------------------	Header End 	-------------------->
+        <!-----------product list----------------------->
+        <div class="product_list">
+            @{
+                if (Model.Count() > 0)
+                {
+                    int ShangpinId = -1,
+                        FanJiFen = 0,
+                        BaoYou = 0;
+                    string ImageUrl = "",
+                            Name = "",
+                            Price = "",
+                            YuanPrice = "",
+                            Url = "";
+                    foreach (CollectionStatistic item in Model)
+                    {
+                        //Swtich Sart
+                        switch (item.type)
+                        {
+                            case (int)EnumCollectionType.NormalShangpin:
+                                ShangpinId = item.shangpin.ShangPinId;
+                                FanJiFen = item.shangpin.FanJiFen ?? 0;
+                                BaoYou = item.shangpin.BaoYou ?? 0;
+                                ImageUrl = item.shangpin.ImageUrl;
+                                Name = item.shangpin.Name;
+                                Price = item.shangpin.Price;
+                                YuanPrice = item.shangpin.YuanPrice;
+                                Url = "ShangpinDetail";
+                                break;
+                            case (int)EnumCollectionType.Juzhekou:
+                                ShangpinId = item.juzhekouItem.JuZheKouItemId;
+                                FanJiFen = item.juzhekouItem.FanJiFen ?? 0;
+                                BaoYou = item.juzhekouItem.BaoYou ?? 0;
+                                ImageUrl = item.juzhekouItem.ImageUrl;
+                                Name = item.juzhekouItem.Name;
+                                Price = item.juzhekouItem.Price;
+                                YuanPrice = item.juzhekouItem.YuanPrice;
+                                Url = "JuzekouDetail";
+                                break;
+                            case (int)EnumCollectionType.ZhuantiItem:
+                                ShangpinId = item.zhuantiItem.ZhuanTiItemId;
+                                FanJiFen = item.zhuantiItem.FanJiFen ?? 0;
+                                BaoYou = item.zhuantiItem.BaoYou ?? 0;
+                                ImageUrl = item.zhuantiItem.ImageUrl;
+                                Name = item.zhuantiItem.Name;
+                                Price = item.zhuantiItem.Price;
+                                YuanPrice = item.zhuantiItem.YuanPrice;
+                                Url = "ZhuantiItemDetail";
+                                break;
+                        }
+                        //Swtich End
+                        <div class="list_box">
+                            <!--产品类表-->
+                            <a href="/watch/yitao/@Url/@ShangpinId"><img class="box_left" src="@ImageUrl" alt="" /></a>
+                            <ul class="box_right">
+                                <li><a href="/watch/yitao/@Url/@ShangpinId" class="title" style="font-size:12px;">@Name</a></li>
+                                <!------	返积分 和 包邮 ----------------------->
+                                <li class="pic">
+                                    <a href="#" class="pic_a">
+                                        <img src="/img/buttons/integral_pic.png" alt="" />
+                                    </a>
+                                    <a href="#" class="pic_span">返积分: @FanJiFen</a>
+                                    <a href="#" class="pic_a">
+                                        <img src="/img/buttons/post_pic.png" alt="" />
+                                    </a>
+                                    @if (BaoYou == 1)
+                                    {
+                                        <a href="#" class="pic_span">包邮</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" class="pic_span">不包邮</a>
+                                    }
+                                    <a class="pic_a List-Anti-Collect  " data-account="@ViewBag.AccountId" data-type="@item.type" data-shangpinid="@ShangpinId">
+                                        <img src="../../img/Collected.png" />
+                                    </a>
+                                    <a class="pic_span List-Anti-Collect " data-account="@ViewBag.AccountId" data-type="@item.type" data-shangpinid="@ShangpinId">取消收藏</a>
+                                </li>
+                                <!------	返积分 和 包邮 End---------------->
+                                <li name="name_font" class="font">
+                                    <span>￥<i>@Price</i></span>
+                                    <div class="right_font">
+                                        <a target="_blank" href="/watch/yitao/@Url/@ShangpinId"><img src="/img/buttons/input_01.png" alt="" /></a>
+                                        <span class="delete">￥@YuanPrice</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div><!--产品类表结束-->
+                    }
+                }
+                else
+                {
+                    <p>暂时没有聚折扣商品</p>
+                }
+            }
+            </div>
+            <!-----------product list End------------------->
+        </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script src="../../Scripts/CollectAction.js"></script>
+    <style>
+        a {
+            color: #000000;
+        }
+
+            a:visited {
+                color: #000000;
+            }
+    </style>
+</body>
+</html>
+
+
+
+

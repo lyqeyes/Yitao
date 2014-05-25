@@ -102,8 +102,15 @@
                 @{
                     //HaoDian hao = ViewData["haodian"] as HaoDian;
                     <a href="@ViewBag.Haodian"><img src="/img/buttons/goods_shop.jpg" class="collect_left" style="width:36%;height:auto;"></a>
-    <a href="http://h5.m.taobao.com/fav/index.htm?spm=0.0.0.0&sprefer=p23590#!goods/queryColGood-1"><img src="/img/buttons/my_collect.jpg" class="collect_right" style="width:62%;height:auto;"></a>
-}
+                    if (ViewBag.AccountId == -1)
+                    {
+                        <a href="/Watch/Auth/Login"><img src="/img/buttons/my_collect.jpg" class="collect_right" style="width:62%;height:auto;"></a>
+                    }
+                    else
+                    {
+                        <a href="/Watch/Collection/Index?accountId=@ViewBag.AccountId"><img src="/img/buttons/my_collect.jpg" class="collect_right" style="width:62%;height:auto;"></a>
+                    }
+                }
                 <div id="clear"></div>
             </div>
             <!-----------	collect	End--------------------->
@@ -117,6 +124,7 @@
         <script type="text/javascript" src="/js/jquery.js"></script>
         <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
         <script type="text/javascript" src="/js/common.js"></script>
+        <script src="~/Scripts/CollectAction.js"></script>
         <style>
             a {
                 color: #000000;
