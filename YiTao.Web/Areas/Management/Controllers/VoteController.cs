@@ -19,8 +19,7 @@ namespace YiTao.Web.Areas.Management.Controllers
         public ActionResult AddVote()
         {
             return View();
-        }
-
+        }       
         [HttpPost]
         public ActionResult AddVotePost()
         {
@@ -29,6 +28,7 @@ namespace YiTao.Web.Areas.Management.Controllers
             var votetype = Request.Form["Type"];  //可选的数量
             var itemnames = Request.Form["ItemNames"];
             var ImgURLs = Request.Form["ImgURLs"];
+            DateTime endTime = DateTime.Parse(Request.Form["EndTime"]);
             var itemnameList = itemnames.ToString().Split(",".ToArray(), StringSplitOptions.RemoveEmptyEntries);
             var ImgURLList = ImgURLs.ToString().Split(",".ToArray(), StringSplitOptions.RemoveEmptyEntries);
             //2.设置统一的GUID
@@ -40,7 +40,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                 Type = System.Int32.Parse(votetype),
                 CreateTime = DateTime.Now,
                 TopicName = votetopic,
-                IsStoped = 0,
+                EndTime = endTime
             });
             //4.在VoteItem表中添加数据
             for (int i = 0; i < ImgURLList.Length; i++)
@@ -76,21 +76,17 @@ namespace YiTao.Web.Areas.Management.Controllers
 
         public ActionResult VoteList()
         {
-            var topicList = db.VoteTopics.Where(a => a.IsStoped == 0);
+            var topicList = db.VoteTopics.OrderByDescending(a => a.CreateTime);
             return View(topicList);
         }
         public ActionResult VoteDetail(Guid id)
         {
+            var topic = db.VoteTopics.FirstOrDefault(a => a.TopicGuid == id);
+            ViewBag.TopicName = topic.TopicName;
+            var list = db.VoteAccounts.Where(a => a.VoteGuid == id);
+            ViewBag.TotleVote = list.Count();
             var itemList = db.VoteItems.Where(a => a.ItemGuid == id);
             return View(itemList);
-        }
-        public ActionResult StopVote(Guid id)
-        {
-            var vote = db.VoteTopics.FirstOrDefault(a=>a.TopicGuid == id);
-            vote.IsStoped = 1;
-            db.Entry(vote).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("VoteList");
-        }
+        }        
     }
 }

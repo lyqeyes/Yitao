@@ -17,6 +17,6 @@ namespace YiTao.Modules.Bll.Models
         public int RecordId { get; set; }
         public int AccountId { get; set; }
         public System.Guid VoteGuid { get; set; }
-        public int VoteCount { get; set; }
+        public int VoteItemId { get; set; }
     }
 }

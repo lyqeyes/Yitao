@@ -1,0 +1,81 @@
+﻿@model IEnumerable<YiTao.Modules.Bll.Models.VoteItem>
+@{
+    Layout = null;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>投票</title>
+    <link type="text/css" href="/style/unify.css" rel="stylesheet" />
+    <link type="text/css" href="/style/user-base.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="warp">
+        <div id="vote">
+            @if (Model == null)
+            {
+                <p>暂时没有进行中的投票活动</p>
+            }
+            else
+            {
+                <p>@ViewBag.TipicName</p>
+                <p id="infor">已投:<span id="already">@ViewBag.Already </span>票 / 最多:@ViewBag.TotalAble 票</p>
+                <div class="vote_list">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="list_box">
+                            <img src="@item.ImgURL" />
+                            <p>@item.ItemName</p>
+                            @if (item.IsVoted == 0)
+                            {
+                                <p style="text-indent: 0;" id="AfterVote_@item.ItemId">
+                                    <input type="button" value="投&nbsp;&nbsp;&nbsp;&nbsp;票" onclick="VoteById(@item.ItemId)" />
+                                </p>
+                            }
+                            else if (item.IsVoted == 1)
+                            {
+                                <input class="AfterVote" type="button" value="已&nbsp;&nbsp;&nbsp;&nbsp;投" disabled="disabled" />
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+    <script src="/scripts/jquery-1.10.2.js"></script>
+    <script>
+        function VoteById(id) {
+            $.ajax({
+                url: "/Watch/Vote/VoteById/" + id,
+                data: {},
+                success: function (data) {
+                    if (data == "ok") {
+                        $("#AfterVote_" + id).html("<input class='AfterVote' type='button' value='已&nbsp;&nbsp;&nbsp;&nbsp;投' disabled='disabled' />");
+                        var value = $("#already").html();
+                        var valueNow = parseInt(value) + 1;
+                        $("#already").html(valueNow)
+                    }
+                    else if (data == "full") {
+                        $("#infor").html("<span style='color:red;'>您的投票数已到上限</span>")
+                    }
+                    else {
+                        alert("未知错误..请刷新后重试");
+                    }
+                },
+                error: function () {
+                    alert("未知错误, 请重试");
+                }
+            });
+        }
+    </script>
+    <style>
+        .AfterVote {
+            background: none repeat scroll 0 0 #808080 !important;
+        }
+    </style>
+</body>
+</html>

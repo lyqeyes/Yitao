@@ -3,19 +3,44 @@
     Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>VoteList</title>
-</head>
-<body>
-    <div>
-        @foreach (var item in Model)
-        {
-            <a href="/Management/Vote/VoteDetail/@item.TopicGuid">@item.TopicName</a>
-        }
+    
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-edit"></i>投票活动列表</div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="javascript:;" class="remove"></a>
+                </div>
+            </div>
+            <div class="portlet-body">                   
+                <table class="table table-bordered table-hover" id="sample_1">
+                    <thead>
+                        <tr>
+                            <th class="col-md-8">投票主题名</th>
+                            <th class="col-md-4">操作</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.TopicName</th>
+                                <th>
+                                    <a href="/management/vote/VoteDetail/@item.TopicGuid" class="btn btn-sm green">查看详情</a>
+                                </th>
+                            </tr>
+                        }
+                    </thead>
+                </table>          
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
     </div>
-</body>
-</html>
+</div>
+@section PageSpecificJavascriptIncludes{
+<script>
+    $("#index").removeClass("open");
+    $("#Vote").addClass("open");
+</script>
+}

@@ -19,5 +19,6 @@ namespace YiTao.Modules.Bll.Models
         public System.Guid ItemGuid { get; set; }
         public int Count { get; set; }
         public string ImgURL { get; set; }
+        public Nullable<int> IsVoted { get; set; }
     }
 }

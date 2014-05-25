@@ -18,7 +18,7 @@ namespace YiTao.Modules.Bll.Models
         public string TopicName { get; set; }
         public System.Guid TopicGuid { get; set; }
         public System.DateTime CreateTime { get; set; }
-        public int IsStoped { get; set; }
+        public System.DateTime EndTime { get; set; }
         public int Type { get; set; }
     }
 }

@@ -2544,6 +2544,7 @@
     <Content Include="Areas\Management\Views\Vote\AddVote.cshtml" />
     <Content Include="Areas\Management\Views\Vote\VoteDetail.cshtml" />
     <Content Include="Areas\Watch\Views\Vote\VoteList.cshtml" />
+    <Content Include="Areas\Watch\Views\Vote\VoteDetail.cshtml" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\yitao - FTP.pubxml" />

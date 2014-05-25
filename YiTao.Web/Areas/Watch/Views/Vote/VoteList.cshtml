@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<YiTao.Modules.Bll.Models.VoteTopic>
 @{
     Layout = null;
 }
@@ -15,7 +15,7 @@
         @foreach (var item in Model)
         {
             <div>
-                <a href="/Watch/Vote/VoteDetail/@item"></a>
+                <a href="/Watch/Vote/VoteDetail/@item.TopicGuid">@item.TopicName</a>
             </div> 
         }
     </div>

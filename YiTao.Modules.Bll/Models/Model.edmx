@@ -45,6 +45,7 @@
           <Property Name="AccountId" Type="int" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
           <Property Name="ShangPinId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -248,27 +249,28 @@
           <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AccountId" Type="int" Nullable="false" />
           <Property Name="VoteGuid" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="VoteCount" Type="int" Nullable="false" />
+          <Property Name="VoteItemId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="VoteItem">
           <Key>
             <PropertyRef Name="ItemId" />
           </Key>
           <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ItemName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ItemGuid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
           <Property Name="ImgURL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsVoted" Type="int" />
         </EntityType>
         <EntityType Name="VoteTopic">
           <Key>
             <PropertyRef Name="TopicId" />
           </Key>
           <Property Name="TopicId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TopicName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TopicName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TopicGuid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
-          <Property Name="IsStoped" Type="int" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
           <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ZhuanTi">
@@ -373,6 +375,7 @@
           <Property Name="AccountId" Type="Int32" Nullable="false" />
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ShangPinId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -576,27 +579,28 @@
           <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AccountId" Type="Int32" Nullable="false" />
           <Property Name="VoteGuid" Type="Guid" Nullable="false" />
-          <Property Name="VoteCount" Type="Int32" Nullable="false" />
+          <Property Name="VoteItemId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="VoteItem">
           <Key>
             <PropertyRef Name="ItemId" />
           </Key>
           <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ItemGuid" Type="Guid" Nullable="false" />
           <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="ImgURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsVoted" Type="Int32" />
         </EntityType>
         <EntityType Name="VoteTopic">
           <Key>
             <PropertyRef Name="TopicId" />
           </Key>
           <Property Name="TopicId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TopicName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TopicName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TopicGuid" Type="Guid" Nullable="false" />
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="IsStoped" Type="Int32" Nullable="false" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Type" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ZhuanTi">
@@ -704,6 +708,7 @@
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="ShangPinId" ColumnName="ShangPinId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -924,7 +929,7 @@
                 <ScalarProperty Name="RecordId" ColumnName="RecordId" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="VoteGuid" ColumnName="VoteGuid" />
-                <ScalarProperty Name="VoteCount" ColumnName="VoteCount" />
+                <ScalarProperty Name="VoteItemId" ColumnName="VoteItemId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -936,6 +941,7 @@
                 <ScalarProperty Name="ItemGuid" ColumnName="ItemGuid" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="ImgURL" ColumnName="ImgURL" />
+                <ScalarProperty Name="IsVoted" ColumnName="IsVoted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -946,7 +952,7 @@
                 <ScalarProperty Name="TopicName" ColumnName="TopicName" />
                 <ScalarProperty Name="TopicGuid" ColumnName="TopicGuid" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="IsStoped" ColumnName="IsStoped" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
