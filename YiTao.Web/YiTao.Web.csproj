@@ -150,7 +150,9 @@
     <Compile Include="Areas\Management\Common\NoLoginAttribute.cs" />
     <Compile Include="Areas\Management\Controllers\AppWelcomeController.cs" />
     <Compile Include="Areas\Management\Controllers\JiangpinDealController.cs" />
-    <Compile Include="Areas\Management\Controllers\LiuYanController.cs" />
+    <Compile Include="Areas\Management\Controllers\LiuYanController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Areas\Management\Controllers\ShangPinController.cs" />
     <Compile Include="Areas\Management\Controllers\UploadController.cs" />
     <Compile Include="Areas\Management\Controllers\AccountController.cs" />
