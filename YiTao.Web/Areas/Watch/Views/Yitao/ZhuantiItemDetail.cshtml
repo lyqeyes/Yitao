@@ -30,16 +30,53 @@
                 <div class="product_lucency">收藏数：<i>@Model.CollectCount</i></div>
                 <div class="product_lucency">月销量：<i>@Model.MonthlySales</i></div>
             </div>
-            <div class="news_title">@Model.Name</div>
-            <div class="news_con">
-                <div class="news_font">促销：<span class="news_font01">￥<i>@Model.Price</i></span></div>
-                <div class="news_font">原价：<span class="news_font02">￥<i>@Model.YuanPrice</i></span></div>
-                <div class="news_font03">运费：<span>至 @Model.ToWhere</span></div>
-                <div class="news_font04">@Model.TransportationPrice</div>
+            <div class="row">
+                <div class="news_title">@Model.Name </div>
+                <div class="CollectBox">
+                    @{
+                        if (ViewBag.AllCollectStatus == 1)
+                        {
+                            string UnCollectedClass, CollectedClass;
+                            if (ViewBag.IsCollected == 0)
+                            {
+                                UnCollectedClass = "";
+                                CollectedClass = "hide";
+                            }
+                            else
+                            {
+                                UnCollectedClass = "hide";
+                                CollectedClass = "";
+                            }
+
+                            <a class="ToCollect collect-img @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@Model.ZhuanTiItemId">
+                                <img src="../../../img/collect.png" />
+                            </a>
+                            <a class="ToCollect @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@Model.ZhuanTiItemId">收藏</a>
+                            <a class="pic_a Anti-Collect  collect-img @CollectedClass " data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@Model.ZhuanTiItemId">
+                                <img src="../../../img/Collected.png" />
+                            </a>
+
+                        }
+                        else
+                        {
+                            <a href="~/Watch/Auth/Login" class="pic_a">
+                                <img src="../../../img/collect.png" />
+                            </a>
+                            <a href="~/Watch/Auth/Login" class="pic_span">收藏</a>
+                        }
+                    }
+
+
+                </div>
+                <div class="news_con">
+                    <div class="news_font">促销：<span class="news_font01">￥<i>@Model.Price</i></span></div>
+                    <div class="news_font">原价：<span class="news_font02">￥<i>@Model.YuanPrice</i></span></div>
+                    <div class="news_font03">运费：<span>至 @Model.ToWhere</span></div>
+                    <div class="news_font04">@Model.TransportationPrice</div>
+                </div>
+                <a class="purchase" href="@Model.Url"><img class="purchase01" src="/img/buttons/purchase01.png" width="1724" height="186" alt="" /></a>
+                <br />
             </div>
-            <a class="purchase" href="@Model.Url"><img class="purchase01" src="/img/buttons/purchase01.png" width="1724" height="186" alt="" /></a>  
-            <br />         
-        </div>
         <!---------------------- 商品详情 结束------------------------>
         @Html.Action("CommentList", new { Shangpinid = Model.ZhuanTiItemId, type = 2 })
     </div>    
@@ -47,4 +84,5 @@
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
 <script type="text/javascript" src="/js/common.js"></script>
+<script src="~/Scripts/CollectAction.js" type="text/javascript"></script>
 </html>

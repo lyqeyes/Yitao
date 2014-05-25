@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using YiTao.Modules.Bll;
 using YiTao.Modules.Bll.Models;
 using YiTao.Web.Areas.Management.Common;
 
@@ -231,6 +232,10 @@ namespace YiTao.Web.Areas.Management.Controllers
             if (shangpin == null)
                 return RedirectToAction("DaLei");
             db.ShangPins.Remove(shangpin);
+            //删除相关收藏
+            var deleted = db.Collections.Where(c => c.Type == (int)EnumCollectionType.NormalShangpin && c.ShangPinId == ShangPinId).ToList();
+            db.Collections.RemoveRange(deleted);
+            db.Entry(deleted).State = EntityState.Deleted;  
             db.SaveChanges();   
             return RedirectToAction("CommonShangPin", new { XiaoLeiId = xiaoleiID });
         }

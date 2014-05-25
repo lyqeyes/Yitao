@@ -28,7 +28,15 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 ViewBag.Haodian = Haodian.Url;
             else
                 ViewBag.Haodian = "#";
-
+            var logininfo = HttpContext.Request.Cookies["LoginInfo"];
+            if (logininfo == null)
+            {
+                ViewBag.Login = 0;
+            }
+            else
+            {
+                ViewBag.Login = 1;
+            }
             return View();
         }
         

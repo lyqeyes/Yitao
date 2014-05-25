@@ -225,6 +225,11 @@ namespace YiTao.Web.Areas.Management.Controllers
             {
 
                 db.ZhuanTiItems.Remove(temp);
+
+                //收藏
+                var data = db.Collections.Where(c => c.Type == (int)EnumCollectionType.ZhuantiItem && c.ShangPinId == id).ToList();
+                db.Collections.RemoveRange(data);
+                db.Entry(data).State = EntityState.Deleted;
                 db.SaveChanges();
 
             }
@@ -434,6 +439,10 @@ namespace YiTao.Web.Areas.Management.Controllers
             if (temp != null)
             {
                 db.JuZheKouItems.Remove(temp);
+                //收藏
+                var data = db.Collections.Where(c => c.Type == (int)EnumCollectionType.Juzhekou && c.ShangPinId == id).ToList();
+                db.Collections.RemoveRange(data);
+                db.Entry(data).State = EntityState.Deleted;
                 db.SaveChanges();
             }
             return RedirectToAction("JuZheKouItem");

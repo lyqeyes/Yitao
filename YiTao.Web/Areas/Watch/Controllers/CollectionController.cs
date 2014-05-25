@@ -68,7 +68,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
                                            }).ToList();
             data.AddRange(S);
             data.AddRange(Z);
-            return View(data.OrderByDescending(a => a.CreateTime));
+            return View(data.OrderByDescending(a => a.CreateTime).ToList());
         }
 
 
