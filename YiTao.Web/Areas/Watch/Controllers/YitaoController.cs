@@ -85,7 +85,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
                                 IsCollected = db.Collections.Where(b => b.Type == (int)EnumCollectionType.ZhuantiItem && b.AccountId == account.AccountId && b.ShangPinId == z.ZhuanTiItemId).Count()
                             }).ToList();
                 }
-                return View(data);
+                return View(data.OrderByDescending(a => a.data.ZhuanTiItemId).ToList());
             }
         }
 

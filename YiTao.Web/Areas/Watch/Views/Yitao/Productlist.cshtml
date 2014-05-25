@@ -90,20 +90,20 @@
                         CollectedClass = "";
                         UnCollectedClass = "hide";
                     }
-                    <a class="pic_a ToCollect collect-img @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.data.JuZheKouItemId">
-                        <img src="../../img/collect.png" />
+                    <a class="pic_a ToCollect collect-img @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.data.ZhuanTiItemId">
+                        <img src="~/img/collect.png" />
                     </a>
-                                    <a class="pic_span ToCollect @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.data.JuZheKouItemId">收藏</a>
-                                    <a class="pic_a Anti-Collect  collect-img @CollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.data.JuZheKouItemId">
+                                    <a class="pic_span ToCollect @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.data.ZhuanTiItemId">收藏</a>
+                                    <a class="pic_a Anti-Collect  collect-img @CollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.data.ZhuanTiItemId">
                                         <img src="~/img/Collected.png" />
                                     </a>
-                                    <a class="pic_span Anti-Collect @CollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.data.JuZheKouItemId">已收藏</a>
+                                    <a class="pic_span Anti-Collect @CollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.data.ZhuanTiItemId">已收藏</a>
                 }
                 //未登录
                 else
                 {
                     <a href="~/Watch/Auth/Login" class="pic_a">
-                        <img src="../../img/collect.png" />
+                        <img src="~/img/collect.png" />
                     </a>
                                     <a href="~/Watch/Auth/Login" class="pic_span">收藏</a>
                 }

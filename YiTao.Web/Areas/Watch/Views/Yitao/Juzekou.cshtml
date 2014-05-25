@@ -49,7 +49,7 @@
                     UnCollectedClass = "hide";
                 }
                 <a class="pic_a ToCollect collect-img @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.juzhekou.JuZheKouItemId">
-                    <img src="../../img/collect.png" />
+                    <img src="~/img/collect.png" />
                 </a>
                             <a class="pic_span ToCollect @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.juzhekou.JuZheKouItemId">收藏</a>
                             <a class="pic_a Anti-Collect  collect-img @CollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.juzhekou.JuZheKouItemId">
@@ -61,7 +61,7 @@
             else
             {
                 <a href="~/Watch/Auth/Login" class="pic_a">
-                    <img src="../../img/collect.png" />
+                    <img src="~/img/collect.png" />
                 </a>
                             <a href="~/Watch/Auth/Login" class="pic_span">收藏</a>
             }
