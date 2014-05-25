@@ -85,7 +85,7 @@ namespace YiTao.Web.Areas.Management.Controllers
             ViewBag.TopicName = topic.TopicName;
             var list = db.VoteAccounts.Where(a => a.VoteGuid == id);
             ViewBag.TotleVote = list.Count();
-            var itemList = db.VoteItems.Where(a => a.ItemGuid == id);
+            var itemList = db.VoteItems.Where(a => a.ItemGuid == id).OrderByDescending(a => a.Count);
             return View(itemList);
         }        
     }
