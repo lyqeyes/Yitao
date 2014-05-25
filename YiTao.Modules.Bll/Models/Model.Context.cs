@@ -45,10 +45,10 @@ namespace YiTao.Modules.Bll.Models
         public virtual DbSet<UserAddress> UserAddresses { get; set; }
         public virtual DbSet<ZhuanTi> ZhuanTis { get; set; }
         public virtual DbSet<ZhuanTiItem> ZhuanTiItems { get; set; }
-        public virtual DbSet<LiuYan> LiuYan { get; set; }
-        public virtual DbSet<LiuYanComment> LiuYanComment { get; set; }
-        public virtual DbSet<VoteAccount> VoteAccount { get; set; }
-        public virtual DbSet<VoteItem> VoteItem { get; set; }
-        public virtual DbSet<VoteTopic> VoteTopic { get; set; }
+        public virtual DbSet<LiuYan> LiuYans { get; set; }
+        public virtual DbSet<LiuYanComment> LiuYanComments { get; set; }
+        public virtual DbSet<VoteAccount> VoteAccounts { get; set; }
+        public virtual DbSet<VoteItem> VoteItems { get; set; }
+        public virtual DbSet<VoteTopic> VoteTopics { get; set; }
     }
 }
