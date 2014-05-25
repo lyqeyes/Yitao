@@ -122,6 +122,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\OtherUrl.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -137,6 +142,15 @@
     <Compile Include="Models\UserAddress.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\VoteAccount.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VoteItem.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VoteTopic.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ZhuanTi.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -149,6 +163,7 @@
     <None Include="App.config" />
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

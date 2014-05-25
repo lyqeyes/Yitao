@@ -191,7 +191,8 @@ var FormComponents = function () {
         $(".form_datetime").datetimepicker({
             autoclose: true,
             isRTL: App.isRTL(),
-            format: "dd MM yyyy - hh:ii",
+            //format: "dd MM yyyy - hh:ii",
+            format: "yyyy-mm-dd hh:ii",
             pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left")
         });
 

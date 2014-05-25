@@ -111,5 +111,5 @@ namespace YiTao.Web.Areas.Management.Controllers
         {
             return View(db.JiFenLiShis.ToList());
         }
-	}
+	}    
 }

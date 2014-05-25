@@ -62,12 +62,13 @@ a{ text-decoration:none; outline:none;}
 #personal .service img{ width:20%; height:auto; float:left;}
 #personal .service span{font-size:0.875em; font-family:"微软雅黑,宋体"; color:#000; float:left; margin-left:10%;}
 #personal .sign{ width:94%; height:auto; padding:1%; margin:1% auto 2% auto; overflow:hidden;background:#fff;}
-#personal .sign .sign_bg{ width:20%; height:auto; padding:5% 40%; line-height:100%; float:left; vertical-align:middle; background:#e95c20;}
-#personal .sign .sign_bg img{ width:30%; height:auto; float:left;}
+#personal .sign .sign_bg{ width:40%; height:auto; padding:5% 30%; line-height:100%; line-height:35px; text-align:center; float:left; vertical-align:middle;}
+#personal .sign .sign_bg01{ width:30%; padding:5% 35%; background:#e95c20;}
+#personal .sign .sign_bg02{background:#dddddd;}
+#personal .sign .sign_bg03{ background:#7dc234;}
+#personal .sign .sign_bg04{ background:#ffbb5b;}
+#personal .sign .sign_bg img{ width:35px; height:auto; float:left;}
 #personal .sign .sign_bg span{font-size:1em; font-family:"微软雅黑,宋体"; color:#fff; margin-left:15%; display:inline-block; float:left;}
-#personal .sign .sign_bg01{ width:34%; height:auto; padding:5% 33%; line-height:100%; float:left; vertical-align:middle; background:#dddddd;}
-#personal .sign .sign_bg01 img{ width:18%; height:auto; float:left;}
-#personal .sign .sign_bg01 span{font-size:1em; font-family:"微软雅黑,宋体"; color:#fff; margin-left:10%; display:inline-block; float:left;}
 #personal .list_ul{ width:96%; height:auto; border:0.1em solid #cdcdcd; margin:10% auto 2% auto; border-radius:5px; overflow:hidden;margin-bottom:1%; background:#fff;}
 #personal .list_ul .list_message{ width:42%; height:auto; vertical-align:middle; float:left; padding:5% 38% 5% 20%; display:block; border-bottom:2px solid #cdcdcd;}
 #personal .list_ul .list_border{ border:none;}
@@ -157,21 +158,28 @@ a{ text-decoration:none; outline:none;}
 #search .contract .box_text{ margin-left:0.5em; line-height:2em; display:inline}
 #search .contract .box_text a{ display:inline;}
 #search .login_list{ color:#5d5d5d; padding:1em; border-bottom:1px dashed #909090;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#login{ width:86%; height:auto; font-size:1.5em; text-align:center; font-family:"华文细黑"; border:2px solid #e2e2e2; padding:15px 0; margin:7%; border-radius:10px;background:#fff;}
+#login .red{ color:#e50018;font-size:0.8em;}
+#login p{ line-height:50px;}
+/*投票*/
+#vote{ width:96%; height:auto; padding:20px 0; margin:10px auto;font-size:0.875em; font-family:"华文细黑,微软雅黑,宋体"; color:#000; background:#fff;}
+#vote p{ width:90%; margin:0 auto; text-indent:2em; line-height:30px;}
+#vote .vote_list{ width:100%; height:auto; overflow:hidden;}
+#vote .vote_list .list_box{ width:28%; margin:5% auto auto 4%; float:left;}
+#vote .vote_list .list_box p{ width:100%; line-height:20px;}
+#vote .vote_list .list_box img{ width:100%;}
+#vote .vote_list .list_box input{ width:100%; height:30px; margin-top:5px; text-align:center; border:0;font-size:1em; font-family:"华文细黑,微软雅黑,宋体"; color:#fff; background:#e95c20;}
+/*留言*/
+.message{ width:96%; height:auto; padding:20px 0; color:#2e2e2e; overflow:hidden; margin:20px auto;background:#fff;}
+.message h1{ width:90%; margin:0 auto;font-size:1.3em; font-family:"华文细黑,微软雅黑,宋体"; text-align:center;}
+.message .dot{ width:90%; height:4px; margin:10px auto; display:block; background:url(../img/dot01.png) repeat-x;}
+.message .article{ width:90%; margin:0 auto; text-indent:2em; line-height:36px;}
+.message .picture{max-width:90%; text-align:center; margin:10px auto auto 5%;}
+.message .message_box{ width:90%; height:auto; margin:10px auto auto auto; overflow:hidden;}
+.message .message_box .box_title{font-size:1em; font-family:"华文细黑,微软雅黑,宋体";}
+.message .message_box .box_con{ width:98%; margin-top:10px; padding:1%; height:auto; float:left; background:#f5f5f5;}
+.message .message_box .box_con p{ width:100%;font-size:0.875em; font-family:"华文细黑,微软雅黑,宋体"; line-height:25px;}
+.message .message_box .box_con .time{font-size:0.875em; float:right; margin-top:10px;}
+.message .message_box .box_con .time span{ margin-left:10px;}
+.message .text{ width:88%; padding:2%; height:80px; font-size:0.875em;border:1px solid #b7b7b7; margin:0 5%;}
+.message .button{ width:100px; height:40px; float:right; margin:10px 5% auto auto; color:#fff; text-align:center; border:0; background:#0386ec;}

@@ -27,6 +27,9 @@
         <EntityTypeShape EntityType="YiTaoModel.ZhuanTiItem" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="YiTaoModel.LiuYan" Width="1.5" PointX="11.375" PointY="11.75" />
         <EntityTypeShape EntityType="YiTaoModel.LiuYanComment" Width="1.5" PointX="5.375" PointY="12.75" />
+        <EntityTypeShape EntityType="YiTaoModel.VoteAccount" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="YiTaoModel.VoteItem" Width="1.5" PointX="13.375" PointY="3.75" />
+        <EntityTypeShape EntityType="YiTaoModel.VoteTopic" Width="1.5" PointX="13.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
