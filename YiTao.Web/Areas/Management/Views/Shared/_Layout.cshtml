@@ -62,6 +62,8 @@
     <script src="~/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
     <script src="~/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
     <script src="~/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/assets/scripts/app.js"></script>
+    <script type="text/javascript" src="~/assets/scripts/form-components.js"></script>
     <!-- END CORE PLUGINS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="~/assets/scripts/app.js"></script>
@@ -69,6 +71,7 @@
         jQuery(document).ready(function () {
             // initiate layout and plugins
             App.init();
+            FormComponents.init();
             document.getElementById("ManagerName").textContent = GetCookie("LoginInfo", "UserName");
         });
         //获取Cookie值
@@ -78,10 +81,13 @@
         }
     </script>
     @RenderSection("PageSpecificJavascriptIncludes", required: false)
-
+    @RenderSection("scripts", required: false)
+    @*眼睛添加*@
     <script src="~/Scripts/formCheck.js"></script>
     <link rel="stylesheet" href="~/Content/formCherk.css" />
     <link rel="stylesheet" href="~/Content/TableCss.css" />
+    <script src="~/Scripts/formCheck.js"></script>
+
 </body>
 <!-- END BODY -->
 </html>

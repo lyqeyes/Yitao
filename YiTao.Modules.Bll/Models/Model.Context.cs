@@ -36,8 +36,6 @@ namespace YiTao.Modules.Bll.Models
         public virtual DbSet<HaoDian> HaoDians { get; set; }
         public virtual DbSet<JiFenLiShi> JiFenLiShis { get; set; }
         public virtual DbSet<JuZheKouItem> JuZheKouItems { get; set; }
-        public virtual DbSet<LiuYan> LiuYans { get; set; }
-        public virtual DbSet<LiuYanComment> LiuYanComments { get; set; }
         public virtual DbSet<LunBo> LunBoes { get; set; }
         public virtual DbSet<Management> Managements { get; set; }
         public virtual DbSet<OtherUrl> OtherUrls { get; set; }
@@ -45,10 +43,12 @@ namespace YiTao.Modules.Bll.Models
         public virtual DbSet<ThreeLei> ThreeLeis { get; set; }
         public virtual DbSet<TowLei> TowLeis { get; set; }
         public virtual DbSet<UserAddress> UserAddresses { get; set; }
+        public virtual DbSet<ZhuanTi> ZhuanTis { get; set; }
+        public virtual DbSet<ZhuanTiItem> ZhuanTiItems { get; set; }
+        public virtual DbSet<LiuYan> LiuYans { get; set; }
+        public virtual DbSet<LiuYanComment> LiuYanComments { get; set; }
         public virtual DbSet<VoteAccount> VoteAccounts { get; set; }
         public virtual DbSet<VoteItem> VoteItems { get; set; }
         public virtual DbSet<VoteTopic> VoteTopics { get; set; }
-        public virtual DbSet<ZhuanTi> ZhuanTis { get; set; }
-        public virtual DbSet<ZhuanTiItem> ZhuanTiItems { get; set; }
     }
 }

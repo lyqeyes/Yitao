@@ -1,0 +1,81 @@
+﻿@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+@section style{
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    @*日期选择插件*@
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/bootstrap-datepicker/css/datepicker.css" />
+    @*富文本编辑器*@
+    <link rel="stylesheet" type="text/css" href="~/Scripts/kindeditor/themes/default/default.css" />
+    <!-- END PAGE LEVEL STYLES -->
+}
+
+@model YiTao.Modules.Bll.Models.LiuYan
+
+<div class="portlet box blue col-md-12">
+    <div class="portlet-title">
+        <div class="caption"><i class="fa fa-edit"></i>编辑留言</div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse"></a>
+            <a href="javascript:;" class="remove"></a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form role="form" method="post">
+            <div class="form-body">
+                <div class="form-group">
+                    <label>标题：</label>
+                    <input type="text" class="form-control" id="Title" name="Title"  value="@Model.Title" placeholder="不可为空" >
+                </div>
+                <div class="form-group">
+                    <label> 起止时间：</label>
+                    <div class="input-group input-large date-picker input-daterange" data-date="2014-5-24" data-date-format="yyyy-mm-dd">
+                        <input type="text" class="form-control" id="StartTime" name="StartTime" value="@Model.StartTime.ToString("yyyy-MM-dd")" placeholder="不可为空">
+                        <span class="input-group-addon">to</span>
+                        <input type="text" class="form-control" id="EndTime" name="EndTime" value="@Model.EndTime.ToString("yyyy-MM-dd")" placeholder="不可为空">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>内容：</label>
+                    <textarea name="Detail" id="Detail" style="width:100%;height:300px;visibility:hidden;">@Html.Raw(Model.Detail)</textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn blue">保存</button>
+                    <button type="button" class="btn default" onclick="window.location.href = '/Management/LiuYan/Detail?LiuYanId=@Model.LiuYanId'">取消</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    @*日期选择插件*@
+    <script type="text/javascript" src="~/assets/plugins/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/assets/plugins/jquery.blockui.min.js"></script>
+    <script type="text/javascript" src="~/assets/plugins/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="~/assets/plugins/fuelux/js/spinner.min.js"></script>
+    <script type="text/javascript" src="~/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="~/assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script type="text/javascript" src="~/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js"></script>
+    @*富文本编辑*@
+    <script type="text/javascript" charset="utf-8" src="~/Scripts/kindeditor/kindeditor-min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="~/Scripts/kindeditor/lang/zh_CN.js"></script>
+    <script>
+        var editor;
+        KindEditor.ready(function (K) {
+            editor = K.create('textarea[name="Detail"]', {
+                resizeType: 1,
+                allowPreviewEmoticons: false,
+                allowImageUpload: true,
+                uploadJson: '/Management/Upload/EditorUpload',
+                items: [
+                    'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                    'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                    'insertunorderedlist', '|', 'image', 'link']
+            });
+        });
+    </script>
+}

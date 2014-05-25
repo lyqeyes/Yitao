@@ -17,7 +17,7 @@ namespace YiTao.Modules.Bll.Models
         public long LiuYanCommentId { get; set; }
         public long LiuYanId { get; set; }
         public string Detail { get; set; }
-        public int AccountId { get; set; }
+        public string AccountName { get; set; }
         public System.DateTime CreateTime { get; set; }
     }
 }

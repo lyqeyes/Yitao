@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "LiuYanIndex";
+    Layout = null;
+}
+@using Webdiyer.WebControls.Mvc
+@using YiTao.Modules.Bll.Models;
+@model PagedList<YiTao.Modules.Bll.Models.LiuYan>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>亿淘app</title>
+    <link rel="stylesheet" type="text/css" href="~/css/unify.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/user-base.css" />
+</head>
+
+<body>
+    <div id="warp">
+        @if (Model == null || Model.Count == 0)
+        {
+            <div class="message">
+                <span>当前无内容</span>
+            </div>          
+        }
+        else
+        {
+            
+            <div class="message">
+                @foreach (var item in Model)
+                {
+                    <div class="message_box">                       
+                        <div class="box_con">
+                            <a href="/Watch/PersonInfor/LiuYanDetail?LiuYanId=@item.LiuYanId">@item.Title</a>                            
+                        </div>
+                    </div>
+                }
+            </div>
+            <div style="text-align:center; margin-left:-2em;">
+                @Html.Pager(Model, new PagerOptions
+                 {
+                     HorizontalAlign = "center",
+                     ShowFirstLast = false,
+                     CssClass = "pagination pagination-sm",
+                     NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                     ContainerTagName = "ul",
+                     PageIndexParameterName = "id",
+                     ShowPageIndexBox = false,
+                     PrevPageText = "<<",
+                     NumericPagerItemCount = 3,
+                     Id = "pages",
+                     NextPageText = ">>",
+                     CurrentPagerItemWrapperFormatString = "<li class=\"active\"> <a>{0}</a> </li>",
+                     NumericPagerItemWrapperFormatString = "<li> {0}</li>",
+                 }, new { style = "margin-top:2em;margin-bottom:2em" })
+            </div>
+        }
+    </div>
+</body>
+</html>
