@@ -35,7 +35,12 @@ namespace YiTao.Web.Areas.Watch.Controllers
             }
             else
             {
+                var v = HttpContext.Request.Cookies["LoginInfo"];
+                string UserName = HttpUtility.UrlDecode(v["UserName"]);
+                string Password = v["Password"];
                 ViewBag.Login = 1;
+                Account acc = db.Accounts.FirstOrDefault(e => e.Name == UserName && e.Password == Password);
+                ViewBag.AccountId = acc.AccountId;
             }
             return View();
         }
