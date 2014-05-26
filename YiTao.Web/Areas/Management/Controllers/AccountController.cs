@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using YiTao.Web.Areas.Management.Common;
+using Webdiyer.WebControls.Mvc;
 
 namespace YiTao.Web.Areas.Management.Controllers
 {
@@ -17,9 +18,9 @@ namespace YiTao.Web.Areas.Management.Controllers
         }
 
         [HttpGet]
-        public ActionResult JiFenManage()
+        public ActionResult JiFenManage(int? id)
         {
-            return View(db.Accounts.ToList());
+            return View(db.Accounts.OrderByDescending(a=>a.CreateTime).ToPagedList(id ?? 1, 20));
         }
 
         //注册新会员
@@ -107,9 +108,9 @@ namespace YiTao.Web.Areas.Management.Controllers
         }
 
         [HttpGet]
-        public ActionResult JiFenLiShi()
+        public ActionResult JiFenLiShi(int? id)
         {
-            return View(db.JiFenLiShis.ToList());
+            return View(db.JiFenLiShis.OrderByDescending(a=>a.CreateTime).ToPagedList(id ?? 1, 20));
         }
 	}    
 }

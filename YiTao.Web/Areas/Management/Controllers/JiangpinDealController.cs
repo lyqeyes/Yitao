@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using YiTao.Modules.Bll.Models;
 using YiTao.Web.Areas.Management.Common;
 using YiTao.Web.Areas.Management.Models;
+using Webdiyer.WebControls.Mvc;
 
 namespace YiTao.Web.Areas.Management.Controllers
 {
@@ -13,7 +14,7 @@ namespace YiTao.Web.Areas.Management.Controllers
     {
         //
         // GET: /Management/JiangpinDeal/
-        public ActionResult ZhongjiangList()
+        public ActionResult ZhongjiangList(int? id)
         {
             var list = (from d in db.JiFenLiShis
                         join n in db.UserAddresses
@@ -30,10 +31,10 @@ namespace YiTao.Web.Areas.Management.Controllers
                             ShouhuorenName = n.ConsigneeName,
                             JiangpinName = m.Name,
                             JiangPinImg = m.ImageUrl
-                        }).ToList();
+                        }).OrderByDescending(a=>a.JifenlishiId).ToPagedList(id ?? 1, 20);
             return View(list);
         }
-        public ActionResult ZhongjiangDealedList()
+        public ActionResult ZhongjiangDealedList(int? id)
         {
             var list = (from d in db.JiFenLiShis
                         join n in db.UserAddresses
@@ -50,10 +51,10 @@ namespace YiTao.Web.Areas.Management.Controllers
                             ShouhuorenName = n.ConsigneeName,
                             JiangpinName = m.Name,
                             JiangPinImg = m.ImageUrl
-                        }).ToList();
+                        }).OrderByDescending(a => a.JifenlishiId).ToPagedList(id ?? 1, 20);
             return View(list);
         }
-        public ActionResult DuihuanList()
+        public ActionResult DuihuanList(int? id)
         {
             var list = (from d in db.JiFenLiShis
                         join n in db.UserAddresses
@@ -70,10 +71,10 @@ namespace YiTao.Web.Areas.Management.Controllers
                             ShouhuorenName = n.ConsigneeName,
                             JiangpinName = m.Name,
                             JiangPinImg = m.ImageUrl
-                        }).ToList();
+                        }).OrderByDescending(a => a.JifenlishiId).ToPagedList(id ?? 1, 20);
             return View(list);
         }
-        public ActionResult DuihuanDealedList()
+        public ActionResult DuihuanDealedList(int? id)
         {
             var list = (from d in db.JiFenLiShis
                         join n in db.UserAddresses
@@ -90,7 +91,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                             ShouhuorenName = n.ConsigneeName,
                             JiangpinName = m.Name,
                             JiangPinImg = m.ImageUrl
-                        }).ToList();
+                        }).OrderByDescending(a => a.JifenlishiId).ToPagedList(id ?? 1, 20);
             return View(list);
         }
         public ActionResult DealItem(int id)
