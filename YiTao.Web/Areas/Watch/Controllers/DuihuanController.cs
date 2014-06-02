@@ -38,9 +38,24 @@ namespace YiTao.Web.Areas.Watch.Controllers
             ViewData["account"] = account;
             //奖项
             Prezis p = new Prezis();
-            p.firstPrize = db.ChouJiangItems.First(e => e.Type == 1).Name;
-            p.secondPrize = db.ChouJiangItems.First(e => e.Type == 2).Name;
-            p.thirdPrize = db.ChouJiangItems.First(e => e.Type == 3).Name;           
+            var firstOne = db.ChouJiangItems.FirstOrDefault(e => e.Type == 1);
+            var secondOne = db.ChouJiangItems.FirstOrDefault(e => e.Type == 2);
+            var thirdOne = db.ChouJiangItems.FirstOrDefault(e => e.Type == 3);
+            if (firstOne != null)
+            {
+                p.firstPrize = firstOne.Name;
+                p.firstImg = firstOne.ImageUrl;
+            }
+            if (secondOne != null)
+            {
+                p.secondPrize = secondOne.Name;
+                p.secondImg = secondOne.ImageUrl;
+            }
+            if (thirdOne != null)
+            {
+                p.thirdPrize = thirdOne.Name;
+                p.thirdImg = thirdOne.ImageUrl;
+            }  
             return View(p);
         }
 
