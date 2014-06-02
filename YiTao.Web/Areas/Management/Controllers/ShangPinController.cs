@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using YiTao.Modules.Bll;
 using YiTao.Modules.Bll.Models;
 using YiTao.Web.Areas.Management.Common;
 
@@ -33,8 +32,8 @@ namespace YiTao.Web.Areas.Management.Controllers
             var dalei = db.DaLeis.Find(newdalei.DaLeiId);
             if (dalei == null)
                 return RedirectToAction("Dalei");
-            if (dalei.Name != newdalei.Name && db.DaLeis.Count(e => e.Name == newdalei.Name) !=0)
-                return RedirectToAction("Dalei");            
+            if (dalei.Name != newdalei.Name && db.DaLeis.Count(e => e.Name == newdalei.Name) != 0)
+                return RedirectToAction("Dalei");
             dalei.Name = newdalei.Name;
             db.Entry(dalei).State = EntityState.Modified;
             db.SaveChanges();
@@ -98,14 +97,6 @@ namespace YiTao.Web.Areas.Management.Controllers
 
         #endregion
 
-
-
-
-
-
-
-
-
         public ActionResult ThreeLei(int DaLeiId)
         {
             TempData["daleiID"] = DaLeiId;
@@ -168,23 +159,34 @@ namespace YiTao.Web.Areas.Management.Controllers
 
         public string CommonShangPinCreate(YiTao.Modules.Bll.Models.ShangPin shangpin)
         {
-            if (db.ShangPins.Count(e => e.Name == shangpin.Name && e.XiaoLeiId== shangpin.XiaoLeiId) != 0)
+            if (db.ShangPins.Count(e => e.Name == shangpin.Name && e.XiaoLeiId == shangpin.XiaoLeiId) != 0)
                 return "100";
             db.ShangPins.Add(shangpin);
             db.SaveChanges();
+
+            #region 创建索引
+            Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
+            {
+                ShangPinId = shangpin.ShangPinId,
+                Type = Web.Common.EnumShangPinType.PuTong,
+                Name = shangpin.Name
+            };
+            Web.Common.Searcher.Add(SearchShangPin);
+            #endregion
+
             return "200";
         }
 
         public ActionResult CreateShangPin(int XiaoLeiId)
         {
-            
-            return View(new ShangPin() { XiaoLeiId = XiaoLeiId});
+
+            return View(new ShangPin() { XiaoLeiId = XiaoLeiId });
         }
 
         [HttpPost]
         public ActionResult CreateShangPin(YiTao.Modules.Bll.Models.ShangPin shangpin)
         {
-            if (shangpin.ShangPinId>0)
+            if (shangpin.ShangPinId > 0)
             {
                 shangpin.CreateTime = DateTime.Now;
                 db.ShangPins.Attach(shangpin);
@@ -197,6 +199,16 @@ namespace YiTao.Web.Areas.Management.Controllers
                 db.ShangPins.Add(shangpin);
                 db.SaveChanges();
             }
+            #region 创建索引
+            Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
+            {
+                ShangPinId = shangpin.ShangPinId,
+                Type = Web.Common.EnumShangPinType.PuTong,
+                Name = shangpin.Name
+            };
+            Web.Common.Searcher.Add(SearchShangPin);
+            #endregion
+
             return RedirectToAction("CommonShangPin", new { XiaoLeiId = shangpin.XiaoLeiId });
         }
 
@@ -222,6 +234,17 @@ namespace YiTao.Web.Areas.Management.Controllers
             shangpin.YuanPrice = newshangpin.YuanPrice;
             db.Entry(shangpin).State = EntityState.Modified;
             db.SaveChanges();
+
+            #region 更新索引
+            Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
+            {
+                ShangPinId = shangpin.ShangPinId,
+                Type = Web.Common.EnumShangPinType.PuTong,
+                Name = shangpin.Name
+            };
+            Web.Common.Searcher.Add(SearchShangPin);
+            #endregion
+
             return "200";
         }
 
@@ -231,12 +254,19 @@ namespace YiTao.Web.Areas.Management.Controllers
             var shangpin = db.ShangPins.Find(ShangPinId);
             if (shangpin == null)
                 return RedirectToAction("DaLei");
+
+            #region 删除索引
+            Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
+            {
+                ShangPinId = shangpin.ShangPinId,
+                Type = Web.Common.EnumShangPinType.PuTong,
+                Name = shangpin.Name
+            };
+            Web.Common.Searcher.Del(SearchShangPin);
+            #endregion
+
             db.ShangPins.Remove(shangpin);
-            //删除相关收藏
-            var deleted = db.Collections.Where(c => c.Type == (int)EnumCollectionType.NormalShangpin && c.ShangPinId == ShangPinId).ToList();
-            db.Collections.RemoveRange(deleted);
-            db.Entry(deleted).State = EntityState.Deleted;  
-            db.SaveChanges();   
+            db.SaveChanges();
             return RedirectToAction("CommonShangPin", new { XiaoLeiId = xiaoleiID });
         }
 
@@ -263,7 +293,7 @@ namespace YiTao.Web.Areas.Management.Controllers
             var shangpin = db.DuiHuanItems.Find(newshangpin.DuiHuanItemId);
             if (shangpin == null)
                 return RedirectToAction("DuiHuanShangPin");
-            if (shangpin.Name != newshangpin.Name && db.DuiHuanItems.Count(e=>e.Name == newshangpin.Name) != 0)
+            if (shangpin.Name != newshangpin.Name && db.DuiHuanItems.Count(e => e.Name == newshangpin.Name) != 0)
                 return RedirectToAction("DuiHuanShangPin");
             shangpin.CreateTime = System.DateTime.Now;
             shangpin.Name = newshangpin.Name;
