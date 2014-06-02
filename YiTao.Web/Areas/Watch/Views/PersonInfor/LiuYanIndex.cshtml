@@ -17,6 +17,13 @@
 
 <body>
     <div id="warp">
+        <div class="header">
+            <img src="/img/buttons/09.png" class="header_left_pic" />
+            <span>留言</span>
+            <img src="/img/buttons/01.png" class="header_right_pic" />
+            <div id="clear"></div>
+        </div>
+        <div id="blank"></div>
         @if (Model == null || Model.Count == 0)
         {
             <div class="message">
@@ -56,5 +63,8 @@
             </div>
         }
     </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
 </body>
 </html>
