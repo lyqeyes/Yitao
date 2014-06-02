@@ -332,6 +332,10 @@ li {display: list-item;text-align: -webkit-match-parent;}
 #merchandise_news .product_bottom .product_lucency{font-size:0.6em; font-family:"微软雅黑,宋体"; color:#fff; margin:auto 2%; float:right;}
 #merchandise_news .product_bottom .product_lucency i{ font-style:normal;}
 #merchandise_news .news_title{ width:96%; height:auto; padding:2% 0; margin:0 auto;font-size:0.875em; font-family:"微软雅黑,宋体"; color:#535353; line-height:150%; border-bottom:2px dotted #858585;}
+#merchandise_news .row  {width:100%;padding: 1%; }
+#merchandise_news .row .news_title{ width:74%; float:left; height:auto; padding:2% 6%; margin:0 auto;font-size:0.875em; font-family:"微软雅黑,宋体"; color:#535353; line-height:150%; border-bottom:2px dotted #858585;}
+#merchandise_news .row .CollectBox {width:26%; float:left; text-align:right;  position:relative; top:12px;}
+#merchandise_news .row .CollectBox a, #merchandise_news .row .CollectBox a:visited, #merchandise_news .row .CollectBox a:hover{color:#444; text-decoration:none;}
 #merchandise_news .news_con{ width:96%; height:auto;line-height:150%; margin:1% auto 0 auto; overflow:hidden;}
 #merchandise_news .news_con .news_font{font-size:0.8em; font-family:"微软雅黑,宋体"; color:#000; margin-right:3%; float:left;}
 #merchandise_news .news_con .news_font .news_font01{color:#d23100;}
@@ -351,3 +355,9 @@ li {display: list-item;text-align: -webkit-match-parent;}
 	width:100%;
 	height:55px;
 }
+
+
+.ToCollect, .Anti-Collect { cursor:pointer;}
+.product_list .list_box .box_right .pic .pic_a.hide{ display:none;}
+.product_list .list_box .box_right .pic .pic_span.hide{ display:none;}
+.List-Anti-Collect { cursor:pointer;}

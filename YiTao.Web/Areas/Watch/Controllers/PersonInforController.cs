@@ -21,7 +21,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
             string UserName = HttpUtility.UrlDecode(v["UserName"]);
             string Password = v["Password"];
             Account acc = db.Accounts.FirstOrDefault(e => e.Name == UserName && e.Password == Password);
-
+            ViewBag.AccountId = acc.AccountId;
             //检测今日是否签到
             JiFenLiShi qiandaoLast = (from d in db.JiFenLiShis where d.AccountId == acc.AccountId && d.Type == 1 select d).OrderByDescending(a => a.CreateTime).Take(1).FirstOrDefault();
             if (qiandaoLast == null || System.DateTime.Now.Day > qiandaoLast.CreateTime.Day)
@@ -42,9 +42,12 @@ namespace YiTao.Web.Areas.Watch.Controllers
         /// <returns></returns>
         public ActionResult Collects(int id)
         {
+            return RedirectToAction("Index", "Collection", new { Area = "Watch", accountId = id });
+            /*
             List<int> colletListNum = (from d in db.Collections where d.AccountId == id select d.ShangPinId).ToList();
             List<ShangPin> colletList = (from d in db.ShangPins where colletListNum.Contains(d.ShangPinId) select d).ToList();
             return View(colletList);
+             * */
         }
         /// <summary>
         /// 用户的奖品信息  参数id为当前用户的id

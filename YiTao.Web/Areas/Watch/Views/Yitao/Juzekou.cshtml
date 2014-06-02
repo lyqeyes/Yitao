@@ -1,5 +1,5 @@
-﻿@using YiTao.Modules.Bll.Models
-@model List<JuZheKouItem>
+﻿@using YiTao.Web.Areas.Watch.Models
+@model List<JuzekouStatistic>
 @{
     Layout = null;
 }
@@ -7,24 +7,24 @@
 @{
     if (Model.Count() > 0)
     {
-        foreach (JuZheKouItem item in Model)
+        foreach (JuzekouStatistic item in Model)
         {
             <div class="list_box">
                 <!--产品类表-->
-                <a href="/watch/yitao/JuzekouDetail/@item.JuZheKouItemId"><img class="box_left" src="@item.ImageUrl" alt="" /></a>
+                <a href="/watch/yitao/JuzekouDetail/@item.juzhekou.JuZheKouItemId"><img class="box_left" src="@item.juzhekou.ImageUrl" alt="" /></a>
                 <ul class="box_right">
-                    <li><a href="/watch/yitao/JuzekouDetail/@item.JuZheKouItemId" class="title" style="font-size:12px;">@item.Name</a></li>
+                    <li><a href="/watch/yitao/JuzekouDetail/@item.juzhekou.JuZheKouItemId" class="title" style="font-size:12px;">@item.juzhekou.Name</a></li>
                     <!------	返积分 和 包邮 ----------------------->
                     <li class="pic">
                         <a href="#" class="pic_a">
                             <img src="/img/buttons/integral_pic.png" alt="" />
                         </a>
-                        <a href="#" class="pic_span">返积分: @item.FanJiFen</a>
+                        <a href="#" class="pic_span">返积分: @item.juzhekou.FanJiFen</a>
                         <a href="#" class="pic_a">
                             <img src="/img/buttons/post_pic.png" alt="" />
                         </a>
                         @{
-            if (item.BaoYou == 1)
+            if (item.juzhekou.BaoYou == 1)
             {
                 <a href="#" class="pic_span">包邮</a>
             }
@@ -32,14 +32,47 @@
             {
                 <a href="#" class="pic_span">不包邮</a>
             }
+            //收藏处理
+            string CollectedClass = "",
+                UnCollectedClass = "";
+            //已登录
+            if (ViewBag.AllCollectStatus == 1)
+            {
+                if (item.IsCollected == 0)
+                {
+                    CollectedClass = "hide";
+                    UnCollectedClass = "";
+                }
+                else
+                {
+                    CollectedClass = "";
+                    UnCollectedClass = "hide";
+                }
+                <a class="pic_a ToCollect collect-img @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.juzhekou.JuZheKouItemId">
+                    <img src="~/img/collect.png" />
+                </a>
+                            <a class="pic_span ToCollect @UnCollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.juzhekou.JuZheKouItemId">收藏</a>
+                            <a class="pic_a Anti-Collect  collect-img @CollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.juzhekou.JuZheKouItemId">
+                                <img src="~/img/Collected.png" />
+                            </a>
+                            <a class="pic_span Anti-Collect @CollectedClass" data-account="@ViewBag.AccountId" data-type="1" data-shangpinid="@item.juzhekou.JuZheKouItemId">已收藏</a>
+            }
+            //未登录
+            else
+            {
+                <a href="~/Watch/Auth/Login" class="pic_a">
+                    <img src="~/img/collect.png" />
+                </a>
+                            <a href="~/Watch/Auth/Login" class="pic_span">收藏</a>
+            }
                         }
                     </li>
                     <!------	返积分 和 包邮 End---------------->
                     <li name="name_font" class="font">
-                        <span>￥<i>@item.Price</i></span>
+                        <span>￥<i>@item.juzhekou.Price</i></span>
                         <div class="right_font">
-                            <a target="_blank" href="/watch/yitao/JuzekouDetail/@item.JuZheKouItemId"><img src="/img/buttons/input_01.png" alt="" /></a>
-                            <span class="delete">￥@item.YuanPrice</span>
+                            <a target="_blank" href="/watch/yitao/JuzekouDetail/@item.juzhekou.JuZheKouItemId"><img src="/img/buttons/input_01.png" alt="" /></a>
+                            <span class="delete">￥@item.juzhekou.YuanPrice</span>
                         </div>
                     </li>
                 </ul>

@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using YiTao.Web.Areas.Watch.Common;
+using YiTao.Modules.Bll;
 using YiTao.Modules.Bll.Models;
 using Webdiyer.WebControls.Mvc;
+using YiTao.Web.Areas.Watch.Models;
 namespace YiTao.Web.Areas.Watch.Controllers
 {
     public class YitaoController : BaseController
@@ -26,7 +28,20 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 ViewBag.Haodian = Haodian.Url;
             else
                 ViewBag.Haodian = "#";
-
+            var logininfo = HttpContext.Request.Cookies["LoginInfo"];
+            if (logininfo == null)
+            {
+                ViewBag.Login = 0;
+            }
+            else
+            {
+                var v = HttpContext.Request.Cookies["LoginInfo"];
+                string UserName = HttpUtility.UrlDecode(v["UserName"]);
+                string Password = v["Password"];
+                ViewBag.Login = 1;
+                Account acc = db.Accounts.FirstOrDefault(e => e.Name == UserName && e.Password == Password);
+                ViewBag.AccountId = acc.AccountId;
+            }
             return View();
         }
         
@@ -36,7 +51,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         {
             ViewData["lunbolist"] = db.LunBoes.ToList();
 
-            var temp = db.ZhuanTis.FirstOrDefault(z => z.Type == id);
+            /*var temp = db.ZhuanTis.FirstOrDefault(z => z.Type == id);
             if (temp == null)
             {
                 return RedirectToAction("index");
@@ -44,6 +59,46 @@ namespace YiTao.Web.Areas.Watch.Controllers
             else
             {
                 return View(db.ZhuanTiItems.Where(z => z.ZhuanTiId == temp.ZhuanTiId).ToList());
+            }*/
+            var temp = db.ZhuanTis.FirstOrDefault(z => z.Type == id);
+            if (temp == null)
+            {
+                return RedirectToAction("index");
+            }
+            else
+            {
+                //收藏处理
+                //判断是否已登陆
+                var logininfo = HttpContext.Request.Cookies["LoginInfo"];
+                List<Statistic<ZhuanTiItem>> data;
+                if (logininfo == null)
+                {
+                    //未登录直接全部显示未收藏
+                    ViewBag.AllCollectStatus = 0;
+                    data = (from z in db.ZhuanTiItems
+                            where z.ZhuanTiId == temp.ZhuanTiId
+                            select new Statistic<ZhuanTiItem>
+                            {
+                                data = z,
+                                IsCollected = 0
+                            }).ToList();
+                }
+                else
+                {
+                    string name = logininfo["UserName"];
+                    Account account = db.Accounts.FirstOrDefault(a => a.Name == name);
+                    ViewBag.AccountId = account.AccountId;
+                    ViewBag.AllCollectStatus = 1;
+                    data = (from z in db.ZhuanTiItems
+                            where z.ZhuanTiId == temp.ZhuanTiId
+                            select new Statistic<ZhuanTiItem>
+                            {
+                                data = z,
+                                //处理每一个聚折扣商品的是否被当前用户收藏
+                                IsCollected = db.Collections.Where(b => b.Type == (int)EnumCollectionType.ZhuantiItem && b.AccountId == account.AccountId && b.ShangPinId == z.ZhuanTiItemId).Count()
+                            }).ToList();
+                }
+                return View(data.OrderByDescending(a => a.data.ZhuanTiItemId).ToList());
             }
         }
 
@@ -56,20 +111,81 @@ namespace YiTao.Web.Areas.Watch.Controllers
         [NoLogin]
         public ActionResult ZhuantiItemDetail(int id)
         {
+            /*
             return View(db.ZhuanTiItems.Find(id));
+             * */
+            //收藏处理
+            //判断是否已登陆
+            var logininfo = HttpContext.Request.Cookies["LoginInfo"];
+            var item = db.ZhuanTiItems.Find(id);
+            ViewBag.IsCollected = 0;
+            if (logininfo == null)
+            {
+                //未登录直接全部显示未收藏
+                ViewBag.AllCollectStatus = 0;
+            }
+            else
+            {
+                string name = logininfo["UserName"];
+                Account account = db.Accounts.FirstOrDefault(a => a.Name == name);
+                ViewBag.AccountId = account.AccountId;
+                ViewBag.AllCollectStatus = 1;
+                ViewBag.IsCollected = db.Collections.Where(b => b.Type == (int)EnumCollectionType.ZhuantiItem && b.AccountId == account.AccountId && b.ShangPinId == id).Count();
+            }
+            return View(item);
         }
 
         //商品item的展示页面
         [NoLogin]
         public ActionResult ShangpinDetail(int id)
         {
+            /*
             return View(db.ShangPins.Find(id));
+             */
+            //收藏处理
+            //判断是否已登陆
+            var logininfo = HttpContext.Request.Cookies["LoginInfo"];
+            var item = db.ShangPins.Find(id);
+            if (logininfo == null)
+            {
+                //未登录直接全部显示未收藏
+                ViewBag.AllCollectStatus = 0;
+                ViewBag.IsCollected = 0;
+            }
+            else
+            {
+                string name = logininfo["UserName"];
+                Account account = db.Accounts.FirstOrDefault(a => a.Name == name);
+                ViewBag.AccountId = account.AccountId;
+                ViewBag.AllCollectStatus = 1;
+                ViewBag.IsCollected = db.Collections.Where(b => b.Type == (int)EnumCollectionType.NormalShangpin && b.AccountId == account.AccountId && b.ShangPinId == id).Count();
+            }
+            return View(item);
+             
         }
 
         //商品item的展示页面
         [NoLogin]
         public ActionResult JuzekouDetail(int id)
         {
+            /*return View(db.JuZheKouItems.Find(id));*/
+            //收藏处理
+            //判断是否已登陆
+            var logininfo = HttpContext.Request.Cookies["LoginInfo"];
+            ViewBag.IsCollected = 0;
+            if (logininfo == null)
+            {
+                //未登录直接全部显示未收藏
+                ViewBag.AllCollectStatus = 0;
+            }
+            else
+            {
+                string name = logininfo["UserName"];
+                Account account = db.Accounts.FirstOrDefault(a => a.Name == name);
+                ViewBag.AccountId = account.AccountId;
+                ViewBag.AllCollectStatus = 1;
+                ViewBag.IsCollected = db.Collections.Where(b => b.Type == (int)EnumCollectionType.Juzhekou && b.AccountId == account.AccountId && b.ShangPinId == id).Count();
+            }
             return View(db.JuZheKouItems.Find(id));
         }
 
@@ -120,8 +236,44 @@ namespace YiTao.Web.Areas.Watch.Controllers
         [NoLogin]
         public ActionResult Juzekou()
         {
+            /*
             List<JuZheKouItem> list = db.JuZheKouItems.OrderByDescending(a=>a.JuZheKouItemId).Take(3).ToList();
             return View(list);
+             * */
+            //收藏处理
+            //判断是否已登陆
+            var logininfo = HttpContext.Request.Cookies["LoginInfo"];
+            List<JuzekouStatistic> data;
+            if (logininfo == null)
+            {
+                //未登录直接全部显示未收藏
+                ViewBag.AllCollectStatus = 0;
+                data = (from a in db.JuZheKouItems
+                        orderby a.JuZheKouItemId descending
+                        select new JuzekouStatistic
+                        {
+                            juzhekou = a,
+                            IsCollected = 0
+                        }).Take(3).ToList();
+            }
+            else
+            {
+                string name = logininfo["UserName"];
+                Account account = db.Accounts.FirstOrDefault(a => a.Name == name);
+                ViewBag.AccountId = account.AccountId;
+                ViewBag.AllCollectStatus = 1;
+                data = (from a in db.JuZheKouItems
+                        orderby a.JuZheKouItemId descending
+                        select new JuzekouStatistic
+                        {
+                            juzhekou = a,
+                            //处理每一个聚折扣商品的是否被当前用户收藏
+                            IsCollected = db.Collections.Where(b => b.Type == (int)EnumCollectionType.Juzhekou && b.AccountId == account.AccountId && b.ShangPinId == a.JuZheKouItemId).Count()
+                        }).Take(3).ToList();
+            }
+
+            //List<JuZheKouItem> list = db.JuZheKouItems.OrderByDescending(a=>a.JuZheKouItemId).Take(3).ToList();
+            return View(data);
         }
         [NoLogin]
         public ActionResult MoreJuzekou()

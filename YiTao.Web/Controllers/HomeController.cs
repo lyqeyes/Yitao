@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -28,14 +29,16 @@ namespace YiTao.Web.Controllers
                 using (YiTaoContext db = new YiTaoContext())
                 {
                     var image = db.AppImages.OrderByDescending(a => a.AppImageId).FirstOrDefault();
-                    if (image == null)
+                    if (image != null)
                     {
-                        return "404";
+                        String hostname = ConfigurationManager.AppSettings["hostname"];
+                        if (!string.IsNullOrEmpty(hostname))
+                        {
+                            return hostname + image.Url;
+                        }
+                        
                     }
-                    else
-                    {
-                        return Request.Url.Host.ToLower() + image.Url;
-                    }
+                    return "http://ouredaapk.qiniudn.com/4dbe05e3-7404-4002-babb-e9121b0ac5c5.jpg";
                 }
             }
             catch (Exception)

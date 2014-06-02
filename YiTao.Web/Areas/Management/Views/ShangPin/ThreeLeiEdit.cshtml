@@ -32,7 +32,7 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <th hidden="hidden">@item.DaLeiId</th>
+                                <th hidden="hidden">@item.TwoLeiId</th>
                                 <th class="col-md-4" style="font-size:18px;">@item.Name</th>
                                 <th class="col-md-4">
                                     <div class="suoluetu-bg">
@@ -50,7 +50,7 @@
                                     </button>
                                 </th>
                                 <th>
-                                    <a class="btn green" href="/Management/Shangpin/CommonShangPin?XiaoLeiId=@item.XiaoLeiId">小类管理<i class="fa fa-edit"></i></a>
+                                    <a class="btn green" href="/Management/Shangpin/CommonShangPin?XiaoLeiId=@item.ThreeLeiId">小类管理<i class="fa fa-edit"></i></a>
                                 </th>
                             </tr>
                         }

@@ -4,7 +4,7 @@
 @using Webdiyer.WebControls.Mvc
 @using YiTao.Modules.Bll.Models;
 @{      var liuYan = ViewData["LiuYan"] as LiuYan;
-        var liuYanComment = ViewData["LiuYanCommentList"] as List<LiuYanComment>;
+      var liuYanComment = ViewData["LiuYanCommentList"] as List<LiuYanComment>;
 }
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,52 +14,73 @@
     <title>亿淘app</title>
     <link rel="stylesheet" type="text/css" href="~/css/unify.css" />
     <link rel="stylesheet" type="text/css" href="~/css/user-base.css" />
-</head>
 
-<body>
-    <div id="warp">
-        <div class="message">
-            <h1>@liuYan.Title</h1>
-            <div class="dot"></div>
-            <div>@Html.Raw(liuYan.Detail)</div>
-        </div>
-        @if (liuYanComment == null || liuYanComment.Count == 0)
-        {
-            <div class="message">
-                <span>当前无留言，快来创建第一条留言吧！</span>
-            </div>
-            <div class="message">
-                <form role="form" method="post" action="/Watch/PersonInfor/LiuYanCommentCreate">
-                    <input id="LiuYanId" name="LiuYanId" value="@liuYan.LiuYanId" hidden="hidden" />
-                    <textarea id="Detail" name="Detail" class="text"></textarea>
-                    <input class="button" type="submit" />
-                </form>
-            </div>
+    <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function check() {
+            if ($("#Detail").val() == "") {
+                alert('留言不能为空');
+                return false;
+            }
+            return true;
         }
-        else
-        {           
+    </script>
+</head>
+<body>
+    @if (liuYan.StartTime < DateTime.Now && liuYan.EndTime > DateTime.Now)
+    {
+        <div id="warp">
             <div class="message">
-                @foreach (var item in liuYanComment)
-                {
-                    <div class="message_box">
-                        <div class="box_title">@item.AccountName<span>:</span></div>
-                        <div class="box_con">
-                            <p>@item.Detail</p>
-                            <div class="time">
-                                <span>@item.CreateTime.ToString("yyyy-MM-dd    hh:mm:ss")</span>
+                <h1>@liuYan.Title</h1>
+                <div class="dot"></div>
+                <div>@Html.Raw(liuYan.Detail)</div>
+            </div>
+            @if (liuYanComment == null || liuYanComment.Count == 0)
+            {
+                <div class="message">
+                    <span>当前无留言，快来创建第一条留言吧！</span>
+                </div>
+                <div class="message">
+                    <form role="form" method="post" action="/Watch/PersonInfor/LiuYanCommentCreate">
+                        <input id="LiuYanId" name="LiuYanId" value="@liuYan.LiuYanId" hidden="hidden" />
+                        <textarea id="Detail" name="Detail" class="text"></textarea>
+                        <input class="button" type="submit" />
+                    </form>
+                </div>
+            }
+            else
+            {
+                <div class="message">
+                    @foreach (var item in liuYanComment)
+                    {
+                        <div class="message_box">
+                            <div class="box_title">@item.AccountName<span>:</span></div>
+                            <div class="box_con">
+                                <p>@item.Detail</p>
+                                <div class="time">
+                                    <span>@item.CreateTime.ToString("yyyy-MM-dd    hh:mm:ss")</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }
-            </div>
-            <div class="message">
-                <form role="form" method="post" action="/Watch/PersonInfor/LiuYanCommentCreate">
-                    <input id="LiuYanId" name="LiuYanId" value="@liuYan.LiuYanId" hidden="hidden" />
-                    <textarea id="Detail" name="Detail" class="text"></textarea>
-                    <input class="button" type="submit" />
-                </form>
-            </div>
-        }
-    </div>
+                    }
+                </div>
+                <div class="message">
+                    <form role="form" method="post" action="/Watch/PersonInfor/LiuYanCommentCreate" onsubmit="return check();">
+                        <input id="LiuYanId" name="LiuYanId" value="@liuYan.LiuYanId" hidden="hidden" />
+                        <textarea id="Detail" name="Detail" class="text"></textarea>
+                        <input class="button" type="submit" />
+                    </form>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div style="position:absolute; top:50%;left:49%;">
+            <span>当前无留言！</span>
+        </div>
+    }
 </body>
+
+
 </html>
