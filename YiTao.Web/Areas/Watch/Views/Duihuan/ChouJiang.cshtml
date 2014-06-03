@@ -85,6 +85,10 @@
             });
         });
     </script>
+    <div class="my_head">
+        <img src="/img/buttons/09.png" class="header_left_pic" onclick="history.go(-1)" />
+        <span>积分抽奖</span>
+    </div>
     <div class="main">
         @{
             Account theAcc = ViewData["account"] as Account;
@@ -108,13 +112,13 @@
             }
         }
     </div>
-    <div class="award" style="text-align:center;margin-top:2em;">
+    <div class="award" style="text-align:center;margin-top:7em;">
             <p>当前积分:<b style="color:red;" id="jifenNow">@theAcc.JiFen </b>每次消耗<b style="color:red;"> 1 </b>积分</p>
             @*<p>一等奖: <span class="prezi">@Model.firstPrize</span><span></span></p>
             <p>二等奖: <span class="prezi">@Model.secondPrize</span></p>
             <p>三等奖: <span class="prezi">@Model.thirdPrize</span></p>*@
         </div>
-    <div class="award" style="margin:0 auto;margin-top:2em; text-align:center;">
+    <div class="award" style="margin:0 auto;margin-top:1em; text-align:center;">
         <ul>
             <li class="link">
                 <a class="linktext"> 一等奖 </a>
@@ -151,6 +155,30 @@
         .prezi {
             color: #0026ff;
         }
+        .my_head {
+            text-align:center;
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            background-color: #fff;
+            font-family: "微软雅黑,宋体";
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-shadow: 2px 2px 5px #999;
+            z-index: 2;
+            top: 0px;
+            left: 0px;
+        }
+            .my_head span {
+                font-family: "Microsoft YaHei UI";
+                color: #ea662e;
+                font-size: 28px;
+                cursor: pointer;
+                margin-left:-20px;
+            }
+            .my_head .header_left_pic {
+                float:left;
+            }
     </style>
 </body>
 </html>
