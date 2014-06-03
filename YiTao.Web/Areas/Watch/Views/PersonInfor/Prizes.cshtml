@@ -9,19 +9,25 @@
     <meta charset="utf-8">
     <title>中奖信息列表</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <link href="/css/common.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/css/unify.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/user-base.css" />
+    <link href="/css/common.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div class="warp">
+   <div id="warp">
         <!------------------	Header ------------------------------>
-        <div class="header">
+        @*<div class="header">
             <a href="/watch/personinfor/index"><img src="/img/buttons/09.png" class="header_left_pic"></a>
                      
             <div id="clear"></div>
             <span  class="pagetitle">中奖历史</span>   
-        </div>
-        <div id="blank"></div><!--Blank area -->        
+        </div>*@
+        <div id="top">
+            <div class="top_title">中奖历史</div>
+            <a class="top_return" type="button" href="javascript:history.go(-1)" />
+            <a class="top_search" href="#"><img src="/img/search_02.png" /></a>
+        </div>   
         <!-----------product list----------------------->
         <div class="product_list">
             @foreach (JiangpinDetail item in Model)

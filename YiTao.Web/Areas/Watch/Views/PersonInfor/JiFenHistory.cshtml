@@ -3,37 +3,46 @@
 }
 @using Webdiyer.WebControls.Mvc
 @model PagedList<YiTao.Modules.Bll.Models.JiFenLiShi>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <link href="~/css/common.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <title>个人积分历史</title>
+    <link type="text/css" href="~/style/unify.css" rel="stylesheet" />
+    <link type="text/css" href="~/style/user-base.css" rel="stylesheet" />
+    <script type="text/ecmascript" src="~/js/index.js"></script>
 </head>
 <body>
-    <div class="col-md-10">
-        <div class="header">
-            <a href="/watch/personInfor/index">
-                <img src="/img/buttons/09.png" class="header_left_pic">
-            </a>
-            <h2 class="my_pagetitle" style="margin-top:0.2em;">积分记录</h2>
-            <div id="clear"></div>
+   <div id="warp">
+        <div id="top">
+            <div class="top_title">积分记录</div>
+            <a class="top_return" type="button" href="javascript:history.go(-1)" />
+            <a class="top_search" href="#"><img src="/img/search_02.png" /></a>
         </div>
-        <div id="blank" style="height:50px;"></div><!--Blank area -->
-        <div class="col-md-12">
-            @foreach (var item in Model)
-            {
-                <div class="wellJifen">
-                    <p>
-                        <span class="name">积分数量: @item.JiFen</span>
-                    </p>
-                    <p class="later"> @item.Description</p>
-                    <p style="text-align:right;margin-right:2em; font-size:smaller">时间: @item.CreateTime</p>
-                </div>
-            }
-            <div style="text-align:center; margin-left:-2em;">
-                @Html.Pager(Model, new PagerOptions
+        <div class="col-md-10">
+            @*<div class="header">
+                    <a href="/watch/personInfor/index">
+                        <img src="/img/buttons/09.png" class="header_left_pic">
+                    </a>
+                    <h2 class="my_pagetitle" style="margin-top:0.2em;">积分记录</h2>
+                    <div id="clear"></div>
+                </div>*@
+
+            <div id="blank" style="height:50px;"></div><!--Blank area -->
+            <div class="col-md-12">
+                @foreach (var item in Model)
+                {
+                    <div class="wellJifen">
+                        <p>
+                            <span class="name">积分数量: @item.JiFen</span>
+                        </p>
+                        <p class="later"> @item.Description</p>
+                        <p style="text-align:right;margin-right:2em; font-size:smaller">时间: @item.CreateTime</p>
+                    </div>
+                }
+                <div style="text-align:center; margin-left:-2em;">
+                    @Html.Pager(Model, new PagerOptions
                  {
                      HorizontalAlign = "center",
                      ShowFirstLast = false,
@@ -49,6 +58,7 @@
                      CurrentPagerItemWrapperFormatString = "<li class=\"active\"> <a>{0}</a> </li>",
                      NumericPagerItemWrapperFormatString = "<li> {0}</li>",
                  }, new { style = "margin-top:2em;margin-bottom:2em" })
+                </div>
             </div>
         </div>
     </div>
