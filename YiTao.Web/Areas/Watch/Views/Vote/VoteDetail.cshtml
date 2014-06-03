@@ -8,12 +8,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <title>投票</title>
-    <link type="text/css" href="/style/unify.css" rel="stylesheet" />
-    <link type="text/css" href="/style/user-base.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/css/unify.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/user-base.css" />
+    <link href="/css/common.css" rel="stylesheet" />
 </head>
 
 <body>
     <div id="warp">
+        <div id="top">
+            <div class="top_title">投票</div>
+            <a class="top_return" type="button" href="javascript:history.go(-1)" />
+            <a class="top_search" href="#"><img src="/img/search_02.png" /></a>
+        </div> 
         <div id="vote">
             @if (Model == null)
             {

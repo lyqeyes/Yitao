@@ -2192,8 +2192,10 @@
     <Content Include="img\product_04.jpg" />
     <Content Include="img\purchase01.png" />
     <Content Include="img\register_01.png" />
+    <Content Include="img\return01.png" />
     <Content Include="img\rotate-static.png" />
     <Content Include="img\search_01.png" />
+    <Content Include="img\search_02.png" />
     <Content Include="img\service01.png" />
     <Content Include="img\service02.png" />
     <Content Include="img\service04.png" />
@@ -2205,6 +2207,7 @@
     <Content Include="img\sign02.png" />
     <Content Include="img\sign03.png" />
     <Content Include="img\sign04.png" />
+    <Content Include="img\sign05.png" />
     <Content Include="img\title\03.png" />
     <Content Include="img\title\04.png" />
     <Content Include="img\title\05.png" />
