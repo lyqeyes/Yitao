@@ -11,6 +11,16 @@
     <link type="text/css" href="~/style/unify.css" rel="stylesheet" />
     <link type="text/css" href="~/style/user-base.css" rel="stylesheet" />
     <script type="text/ecmascript" src="~/js/index.js"></script>
+    <script>
+    function openme() {
+        document.getElementById('div1').style.display = 'block';
+        document.getElementById('div2').style.display = 'block';
+    }
+    function closeme() {
+        document.getElementById('div1').style.display = 'none';
+        document.getElementById('div2').style.display = 'none';
+    }
+    </script>
 </head>
 
 <body>
@@ -28,22 +38,23 @@
                 <p class="msg_name">@Model.Name</p>
                 <p class="msg_integral">我的积分：<i>@Model.JiFen</i></p>
             </div><!--个人信息结束-->
+            
             <div class="service">
-                <a href="/Watch/Collection/Index?accountId=@ViewBag.AccountId" name="name_msg" class="service_left">
-                    <img src="/img/buttons/service04.png" width="101" height="101" alt="" />
+                <a href="#" name="name_msg" class="service_left">
+                    <img src="/img/service04.png" width="101" height="101" alt="" />
                     <span>我的收藏</span>
                 </a>
-                <a href="/watch/personInfor/Prizes/@Model.AccountId" name="name_msg" class="service_right">
-                    <img src="/img/buttons/service3.png" width="101" height="101" alt="" />
+                <a href="#" name="name_msg" class="service_right">
+                    <img src="/img/service3.png" width="101" height="101" alt="" />
                     <span>我的奖品</span>
                 </a>
-                <a href="/watch/personInfor/JiFenHistory?userId=@Model.AccountId" name="name_msg" class="service_left">
-                    <img src="/img/buttons/service01.png" width="101" height="101" alt="" />
+                <a href="#" name="name_msg" class="service_left">
+                    <img src="/img/service01.png" width="101" height="101" alt="" />
                     <span>积分记录</span>
                 </a>
-                <a href="/watch/auth/logout" name="name_msg" class="service_right">
-                    <img src="/img/buttons/service02.png" width="101" height="101" alt="" />
-                    <span>退出账户</span>
+                <a href="#" name="name_msg" class="service_right">
+                    <img src="/img/service02.png" width="101" height="101" alt="" />
+                    <span>退出亿淘</span>
                 </a>
             </div>
             @{
