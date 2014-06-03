@@ -17,6 +17,7 @@ namespace YiTao.Web.Areas.Management.Controllers
             var first = db.AppImages.OrderByDescending(a => a.AppImageId).FirstOrDefault();
             if (first == null)
             {
+                
                 ViewBag.url = "null";
             }
             else

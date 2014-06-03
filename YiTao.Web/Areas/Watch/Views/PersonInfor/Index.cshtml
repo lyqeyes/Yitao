@@ -1,16 +1,97 @@
 ﻿@{
     Layout = null;
 }
+@model YiTao.Modules.Bll.Models.Account
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>亿淘app</title>
+    <link type="text/css" href="style/unify.css" rel="stylesheet" />
+    <link type="text/css" href="style/user-base.css" rel="stylesheet" />
+    <link href="~/css/common.css" rel="stylesheet">
+    <script type="text/ecmascript" src="js/index.js"></script>
+    <script>
+        function openme() {
+            document.getElementById('div1').style.display = 'block';
+            document.getElementById('div2').style.display = 'block';
+        }
+        function closeme() {
+            document.getElementById('div1').style.display = 'none';
+            document.getElementById('div2').style.display = 'none';
+        }
+    </script>
+    <!--banner结束-->
+</head>
+
+<body>
+    <div id="warp">
+        <div id="top">
+            <div class="top_title">个人中心</div>
+            <a href="#" class="select">大连</a>
+            <a class="top_sign" href="#"><img src="img/sign05.png" /></a>
+            <a class="top_search" href="#"><img src="img/search_02.png" /></a>
+        </div>
+        <div id="personal">
+            <!--个人中心-->
+            <div class="msg">
+                <!--个人信息-->
+                <p class="msg_name">Angell</p>
+                <p class="msg_integral">我的积分：<i>648</i></p>
+            </div><!--个人信息结束-->
+            <div class="service">
+                <a href="#" name="name_msg" class="service_left">
+                    <img src="img/service04.png" width="101" height="101" alt="" />
+                    <span>我的收藏</span>
+                </a>
+                <a href="#" name="name_msg" class="service_right">
+                    <img src="img/service3.png" width="101" height="101" alt="" />
+                    <span>我的奖品</span>
+                </a>
+                <a href="#" name="name_msg" class="service_left">
+                    <img src="img/service01.png" width="101" height="101" alt="" />
+                    <span>积分记录</span>
+                </a>
+                <a href="#" name="name_msg" class="service_right">
+                    <img src="img/service02.png" width="101" height="101" alt="" />
+                    <span>退出亿淘</span>
+                </a>
+            </div>
+            <div class="sign">
+                <!--签到-->
+                <a href="#" name="name_sign" class="sign_bg sign_bg01">
+                    <img src="img/sign01.png" width="152" height="153" alt="" />
+                    <span>签到</span>
+                </a>
+            </div><!--签到结束-->
+            <div class="sign">
+                <a href="#" class="sign_bg sign_bg02">
+                    <img name="neme_sign" src="img/sign02.png" width="152" height="153" alt="" />
+                    <span>今日已签</span>
+                </a>
+            </div>
+            <div class="sign">
+                <!--签到-->
+                <a href="#" name="name_sign" class="sign_bg sign_bg03">
+                    <img src="img/sign03.png" width="152" height="153" alt="" />
+                    <span>投票活动</span>
+                </a>
+            </div><!--签到结束-->
+            <div class="sign">
+                <!--签到-->
+                <a href="#" name="name_sign" class="sign_bg sign_bg04">
+                    <img src="img/sign04.png" width="152" height="153" alt="" />
+                    <span>留言活动</span>
+                </a>
+            </div><!--签到结束-->
+        </div><!--个人中心结束-->
+    </div>
+</body>
+</html>
 <!doctype html>
 <html>
-<head>
-    @model YiTao.Modules.Bll.Models.Account
-    <meta charset="utf-8">
-    <title>个人中心</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <link href="/css/common.css" rel="stylesheet">
 
-</head>
 <body>
     <div class="warp">
         <!------------------	Header ------------------------------>
