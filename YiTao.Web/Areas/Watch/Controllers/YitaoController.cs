@@ -321,5 +321,54 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 return RedirectToAction("ShangpinDetail", new { id = newCom.ForId });
             }
         }
+        #region 商品搜索
+        [NoLogin]
+        public ActionResult Search()
+        {
+            ViewBag.Name = "";
+            return View();
+        }
+        [HttpPost]
+        [NoLogin]
+        public ActionResult Search(string Name)
+        {
+            ViewBag.Name = Name;
+            List<ZhuanTiItem> ZhuanTiResultList = new List<ZhuanTiItem>();
+            List<JuZheKouItem> JuZheKouResultList = new List<JuZheKouItem>();
+            List<ShangPin> ShangPinResultList = new List<ShangPin>();
+            List<Web.Common.ShangPin> SearchResultList = Web.Common.Searcher.Search(Name);
+            foreach (var item in SearchResultList)
+            {
+                switch (item.Type)
+                {
+                    case Web.Common.EnumShangPinType.ZhuanTi:
+                        {
+                            var Temp = db.ZhuanTiItems.FirstOrDefault(e => e.ZhuanTiItemId == item.ShangPinId);
+                            if (Temp != null)
+                                ZhuanTiResultList.Add(Temp);
+                            break;
+                        }
+                    case Web.Common.EnumShangPinType.JuZheKou:
+                        {
+                            var Temp = db.JuZheKouItems.FirstOrDefault(e => e.JuZheKouItemId == item.ShangPinId);
+                            if (Temp != null)
+                                JuZheKouResultList.Add(Temp);
+                            break;
+                        }
+                    case Web.Common.EnumShangPinType.PuTong:
+                        {
+                            var Temp = db.ShangPins.FirstOrDefault(e => e.ShangPinId == item.ShangPinId);
+                            if (Temp != null)
+                                ShangPinResultList.Add(Temp);
+                            break;
+                        }
+                }
+            }
+            ViewBag.ZhuanTiResultList = ZhuanTiResultList;
+            ViewBag.JuZheKouResultList = JuZheKouResultList;
+            ViewBag.ShangPinResultList = ShangPinResultList;
+            return View();
+        }
+        #endregion
 	}
 }

@@ -170,7 +170,8 @@ li {display: list-item;text-align: -webkit-match-parent;}
 		width:21%;
 		height:auto;
 		text-align:center;
-		float:left;
+		//float:left;
+        display:inline-block;
 		margin:1% 2%;
 	}
 	.link a{

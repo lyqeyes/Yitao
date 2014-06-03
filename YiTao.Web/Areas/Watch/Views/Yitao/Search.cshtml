@@ -1,0 +1,91 @@
+﻿@{
+    Layout = null;
+}
+@using YiTao.Modules.Bll.Models;
+@{      
+    var Name = ViewBag.Name as string;
+    var ZhuanTiResultList = ViewBag.ZhuanTiResultList as List<ZhuanTiItem>;
+    var JuZheKouResultList = ViewBag.JuZheKouResultList as List<JuZheKouItem>;
+    var ShangPinResultList = ViewBag.ShangPinResultList as List<ShangPin>;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>搜索商品</title>
+    <link href="/css/common.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="warp">
+        <!--搜索框-->
+        <div>
+            <form role="form" method="post" action="/Watch/Yitao/Search">
+                <input id="Name" name="Name" value="@Name" />
+                <input type="submit" />
+            </form>
+        </div>
+
+        <div id="goods_category">
+            @{
+                if(JuZheKouResultList == null || ShangPinResultList== null || ZhuanTiResultList == null)
+                {
+                    <span>请搜索商品</span>
+                }
+                else if (JuZheKouResultList.Count == 0 && ShangPinResultList.Count == 0 && ZhuanTiResultList.Count == 0)
+                {
+                    <span >搜索无结果</span>
+                }
+                else
+                {
+                    foreach (var item in JuZheKouResultList)
+                    {
+                        <div class="goods_list">
+                            <a href="/watch/yitao/JuzekouDetail?id=@item.JuZheKouItemId"><img src="@item.ImageUrl" alt="" /></a>
+                            @if(item.Name.Length > 10)
+                            { 
+                                <a href="/watch/yitao/JuzekouDetail?id=@item.JuZheKouItemId" class="goods_title">@String.Format("{0}...",item.Name.Substring(0,10))</a>
+                            }
+                            else
+                            {
+                                <a href="/watch/yitao/JuzekouDetail?id=@item.JuZheKouItemId" class="goods_title">@item.Name</a>
+                            }                            
+                        </div>                    
+                    }
+                    foreach (var item in ShangPinResultList)
+                    {
+                        <div class="goods_list">
+                            <a href="/watch/yitao/ShangpinDetail?id=@item.ShangPinId"><img src="@item.ImageUrl" alt="" /></a>
+                            @if (item.Name.Length > 10)
+                            {
+                                <a href="/watch/yitao/ShangpinDetail?id=@item.ShangPinId" class="goods_title">@String.Format("{0}...", item.Name.Substring(0, 10))</a>
+                            }
+                            else
+                            {
+                                <a href="/watch/yitao/ShangpinDetail?id=@item.ShangPinId" class="goods_title">@item.Name</a>
+                            }       
+                        </div>
+                    }
+                    foreach (var item in ZhuanTiResultList)
+                    {
+                        <div class="goods_list">
+                            <a href="/watch/yitao/ZhuantiItemDetail?id=@item.ZhuanTiItemId"><img src="@item.ImageUrl" alt="" /></a>
+                            @if (item.Name.Length > 10)
+                            {
+                                <a href="/watch/yitao/ZhuantiItemDetail?id=@item.ZhuanTiItemId" class="goods_title">@String.Format("{0}...", item.Name.Substring(0, 10))</a>
+                            }
+                            else
+                            {
+                                <a href="/watch/yitao/ZhuantiItemDetail?id=@item.ZhuanTiItemId" class="goods_title">@item.Name</a>
+                            }  
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+</body>
+</html>

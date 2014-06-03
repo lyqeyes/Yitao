@@ -12,7 +12,7 @@
     <link type="text/css" href="/css/unify.css" rel="stylesheet" />
     <link type="text/css" href="/css/user-base.css" rel="stylesheet" />
     <script type="text/ecmascript" src="/js/index.js"></script>
-    <!--banner结束-->
+    <link href="/css/common.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -52,8 +52,7 @@
                                     valueNew = parseInt(value) - 1;
                                 }
                                 $("#jifenNow").html(valueNew);
-                                if (data == -1)
-                                {
+                                if (data == -1) {
                                     rotateFunc(0, '您都没有积分了....不能抽奖')
                                 }
                                 if (data == 1) {
@@ -110,11 +109,44 @@
         }
     </div>
     <div class="award" style="text-align:center;margin-top:2em;">
-        <p>当前积分:<b style="color:red;" id="jifenNow">@theAcc.JiFen </b>每次消耗<b style="color:red;"> 1 </b>积分</p>
-        <p>一等奖: <span class="prezi">@Model.firstPrize</span><span></span></p>
-        <p>二等奖: <span class="prezi">@Model.secondPrize</span></p>
-        <p>三等奖: <span class="prezi">@Model.thirdPrize</span></p>
-    </div>
+            <p>当前积分:<b style="color:red;" id="jifenNow">@theAcc.JiFen </b>每次消耗<b style="color:red;"> 1 </b>积分</p>
+            @*<p>一等奖: <span class="prezi">@Model.firstPrize</span><span></span></p>
+            <p>二等奖: <span class="prezi">@Model.secondPrize</span></p>
+            <p>三等奖: <span class="prezi">@Model.thirdPrize</span></p>*@
+        </div>
+    <div class="award" style="margin:0 auto;margin-top:2em; text-align:center;">
+        <ul>
+            <li class="link">
+                <a class="linktext"> 一等奖 </a>
+                <a href="#"><img class="item" src="@Model.firstImg" /></a>
+                <a class="linktext prezi"> @Model.firstPrize </a>
+            </li>
+            <li class="link">
+                <a class="linktext"> 二等奖 </a>
+                <a href="#"><img class="item" src="@Model.secondImg" /></a>
+                <a class="linktext prezi"> @Model.secondPrize </a>
+            </li>
+            <li class="link">
+                <a class="linktext"> 三等奖 </a>
+                <a href="#"><img class="item" src="@Model.thirdImg" /></a>
+                <a class="linktext prezi"> @Model.thirdPrize </a>
+            </li>
+            @*<li style="clear:both"></li>*@
+        </ul>
+    </div>    
+    <style>
+        .item {
+            width: 22%;
+        }
+
+        a {
+            color: #000000;
+        }
+
+            a:visited {
+                color: #000000;
+            }
+    </style>
     <style>
         .prezi {
             color: #0026ff;
