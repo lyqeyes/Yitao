@@ -6,13 +6,15 @@ body, div{
 .out {
 	position: relative;
 	width: 100%;
-	top: 20px;
+	/*top: 20px;*/
+    top: 70px;
 	margin-bottom: 30px;
 }
 .in {
 	position: absolute;
 	width: 100%;
-	top: 70px;
+	/*top: 70px;*/
+    top: 120px;
 }
 .out1 {
 	height: 227px;
