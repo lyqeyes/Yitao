@@ -1,0 +1,35 @@
+﻿@model YiTao.Modules.Bll.Models.TuiSong
+
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h4>消息详情</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>标题</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            <label>创建时间</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+        <dt>
+           <label>正文</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TuiSongContent)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("返回", "Index")
+</p>

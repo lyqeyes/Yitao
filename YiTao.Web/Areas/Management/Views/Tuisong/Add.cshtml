@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+@section style{
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    @*富文本编辑器*@
+    <link rel="stylesheet" type="text/css" href="~/Scripts/kindeditor/themes/default/default.css" />
+    <!-- END PAGE LEVEL STYLES -->
+}
+
+<div class="portlet box blue col-md-12">
+    <div class="portlet-title">
+        <div class="caption"><i class="fa fa-edit"></i>新建推送</div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse"></a>
+            <a href="javascript:;" class="remove"></a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form role="form" method="post" action="/Management/Tuisong/Add">
+            <div class="form-body">
+                <span style="color:red">@ViewBag.msg</span> 
+                <div class="form-group">
+                    <label>标题：</label>
+                    <input type="text" class="form-control" id="Title" name="Title" placeholder="不可为空">
+                </div>
+                <div class="form-group">
+                    <label>内容：</label>
+                    <textarea name="TuiSongContent" id="Detail" style="width:100%;height:300px;visibility:hidden;" placeholder="不能为空"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn blue">保存</button>
+                    <button type="button" class="btn default" onclick="window.location.href = '/Management/Tuisong/Index'">取消</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    @*富文本编辑*@
+    <script type="text/javascript" charset="utf-8" src="~/Scripts/kindeditor/kindeditor-min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="~/Scripts/kindeditor/lang/zh_CN.js"></script>
+    <script>
+        var editor;
+        KindEditor.ready(function (K) {
+            editor = K.create('textarea[name="TuiSongContent"]', {
+                resizeType: 1,
+                allowPreviewEmoticons: false,
+                allowImageUpload: true,
+                uploadJson: '/Management/Upload/EditorUpload',
+                items: [
+                    'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                    'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                    'insertunorderedlist', '|', 'image', 'link']
+            });
+        });
+    </script>
+}

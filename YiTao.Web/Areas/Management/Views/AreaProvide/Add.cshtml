@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            地区管理 <small>新建</small>
+        </h3>
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="#">主页</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">地区管理</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li><a href="#">新建</a></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN SAMPLE FORM PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>新建
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse"></a>
+                    <a href="#portlet-config" data-toggle="modal" class="config"></a>
+                    <a href="" class="reload"></a>
+                    <a href="" class="remove"></a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" role="form" method="post" action="/Management/AreaProvide/Add">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">区域名称</label>
+                            <div class="col-md-9">
+                                <input type="text" name="Name" class="form-control" placeholder="名称信息">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions fluid">
+                        <div class="col-md-offset-6 col-md-6">
+                            <button type="submit" class="btn green">提交</button>
+                            <button type="button" class="btn default">取消</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

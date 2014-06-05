@@ -19,7 +19,8 @@ namespace YiTao.Web.Areas.Watch.Common
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            Response.AppendHeader("Cache-Control", "no-cache"); 
+            
+            //Response.AppendHeader("Cache-Control", "no-cache"); 
             if (filterContext.ActionDescriptor.GetCustomAttributes(typeof(NoLoginAttribute), false).Length > 0)
                 return;
             var v = HttpContext.Request.Cookies["LoginInfo"];

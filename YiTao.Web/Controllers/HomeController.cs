@@ -106,6 +106,15 @@ namespace YiTao.Web.Controllers
         {
             return View();
         }
+
+
+        public ActionResult GetTuisong(int id)
+        {
+            using(YiTaoContext db = new YiTaoContext())
+	{
+        return View(db.TuiSongs.Find(id));
+	}
             
+        }
     }
 }

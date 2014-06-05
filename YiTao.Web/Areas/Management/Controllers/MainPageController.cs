@@ -60,6 +60,7 @@ namespace YiTao.Web.Areas.Management.Controllers
             }
             else
             {
+                ViewBag.guishudi = db.Areas.Where(a => a.State == 1).ToList();
                 ViewBag.type = v.Type;
                 ViewBag.ZhuanTiId = v.ZhuanTiId;
                 return View(new ZhuanTiItem() { });
@@ -130,126 +131,224 @@ namespace YiTao.Web.Areas.Management.Controllers
         [HttpPost]
         public ActionResult CreateShangPin(ZhuanTiItem shangpin)
         {
-            if (shangpin.ZhuanTiId == db.ZhuanTis.FirstOrDefault(z => z.Type == (int)EnumZhuanTi.ShiJian).ZhuanTiId)
+            var v = Request["guishudi"].Split(',');
+            if (v.Length > 0)
             {
-                if (shangpin.ZhuanTiItemId > 0)
+                if (shangpin.ZhuanTiId ==
+                    db.ZhuanTis.FirstOrDefault(z => z.Type ==
+                        (int)EnumZhuanTi.ShiJian).ZhuanTiId)
                 {
-                    shangpin.CreateTime = DateTime.Now;
-                    db.ZhuanTiItems.Attach(shangpin);
-                    db.Entry<ZhuanTiItem>(shangpin).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                }
-                else
-                {
-                    shangpin.CreateTime = DateTime.Now;
-                    db.ZhuanTiItems.Add(shangpin);
-                    try
+                    if (shangpin.ZhuanTiItemId > 0)
                     {
+                        shangpin.CreateTime = DateTime.Now;
+                        db.ZhuanTiItems.Attach(shangpin);
+                        db.Entry<ZhuanTiItem>(shangpin).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
                     }
-                    catch (DbEntityValidationException ex)
+                    else
                     {
-                        StringBuilder errors = new StringBuilder();
-                        IEnumerable<DbEntityValidationResult> validationResult = ex.EntityValidationErrors;
-                        foreach (DbEntityValidationResult result in validationResult)
+                        shangpin.CreateTime = DateTime.Now;
+                        db.ZhuanTiItems.Add(shangpin);
+                        try
                         {
-                            ICollection<DbValidationError> validationError = result.ValidationErrors;
-                            foreach (DbValidationError err in validationError)
-                            {
-                                errors.Append(err.PropertyName + ":" + err.ErrorMessage + "\r\n");
-                            }
+                            db.SaveChanges();
                         }
-                        Debug.WriteLine(errors.ToString());
+                        catch (DbEntityValidationException ex)
+                        {
+                            StringBuilder errors = new StringBuilder();
+                            IEnumerable<DbEntityValidationResult> validationResult = ex.EntityValidationErrors;
+                            foreach (DbEntityValidationResult result in validationResult)
+                            {
+                                ICollection<DbValidationError> validationError = result.ValidationErrors;
+                                foreach (DbValidationError err in validationError)
+                                {
+                                    errors.Append(err.PropertyName + ":" + err.ErrorMessage + "\r\n");
+                                }
+                            }
+                            Debug.WriteLine(errors.ToString());
+                        }
                     }
-                }
-                #region 创建索引
-                Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
-                {
-                    ShangPinId = shangpin.ZhuanTiItemId,
-                    Type = Web.Common.EnumShangPinType.ZhuanTi,
-                    Name = shangpin.Name
-                };
-                Web.Common.Searcher.Add(SearchShangPin);
-                #endregion
-                return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.ShiJian });
-            }
-            else if (shangpin.ZhuanTiId == db.ZhuanTis.FirstOrDefault(z => z.Type == (int)EnumZhuanTi.Zhauti1).ZhuanTiId)
-            {
-                if (shangpin.ZhuanTiItemId > 0)
-                {
-                    shangpin.CreateTime = DateTime.Now;
-                    db.ZhuanTiItems.Attach(shangpin);
-                    db.Entry<ZhuanTiItem>(shangpin).State = System.Data.Entity.EntityState.Modified;
+
+                    #region 创建地域信息
+                    var lists2a = db.ShangPin2Areas.Where(a => a.ForId == shangpin.ZhuanTiItemId &&
+                            a.Type == (int)YiTao.Modules.Bll.EnumAreaType.ZhuantiItem);
+                    if (lists2a.Count() > 0)
+                    {
+                        db.ShangPin2Areas.RemoveRange(lists2a);
+                        db.SaveChanges();
+                    }
+                    foreach (var item in v)
+                    {
+                        db.ShangPin2Areas.Add(new ShangPin2Areas
+                        {
+                            AreaId = int.Parse(item),
+                            CreateTime = DateTime.Now,
+                            ForId = shangpin.ZhuanTiItemId,
+                            Type = (int)EnumAreaType.ZhuantiItem
+                        });
+                    }
                     db.SaveChanges();
+
+                    #endregion
+
+                    #region 创建索引
+                    Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
+                    {
+                        ShangPinId = shangpin.ZhuanTiItemId,
+                        Type = Web.Common.EnumShangPinType.ZhuanTi,
+                        Name = shangpin.Name
+                    };
+                    Web.Common.Searcher.Add(SearchShangPin);
+                    #endregion
+                    return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.ShiJian });
+                }
+                else if (shangpin.ZhuanTiId ==
+                    db.ZhuanTis.FirstOrDefault(z => z.Type ==
+                        (int)EnumZhuanTi.Zhauti1).ZhuanTiId)
+                {
+                    if (shangpin.ZhuanTiItemId > 0)
+                    {
+                        shangpin.CreateTime = DateTime.Now;
+                        db.ZhuanTiItems.Attach(shangpin);
+                        db.Entry<ZhuanTiItem>(shangpin).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        shangpin.CreateTime = DateTime.Now;
+                        db.ZhuanTiItems.Add(shangpin);
+                        db.SaveChanges();
+                    }
+                    #region 创建地域信息
+                    var lists2a = db.ShangPin2Areas.Where(a => a.ForId == shangpin.ZhuanTiItemId &&
+                            a.Type == (int)YiTao.Modules.Bll.EnumAreaType.ZhuantiItem);
+                    if (lists2a.Count() > 0)
+                    {
+                        db.ShangPin2Areas.RemoveRange(lists2a);
+                        db.SaveChanges();
+                    }
+                    foreach (var item in v)
+                    {
+                        db.ShangPin2Areas.Add(new ShangPin2Areas
+                        {
+                            AreaId = int.Parse(item),
+                            CreateTime = DateTime.Now,
+                            ForId = shangpin.ZhuanTiItemId,
+                            Type = (int)EnumAreaType.ZhuantiItem
+                        });
+                    }
+                    db.SaveChanges();
+
+                    #endregion
+                    #region 创建索引
+                    Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
+                    {
+                        ShangPinId = shangpin.ZhuanTiItemId,
+                        Type = Web.Common.EnumShangPinType.ZhuanTi,
+                        Name = shangpin.Name
+                    };
+                    Web.Common.Searcher.Add(SearchShangPin);
+                    #endregion
+                    return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.Zhauti1 });
+                }
+                else if (shangpin.ZhuanTiId == db.ZhuanTis.FirstOrDefault(z => z.Type == (int)EnumZhuanTi.Zhauti2).ZhuanTiId)
+                {
+                    if (shangpin.ZhuanTiItemId > 0)
+                    {
+                        shangpin.CreateTime = DateTime.Now;
+                        db.ZhuanTiItems.Attach(shangpin);
+                        db.Entry<ZhuanTiItem>(shangpin).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        shangpin.CreateTime = DateTime.Now;
+                        db.ZhuanTiItems.Add(shangpin);
+                        db.SaveChanges();
+                    }
+                    #region 创建地域信息
+                    var lists2a = db.ShangPin2Areas.Where(a => a.ForId == shangpin.ZhuanTiItemId &&
+                            a.Type == (int)YiTao.Modules.Bll.EnumAreaType.ZhuantiItem);
+                    if (lists2a.Count() > 0)
+                    {
+                        db.ShangPin2Areas.RemoveRange(lists2a);
+                        db.SaveChanges();
+                    }
+                    foreach (var item in v)
+                    {
+                        db.ShangPin2Areas.Add(new ShangPin2Areas
+                        {
+                            AreaId = int.Parse(item),
+                            CreateTime = DateTime.Now,
+                            ForId = shangpin.ZhuanTiItemId,
+                            Type = (int)EnumAreaType.ZhuantiItem
+                        });
+                    }
+                    db.SaveChanges();
+
+                    #endregion
+                    #region 创建索引
+                    Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
+                    {
+                        ShangPinId = shangpin.ZhuanTiItemId,
+                        Type = Web.Common.EnumShangPinType.ZhuanTi,
+                        Name = shangpin.Name
+                    };
+                    Web.Common.Searcher.Add(SearchShangPin);
+                    #endregion
+                    return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.Zhauti2 });
                 }
                 else
                 {
-                    shangpin.CreateTime = DateTime.Now;
-                    db.ZhuanTiItems.Add(shangpin);
+                    if (shangpin.ZhuanTiItemId > 0)
+                    {
+                        shangpin.CreateTime = DateTime.Now;
+                        db.ZhuanTiItems.Attach(shangpin);
+                        db.Entry<ZhuanTiItem>(shangpin).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        shangpin.CreateTime = DateTime.Now;
+                        db.ZhuanTiItems.Add(shangpin);
+                        db.SaveChanges();
+                    }
+                    #region 创建地域信息
+                    var lists2a = db.ShangPin2Areas.Where(a => a.ForId == shangpin.ZhuanTiItemId &&
+                            a.Type == (int)YiTao.Modules.Bll.EnumAreaType.ZhuantiItem);
+                    if (lists2a.Count() > 0)
+                    {
+                        db.ShangPin2Areas.RemoveRange(lists2a);
+                        db.SaveChanges();
+                    }
+                    foreach (var item in v)
+                    {
+                        db.ShangPin2Areas.Add(new ShangPin2Areas
+                        {
+                            AreaId = int.Parse(item),
+                            CreateTime = DateTime.Now,
+                            ForId = shangpin.ZhuanTiItemId,
+                            Type = (int)EnumAreaType.ZhuantiItem
+                        });
+                    }
                     db.SaveChanges();
+
+                    #endregion
+                    #region 创建索引
+                    Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
+                    {
+                        ShangPinId = shangpin.ZhuanTiItemId,
+                        Type = Web.Common.EnumShangPinType.ZhuanTi,
+                        Name = shangpin.Name
+                    };
+                    Web.Common.Searcher.Add(SearchShangPin);
+                    #endregion
+                    return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.Zhauti3 });
                 }
-                #region 创建索引
-                Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
-                {
-                    ShangPinId = shangpin.ZhuanTiItemId,
-                    Type = Web.Common.EnumShangPinType.ZhuanTi,
-                    Name = shangpin.Name
-                };
-                Web.Common.Searcher.Add(SearchShangPin);
-                #endregion
-                return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.Zhauti1 });
-            }
-            else if (shangpin.ZhuanTiId == db.ZhuanTis.FirstOrDefault(z => z.Type == (int)EnumZhuanTi.Zhauti2).ZhuanTiId)
-            {
-                if (shangpin.ZhuanTiItemId > 0)
-                {
-                    shangpin.CreateTime = DateTime.Now;
-                    db.ZhuanTiItems.Attach(shangpin);
-                    db.Entry<ZhuanTiItem>(shangpin).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                }
-                else
-                {
-                    shangpin.CreateTime = DateTime.Now;
-                    db.ZhuanTiItems.Add(shangpin);
-                    db.SaveChanges();
-                }
-                #region 创建索引
-                Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
-                {
-                    ShangPinId = shangpin.ZhuanTiItemId,
-                    Type = Web.Common.EnumShangPinType.ZhuanTi,
-                    Name = shangpin.Name
-                };
-                Web.Common.Searcher.Add(SearchShangPin);
-                #endregion
-                return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.Zhauti2 });
             }
             else
             {
-                if (shangpin.ZhuanTiItemId > 0)
-                {
-                    shangpin.CreateTime = DateTime.Now;
-                    db.ZhuanTiItems.Attach(shangpin);
-                    db.Entry<ZhuanTiItem>(shangpin).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                }
-                else
-                {
-                    shangpin.CreateTime = DateTime.Now;
-                    db.ZhuanTiItems.Add(shangpin);
-                    db.SaveChanges();
-                }
-                #region 创建索引
-                Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
-                {
-                    ShangPinId = shangpin.ZhuanTiItemId,
-                    Type = Web.Common.EnumShangPinType.ZhuanTi,
-                    Name = shangpin.Name
-                };
-                Web.Common.Searcher.Add(SearchShangPin);
-                #endregion
-                return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.Zhauti3 });
+                return View(shangpin);
             }
         }
 
@@ -268,6 +367,13 @@ namespace YiTao.Web.Areas.Management.Controllers
                 Web.Common.Searcher.Del(SearchShangPin);
                 #endregion
 
+                var lists2a = db.ShangPin2Areas.Where(a => a.ForId == temp.ZhuanTiItemId &&
+                       a.Type == (int)YiTao.Modules.Bll.EnumAreaType.ZhuantiItem);
+                if (lists2a.Count() > 0)
+                {
+                    db.ShangPin2Areas.RemoveRange(lists2a);
+                    db.SaveChanges();
+                }
                 db.ZhuanTiItems.Remove(temp);
                 db.SaveChanges();
 
@@ -452,33 +558,65 @@ namespace YiTao.Web.Areas.Management.Controllers
 
         public ActionResult CreateJuZheKouItem()
         {
+            ViewBag.guishudi = db.Areas.Where(a => a.State == 1).ToList();
             return View(new JuZheKouItem() { });
         }
         [HttpPost]
         public ActionResult CreateJuZheKouItem(JuZheKouItem jzk)
         {
-            if (jzk.JuZheKouItemId > 0)
+            var v = Request["guishudi"].Split(',');
+            if (v.Length > 0)
             {
-                db.JuZheKouItems.Attach(jzk);
-                db.Entry<JuZheKouItem>(jzk).State = System.Data.Entity.EntityState.Modified;
+                if (jzk.JuZheKouItemId > 0)
+                {
+                    db.JuZheKouItems.Attach(jzk);
+                    db.Entry<JuZheKouItem>(jzk).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    jzk.CreateTime = DateTime.Now;
+                    db.JuZheKouItems.Add(jzk);
+                    db.SaveChanges();
+                }
+
+                #region 创建地域信息
+                var lists2a = db.ShangPin2Areas.Where(a => a.ForId == jzk.JuZheKouItemId &&
+                        a.Type == (int)YiTao.Modules.Bll.EnumAreaType.Juzhekou);
+                if (lists2a.Count() > 0)
+                {
+                    db.ShangPin2Areas.RemoveRange(lists2a);
+                    db.SaveChanges();
+                }
+                foreach (var item in v)
+                {
+                    db.ShangPin2Areas.Add(new ShangPin2Areas
+                    {
+                        AreaId = int.Parse(item),
+                        CreateTime = DateTime.Now,
+                        ForId = jzk.JuZheKouItemId,
+                        Type = (int)EnumAreaType.Juzhekou
+                    });
+                }
                 db.SaveChanges();
+
+                #endregion
+
+                #region 创建索引
+                Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
+                {
+                    ShangPinId = jzk.JuZheKouItemId,
+                    Type = Web.Common.EnumShangPinType.JuZheKou,
+                    Name = jzk.Name
+                };
+                Web.Common.Searcher.Add(SearchShangPin);
+                #endregion
+                return RedirectToAction("JuZheKouItem");
             }
             else
             {
-                jzk.CreateTime = DateTime.Now;
-                db.JuZheKouItems.Add(jzk);
-                db.SaveChanges();
+                return View(jzk);
             }
-            #region 创建索引
-            Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
-            {
-                ShangPinId = jzk.JuZheKouItemId,
-                Type = Web.Common.EnumShangPinType.JuZheKou,
-                Name = jzk.Name
-            };
-            Web.Common.Searcher.Add(SearchShangPin);
-            #endregion
-            return RedirectToAction("JuZheKouItem");
         }
 
         public ActionResult DeleteJuZheKo(int id)
@@ -486,6 +624,14 @@ namespace YiTao.Web.Areas.Management.Controllers
             var temp = db.JuZheKouItems.FirstOrDefault(j => j.JuZheKouItemId == id);
             if (temp != null)
             {
+                var lists2a = db.ShangPin2Areas.Where(a => a.ForId == temp.JuZheKouItemId &&
+                       a.Type == (int)YiTao.Modules.Bll.EnumAreaType.Juzhekou);
+                if (lists2a.Count() > 0)
+                {
+                    db.ShangPin2Areas.RemoveRange(lists2a);
+                    db.SaveChanges();
+                }
+
                 #region 删除索引
                 Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
                 {

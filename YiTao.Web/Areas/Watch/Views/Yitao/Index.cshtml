@@ -11,12 +11,14 @@
     <link type="text/css" href="~/style/unify.css" rel="stylesheet" />
     <link type="text/css" href="~/style/user-base.css" rel="stylesheet" />
     <script type="text/ecmascript" src="~/js/index.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
 </head>
 @using YiTao.Modules.Bll.Models
 <body>
-       <div id="warp">
-            <!------------------	Header ------------------------------>
-            @*<div class="header">
+    <div id="warp">
+        <!------------------	Header ------------------------------>
+        @*<div class="header">
                 <h1 class="city">大连市</h1>
                 <a href="/watch/personInfor">
                     <img src="/img/buttons/02.png" class="header_left_pic">
@@ -28,120 +30,154 @@
                 <span class="pagetitle">亿淘</span>
             </div>
             <div id="blank"></div>*@
-            <div id="top">
-                <div class="top_title">亿淘</div>
-                <a href="#" class="select">大连</a>
-                <a class="top_sign" href="#"><img src="/img/sign05.png" /></a>
-                <a class="top_search" href="#"><img src="/img/search_02.png" /></a>
-            </div>
-            <!----------------------	Header End 	-------------------->
-            <!--------------	banner ----------------------->
-            <div class="banner">
-                <div class="container">
-                    <div class="flexslider">
-                        <ul class="slides">
-                            @foreach (LunBo item in ViewData["lunbolist"] as List<LunBo>)
+        <div id="top">
+            <div class="top_title">亿淘</div>
+            <a href="#" class="select" id="myModal">@YiTao.Web.Areas.Watch.Common.CityContext.Current.CityName</a>
+            <a class="top_sign" href="#"><img src="/img/sign05.png" /></a>
+            <a class="top_search" href="#"><img src="/img/search_02.png" /></a>
+        </div>
+        <!----------------------	Header End 	-------------------->
+        <!--------------	banner ----------------------->
+        <div class="banner">
+            <div class="container">
+                <div class="flexslider">
+                    <ul class="slides">
+                        @foreach (LunBo item in ViewData["lunbolist"] as List<LunBo>)
                             {
-                                <li>
-                                    <a href="@item.ClickUrl"><img src="@item.ImageUrl" /></a>
-                                </li>
+                            <li>
+                                <a href="@item.ClickUrl"><img src="@item.ImageUrl" /></a>
+                            </li>
                             }
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
             </div>
-            <!--------------	banner ----------------------->
-            <!------------------	FriendLink --------------->
-            <div class="friendlink">
-                @Html.Action("fuwu")
-                <div id="clear"></div>
-            </div>
-            <!------------------	FriendLink End---------->
-            <!--------- 	conter	------------------------>
-            <div class="conter">
-                <div class="conter_left">
-                    @foreach (ZhuanTi item in ViewData["zhuantilist"] as List<ZhuanTi>)
+        </div>
+        <!--------------	banner ----------------------->
+        <!------------------	FriendLink --------------->
+        <div class="friendlink">
+            @Html.Action("fuwu")
+            <div id="clear"></div>
+        </div>
+        <!------------------	FriendLink End---------->
+        <!--------- 	conter	------------------------>
+        <div class="conter">
+            <div class="conter_left">
+                @foreach (ZhuanTi item in ViewData["zhuantilist"] as List<ZhuanTi>)
                     {
                         if (item.Type == 4)
                         {
-                            <a href="/watch/yitao/Productlist/4">
-                                <img src="@item.ImageUrl" />
-                            </a>
+                    <a href="/watch/yitao/Productlist/4">
+                        <img src="@item.ImageUrl" />
+                    </a>
                         }
                     }
-                </div>
-                <div class="conter_right">
-                    <div class="conter_right_top">
-                        @foreach (ZhuanTi item in ViewData["zhuantilist"] as List<ZhuanTi>)
+            </div>
+            <div class="conter_right">
+                <div class="conter_right_top">
+                    @foreach (ZhuanTi item in ViewData["zhuantilist"] as List<ZhuanTi>)
                         {
                             if (item.Type == 1)
                             {
-                                <a href="/watch/yitao/Productlist/1">
-                                    <img src="@item.ImageUrl" />
-                                </a>
+                        <a href="/watch/yitao/Productlist/1">
+                            <img src="@item.ImageUrl" />
+                        </a>
                             }
                         }
-                    </div>
-                    <div class="conter_right_bottom">
-                        @foreach (ZhuanTi item in ViewData["zhuantilist"] as List<ZhuanTi>)
+                </div>
+                <div class="conter_right_bottom">
+                    @foreach (ZhuanTi item in ViewData["zhuantilist"] as List<ZhuanTi>)
                         {
                             if (item.Type == 2)
                             {
-                                <a href="/watch/yitao/Productlist/2">
-                                    <img src="@item.ImageUrl" class="conter_r_b_l" />
-                                </a>
+                        <a href="/watch/yitao/Productlist/2">
+                            <img src="@item.ImageUrl" class="conter_r_b_l" />
+                        </a>
                             }
                         }
-                        @foreach (ZhuanTi item in ViewData["zhuantilist"] as List<ZhuanTi>)
+                    @foreach (ZhuanTi item in ViewData["zhuantilist"] as List<ZhuanTi>)
                         {
                             if (item.Type == 3)
                             {
-                                <a href="/watch/yitao/Productlist/3">
-                                    <img src="@item.ImageUrl" class="conter_r_b_r" />
-                                </a>
+                        <a href="/watch/yitao/Productlist/3">
+                            <img src="@item.ImageUrl" class="conter_r_b_r" />
+                        </a>
                             }
                         }
-                        <div id="clear"></div>
-                    </div>
+                    <div id="clear"></div>
                 </div>
             </div>
-            <!--------- 	conter	End--------------------->
-            <!-----------	collect	------------------------>
-            <div class="collect">
-                @{
+        </div>
+        <!--------- 	conter	End--------------------->
+        <!-----------	collect	------------------------>
+        <div class="collect">
+            @{
                     //HaoDian hao = ViewData["haodian"] as HaoDian;
-                    <a href="@ViewBag.Haodian"><img src="/img/buttons/goods_shop.jpg" class="collect_left" style="width:36%;height:auto;"></a>
+                <a href="@ViewBag.Haodian"><img src="/img/buttons/goods_shop.jpg" class="collect_left" style="width:36%;height:auto;"></a>
                     if (ViewBag.Login == 0)
                     {
-                        <a href="/Watch/Auth/Login"><img src="/img/buttons/my_collect.jpg" class="collect_right" style="width:62%;height:auto;"></a>
+                <a href="/Watch/Auth/Login"><img src="/img/buttons/my_collect.jpg" class="collect_right" style="width:62%;height:auto;"></a>
                     }
                     else
                     {
-                        <a href="/Watch/Collection/Index?accountId=@ViewBag.AccountId"><img src="/img/buttons/my_collect.jpg" class="collect_right" style="width:62%;height:auto;"></a>
+                <a href="/Watch/Collection/Index?accountId=@ViewBag.AccountId"><img src="/img/buttons/my_collect.jpg" class="collect_right" style="width:62%;height:auto;"></a>
                     }
-                }
-                <div id="clear"></div>
-            </div>
-            <!-----------	collect	End--------------------->
-            <h1 class="title_h1"><a href="/watch/yitao/moreJuzekou">聚折扣</a></h1>
-            <!-----------product list----------------------->
-            <div class="product_list">
-                @Html.Action("Juzekou")
-            </div>
-            <!-----------product list End------------------->
+            }
+            <div id="clear"></div>
         </div>
-        <script type="text/javascript" src="/js/jquery.js"></script>
-        <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
-        <script type="text/javascript" src="/js/common.js"></script>
-        <script src="~/Scripts/CollectAction.js" type="text/javascript"></script>
-        <style>
-            a {
+        <!-----------	collect	End--------------------->
+        <h1 class="title_h1"><a href="/watch/yitao/moreJuzekou">聚折扣</a></h1>
+        <!-----------product list----------------------->
+        <div class="product_list">
+            @Html.Action("Juzekou")
+        </div>
+        <!-----------product list End------------------->
+    </div>
+
+    <div id="dialog-message" title="选择城市" style="display:none">
+        <div id="warp">
+            <div id="search" style="padding:0 5%;">
+                <ul>
+                    @foreach (var item in ViewData["Area"] as List<YiTao.Modules.Bll.Models.Area>)
+                    {
+                        <li class="login_list">
+                            <a href="/Watch/Yitao/AreaInfo?id=@item.Id">@item.Name</a>
+                        </li>
+                    }
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script src="/Scripts/CollectAction.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $("#myModal").click(function () {
+                $("#dialog-message").dialog({
+                    modal: true,
+                    buttons: {
+                        "取消": function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+            })
+        
+    });
+    </script>
+
+    <style>
+        a {
+            color: #000000;
+        }
+
+            a:visited {
                 color: #000000;
             }
-
-                a:visited {
-                    color: #000000;
-                }
-        </style>
+    </style>
 </body>
 </html>
