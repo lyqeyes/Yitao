@@ -40,7 +40,7 @@ li {display: list-item;text-align: -webkit-match-parent;}
     left:0px;
 }
     #top + div {
-        margin-top:50px;
+        margin-top:5.2em;
     }
 	.header .city{	
 		float:left;
