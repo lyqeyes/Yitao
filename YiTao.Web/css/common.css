@@ -39,6 +39,9 @@ li {display: list-item;text-align: -webkit-match-parent;}
     top:0px;
     left:0px;
 }
+    #top + div {
+        margin-top:50px;
+    }
 	.header .city{	
 		float:left;
 		color:#92867e;
