@@ -1,0 +1,133 @@
+﻿@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+@section style{
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/select2/select2_metro.css" />
+    <link rel="stylesheet" href="~/assets/plugins/data-tables/DT_bootstrap.css" />
+}
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            @(ViewBag.name)管理 <small>列表</small>
+        </h3>
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="#">主页</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">@(ViewBag.name)管理</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li><a href="#">列表</a></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-edit"></i>地区</div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="#portlet-config" data-toggle="modal" class="config"></a>
+                    <a href="javascript:;" class="reload"></a>
+                    <a href="javascript:;" class="remove"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    @*<div class="btn-group">
+                        <a href="~/Management/AreaProvide/Add" class="btn green" id="btnTest">添加地区&nbsp;<i class="fa fa-plus"></i></a>
+                    </div>*@
+                </div>
+                <hr>
+                <table class="table table-striped table-bordered table-hover" id="DataTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                Id
+                            </th>
+                            <th>
+                                CityName
+                            </th>
+                            <th>
+                                CityName
+                            </th>
+                            <th>
+                                操作
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/assets/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="~/assets/plugins/data-tables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/assets/plugins/data-tables/DT_bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+            var tbl;
+            $(document).ready(function () {
+                tbl = $('#DataTable').dataTable({
+                    "oLanguage": {//语言国际化
+                        //"sUrl": "/Scripts/Plug-in/jquery.dataTable.cn.txt"
+                        "sProcessing": '<i class="fa fa-coffee"></i>&nbsp;请稍后...',
+                    },
+                    "bJQueryUI": false,
+                    "sPaginationType": "bootstrap",
+                    'bPaginate': true,  //是否分页。
+                    "bProcessing": true, //当datatable获取数据时候是否显示正在处理提示信息。
+                    "bServerSide": false,
+                    "sAjaxSource": "/Management/AreaProvide/Get",
+                    "iDisplayLength": 10,
+                    "aoColumns": [
+                                    { "sTitle": "编号", "sClass": "center" },
+                                    { "sTitle": "地域名称", "sClass": "center" },
+                                    { "sTitle": "创建时间", "sClass": "center" },
+                                    {
+                                        "sTitle": "操作",
+                                        "sClass": "center",
+                                        "fnRender": function (obj) {
+                                            return '<a href="/Management/Shangpin/@(@ViewBag.action)?id=' + obj.aData[0] + '" class="btn btn-xs blue btn-editable"><i class="fa fa-pencil"></i> 设置此城市的@(ViewBag.name)</a>&nbsp;' +
+                                                    '<a href="/?id=' + obj.aData[0] + '" " onclick=""></a>';
+                                        }
+                                    }
+                    ],
+                });
+
+            function RefreshTable(tableId, urlData) {
+                $.getJSON(urlData, null, function (json) {
+                    table = $(tableId).dataTable();
+                    oSettings = table.fnSettings();
+                    table.fnClearTable(this);
+                    for (var i = 0; i < json.aaData.length; i++) {
+                        table.oApi._fnAddData(oSettings, json.aaData[i]);
+                    }
+                    oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
+                    table.fnDraw();
+                });
+            }
+            $("#btnTest").click(function () {
+                RefreshTable('#DataTable', '/Admin/Auth/GetUser');
+            });
+        });
+
+        //aoColumns 参数用来定义表格的列，这是一个数组，其中的每一个对象用来定义一列。
+        //对于每一个列对象： sTitle 定义列的标题 sClass 定义列的样式
+        //fnRender 函数用来渲染列，这个函数将会传递一个参数对象，这个参数对象的 iDataColumn 属性表示当前的列索引，aData 表示当前的行数组。函数返回的结果将被填充到单元格中。
+        //当然了，对于表示行的数组来说，长度应该是相同的。如果某一行数据缺失或者提供了过多地数据的话，就会得到一个警告。
+
+    </script>
+}

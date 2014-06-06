@@ -2594,6 +2594,7 @@
     <Content Include="Areas\Management\Views\Tuisong\Index.cshtml" />
     <Content Include="Areas\Management\Views\Tuisong\Add.cshtml" />
     <Content Include="Areas\Management\Views\Tuisong\Watch.cshtml" />
+    <Content Include="Areas\Management\Views\ShangPin\CityXuanZe.cshtml" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\yitao - FTP.pubxml" />

@@ -38,9 +38,9 @@ namespace YiTao.Web.Areas.Watch.Controllers
             ViewData["account"] = account;
             //奖项
             Prezis p = new Prezis();
-            var firstOne = db.ChouJiangItems.FirstOrDefault(e => e.Type == 1);
-            var secondOne = db.ChouJiangItems.FirstOrDefault(e => e.Type == 2);
-            var thirdOne = db.ChouJiangItems.FirstOrDefault(e => e.Type == 3);
+            var firstOne = db.ChouJiangItems.FirstOrDefault(e => e.Type == 1 && e.AreaId == CityContext.Current.CityId);
+            var secondOne = db.ChouJiangItems.FirstOrDefault(e => e.Type == 2 && e.AreaId == CityContext.Current.CityId);
+            var thirdOne = db.ChouJiangItems.FirstOrDefault(e => e.Type == 3 && e.AreaId == CityContext.Current.CityId);
             if (firstOne != null)
             {
                 p.firstPrize = firstOne.Name;
@@ -133,7 +133,8 @@ namespace YiTao.Web.Areas.Watch.Controllers
             };
             if (val == 1)
             {
-                ChouJiangItem item = db.ChouJiangItems.FirstOrDefault(e => e.Type == 1);
+
+                ChouJiangItem item = db.ChouJiangItems.FirstOrDefault(e => e.Type == 1&&e.AreaId==CityContext.Current.CityId);
                 if (item==null || item.Count == 0)
                 {
                     newOne.ItemId = null;
@@ -151,7 +152,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
             }
             else if (val > 1 && val < 7)
             {
-                ChouJiangItem item = db.ChouJiangItems.FirstOrDefault(e => e.Type == 2);
+                ChouJiangItem item = db.ChouJiangItems.FirstOrDefault(e => e.Type == 2 && e.AreaId == CityContext.Current.CityId);
                 if (item == null || item.Count == 0)
                 {
                     newOne.ItemId = null;
@@ -169,7 +170,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
             }
             else if (val >= 7 && val < 17)
             {
-                ChouJiangItem item = db.ChouJiangItems.FirstOrDefault(e => e.Type == 3);
+                ChouJiangItem item = db.ChouJiangItems.FirstOrDefault(e => e.Type == 3 && e.AreaId == CityContext.Current.CityId);
                 if (item == null || item.Count == 0)
                 {
                     newOne.ItemId = null;

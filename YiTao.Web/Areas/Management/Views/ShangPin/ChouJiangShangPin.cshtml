@@ -243,7 +243,8 @@
                             Description: $("#Description1").val(),
                             Name: $("#Name1").val(),
                             Type: 1,
-                            ImageUrl: $("#imageCover1").attr("src")
+                            ImageUrl: $("#imageCover1").attr("src"),
+                            AreaId: "@ViewBag.id"
                         },
                     success: function (data, textStatus) {
                         if (data == "200") {
@@ -276,7 +277,8 @@
                             Description: $("#Description2").val(),
                             Name: $("#Name2").val(),
                             Type: 2,
-                            ImageUrl: $("#imageCover2").attr("src")
+                            ImageUrl: $("#imageCover2").attr("src"),
+                            AreaId: "@ViewBag.id"
                         },
                     success: function (data, textStatus) {
                         if (data == "200") {
@@ -309,7 +311,8 @@
                             Description: $("#Description3").val(),
                             Name: $("#Name3").val(),
                             Type: 3,
-                            ImageUrl: $("#imageCover3").attr("src")
+                            ImageUrl: $("#imageCover3").attr("src"),
+                            AreaId: "@ViewBag.id"
                         },
                     success: function (data, textStatus) {
                         if (data == "200") {

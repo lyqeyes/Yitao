@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="YiTaoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="YiTaoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="AccountId" />
@@ -45,6 +45,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="AreaId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Collection">
           <Key>
@@ -102,6 +103,7 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="JiFen" Type="int" Nullable="false" />
+          <Property Name="AreaId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="HaoDian">
           <Key>
@@ -372,8 +374,7 @@
           <EntitySet Name="ZhuanTi" EntityType="Self.ZhuanTi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZhuanTiItem" EntityType="Self.ZhuanTiItem" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="YiTaoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -417,6 +418,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="AreaId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Collection">
           <Key>
@@ -474,6 +476,7 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Int32" Nullable="false" />
           <Property Name="JiFen" Type="Int32" Nullable="false" />
+          <Property Name="AreaId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="HaoDian">
           <Key>
@@ -785,6 +788,7 @@
           <EntitySetMapping Name="ChouJiangItems">
             <EntityTypeMapping TypeName="YiTaoModel.ChouJiangItem">
               <MappingFragment StoreEntitySet="ChouJiangItem">
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
                 <ScalarProperty Name="ChouJiangId" ColumnName="ChouJiangId" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
@@ -846,6 +850,7 @@
           <EntitySetMapping Name="DuiHuanItems">
             <EntityTypeMapping TypeName="YiTaoModel.DuiHuanItem">
               <MappingFragment StoreEntitySet="DuiHuanItem">
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
                 <ScalarProperty Name="DuiHuanItemId" ColumnName="DuiHuanItemId" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="Count" ColumnName="Count" />

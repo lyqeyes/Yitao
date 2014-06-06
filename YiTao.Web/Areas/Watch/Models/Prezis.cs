@@ -16,11 +16,11 @@ namespace YiTao.Web.Areas.Watch.Models
         public Prezis()
         {
             firstPrize = "没有";
-            firstImg = null;
+            firstImg = "";
             secondPrize = "没有";
-            secondImg = null;
+            secondImg = "";
             thirdPrize = "没有";
-            thirdImg = null;
+            thirdImg = "";
         }
     }
 }

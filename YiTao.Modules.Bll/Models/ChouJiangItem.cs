@@ -21,5 +21,6 @@ namespace YiTao.Modules.Bll.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public int Type { get; set; }
+        public int AreaId { get; set; }
     }
 }
