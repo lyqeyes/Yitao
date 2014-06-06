@@ -2147,6 +2147,7 @@
     <Content Include="Content\style.css" />
     <Content Include="Content\TableCss.css" />
     <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrapbutton.css" />
     <Content Include="css\common.css" />
     <Content Include="css\style.css" />
     <Content Include="css\styleyanjing.css" />
