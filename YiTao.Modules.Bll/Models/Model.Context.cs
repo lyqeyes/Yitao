@@ -54,5 +54,6 @@ namespace YiTao.Modules.Bll.Models
         public virtual DbSet<VoteTopic> VoteTopics { get; set; }
         public virtual DbSet<ZhuanTi> ZhuanTis { get; set; }
         public virtual DbSet<ZhuanTiItem> ZhuanTiItems { get; set; }
+        public virtual DbSet<Down> Downs { get; set; }
     }
 }

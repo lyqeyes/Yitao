@@ -160,6 +160,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Management\Views\Upload\" />
+    <Folder Include="Areas\Watch\Views\file\" />
     <Folder Include="assets\plugins\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="file\image\" />
     <Folder Include="Models\" />
@@ -174,6 +175,7 @@
     <Compile Include="Areas\Management\Common\NoLoginAttribute.cs" />
     <Compile Include="Areas\Management\Common\PushSDK.cs" />
     <Compile Include="Areas\Management\Common\ShangPinBaseController.cs" />
+    <Compile Include="Areas\Management\Controllers\AppController.cs" />
     <Compile Include="Areas\Management\Controllers\AppWelcomeController.cs" />
     <Compile Include="Areas\Management\Controllers\AreaProvideController.cs" />
     <Compile Include="Areas\Management\Controllers\JiangpinDealController.cs" />
@@ -218,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Watch\Views\PersonInfor\ChangePassWord.cshtml" />
+    <Content Include="assets\banner.jpg" />
     <Content Include="assets\css\animate.css" />
     <Content Include="assets\css\custom.css" />
     <Content Include="assets\css\demo.css" />
@@ -2143,14 +2146,17 @@
     <Content Include="Content\formCherk.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\TableCss.css" />
+    <Content Include="css\bootstrap.css" />
     <Content Include="css\common.css" />
     <Content Include="css\style.css" />
+    <Content Include="css\styleyanjing.css" />
     <Content Include="css\unify.css" />
     <Content Include="css\user-base.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\banner.jpg" />
     <Content Include="img\banner\banner01.jpg" />
     <Content Include="img\banner\banner02.jpg" />
     <Content Include="img\banner\banner03.jpg" />
@@ -2201,6 +2207,7 @@
     <Content Include="img\icon_02.png" />
     <Content Include="img\icon_03.png" />
     <Content Include="img\icon_04.png" />
+    <Content Include="img\ic_launcher.png" />
     <Content Include="img\in.png" />
     <Content Include="img\input_01.png" />
     <Content Include="img\input_02.png" />
@@ -2595,6 +2602,8 @@
     <Content Include="Areas\Management\Views\Tuisong\Add.cshtml" />
     <Content Include="Areas\Management\Views\Tuisong\Watch.cshtml" />
     <Content Include="Areas\Management\Views\ShangPin\CityXuanZe.cshtml" />
+    <Content Include="Areas\Management\Views\App\Index.cshtml" />
+    <Content Include="file\Yitao.apk" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\yitao - FTP.pubxml" />
@@ -3119,6 +3128,7 @@
     <Content Include="Scripts\ueditor\third-party\video-js\font\vjs.woff" />
     <Content Include="Views\Home\FindPassword.cshtml" />
     <Content Include="Source\assets\less\simplemodal.less" />
+    <Content Include="Views\Home\download.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\YiTao.Modules.Bll\YiTao.Modules.Bll.csproj">

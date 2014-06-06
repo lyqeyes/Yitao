@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Scripts/webuploader/webuploader.css">
+    <script src="http://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/webuploader/webuploader.js"></script>
+    <script type="text/javascript">
+        // 文件上传
+        $(function () {
+            var uploader1;
+            uploader1 = WebUploader.create({
+                // 自动上传。
+                auto: true,
+                // 不压缩image
+                resize: false,
+                multiple: false,
+                // swf文件路径
+                swf: '~/Scripts/webuploader/Uploader.swf',
+                // 文件接收服务端。
+                server: '/Management/Upload/Upload',
+                // 选择文件的按钮。
+                pick: '#picker1',
+                threads: 1
+            });
+            uploader1.on('uploadAccept', function (object, ret) {
+                if (ret._raw == "error")
+                    alert("好像出错了，请刷新页面重试");
+                else {
+                    $("#imageCover1").attr("src", ret._raw);
+                }
+            });
+            uploader1.on('uploadError', function (file) {
+                alert("好像出错了，请刷新页面重试");
+            });
+        });
+    </script>
+</head>
+<div class="row">
+    <div class="col-md-12">
+        <div id="picker1">上传app</div>
+    </div>
+</div>

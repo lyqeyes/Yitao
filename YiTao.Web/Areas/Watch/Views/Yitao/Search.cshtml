@@ -11,30 +11,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>搜索商品</title>
     <link href="/css/common.css" rel="stylesheet">
+    <link type="text/css" href="/style/unify.css" rel="stylesheet" />
+    <link type="text/css" href="/style/user-base.css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/miaov.js"></script>
 </head>
 <body>
-    
-   <div id="warp">
-        <!--搜索框-->
-        <div>
+    <div id="warp">
+        <div id="top">
+            <div class="top_title">搜索</div>
+            <a class="top_return" type="button" href="javascript:history.go(-1)" />
+            <a class="top_search" href="/Watch/Yitao/Search"><img src="/img/search_02.png" /></a>
+        </div>
+        <div id="search">
             <form role="form" method="post" action="/Watch/Yitao/Search">
-                <input id="Name" name="Name" value="@Name" />
-                <input type="submit" />
+                <input class="reg_button01" id="Name" name="Name" value="@Name" type="text" onclick="this.value='';focus()" />
+                <input type="submit" class="search_pic" value="" />
             </form>
         </div>
-
         <div id="goods_category">
             @{
-                if(JuZheKouResultList == null || ShangPinResultList== null || ZhuanTiResultList == null)
+                if (JuZheKouResultList == null || ShangPinResultList == null || ZhuanTiResultList == null)
                 {
-                    <span>请搜索商品</span>
+                    <div id="search1">
+                        <a href="#">女装</a>
+                        <a href="#" class="red">女鞋</a>
+                        <a href="#">手表</a>
+                        <a href="#">精品</a>
+                        <a href="#" class="blue">男装</a>
+                        <a href="#">男鞋</a>
+                        <a href="#" class="red">内衣</a>
+                        <a href="#" class="yellow">保湿防晒</a>
+                        <a href="#">女裙</a>
+                        <a href="#" class="red">衬衫</a>
+                        <a href="#">套装</a>
+                        <a href="#" class="blue">数码家电</a>
+                        <a href="#">香皂</a>
+                        <a href="#/" class="red">睫毛增长</a>
+                        <a href="#" class="blue">休闲裤</a>
+                        <a href="#">电脑桌</a>
+                        <a href="#" class="blue">MP4</a>
+                        <a href="#">4G手机</a>
+                        <a href="#">卫衣</a>
+                        <a href="#" class="yellow">纯棉被罩</a>
+                        <a href="#">T恤</a>
+                    </div>
                 }
                 else if (JuZheKouResultList.Count == 0 && ShangPinResultList.Count == 0 && ZhuanTiResultList.Count == 0)
                 {
-                    <span >搜索无结果</span>
+                    <span>搜索无结果</span>
                 }
                 else
                 {
@@ -42,15 +70,15 @@
                     {
                         <div class="goods_list">
                             <a href="/watch/yitao/JuzekouDetail?id=@item.JuZheKouItemId"><img src="@item.ImageUrl" alt="" /></a>
-                            @if(item.Name.Length > 10)
-                            { 
-                                <a href="/watch/yitao/JuzekouDetail?id=@item.JuZheKouItemId" class="goods_title">@String.Format("{0}...",item.Name.Substring(0,10))</a>
+                            @if (item.Name.Length > 10)
+                            {
+                                <a href="/watch/yitao/JuzekouDetail?id=@item.JuZheKouItemId" class="goods_title">@String.Format("{0}...", item.Name.Substring(0, 10))</a>
                             }
                             else
                             {
                                 <a href="/watch/yitao/JuzekouDetail?id=@item.JuZheKouItemId" class="goods_title">@item.Name</a>
-                            }                            
-                        </div>                    
+                            }
+                        </div>
                     }
                     foreach (var item in ShangPinResultList)
                     {
@@ -63,7 +91,7 @@
                             else
                             {
                                 <a href="/watch/yitao/ShangpinDetail?id=@item.ShangPinId" class="goods_title">@item.Name</a>
-                            }       
+                            }
                         </div>
                     }
                     foreach (var item in ZhuanTiResultList)
@@ -77,7 +105,7 @@
                             else
                             {
                                 <a href="/watch/yitao/ZhuantiItemDetail?id=@item.ZhuanTiItemId" class="goods_title">@item.Name</a>
-                            }  
+                            }
                         </div>
                     }
                 }

@@ -91,6 +91,14 @@
           <Property Name="Description" Type="int" Nullable="false" />
           <Property Name="ShangPinCount" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Down">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="DuiHuanItem">
           <Key>
             <PropertyRef Name="DuiHuanItemId" />
@@ -352,6 +360,7 @@
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DaLei" EntityType="Self.DaLei" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DingDan" EntityType="Self.DingDan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Down" EntityType="Self.Down" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DuiHuanItem" EntityType="Self.DuiHuanItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HaoDian" EntityType="Self.HaoDian" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JiFenLiShi" EntityType="Self.JiFenLiShi" Schema="dbo" store:Type="Tables" />
@@ -746,7 +755,16 @@
           <EntitySet Name="VoteTopics" EntityType="Self.VoteTopic" />
           <EntitySet Name="ZhuanTis" EntityType="Self.ZhuanTi" />
           <EntitySet Name="ZhuanTiItems" EntityType="Self.ZhuanTiItem" />
+          <EntitySet Name="Downs" EntityType="YiTaoModel.Down" />
         </EntityContainer>
+        <EntityType Name="Down">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1117,6 +1135,15 @@
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="FanJiFen" ColumnName="FanJiFen" />
                 <ScalarProperty Name="BaoYou" ColumnName="BaoYou" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Downs">
+            <EntityTypeMapping TypeName="YiTaoModel.Down">
+              <MappingFragment StoreEntitySet="Down">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

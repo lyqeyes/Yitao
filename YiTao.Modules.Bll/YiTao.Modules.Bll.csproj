@@ -83,6 +83,9 @@
     <Compile Include="Models\DingDan.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Down.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DuiHuanItem.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

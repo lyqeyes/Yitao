@@ -34,6 +34,7 @@
         <EntityTypeShape EntityType="YiTaoModel.VoteTopic" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="YiTaoModel.ZhuanTi" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="YiTaoModel.ZhuanTiItem" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YiTaoModel.Down" Width="1.5" PointX="3.375" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

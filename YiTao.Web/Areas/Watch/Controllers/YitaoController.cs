@@ -407,6 +407,10 @@ namespace YiTao.Web.Areas.Watch.Controllers
         [NoLogin]
         public ActionResult Search(string Name)
         {
+            if (string.IsNullOrEmpty(Name))
+            {
+                return View();
+            }
             ViewBag.Name = Name;
             List<ZhuanTiItem> ZhuanTiResultList = new List<ZhuanTiItem>();
             List<JuZheKouItem> JuZheKouResultList = new List<JuZheKouItem>();

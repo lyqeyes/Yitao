@@ -1,0 +1,29 @@
+body {
+    background: url(../img/banner.jpg) #fff no-repeat;
+    background-size: 100%;
+    background-size: auto;
+    text-align: center;
+}
+.middle {
+    padding: 0 0;
+    margin: 0 0;
+    text-align: center;
+    width: 49%;
+    display: inline-block;
+}
+
+.logo {
+    margin-top: 10em;
+    margin-bottom: 3em;
+    text-align: center;
+}
+
+    .logo img {
+        width: 40%;
+        height: auto;
+    }
+
+.btn {
+    width: 9em;
+}
+
