@@ -22,23 +22,7 @@ li {display: list-item;text-align: -webkit-match-parent;}
     top:0px;
     left:0px;
 }
-#top {
-    background-color:#fff;
-	width:100%;
-	height:50px;
-	/*padding:0 2%;*/
-	margin-bottom:5px;
-	text-align:center;
-	color:#444;
-	font-family: "微软雅黑,宋体";
-	/*box-sizing:border-box;
-	-moz-box-sizing:border-box;*/
-	/*box-shadow:2px 2px 5px #999;*/
-	position:fixed;
-	z-index:2;
-    top:0px;
-    left:0px;
-}
+
 	.header .city{	
 		float:left;
 		color:#92867e;

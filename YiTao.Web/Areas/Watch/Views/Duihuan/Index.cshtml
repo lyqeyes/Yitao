@@ -22,68 +22,73 @@
 </head>
 
 <body>
-    <div id="warp">
-        <div id="top">
-            <div class="top_title">积分兑换</div>
-            <a href="#" class="select" id="myModal">@YiTao.Web.Areas.Watch.Common.CityContext.Current.CityName</a>
-            <a class="top_sign" href="#"><img src="/img/sign05.png" /></a>
-            <a class="top_search" href="/Watch/Yitao/Search"><img src="/img/search_02.png" /></a>
-        </div>
-        <div id="integral">            
-            <div class="integral_title">
-                <div class="title_left">0元换购</div>
-                <div class="title_right01"><a href="/watch/duihuan/choujiang">积分抽奖</a></div>
-            </div>
-            <div class="integral_num">您当前的积分是：
-            @{
-                Account acc = ViewData["account"] as Account;
-                <i>@acc.JiFen</i>
-            }
-            </div>
-        </div>
-        <!--上端导航部分结束-->
 
-        <div class="product_list" id="duihuan">
-            <p style="font-size:18px;color:red;">@TempData["infor"]</p>
-            @foreach(DuiHuanItem item in Model)
-            {
-            <div class="list_box" style="border-top:#808080 solid">
-                <!--产品类表-->
-                <a href="#"><img class="box_left" src="@item.ImageUrl" width="394" height="301" alt="" /></a>
-                <ul class="box_right">
-                    <li><a href="#" class="title">@item.Name</a></li>
-                    <li class="pic"><a href="#" class="pic_a"><img src="/img/post_pic.png" width="64" height="64" alt="" /></a><a href="#" class="pic_span">包邮</a></li>
-                    <li name="name_font" class="font">
-                        <span>积分 @item.JiFen</span>
-                        <div class="right_font">
-                            <a class="duihuanBefore show">
-                                <img src="/img/input_02.png" width="262" height="97" alt="" />
-                            </a>
-                            <a class="btn btn-warning duihuanEnd hidden" href="/watch/duihuan/HuanGou/@item.DuiHuanItemId">确认?</a>
-                            <span class="discount">价值:<i>@item.Price</i>元</span>
-                            <span style="color:red;" class="discount">剩余量:<i>@item.Count</i>个</span>
+                <div id="warp">
+                    <div id="top">
+                        <div class="top_title">积分兑换</div>
+                        <a href="#" class="select" id="myModal">@YiTao.Web.Areas.Watch.Common.CityContext.Current.CityName</a>
+                        <a class="top_sign" href="#"><img src="/img/sign05.png" /></a>
+                        <a class="top_search" href="/Watch/Yitao/Search"><img src="/img/search_02.png" /></a>
+                    </div>
+                    <div id="integral">
+                        <div class="integral_title">
+                            <div class="title_left">0元换购</div>
+                            <div class="title_right01"><a href="/watch/duihuan/choujiang">积分抽奖</a></div>
                         </div>
-                    </li>
-                </ul>
-            </div><!--产品类表结束-->   
-            }                  
-        </div>
-        </div>
-    <div id="dialog-message" title="选择城市" style="display:none">
-        <div id="warp">
-            <div id="search" style="padding:0 5%;">
-                <ul>
-                    @foreach (var item in ViewData["Area"] as List<YiTao.Modules.Bll.Models.Area>)
-                    {
-                        <li class="login_list">
-                            <a href="/Watch/Yitao/AreaInfo?id=@item.Id">@item.Name</a>
-                        </li>
-                    }
+                        <div class="integral_num">
+                            您当前的积分是：
+                            @{
+                                Account acc = ViewData["account"] as Account;
+                                <i>@acc.JiFen</i>
+                            }
+                        </div>
+                    </div>
+                    <!--上端导航部分结束-->
 
-                </ul>
-            </div>
-        </div>
-    </div>
+                    <div class="product_list" id="duihuan">
+                        <p style="font-size:18px;color:red;">@TempData["infor"]</p>
+                        @foreach (DuiHuanItem item in Model)
+                        {
+                            <div class="list_box" style="border-top:#808080 solid">
+                                <!--产品类表-->
+                                <a href="#"><img class="box_left" src="@item.ImageUrl" width="394" height="301" alt="" /></a>
+                                <ul class="box_right">
+                                    <li><a href="#" class="title">@item.Name</a></li>
+                                    <li class="pic"><a href="#" class="pic_a"><img src="/img/post_pic.png" width="64" height="64" alt="" /></a><a href="#" class="pic_span">包邮</a></li>
+                                    <li name="name_font" class="font">
+                                        <span>积分 @item.JiFen</span>
+                                        <div class="right_font">
+                                            <a class="duihuanBefore show">
+                                                <img src="/img/input_02.png" width="262" height="97" alt="" />
+                                            </a>
+                                            <a class="btn btn-warning duihuanEnd hidden" href="/watch/duihuan/HuanGou/@item.DuiHuanItemId">确认?</a>
+                                            <span class="discount">价值:<i>@item.Price</i>元</span>
+                                            <span style="color:red;" class="discount">剩余量:<i>@item.Count</i>个</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div><!--产品类表结束-->
+                        }
+                    </div>
+                </div>
+                <div id="dialog-message" title="选择城市" style="display:none">
+                    <div id="warp">
+                        <div id="search" style="padding:0 5%;">
+                            <ul>
+                                @foreach (var item in ViewData["Area"] as List<YiTao.Modules.Bll.Models.Area>)
+                                {
+                                    <li class="login_list">
+                                        <a href="/Watch/Yitao/AreaInfo?id=@item.Id">@item.Name</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+    
+    
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
