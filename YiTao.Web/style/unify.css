@@ -141,7 +141,7 @@ a{ text-decoration:none; outline:none;}
 #register ul li a{ display:block;}
 #register ul li .reg_pic01{ width:100%; height:auto; margin:0 auto;}
 /*搜索*/
-#search{ width:90%; height:auto;padding:10% 5%;}
+#search{ width:90%; height:auto;padding:10% 5%;margin-top:4em !important;}
 #search .reg_button01{ width:93%; height:auto; padding:0.5em; margin-bottom:1em; float:left; border:0.1em solid #bfbfbf; border-radius:0.3em;outline:none; cursor:text;}
 /*#search .search_pic{ width:7%; height:auto; float:right; position:absolute;margin:0.65em auto auto -2.3em;}*/
 #search .search_pic{ width:20px; height:auto; float:right; position:absolute; right:10%; margin-top:0.5em;background:url(../img/search_01.png);-moz-background-size:20px 20px; /* 老版本的 Firefox */background-size:20px 20px;background-repeat:no-repeat; border:0;}
