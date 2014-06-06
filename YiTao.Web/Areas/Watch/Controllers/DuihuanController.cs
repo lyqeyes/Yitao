@@ -18,11 +18,12 @@ namespace YiTao.Web.Areas.Watch.Controllers
         // 
         // GET: /Watch/Duihuan/        
         public ActionResult Index()
-        {            
+        {
+            ViewData["Area"] = db.Areas.Where(a => a.State == 1).ToList();
             HttpCookie v = HttpContext.Request.Cookies["LoginInfo"];
             string UserName = HttpUtility.UrlDecode(v["UserName"]).ToString();
             ViewData["account"] = db.Accounts.Where(a => a.Name == UserName).FirstOrDefault();
-            return View(db.DuiHuanItems.Where(a=>a.Count > 0).ToList());
+            return View(db.DuiHuanItems.Where(a=>a.Count > 0&&a.AreaId==CityContext.Current.CityId).ToList());
         }
 
         public ActionResult ChouJiang()
@@ -103,7 +104,6 @@ namespace YiTao.Web.Areas.Watch.Controllers
                 WhetherDealed = 0
             };
             db.Entry(acc).State = EntityState.Modified;
-            db.Entry(db).State = EntityState.Modified;
             db.JiFenLiShis.Add(newOne);
             db.SaveChanges();
             return RedirectToAction("index");

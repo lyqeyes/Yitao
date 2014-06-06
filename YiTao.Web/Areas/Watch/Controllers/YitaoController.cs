@@ -227,6 +227,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
         {
             //轮播
             ViewData["lunbolist"] = db.LunBoes.ToList();
+            ViewData["Area"] = db.Areas.Where(a => a.State == 1).ToList();
             return View(db.DaLeis.ToList());
         }
 
