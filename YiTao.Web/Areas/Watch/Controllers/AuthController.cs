@@ -9,6 +9,11 @@ using System.Data.Entity;
 
 namespace YiTao.Web.Areas.Watch.Controllers
 {
+    public class forgetuser
+    {
+        public string name { get; set; }
+        public string email { get; set; }
+    }
     public class AuthController : BaseController
     {
         //登陆账户
@@ -95,6 +100,49 @@ namespace YiTao.Web.Areas.Watch.Controllers
         {
             return View();
         }
+
+        [NoLogin]
+        [HttpPost]
+        public ActionResult ForgetPass(forgetuser fu)
+        {
+            var user = db.Accounts.FirstOrDefault(a => a.Name == fu.name);
+            if (user!=null)
+            {
+                if (user.Email == fu.email)
+                {
+                    return RedirectToAction("Findpass", new { name = fu.name});
+                }
+                else
+                {
+                    ViewBag.error = "email错误";
+                    return View(fu);
+                }
+            }
+            ViewBag.error = "用户名错误";
+            return View(fu);
+        }
+
+        [NoLogin]
+        public ActionResult Findpass(string name)
+        {
+            var user = db.Accounts.FirstOrDefault(a => a.Name == name);
+            if (user==null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult FindOk(string name,string password)
+        {
+            var u = db.Accounts.FirstOrDefault(a => a.Name == name);
+            u.Password = password;
+            db.Accounts.Attach(u);
+            db.Entry(u).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Login");
+        }
         //注销
         public ActionResult Logout()
         {
@@ -137,5 +185,7 @@ namespace YiTao.Web.Areas.Watch.Controllers
             ViewBag.msg = "1";
             return View();
         }
+
+        
     }
 }

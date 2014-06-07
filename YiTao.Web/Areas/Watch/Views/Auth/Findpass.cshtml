@@ -1,0 +1,43 @@
+﻿@model YiTao.Modules.Bll.Models.Account
+@{
+    Layout = null;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>亿淘app</title>
+    <link type="text/css" href="~/style/unify.css" rel="stylesheet" />
+    <link type="text/css" href="~/style/user-base.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="warp">
+        <div id="search">
+            <form action="FindOk" method="post" onsubmit="return formCheck()">
+                <input id="Email" name="Email" class="log_button01" type="text" placeholder="邮箱" value="@Model.Email" readonly />
+                <input id="Name" name="name" class="log_button01" type="text" placeholder="用户名" value="@Model.Name" readonly />
+                <input id="Password" name="password" class="log_button01" type="password" placeholder="密码" />
+                <input id="Password_2" name="password_2" class="log_button01" type="password" placeholder="确认密码" />
+                <span id="errorInfor" style="color:#ff0000;font-family:微软雅黑;"></span>
+                <input class="log_button02" type="submit" value="重置密码" />
+            </form>
+            <script src="/js/jquery-1.9.0.min.js"></script>
+            <script>
+                function formCheck() {
+                    var pw1 = $("#Password").val();
+                    var pw2 = $("#Password_2").val();
+                    if (pw1 != pw2) {
+                        $("#errorInfor").html("两次密码不一致");
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>

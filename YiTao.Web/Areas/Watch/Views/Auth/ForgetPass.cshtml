@@ -1,5 +1,5 @@
 ﻿
-@{
+@*@{
     Layout = null;
 }
 
@@ -20,4 +20,32 @@
         </div>
     </div>
 </body>
+</html>*@
+
+@{Layout = null;}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>亿淘app</title>
+    <link type="text/css" href="~/style/unify.css" rel="stylesheet" />
+    <link type="text/css" href="~/style/user-base.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="warp">
+        <div id="search">
+            <div class="login_01"><img src="~/img/login_01.png" /></div>
+            <form action="ForgetPass" method="post">
+                <input name="name" class="log_button01" type="text" placeholder="用户名" />
+                <input name="email" class="log_button01" type="text" placeholder="注册邮箱" />
+                <span id="errorInfor" style="color:#ff0000;font-family:微软雅黑;">@ViewBag.error</span>
+                <input class="log_button02" type="submit" value="找回密码" />
+            </form>
+            <div class="log_hre"><a class="hre_a02" href="~/Watch/Auth/Login/">返回登录</a></div>
+        </div>
+    </div>
+</body>
 </html>
+

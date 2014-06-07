@@ -363,35 +363,35 @@ namespace YiTao.Web.Areas.Management.Controllers
         {
             ViewBag.id = id;
             var ChouJianglist = new List<ChouJiangItem>();
-            var v1 = db.ChouJiangItems.Where(a => a.AreaId == id&&a.Type==1).
-                OrderByDescending(a => a.ChouJiangId).First();
-            if (v1==null)
+            var v1 = db.ChouJiangItems.Where(a => a.AreaId == id && a.Type == 1).ToList();
+            if (v1.Count==0)
             {
                 ChouJianglist.Add(new ChouJiangItem() { Count = 0, Description = "无", Name = "无" });
             }
             else
 	        {
-                ChouJianglist.Add(v1);
+                ChouJianglist.Add(v1.
+                OrderByDescending(a => a.ChouJiangId).First());
 	        }
-            var v2 = db.ChouJiangItems.Where(a => a.AreaId == id&&a.Type==2).
-                OrderByDescending(a => a.ChouJiangId).First();
-            if (v2==null)
+            var v2 = db.ChouJiangItems.Where(a => a.AreaId == id && a.Type == 2).ToList();
+            if (v2.Count==0)
             {
                 ChouJianglist.Add(new ChouJiangItem() { Count = 0, Description = "无", Name = "无" });
             }
             else
 	        {
-                ChouJianglist.Add(v2);
+                ChouJianglist.Add(v2.
+                OrderByDescending(a => a.ChouJiangId).First());
 	        }
             var v3 = db.ChouJiangItems.Where(a => a.AreaId == id&&a.Type==3).
-                OrderByDescending(a => a.ChouJiangId).First();
-            if (v1==null)
+               ToList();
+            if (v3.Count==0)
             {
                 ChouJianglist.Add(new ChouJiangItem() { Count = 0, Description = "无", Name = "无" });
             }
             else
 	        {
-                ChouJianglist.Add(v3);
+                ChouJianglist.Add(v3.OrderByDescending(a => a.ChouJiangId).First());
 	        }
             return View(ChouJianglist);
         }
