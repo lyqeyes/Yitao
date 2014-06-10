@@ -582,17 +582,18 @@ namespace YiTao.Web.Areas.Management.Controllers
             return RedirectToAction("ShangPinItem", new { id = type });
         }
 
-        public ActionResult ShangPinItem(int id)
+        public ActionResult ShangPinItem(int type, int? id)
         {
-            ViewBag.id = id;
-            var temp = db.ZhuanTis.FirstOrDefault(z => z.Type == id);
+            ViewBag.id = type;
+            var temp = db.ZhuanTis.FirstOrDefault(z => z.Type == type);
             if (temp == null)
             {
                 return View();
             }
             else
             {
-                return View(db.ZhuanTiItems.Where(z => z.ZhuanTiId == temp.ZhuanTiId).ToList());
+                PagedList<ZhuanTiItem> m = db.ZhuanTiItems.Where(z => z.ZhuanTiId == temp.ZhuanTiId).ToList().ToPagedList(id ?? 1, 5);
+                return View(m);
             }
         }
         #endregion
