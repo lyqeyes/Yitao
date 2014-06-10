@@ -117,6 +117,19 @@
         });
     });
 </script>
+<script type="text/javascript">
+    function checkfun() {
+        var obj = $("input[type='text']");
+        $.each(obj, function (n, vaule) {
+            if ($(obj[n]).val() == "") {
+                alert("表单必须全都填写");
+                return false;
+            }
+        })
+        return true;
+    }
+</script>
+
 <script>
     $("#index").removeClass("open");
     $("#goodSet").addClass("open");
