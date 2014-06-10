@@ -227,7 +227,7 @@ namespace YiTao.Web.Areas.Management.Controllers
             };
             Web.Common.Searcher.Add(SearchShangPin);
             #endregion
-            return RedirectToAction("CommonShangPinEdit", new { ShangPinId = editOne.ShangPinId });
+            return RedirectToAction("CommonShangPin", new { XiaoLeiId = editOne.XiaoLeiId });
         }
         public ActionResult CreateShangPin(int XiaoLeiId)
         {

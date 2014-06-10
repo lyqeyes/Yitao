@@ -12,9 +12,9 @@ namespace YiTao.Web.Areas.Management.Controllers
     public class AccountController : BaseController
     {
         [HttpGet]
-        public ActionResult CommonManage()
+        public ActionResult CommonManage(int id= 0)
         {
-            return View(db.Accounts.ToList());
+            return View(db.Accounts.OrderByDescending(a => a.CreateTime).ToPagedList(id, 20));
         }
 
         [HttpGet]

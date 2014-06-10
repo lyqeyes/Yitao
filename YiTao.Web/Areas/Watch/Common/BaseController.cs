@@ -54,6 +54,7 @@ namespace YiTao.Web.Areas.Watch.Common
                 filterContext.Result = RedirectToAction("Login", new { controller = "Auth", area = "watch" });
                 return;
             }
+
             return;
         }
 

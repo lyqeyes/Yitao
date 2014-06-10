@@ -625,7 +625,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                 db.SaveChanges();
 
             }
-            return RedirectToAction("ShangPinItem", new { id = type });
+            return RedirectToAction("ShangPinItem", new { type = type });
         }
 
         public ActionResult ShangPinItem(int type, int? id)

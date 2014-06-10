@@ -1,4 +1,5 @@
-﻿@model List<YiTao.Modules.Bll.Models.Account>
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<YiTao.Modules.Bll.Models.Account>
 @{
     Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
 }
@@ -52,6 +53,24 @@
                         }
                     </thead>
                 </table>
+                <div style="text-align:center; margin-left:-2em;">
+                    @Html.Pager(Model, new PagerOptions
+                 {
+                     HorizontalAlign = "center",
+                     ShowFirstLast = false,
+                     CssClass = "pagination pagination-sm",
+                     NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                     ContainerTagName = "ul",
+                     PageIndexParameterName = "id",
+                     ShowPageIndexBox = false,
+                     PrevPageText = "<<",
+                     NumericPagerItemCount = 3,
+                     Id = "pages",
+                     NextPageText = ">>",
+                     CurrentPagerItemWrapperFormatString = "<li class=\"active\"> <a>{0}</a> </li>",
+                     NumericPagerItemWrapperFormatString = "<li> {0}</li>",
+                 }, new { style = "margin-top:2em;margin-bottom:2em" })
+                </div>
             </div>
         </div>
         <!-- END EXAMPLE TABLE PORTLET-->
@@ -70,28 +89,28 @@
                     <div class="form-body">
                         <div class="form-group">
                             <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                            <label class="control-label visible-ie8 visible-ie9">用户名</label>
+                            <label class="control-label">用户名</label>
                             <div class="input-icon">
                                 <i class="fa fa-user"></i>
                                 @Html.TextBox("username", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "用户名", id = "username", name = "username" })
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">密码</label>
+                            <label class="control-label">密码</label>
                             <div class="input-icon">
                                 <i class="fa fa-lock"></i>
                                 @Html.Password("password", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "密码", id = "password", name = "password" })
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">Email</label>
+                            <label class="control-label">Email</label>
                             <div class="input-icon">
                                 <i class="fa fa-lock"></i>
                                 @Html.TextBox("email", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "Email", id = "email", name = "email" })
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">电话</label>
+                            <label class="control-label">电话</label>
                             <div class="input-icon">
                                 <i class="fa fa-lock"></i>
                                 @Html.TextBox("phone", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "电话", id = "phone", name = "phone" })
@@ -120,28 +139,28 @@
                 <form action="#" id="form_sample_3" class="form-horizontal">
                     <div class="form-body">
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">用户名</label>
+                            <label class="control-label">用户名</label>
                             <div class="input-icon">
                                 <i class="fa fa-user"></i>
                                 <input class="form-control placeholder-no-fix" type="text" readonly="readonly" autocomplete="off" placeholder="用户名" id="username" name="username" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">密码</label>
+                            <label class="control-label ">密码</label>
                             <div class="input-icon">
                                 <i class="fa fa-lock"></i>
                                 <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="密码" id="password" name="password" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">Email</label>
+                            <label class="control-label">Email</label>
                             <div class="input-icon">
                                 <i class="fa fa-user"></i>
                                 <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" id="email" name="email" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">电话</label>
+                            <label class="control-label">电话</label>
                             <div class="input-icon">
                                 <i class="fa fa-user"></i>
                                 <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="电话" id="phone" name="phone" />
