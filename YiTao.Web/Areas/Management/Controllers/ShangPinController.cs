@@ -19,7 +19,7 @@ namespace YiTao.Web.Areas.Management.Controllers
         #region 大类
         public ActionResult DaLei(int? id)
         {
-            PagedList<DaLei> m = db.DaLeis.ToList().ToPagedList(id ?? 1, 5);
+            PagedList<DaLei> m = db.DaLeis.OrderByDescending(e=>e.DaLeiId).ToList().ToPagedList(id ?? 1, 5);
             return View(m);
         }
 
@@ -63,7 +63,7 @@ namespace YiTao.Web.Areas.Management.Controllers
         {
             TempData["daleiID"] = DaLeiId;
             TempData["daleiName"] = db.DaLeis.Find(DaLeiId).Name;
-            PagedList<TowLei> m = db.TowLeis.Where(e => e.DaLeiId == DaLeiId).ToList().ToPagedList(id ?? 1, 5);
+            PagedList<TowLei> m = db.TowLeis.Where(e => e.DaLeiId == DaLeiId).OrderByDescending(e=>e.TwoLeiId).ToList().ToPagedList(id ?? 1, 5);
             return View(m);
         }
 
@@ -105,11 +105,12 @@ namespace YiTao.Web.Areas.Management.Controllers
         #endregion
 
         #region 三类
-        public ActionResult ThreeLei(int TwoLeiId)
+        public ActionResult ThreeLei(int TwoLeiId,int ?id)
         {
             TempData["TwoLeiId"] = TwoLeiId;
             TempData["daleiName"] = db.TowLeis.Find(TwoLeiId).Name;
-            return View(db.ThreeLeis.Where(e => e.TwoLeiId == TwoLeiId).ToList());
+            PagedList<ThreeLei> m = db.ThreeLeis.Where(e => e.TwoLeiId == TwoLeiId).OrderByDescending(e=>e.ThreeLeiId).ToList().ToPagedList(id ?? 1, 5);
+            return View(m);
         }
 
         public ActionResult ThreeLeiCreate(YiTao.Modules.Bll.Models.ThreeLei xiaolei)
@@ -151,30 +152,9 @@ namespace YiTao.Web.Areas.Management.Controllers
         public ActionResult CommonShangPin(int XiaoLeiId,int? id)
         {
             ViewBag.id = XiaoLeiId;
-            PagedList<ShangPin> m = db.ShangPins.Where(e => e.XiaoLeiId == XiaoLeiId).ToList().ToPagedList(id ?? 1, 5);
+            PagedList<ShangPin> m = db.ShangPins.Where(e => e.XiaoLeiId == XiaoLeiId).OrderByDescending(e=>e.ShangPinId).ToList().ToPagedList(id ?? 1, 5);
             return View(m);
         }
-
-        //public string CommonShangPinCreate(YiTao.Modules.Bll.Models.ShangPin shangpin)
-        //{
-        //    if (db.ShangPins.Count(e => e.Name == shangpin.Name 
-        //        && e.XiaoLeiId == shangpin.XiaoLeiId) != 0)
-        //        return "100";
-        //    db.ShangPins.Add(shangpin);
-        //    db.SaveChanges();
-
-        //    #region 创建索引
-        //    Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
-        //    {
-        //        ShangPinId = shangpin.ShangPinId,
-        //        Type = Web.Common.EnumShangPinType.PuTong,
-        //        Name = shangpin.Name
-        //    };
-        //    Web.Common.Searcher.Add(SearchShangPin);
-        //    #endregion
-
-        //    return "200";
-        //}
 
         //添加商品编辑
         public ActionResult CommonShangPinEdit(int ShangPinId)
@@ -334,7 +314,7 @@ namespace YiTao.Web.Areas.Management.Controllers
         public ActionResult DuiHuanShangPin(int id)
         {
             ViewBag.id = id;
-            return View(db.DuiHuanItems.Where(a => a.AreaId == id).ToList());
+            return View(db.DuiHuanItems.Where(a => a.AreaId == id).OrderByDescending(e=>e.DuiHuanItemId).ToList());
         }
 
         public ActionResult DuiHuanShangPinCreate(DuiHuanItem shangpin)

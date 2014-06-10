@@ -15,7 +15,7 @@ namespace YiTao.Web.Areas.Management.Controllers
         //显示留言列表
         public ActionResult Index(int? id)
         {
-            var liuYanList = db.LiuYans.Where(e => true).OrderByDescending(e => e.CreateTime).ToList();
+            var liuYanList = db.LiuYans.Where(e => true).OrderByDescending(e => e.LiuYanId).ToList();
             PagedList<LiuYan> m = liuYanList.ToPagedList(id ?? 1, 5);
             return View(m);
         }
@@ -56,7 +56,7 @@ namespace YiTao.Web.Areas.Management.Controllers
         public ActionResult Detail(int? id, int LiuYanId)
         {
             var liuYan = db.LiuYans.First(e => e.LiuYanId == LiuYanId);
-            var liuYanCommentList = db.LiuYanComments.Where(e => e.LiuYanId == LiuYanId).OrderByDescending(e => e.CreateTime).ToList();
+            var liuYanCommentList = db.LiuYanComments.Where(e => e.LiuYanId == LiuYanId).OrderByDescending(e => e.LiuYanCommentId).ToList();
             PagedList<LiuYanComment> m = liuYanCommentList.ToPagedList(id ?? 1, 5);
             ViewData["LiuYan"] = liuYan;
             ViewData["LiuYanComment"] = m;

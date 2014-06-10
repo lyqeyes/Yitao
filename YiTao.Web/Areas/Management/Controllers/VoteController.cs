@@ -76,7 +76,7 @@ namespace YiTao.Web.Areas.Management.Controllers
 
         public ActionResult VoteList()
         {
-            var topicList = db.VoteTopics.OrderByDescending(a => a.CreateTime);
+            var topicList = db.VoteTopics.OrderByDescending(a => a.TopicId);
             return View(topicList);
         }
         public ActionResult VoteDetail(Guid id)
