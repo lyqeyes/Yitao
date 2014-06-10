@@ -16,21 +16,6 @@ namespace YiTao.Web.Areas.Watch.Controllers
         //收藏列表
         public ActionResult Index(int accountId)
         {
-            /*var data = (from c in db.Collections
-                       join j in db.JuZheKouItems
-                       on c.Type equals (int)EnumCollectionType.Juzhekou
-                       join s in db.ShangPins
-                       on c.Type equals (int)EnumCollectionType.NormalShangpin
-                       join z in db.ZhuanTiItems
-                       on c.Type equals (int)EnumCollectionType.ZhuantiItem
-                       where c.AccountId == accountId
-                       select new CollectionStatistic()
-                       {
-                           type = c.Type,
-                           juzhekouItem = j,
-                           zhuantiItem = z,
-                           shangpin = s
-                       }).ToList();*/
             ViewBag.AccountId = accountId;
             List<CollectionStatistic> data = (from c in db.Collections
                                              
