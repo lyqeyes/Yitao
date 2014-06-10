@@ -47,7 +47,7 @@ namespace YiTao.Web.Areas.Management.Controllers
         [HttpGet]
         public ActionResult Manage()
         {
-            return View(db.Managements.ToList());
+            return View(db.Managements.OrderByDescending(e=>e.AccountId).ToList());
         }
 
         //注册新管理员
