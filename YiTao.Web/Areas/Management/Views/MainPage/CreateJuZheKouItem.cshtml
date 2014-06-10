@@ -187,7 +187,7 @@
                             <label class="">是否包邮</label>
                             <div class="radio-list">
                                 <label class="radio-inline">
-                                    <div class="radio" id="uniform-optionsRadios4"><span class="checked"><input type="radio" name="BaoYou" value="1" checked=""></span></div>是
+                                    <div class="radio" id="uniform-optionsRadios4"><span class="checked"><input type="radio" name="BaoYou" value="1" checked="checked"></span></div>是
                                 </label>
                                 <label class="radio-inline">
                                     <div class="radio" id="uniform-optionsRadios5"><span><input type="radio" name="BaoYou" value="2"></span></div> 否
@@ -245,8 +245,10 @@
                 url: $("#taobaourl").val(),
             },
             beforeSend: function (XMLHttpRequest) {
-                //$("#loading").style.display = "block";
-                $("#basic").modal('hide');
+                $("#taobao").text('正在从淘宝获取，请稍后...');
+                $("#taobao").attr({ "disabled": "disabled" });
+                $("#taobao").removeClass("btn blue");
+                $("#taobao").addClass("btn default");
             },
             success: function (data, textStatus) {
                 if (data == "0") {
@@ -259,10 +261,17 @@
                     $("#inputCover").val(object.src)
                     $("#imageCover").attr("src", object.src);
                 }
-
+                $("#taobao").removeAttr("disabled");
+                $("#taobao").text('从淘宝得到商品信息');
+                $("#taobao").removeClass("btn default");
+                $("#taobao").addClass("btn blue");
             },
             error: function () {
                 alert("链接不能为空!");
+                $("#taobao").removeAttr("disabled");
+                $("#taobao").text('从淘宝得到商品信息');
+                $("#taobao").removeClass("btn default");
+                $("#taobao").addClass("btn blue");
             }
         })
     })

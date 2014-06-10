@@ -1,0 +1,302 @@
+﻿@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+@model YiTao.Modules.Bll.Models.JuZheKouItem
+@*<head>
+        <link href="~/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    </head>*@
+        <head>
+            <!--引入CSS-->
+            <link rel="stylesheet" type="text/css" href="~/Scripts/webuploader/webuploader.css">
+            <script src="http://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+            <!--引入JS-->
+            <script type="text/javascript" src="~/Scripts/webuploader/webuploader.js"></script>
+            <script type="text/javascript">
+                // 文件上传
+                $(function () {
+                    var $ = jQuery,
+                        $list = $('#thelist'),
+                        $btn = $('#ctlBtn'),
+                        state = 'pending',
+                        uploader;
+
+                    uploader = WebUploader.create({
+                        // 自动上传。
+                        auto: true,
+                        // 不压缩image
+                        resize: false,
+
+                        // swf文件路径
+                        swf: '/Scripts/webuploader/Uploader.swf',
+
+                        // 文件接收服务端。
+                        server: '/Home/Upload',
+
+                        // 选择文件的按钮。可选。
+                        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                        pick: '#picker',
+                        threads: 1
+                    });
+
+                    // 当有文件添加进来的时候
+                    uploader.on('fileQueued', function (file) {
+                        $list.append('<div id="' + file.id + '" class="item">' +
+                            //'<h4 class="info">' + file.name + '</h4>' +
+                            //'<p class="state">等待上传...</p>' +
+                        '</div>');
+                    });
+
+                    // 文件上传过程中创建进度条实时显示。
+                    uploader.on('uploadProgress', function (file, percentage) {
+                        var $li = $('#' + file.id),
+                            $percent = $li.find('.progress .progress-bar');
+
+                        // 避免重复创建
+                        if (!$percent.length) {
+                            $percent = $('<div class="row"><div class="col-md-5"><div class="progress progress-striped active">' +
+                              '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+                              '</div>' +
+                            '</div></div></div>').appendTo($li).find('.progress-bar');
+                        }
+
+                        $li.find('p.state').text('上传中');
+
+                        $percent.css('width', percentage * 100 + '%');
+                    });
+                    uploader.on('uploadAccept', function (object, ret) {
+                        //var temp = $.parseJSON(ret._raw);
+                        $("#imageCover").attr("src", ret._raw);
+                        $("#inputCover").attr("value", ret._raw);
+                    });
+                    //uploader.on('uploadSuccess', function (file) {
+                    //    $('#' + file.id).find('p.state').text('已上传');
+                    //});
+
+                    uploader.on('uploadError', function (file) {
+                        $('#' + file.id).find('p.state').text('上传出错');
+                    });
+
+                    uploader.on('uploadComplete', function (file) {
+                        $('#' + file.id).find('.progress').fadeOut();
+                    });
+
+                    uploader.on('all', function (type) {
+                        if (type === 'startUpload') {
+                            state = 'uploading';
+                        } else if (type === 'stopUpload') {
+                            state = 'paused';
+                        } else if (type === 'uploadFinished') {
+                            state = 'done';
+                        }
+
+                        if (state === 'uploading') {
+                            $btn.text('暂停上传');
+                        } else {
+                            $btn.text('开始上传');
+                        }
+                    });
+
+                    $btn.on('click', function () {
+                        if (state === 'uploading') {
+                            uploader.stop();
+                        } else {
+                            uploader.upload();
+                        }
+                    });
+                });
+
+            </script>
+        </head>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN SAMPLE FORM PORTLET-->
+                <div class="portlet box blue">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-reorder"></i> 编辑商品
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">淘宝链接</label>
+                            <input type="text" class="form-control" id="taobaourl" value="@Model.Url" placeholder="输入淘宝商品页面链接" />
+                            <button class="btn blue" id="taobao">从淘宝得到商品信息</button>
+                        </div>
+                        <form role="form" action="" method="post">
+                            <input type="hidden" value="@Model.CreateTime" name="CreateTime">
+                            <input type="hidden" value="@Model.JuZheKouItemId" name="ZhuanTiItemId">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">商品名</label>
+                                    <input type="text" class="form-control" value="@Model.Name" name="Name" id="Name">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">返积分</label>
+                                    <input type="text" class="form-control" value="@Model.FanJiFen" name="FanJiFen">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">月销量</label>
+                                    <input type="text" class="form-control" value="@Model.MonthlySales" name="MonthlySales">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">促销价</label>
+                                    <input type="text" class="form-control" value="@Model.Price" name="Price">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">原价</label>
+                                    <input type="text" class="form-control" value="@Model.YuanPrice" name="YuanPrice" id="YuanPrice">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">商品淘宝连接</label>
+                                    <input type="text" class="form-control" value="@Model.Url" name="Url" id="Url">
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" value="@Model.ImageUrl" name="ImageUrl" id="inputCover">
+                                    <img id="imageCover" src="@Model.ImageUrl" />
+                                    @*<span id="uploadify" class="btn dark fileinput-button">
+                                        </span>*@
+                                    <div id="thelist" class="uploader-list"></div>
+                                    <div class="btns">
+                                        <div id="picker">选择文件</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>商品描述</label>
+                                    <input type="text" class="form-control" value="@Model.Description" name="Description">
+                                </div>
+                                <div class="form-group">
+                                    <label class="">商品归属地</label>
+                                    <div class="checkbox-list">
+                                        @{var guishudiNow = ViewBag.guishudiNow as List<YiTao.Modules.Bll.Models.ShangPin2Areas>;}
+                                        @foreach (var item in (ViewBag.guishudi as List<YiTao.Modules.Bll.Models.Area>))
+                                        {
+                                            if(guishudiNow.FirstOrDefault(e=>e.AreaId == item.Id) !=null)
+                                            {
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" id="inlineCheckbox1" name="guishudi" checked="checked" value="@item.Id">@item.Name
+                                            </label>
+                                            }
+                                            else
+                                            {
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" id="inlineCheckbox1" name="guishudi" value="@item.Id">@item.Name
+                                            </label>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="">是否包邮</label>
+                                    <div class="radio-list">
+                                        @if (Model.BaoYou == 1)
+                                        {
+                                            <label class="radio-inline">
+                                                <div class="radio" id="uniform-optionsRadios4"><span class="checked"><input type="radio" checked="checked" name="BaoYou" value="1"></span></div>是
+                                            </label>
+                                            <label class="radio-inline">
+                                                <div class="radio" id="uniform-optionsRadios5"><span><input type="radio" name="BaoYou" value="2"></span></div> 否
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label class="radio-inline">
+                                                <div class="radio" id="uniform-optionsRadios4"><span><input type="radio" name="BaoYou" value="1"></span></div>是
+                                            </label>
+                                            <label class="radio-inline">
+                                                <div class="radio" id="uniform-optionsRadios5"><span class="checked"><input type="radio" checked="checked" name="BaoYou" value="2"></span></div> 否
+                                            </label>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn default">返回</button>
+                                <button type="submit" class="btn blue">保存</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @section PageSpecificJavascriptIncludes{
+            @*<script src="~/Scripts/jquery-1.10.2.js"></script>
+                <link href="~/Scripts/uploadify-v3.1/uploadify.css" rel="stylesheet" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#uploadify').uploadify({
+                            uploader: '/Home/Upload',           // 服务器端处理地址
+                            swf: '/Scripts/uploadify.swf',    // 上传使用的 Flash
+                            //width: 60,                          // 按钮的宽度
+                            //height: 23,                         // 按钮的高度
+                            buttonText: "上传封面",                 // 按钮上的文字
+                            buttonCursor: 'hand',                // 按钮的鼠标图标
+                            fileObjName: 'Filedata',            // 上传参数名称
+                            // 两个配套使用
+                            fileTypeExts: "*.gif; *.jpg; *.png;*.bmp;*.jpeg;",             // 扩展名
+                            fileTypeDesc: "请选择 jpg png 文件",     // 文件说明
+                            auto: true,                // 选择之后，自动开始上传
+                            multi: false,               // 是否支持同时上传多个文件
+                            removeTimeout: 0,
+                            'onUploadSuccess': function (file, data, response) {
+                                if (data == "error") {
+                                    alert('服务器错误，请重新上传');
+                                } else {
+                                    $("#imageCover").attr("src", data);
+                                    $("#inputCover").attr("value", data);
+                                }
+                            }
+                        });
+                    });
+                </script>*@
+
+            <script type="text/javascript">
+                $("#taobao").click(function () {
+                    $.ajax({
+                        url: "/Management/MainPage/CreateJuZheKouAjax",
+                        type: "GET",
+                        data: {
+                            url: $("#taobaourl").val(),
+                        },
+                        beforeSend: function (XMLHttpRequest) {
+                            $("#taobao").text('正在从淘宝获取，请稍后...');
+                            $("#taobao").attr({ "disabled": "disabled" });
+                            $("#taobao").removeClass("btn blue");
+                            $("#taobao").addClass("btn default");
+                        },
+                        success: function (data, textStatus) {
+                            if (data == "0") {
+                                alert("链接不能为空");
+                            } else {
+                                var object = $.parseJSON(data);
+                                $("#YuanPrice").val(object.price);
+                                $("#Name").val(object.title);
+                                $("#Url").val(object.url);
+                                $("#inputCover").val(object.src)
+                                $("#imageCover").attr("src", object.src);
+                            }
+                            $("#taobao").removeAttr("disabled");
+                            $("#taobao").text('从淘宝得到商品信息');
+                            $("#taobao").removeClass("btn default");
+                            $("#taobao").addClass("btn blue");
+                        },
+                        error: function () {
+                            alert("链接不能为空!");
+                            $("#taobao").removeAttr("disabled");
+                            $("#taobao").text('从淘宝得到商品信息');
+                            $("#taobao").removeClass("btn default");
+                            $("#taobao").addClass("btn blue");
+                        }
+                    })
+                })
+            </script>
+        }
+

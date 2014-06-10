@@ -32,7 +32,7 @@
                             <th class="col-md-1">原价</th>
                             <th class="col-md-1">所需积分</th>
                             <th class="col-md-1">数量</th>
-                            <th class="col-md-2" colspan="1">管理</th>
+                            <th class="col-md-2" colspan="2">管理</th>
                         </tr>
                         @foreach (var item in Model)
                         {
@@ -48,13 +48,13 @@
                                 <th class="col-md-1">@item.Price</th>
                                 <th class="col-md-1">@item.JiFen</th>
                                 <th class="col-md-1">@item.Count</th>
-                                @*<th>
-                                    <button my="edit" class="btn green" data-toggle="modal">
+                                <th>
+                                    <a class="btn green btn-sm" href="/management/ShangPin/DuiHuanShangPinEdit/@item.DuiHuanItemId">
                                         编辑 <i class="fa fa-edit"></i>
-                                    </button>
-                                </th>*@
+                                    </a>
+                                </th>
                                 <th>    
-                                    <button my="del" class="btn green" data-toggle="modal">
+                                    <button my="del" class="btn red btn-sm" data-toggle="modal">
                                         删除 <i class="glyphicon glyphicon-remove"></i>
                                     </button>
                                 </th>

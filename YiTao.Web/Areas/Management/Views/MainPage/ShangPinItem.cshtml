@@ -1,4 +1,5 @@
-﻿@model List<YiTao.Modules.Bll.Models.ZhuanTiItem>
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<YiTao.Modules.Bll.Models.ZhuanTiItem>
 @{
     Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
 }
@@ -65,6 +66,10 @@ else
                         <p>@item.CollectCount</p>
                     </div>*@
                 <div>
+                    <a class="btn btn-primary btn-lg btn-success" href="/Management/MainPage/EditShangPin?ZhuanTiItemId=@item.ZhuanTiItemId&id=@item.ZhuanTiId">编辑</a>
+                </div>
+                <br />
+                <div>
                     <a onclick="javascript:return confirm('确认删除?')" class="btn btn-primary btn-lg btn-success" href="/Management/MainPage/DeleteShangPin/@item.ZhuanTiItemId?type=@ViewBag.id">删除</a>
                 </div>
             </div>
@@ -78,6 +83,24 @@ else
         </div>
     <hr />
     }
+    <div style="text-align:center; margin-left:-2em;">
+                    @Html.Pager(Model, new PagerOptions
+                 {
+                     HorizontalAlign = "center",
+                     ShowFirstLast = false,
+                     CssClass = "pagination pagination-sm",
+                     NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                     ContainerTagName = "ul",
+                     PageIndexParameterName = "id",
+                     ShowPageIndexBox = false,
+                     PrevPageText = "<<",
+                     NumericPagerItemCount = 3,
+                     Id = "pages",
+                     NextPageText = ">>",
+                     CurrentPagerItemWrapperFormatString = "<li class=\"active\"> <a>{0}</a> </li>",
+                     NumericPagerItemWrapperFormatString = "<li> {0}</li>",
+                 }, new { style = "margin-top:2em;margin-bottom:2em" })
+                </div>
 }
 <style type="text/css">
     .admininput {

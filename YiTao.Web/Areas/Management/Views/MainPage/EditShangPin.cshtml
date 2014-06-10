@@ -5,8 +5,8 @@
 }
 <head>
     @*<link href="~/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />*@
+        <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />*@
 </head>
 <div class="row">
     <div class="col-md-12">
@@ -14,17 +14,17 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-reorder"></i> 创建商品
+                    <i class="fa fa-reorder"></i> 编辑商品
                 </div>
             </div>
             <div class="portlet-body form">
                 <div class="form-group">
                     <label for="exampleInputEmail1">淘宝链接</label>
-                    <input type="text" class="form-control" id="taobaourl" placeholder="输入淘宝商品页面链接" />
+                    <input type="text" class="form-control" value="@Model.Url" id="taobaourl" placeholder="输入淘宝商品页面链接" />
                     <button class="btn blue" id="taobao">从淘宝得到商品信息</button>
                 </div>
-                <form role="form" action="~/Management/MainPage/CreateShangPin" method="post">
-                    <input type="hidden" value="@ViewBag.ZhuanTiId" name="ZhuanTiId">
+                <form role="form" action="~/Management/MainPage/EditShangPin" method="post">
+                    <input type="hidden" value="@Model.ZhuanTiId" name="ZhuanTiId">
                     <input type="hidden" value="@Model.CreateTime" name="CreateTime">
                     <input type="hidden" value="@Model.ZhuanTiItemId" name="ZhuanTiItemId">
                     <div class="form-body">
@@ -43,17 +43,17 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">促销价</label>
                             <input type="text" class="form-control" value="@Model.Price" name="Price">
-                            
+
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">原价</label>
                             <input type="text" class="form-control" value="@Model.YuanPrice" name="YuanPrice" id="YuanPrice">
-                            
+
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">商品淘宝连接</label>
                             <input type="text" class="form-control" value="@Model.Url" name="Url" id="Url">
-                            
+
                         </div>
                         <div class="form-group">
                             <input type="hidden" value="@Model.ImageUrl" name="ImageUrl" id="inputCover">
@@ -69,26 +69,48 @@
                         <div class="form-group">
                             <label class="">商品归属地</label>
                             <div class="checkbox-list">
+                                @{var guishudiNow = ViewBag.guishudiNow as List<YiTao.Modules.Bll.Models.ShangPin2Areas>;}
                                 @foreach (var item in (ViewBag.guishudi as List<YiTao.Modules.Bll.Models.Area>))
                                 {
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox" id="inlineCheckbox1" name="guishudi" value="@item.Id">@item.Name
+                                    if (guishudiNow.FirstOrDefault(e => e.AreaId == item.Id) != null)
+                                    {
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="inlineCheckbox1" name="guishudi" checked="checked" value="@item.Id">@item.Name
+                                        </label>
+                                    }
+                                    else
+                                    {
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="inlineCheckbox1" name="guishudi" value="@item.Id">@item.Name
+                                        </label>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="">是否包邮</label>
+                            <div class="radio-list">
+                                @if (Model.BaoYou == 1)
+                                {
+                                    <label class="radio-inline">
+                                        <div class="radio" id="uniform-optionsRadios4"><span class="checked"><input type="radio" checked="checked" name="BaoYou" value="1"></span></div>是
+                                    </label>
+                                    <label class="radio-inline">
+                                        <div class="radio" id="uniform-optionsRadios5"><span><input type="radio" name="BaoYou" value="2"></span></div> 否
+                                    </label>
+                                }
+                                else
+                                {
+                                    <label class="radio-inline">
+                                        <div class="radio" id="uniform-optionsRadios4"><span><input type="radio" name="BaoYou" value="1"></span></div>是
+                                    </label>
+                                    <label class="radio-inline">
+                                        <div class="radio" id="uniform-optionsRadios5"><span class="checked"><input type="radio" checked="checked" name="BaoYou" value="2"></span></div> 否
                                     </label>
                                 }
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="">是否包邮</label>
-                            <div class="radio-list">
-                                <label class="radio-inline">
-                                    <div class="radio" id="uniform-optionsRadios4"><span class="checked"><input type="radio" name="BaoYou" value="1" checked=""></span></div>是
-                                </label>
-                                <label class="radio-inline">
-                                    <div class="radio" id="uniform-optionsRadios5"><span><input type="radio" name="BaoYou" value="2"></span></div> 否
-                                </label>
-                            </div>
-                        </div>
                     </div>
                     <div class="form-actions">
                         <button type="button" class="btn default">返回</button>
@@ -101,8 +123,8 @@
 </div>
 <p style="display:none" id="type">@ViewBag.type</p>
 @section scripts{
-<script src="~/Scripts/uploadify-v3.1/jquery.uploadify-3.1.min.js"></script>
-@*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+    <script src="~/Scripts/uploadify-v3.1/jquery.uploadify-3.1.min.js"></script>
+    @*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
     <link href="~/Scripts/uploadify-v3.1/uploadify.css" rel="stylesheet" />
     <script type="text/javascript">
         $(document).ready(function () {
@@ -163,14 +185,13 @@
                     $("#taobao").addClass("btn blue");
                 },
                 error: function () {
-                    alert("网络原因，请重试");
+                    alert("链接不能为空");
                     $("#taobao").removeAttr("disabled");
                     $("#taobao").text('从淘宝得到商品信息');
                     $("#taobao").removeClass("btn default");
                     $("#taobao").addClass("btn blue");
                 }
             })
-           
         })
     </script>
 }
