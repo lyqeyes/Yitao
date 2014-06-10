@@ -1,34 +1,189 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<!-- saved from url=(0042)http://yitao.wqkeji.com:8080/Home/download -->
+<html lang="zh-cn">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <link href="~/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/css/styleyanjing.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>亿淘商城</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            font-size: 14px;
+            overflow: hidden;
+        }
+
+        .bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: -10;
+        }
+
+        .center {
+            margin: 0px auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .w100 {
+            width: 100%;
+        }
+
+        .logo {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .btns {
+            width: 100%;
+            max-width: 960px;
+            margin-top: 100px;
+        }
+
+        .single {
+            width: 35%;
+            height: 35px;
+            line-height: 35px;
+            float: left;
+            font-size: 0.8em;
+            text-align: center;
+            color: #ffffff;
+            background-color: #5bc0de;
+            border-color: #46b8da;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+            .single:hover {
+                color: #ffffff;
+                background-color: #39b3d7;
+                border-color: #269abc;
+            }
+
+        .ml5 {
+            margin-left: 5%;
+            float: left;
+        }
+
+        .mr5 {
+            margin-right: 5%;
+            float: right;
+        }
+
+        .mr10 {
+            margin-right: 10%;
+        }
+
+        .ml10 {
+            margin-left: 10%;
+        }
+        /*多媒体查询  响应式部分*/
+        @@media screen and (min-width: 300px) {
+            body {
+                font-size: 14px;
+            }
+        }
+
+        @@media screen and (min-width: 640px) {
+            body {
+                font-size: 16px;
+            }
+        }
+
+        @@media screen and (min-device-width:1000px) {
+            body {
+                background-size: cover;
+            }
+        }
+        /*遮罩组件*/
+        .HoverDiv {
+            top: 0px;
+            left: 0px;
+            bottom: 0px;
+            right: 0px;
+            background: rgba(10,10,10,0.5);
+            position: fixed;
+            z-index: 999;
+            text-align: center;
+            color: #FFF;
+            display: none;
+            overflow: hidden;
+        }
+
+            .HoverDiv img {
+                max-width: 100%;
+                float: right;
+            }
+    </style>
+    <script type="text/javascript">
+        function is_weixn() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function Share() {
+            if (is_weixn()) {
+                HoverPic();
+                return false;
+            }
+            else {
+
+                return true;
+            }
+        }
+        //遮罩
+        function HoverPic() {
+            var temp = document.getElementById("HoverIt");
+            temp.style.display = "block";
+        }
+        function DisHover(obj) {
+            obj.style.display = "none";
+        }
+    </script>
 </head>
 <body>
-    <div style="width:100%;">
-        <div class="logo" style="width:100%;">
-            <img src="~/img/ic_launcher.png" class="img-rounded" />
-        </div>
-        
-        <div class="middle">
-            <a class="btn btn-info" href="~/file/Yitao.apk">
-                下载Android版
-            </a>
-        </div>
-        <div class="middle">
-            <a class="btn btn-info" href="https://itunes.apple.com/us/app/yi-tao-shang-cheng/id884704280?l=zh&ls=1&mt=8">
-                下载 IOS 版
-            </a>
-        </div>
+    <div class="center w100 tcen logo">
+        <img src="/img/ic_launcher.png">
     </div>
+    <div class="btns center">
+        <a href="/file/YitaoApp.apk" onclick="return Share();">
+            <div class="single ml5">
+                下载Android版
+            </div>
+        </a>
+        <a href="https://itunes.apple.com/us/app/yi-tao-shang-cheng/id884704280?l=zh&amp;ls=1&amp;mt=8">
+            <div class="single mr5">
+                下载IOS版
+            </div>
+        </a>
+    </div>
+    <!--遮罩组件 2014.5-->
+    <div class="HoverDiv" id="HoverIt" onclick="DisHover(this);">
+        <img src="/img/cover.png">
+    </div>
+    <!--背景图抽离-->
+    <img src="/img/banner.jpg" class="bg">
 </body>
 </html>

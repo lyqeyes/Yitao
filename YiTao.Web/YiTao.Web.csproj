@@ -2197,6 +2197,7 @@
     <Content Include="img\conter\product_02.jpg" />
     <Content Include="img\conter\product_03.jpg" />
     <Content Include="img\conter\product_04.jpg" />
+    <Content Include="img\cover.png" />
     <Content Include="img\dot01.png" />
     <Content Include="img\goods_shop.jpg" />
     <Content Include="img\icon\icon_01.png" />
@@ -2607,10 +2608,13 @@
     <Content Include="Areas\Management\Views\App\Index.cshtml" />
     <Content Include="file\Yitao.apk" />
     <Content Include="Areas\Watch\Views\Auth\Findpass.cshtml" />
+    <Content Include="file\YitaoApp.apk" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\yitao - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\yitao - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\yitao服务器.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\browse-btn.png" />
     <Content Include="Scripts\CollectAction.js" />
@@ -3132,6 +3136,7 @@
     <Content Include="Views\Home\FindPassword.cshtml" />
     <Content Include="Source\assets\less\simplemodal.less" />
     <Content Include="Views\Home\download.cshtml" />
+    <Content Include="Views\Home\GetTuisong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\YiTao.Modules.Bll\YiTao.Modules.Bll.csproj">

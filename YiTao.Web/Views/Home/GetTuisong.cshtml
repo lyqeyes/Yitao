@@ -1,0 +1,26 @@
+﻿@model YiTao.Modules.Bll.Models.TuiSong
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>消息通知</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8"><h3>@Model.Title</h3></div>
+        </div> 
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10 alert alert-info"><span>@Model.TuiSongContent</span></div>
+        </div> 
+    </div>
+</body>
+</html>

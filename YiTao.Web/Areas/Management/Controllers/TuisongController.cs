@@ -65,12 +65,14 @@ namespace YiTao.Web.Areas.Management.Controllers
             {
                 tuisong.CreateTime = DateTime.Now;
                 db.TuiSongs.Add(tuisong);
+                db.SaveChanges();
             }
-            string resule = PushSDK.pushMessageToApp(JsonConvert.SerializeObject(new
+            string s = JsonConvert.SerializeObject(new
             {
                 msg = tuisong.Title,
                 url = string.Format("http://{0}/Home/GetTuisong?id={1}", ConfigurationManager.AppSettings["hostname"], tuisong.Id)
-            }));
+            });
+            string resule = PushSDK.pushMessageToApp(tuisong.Title,s);
             if (resule.Contains("ok"))
             {
                 return RedirectToAction("Index");
