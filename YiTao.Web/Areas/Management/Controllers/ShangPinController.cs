@@ -234,42 +234,6 @@ namespace YiTao.Web.Areas.Management.Controllers
             return RedirectToAction("CommonShangPin", new { XiaoLeiId = shangpin.XiaoLeiId });
         }
 
-        //public string CommonShangPinEdit(YiTao.Modules.Bll.Models.ShangPin newshangpin)
-        //{
-        //    var shangpin = db.ShangPins.Find(newshangpin.ShangPinId);
-        //    if (shangpin == null)
-        //        return "100";
-        //    if (shangpin.Name != shangpin.Name && db.ShangPins.Count(e => e.Name == newshangpin.Name && e.XiaoLeiId == newshangpin.XiaoLeiId) != 0)
-        //        return "50";
-
-        //    shangpin.Name = newshangpin.Name;
-        //    shangpin.ImageUrl = newshangpin.ImageUrl;
-        //    shangpin.BaoYou = newshangpin.BaoYou;
-        //    shangpin.CollectCount = newshangpin.CollectCount;
-        //    shangpin.Description = newshangpin.Description;
-        //    shangpin.FanJiFen = newshangpin.FanJiFen;
-        //    shangpin.MonthlySales = newshangpin.MonthlySales;
-        //    shangpin.Price = newshangpin.Price;
-        //    shangpin.ToWhere = newshangpin.ToWhere;
-        //    shangpin.TransportationPrice = newshangpin.TransportationPrice;
-        //    shangpin.Url = newshangpin.Url;
-        //    shangpin.YuanPrice = newshangpin.YuanPrice;
-        //    db.Entry(shangpin).State = EntityState.Modified;
-        //    db.SaveChanges();
-
-        //    #region 更新索引
-        //    Web.Common.ShangPin SearchShangPin = new Web.Common.ShangPin()
-        //    {
-        //        ShangPinId = shangpin.ShangPinId,
-        //        Type = Web.Common.EnumShangPinType.PuTong,
-        //        Name = shangpin.Name
-        //    };
-        //    Web.Common.Searcher.Add(SearchShangPin);
-        //    #endregion
-
-        //    return "200";
-        //}
-
         public ActionResult CommonShangPinDel(int ShangPinId)
         {
             int xiaoleiID = (int)db.ShangPins.Find(ShangPinId).XiaoLeiId;

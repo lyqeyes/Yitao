@@ -84,6 +84,11 @@ namespace YiTao.Web.Areas.Management.Controllers
                 //载入HTML
                 doc.LoadHtml(html);
                 string title = doc.DocumentNode.SelectSingleNode("//title").InnerText;
+                if(!string.IsNullOrEmpty(title))
+                {
+                    title = title.Replace(title.Split('-').Last(),"");
+                    title = title.Substring(0, title.Length - 1);
+                }
                 HtmlNode navNode = doc.GetElementbyId("J_ImgBooth");
                 string src = String.Empty;
                 string price = String.Empty;
@@ -932,6 +937,11 @@ namespace YiTao.Web.Areas.Management.Controllers
                 //载入HTML
                 doc.LoadHtml(html);
                 string title = doc.DocumentNode.SelectSingleNode("//title").InnerText;
+                if (!string.IsNullOrEmpty(title))
+                {
+                    title = title.Replace(title.Split('-').Last(), "");
+                    title = title.Substring(0, title.Length - 1);
+                }
                 HtmlNode navNode = doc.GetElementbyId("J_ImgBooth");
                 string src = String.Empty;
                 string price = String.Empty;
