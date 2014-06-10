@@ -163,8 +163,10 @@
                     url: $("#taobaourl").val(),
                 },
                 beforeSend: function (XMLHttpRequest) {
-                    //$("#loading").style.display = "block";
-                    $("#basic").modal('hide');
+                    $("#taobao").text('正在从淘宝获取，请稍后...');
+                    $("#taobao").attr({ "disabled": "disabled" });
+                    $("#taobao").removeClass("btn blue");
+                    $("#taobao").addClass("btn default");
                 },
                 success: function (data, textStatus) {
                     if (data == "0") {
@@ -177,10 +179,17 @@
                         $("#inputCover").val(object.src)
                         $("#imageCover").attr("src", object.src);
                     }
-
+                    $("#taobao").removeAttr("disabled");
+                    $("#taobao").text('从淘宝得到商品信息');
+                    $("#taobao").removeClass("btn default");
+                    $("#taobao").addClass("btn blue");
                 },
                 error: function () {
                     alert("链接不能为空");
+                    $("#taobao").removeAttr("disabled");
+                    $("#taobao").text('从淘宝得到商品信息');
+                    $("#taobao").removeClass("btn default");
+                    $("#taobao").addClass("btn blue");
                 }
             })
         })
