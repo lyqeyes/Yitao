@@ -65,7 +65,8 @@ else
                         <p>@item.CollectCount</p>
                     </div>*@
                     <div>
-                        <a onclick="javascript:return confirm('确认删除?')" class="btn btn-primary btn-lg btn-success" href="/Management/Shangpin/CommonShangPinDel?ShangPinId=@item.ShangPinId">删除</a>
+                        <a onclick="javascript:return confirm('确认删除?')" class="btn btn-primary btn-success" href="/Management/Shangpin/CommonShangPinDel?ShangPinId=@item.ShangPinId">删除</a>
+                        <a class="btn btn-primary btn-success" href="/Management/Shangpin/CommonShangPinEdit?ShangPinId=@item.ShangPinId">编辑</a>
                     </div>
                     <br />
                 </div>
