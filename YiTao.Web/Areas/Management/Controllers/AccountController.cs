@@ -100,6 +100,8 @@ namespace YiTao.Web.Areas.Management.Controllers
                 jfls.JiFen = reduce;
                 jfls.Description = "人为减少积分";
                 jfls.AccountName = name;
+                jfls.CreateTime = DateTime.Now;
+                jfls.WhetherDealed = 0;
                 db.JiFenLiShis.Add(jfls);
                 account.JiFen -= reduce;
                 if (account.JiFen < 0)

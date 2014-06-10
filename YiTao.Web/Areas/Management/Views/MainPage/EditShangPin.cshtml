@@ -1,4 +1,4 @@
-﻿@model YiTao.Modules.Bll.Models.ZhuanTiItem
+﻿    @model YiTao.Modules.Bll.Models.ZhuanTiItem
 
 @{
     Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
@@ -8,14 +8,14 @@
         <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="~/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />*@
 </head>
-<div class="row">
+<div class="row">                                                   
     <div class="col-md-12">
         <!-- BEGIN SAMPLE FORM PORTLET-->
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-reorder"></i> 编辑商品
-                </div>
+                </div>                                        
             </div>
             <div class="portlet-body form">
                 <div class="form-group">
@@ -23,7 +23,7 @@
                     <input type="text" class="form-control" value="@Model.Url" id="taobaourl" placeholder="输入淘宝商品页面链接" />
                     <button class="btn blue" id="taobao">从淘宝得到商品信息</button>
                 </div>
-                <form role="form" action="~/Management/MainPage/EditShangPin" method="post">
+                <form onsubmit="return checkfun()" role="form" action="~/Management/MainPage/EditShangPin" method="post">
                     <input type="hidden" value="@Model.ZhuanTiId" name="ZhuanTiId">
                     <input type="hidden" value="@Model.CreateTime" name="CreateTime">
                     <input type="hidden" value="@Model.ZhuanTiItemId" name="ZhuanTiItemId">
@@ -197,12 +197,16 @@
 <script type="text/javascript">
     function checkfun() {
         var obj = $("input[type='text']");
+        var i = 0;
         $.each(obj, function (n, vaule) {
             if ($(obj[n]).val() == "") {
                 alert("表单必须全都填写");
-                return false;
+                i++; return false;
             }
         })
+        if (i > 0) {
+            return false;
+        }
         var obj1 = $("input[name='guishudi']:checked");
         if (obj1.length == 0) {
             alert("归属地不能为空");

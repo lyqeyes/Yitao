@@ -23,7 +23,7 @@
                     <input type="text" class="form-control" id="taobaourl" placeholder="输入淘宝商品页面链接" />
                     <button class="btn blue" id="taobao">从淘宝得到商品信息</button>
                 </div>
-                <form role="form" action="~/Management/MainPage/CreateShangPin" method="post">
+                <form onsubmit="return checkfun()" role="form" action="~/Management/MainPage/CreateShangPin" method="post">
                     <input type="hidden" value="@ViewBag.ZhuanTiId" name="ZhuanTiId">
                     <input type="hidden" value="@Model.CreateTime" name="CreateTime">
                     <input type="hidden" value="@Model.ZhuanTiItemId" name="ZhuanTiItemId">
@@ -173,5 +173,27 @@
            
         })
     </script>
+<script type="text/javascript">
+    function checkfun() {
+        var obj = $("input[type='text']");
+        var i = 0;
+        $.each(obj, function (n, vaule) {
+            if ($(obj[n]).val() == "") {
+                alert("表单必须全都填写");
+                i++;
+                return false;
+            }
+        })
+        if (i>0) {
+            return false;
+        }
+        var obj1 = $("input[name='guishudi']:checked");
+        if (obj1.length == 0) {
+            alert("归属地不能为空");
+            return false;
+        }
+        return true;
+    }
+</script>
 }
 

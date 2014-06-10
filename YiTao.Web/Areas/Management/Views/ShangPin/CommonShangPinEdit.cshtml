@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="portlet-body form">
-                <form role="form" action="~/Management/ShangPin/CommonShangPinEdit" method="post"> 
+                <form onsubmit="return checkfun()" role="form" action="~/Management/ShangPin/CommonShangPinEdit" method="post"> 
                     @Html.HiddenFor(a => a.XiaoLeiId)
                     @Html.HiddenFor(a => a.ShangPinId)
                     <input type="hidden" value="@Model.XiaoLeiId" name="XiaoLeiId">
@@ -145,12 +145,16 @@
 <script type="text/javascript">
     function checkfun() {
         var obj = $("input[type='text']");
+        var i = 0;
         $.each(obj, function (n, vaule) {
             if ($(obj[n]).val() == "") {
                 alert("表单必须全都填写");
-                return false;
+                i++; return false;
             }
         })
+        if (i > 0) {
+            return false;
+        }
         var obj1 = $("input[name='guishudi']:checked");
         if (obj1.length == 0) {
             alert("归属地不能为空");
