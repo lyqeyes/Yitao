@@ -4,7 +4,8 @@
     Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
 }
 <div>
-    <a class="btn btn-primary btn-lg" data-toggle="modal" href="~/Management/MainPage/CreateShangPin/@ViewBag.id">上传商品</a>
+    <a class="btn btn-warning" style="margin-right:1em;" href="javascript:history.go(-1)"><i class="glyphicon glyphicon-arrow-left"></i> 返回 </a>
+    <a class="btn btn-primary" data-toggle="modal" href="~/Management/MainPage/CreateShangPin/@ViewBag.id">上传商品</a>
     <hr />
 </div>
 
@@ -66,11 +67,11 @@ else
                         <p>@item.CollectCount</p>
                     </div>*@
                 <div>
-                    <a class="btn btn-primary btn-lg btn-success" href="/Management/MainPage/EditShangPin?ZhuanTiItemId=@item.ZhuanTiItemId&id=@item.ZhuanTiId">编辑</a>
+                    <a class="btn btn-primary btn-success" href="/Management/MainPage/EditShangPin?ZhuanTiItemId=@item.ZhuanTiItemId&id=@item.ZhuanTiId">编辑</a>
                 </div>
                 <br />
                 <div>
-                    <a onclick="javascript:return confirm('确认删除?')" class="btn btn-primary btn-lg btn-success" href="/Management/MainPage/DeleteShangPin/@item.ZhuanTiItemId?type=@ViewBag.id">删除</a>
+                    <a onclick="javascript:return confirm('确认删除?')" class="btn btn-primary btn-success" href="/Management/MainPage/DeleteShangPin/@item.ZhuanTiItemId?type=@ViewBag.id">删除</a>
                 </div>
             </div>
                 <div class="col-md-6">
