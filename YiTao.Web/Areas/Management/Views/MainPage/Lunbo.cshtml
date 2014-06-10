@@ -99,6 +99,28 @@
 </head>
 <div class="row">
     <div class="col-md-12">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            轮播管理 <small>列表</small>
+        </h3>
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="/Management/MainPage/Lunbo">主页</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="/Management/MainPage/Lunbo">轮播管理</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li><a href="#">列表</a></li>
+        </ul>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption"><i class="fa fa-edit"></i>轮播</div>
@@ -107,216 +129,157 @@
                     <a href="javascript:;" class="remove"></a>
                 </div>
             </div>
-            <div class="portlet-body" align="center">
-                <div class="portlet">
-                    <div class="portlet-title">
-                        <div class="caption"><i class="fa fa-edit"></i>图片一</div>
-                        <div class="tools">
-                            <a href="javascript:;" class="collapse"></a>
-                            <a href="javascript:;" class="remove"></a>
+            <div class="portlet-body" align="">
+                <div class="row">
+                    <div class="col-md-10">
+                        @if (ViewBag.leixing == "从左往右")
+                        {
+                            <div>
+                                <span>轮播方式：</span>
+                                <input type="radio" id="inlineCheckbox21" name="lunboradio" value="option1" checked> 从左往右
+                                <input type="radio" id="inlineCheckbox22" name="lunboradio" value="option2">从右往左
+                                <button onclick="save()" class="btn btn-success">保存轮播方式</button>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div>
+                                <span>轮播方式：</span>
+                                <input type="radio" id="inlineCheckbox21" name="lunboradio" value="option1"> 从左往右
+                                <input type="radio" id="inlineCheckbox22" name="lunboradio" value="option2" checked>从右往左
+                                <button onclick="save()" class="btn btn-success">保存轮播方式</button>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-2">
+                        <div class="btn-group">
+                            <a class="btn btn-primary btn-lg" data-toggle="modal" href="#basic">
+                                创建新欢迎界面 <i class=" fa fa-plus">
+                                </i>
+                            </a>
+
                         </div>
                     </div>
-                    <div class="portlet-body">
-                        <table class="table table-bordered table-hover" align="center">
-                            <thead>
-                                <tr>
-                                    <th class="col-md-4">
-                                        <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
-                                            <div class="tile-body">
-                                                <img id="imageCover1" alt="@Model[0].ImageUrl" src="@Model[0].ImageUrl">
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th class="col-md-8">
-                                        <div>
-                                            <div>
-                                                <input id="ClickUrl1" value="@Model[0].ClickUrl" type="text" class="form-control my-form-control" placeholder="输入点击图片导航到的链接地址" />
-                                                <input id="LunBoId1" value="@Model[0].LunBoId" type="text" hidden="hidden" />
-                                            </div>
-                                            <div class="btns">
-                                                <div id="picker1">选择图片</div>
-                                                <button id="save1" class="btn green" data-toggle="modal">
-                                                    保存修改
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-                <div class="portlet">
-                    <div class="portlet-title">
-                        <div class="caption"><i class="fa fa-edit"></i>图片二</div>
-                        <div class="tools">
-                            <a href="javascript:;" class="collapse"></a>
-                            <a href="javascript:;" class="remove"></a>
-                        </div>
-                    </div>
-                    <div class="portlet-body">
-                        <table class="table table-bordered table-hover" align="center">
-                            <thead>
-                                <tr>
-                                    <th class="col-md-4">
-                                        <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
-                                            <div class="tile-body">
-                                                <img id="imageCover2" alt="@Model[1].ImageUrl" src="@Model[1].ImageUrl">
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th class="col-md-8">
-                                        <div>
-                                            <div>
-                                                <input id="ClickUrl2" value="@Model[1].ClickUrl" type="text" class="form-control my-form-control" placeholder="输入点击图片导航到的链接地址" />
-                                                <input id="LunBoId2" value="@Model[1].LunBoId" type="text" hidden="hidden" />
-                                            </div>
-                                            <div class="btns">
-                                                <div id="picker2">选择图片</div>
-                                                <button id="save2"  class="btn green" data-toggle="modal">
-                                                    保存修改
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-                <div class="portlet">
-                    <div class="portlet-title">
-                        <div class="caption"><i class="fa fa-edit"></i>图片三</div>
-                        <div class="tools">
-                            <a href="javascript:;" class="collapse"></a>
-                            <a href="javascript:;" class="remove"></a>
-                        </div>
-                    </div>
-                    <div class="portlet-body">
-                        <table class="table table-bordered table-hover" align="center">
-                            <thead>
-                                <tr>
-                                    <th class="col-md-4">
-                                        <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
-                                            <div class="tile-body">
-                                                <img id="imageCover3" alt="@Model[2].ImageUrl" src="@Model[2].ImageUrl">
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th class="col-md-8">
-                                        <div>
-                                            <div>
-                                                <input id="ClickUrl3" value="@Model[2].ClickUrl" type="text" class="form-control my-form-control" placeholder="输入点击图片导航到的链接地址" />
-                                                <input id="LunBoId3" value="@Model[2].LunBoId" type="text" hidden="hidden" />
-                                            </div>
-                                            <div class="btns">
-                                                <div id="picker3">选择图片</div>
-                                                <button id="save3" class="btn green" data-toggle="modal">
-                                                    保存修改
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
             </div>
+
+            <br />
+
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="portlet">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="fa fa-edit"></i>轮播@(i + 1)</div>
+                        <div class="tools">
+                            <a href="javascript:;" class="collapse"></a>
+                            <a href="/Management/MainPage/DelLunBo?id=@Model[i].LunBoId" onclick="return confirm('确认删除？')" class="remove"></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <table class="table table-bordered table-hover" align="center">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-4">
+                                        <div class=" tile image double selected" style="margin:0 auto;vertical-align: middle;">
+                                            <div class="tile-body">
+                                                <img id="imageCover1" alt="@Model[i].ImageUrl" src="@Model[i].ImageUrl">
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th class="col-md-8">
+                                        <div>
+                                            <div>
+                                                <input id="ClickUrl1" value="@Model[i].ClickUrl" type="text" class="form-control my-form-control" placeholder="输入点击图片导航到的链接地址" disabled />
+                                                <input id="ClickUrl1" value="@Model[i].Name" type="text" class="form-control my-form-control" placeholder="输入点击图片导航到的链接地址" disabled />
+                                                <input id="LunBoId1" value="@Model[i].LunBoId" type="text" hidden="hidden" />
+                                            </div>
+                                            <div class="btns">
+                                                <a href="/Management/MainPage/DelLunBo?id=@Model[i].LunBoId" class="btn green" onclick="return confirm('确认删除？')">
+                                                    删除轮播图
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>
-@section PageSpecificJavascriptIncludes{
+</div>
+
+<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">添加轮播</h4>
+            </div>
+            <form action="~/Management/MainPage/Lunbo" method="post">
+                <div class="modal-body">
+                    <input type="hidden" value="" id="inputCover" name="ImageUrl" />
+                    <label>名称</label>
+                    <input name="Name" value="" type="text" class="form-control my-form-control" placeholder="输入名称" />
+                    <label>导航链接</label>
+                    <input id="ClickUrl1" name="ClickUrl" value="" type="text" class="form-control my-form-control" placeholder="输入点击图片导航到的链接地址" />
+                    <img id="imageCover" alt="" src="" width="320" height="460">
+                    <span id="uploadify" class="btn dark fileinput-button"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn default" data-dismiss="modal">取消</button>
+                    <input type="submit" class="btn blue" value="保存" />
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/uploadify-v3.1/jquery.uploadify-3.1.min.js"></script>
+    <link href="~/Scripts/uploadify-v3.1/uploadify.css" rel="stylesheet" />
     <script type="text/javascript">
-        $("#save1").click(function () {
-            $.ajax(
-                {
-                    url: "/Management/MainPage/Lunbo",
-                    type: "POST",
-                    data:
-                        {
-                            LunBoId: $("#LunBoId1").val(),
-                            ImageUrl: $("#imageCover1").attr("src"),
-                            ClickUrl: $("#ClickUrl1").val()
-                        },
-                    success: function (data, textStatus) {
-                        if (data == "200") {
-                            location.reload()
-                        } else if (data == "100") {
-                            alert("请重新编辑！");
-                        } else {
-                            alert("未知原因");
-                        }
-                    },
-                    complete: function (XMLHttpRequest, textStatus) {
-                        location.reload()
-                    },
-                    error: function () {
-                        alert("好像出错了，请刷新页面重试");
+        $(document).ready(function () {
+            $('#uploadify').uploadify({
+                uploader: '/Home/Upload',           // 服务器端处理地址
+                swf: '/Scripts/uploadify-v3.1/uploadify.swf',    // 上传使用的 Flash
+                //width: 60,                          // 按钮的宽度
+                //height: 23,                         // 按钮的高度
+                buttonText: "上传封面",                 // 按钮上的文字
+                buttonCursor: 'hand',                // 按钮的鼠标图标
+                fileObjName: 'Filedata',            // 上传参数名称
+                // 两个配套使用
+                fileTypeExts: "*.gif; *.jpg; *.png;*.bmp;*.jpeg;",             // 扩展名
+                fileTypeDesc: "请选择 jpg png 文件",     // 文件说明
+                auto: true,                // 选择之后，自动开始上传
+                multi: false,               // 是否支持同时上传多个文件
+                removeTimeout: 0,
+                'onUploadSuccess': function (file, data, response) {
+                    if (data == "error") {
+                        alert('服务器错误，请重新上传');
+                    } else {
+                        $("#imageCover").attr("src", data);
+                        $("#inputCover").attr("value", data);
                     }
-                })
+                }
+            });
         });
+        function save()
+        {
+            $.get("/Management/MainPage/AddMet", { met: $('input[name="lunboradio"]:checked').val() }, function (data) {
+                if (data="1") {
+                    alert('更改成功');
+                    window.location = "/Management/MainPage/Lunbo";
+                }
+                else {
+                    alert('服务器原因，更改失败,请重试');
+                }
+            });
+        }
     </script>
-<script type="text/javascript">
-    $("#save2").click(function () {
-        $.ajax(
-            {
-                url: "/Management/MainPage/Lunbo",
-                type: "POST",
-                data:
-                    {
-                        LunBoId: $("#LunBoId2").val(),
-                        ImageUrl: $("#imageCover2").attr("src"),
-                        ClickUrl: $("#ClickUrl2").val()
-                    },
-                success: function (data, textStatus) {
-                    if (data == "200") {
-                        location.reload()
-                    } else if (data == "100") {
-                        alert("请重新编辑！");
-                    } else {
-                        alert("未知原因");
-                    }
-                },
-                complete: function (XMLHttpRequest, textStatus) {
-                    location.reload()
-                },
-                error: function () {
-                    alert("好像出错了，请刷新页面重试");
-                }
-            })
-    });
-</script>
-
-<script type="text/javascript">
-    $("#save3").click(function () {
-        $.ajax(
-            {
-                url: "/Management/MainPage/Lunbo",
-                type: "POST",
-                data:
-                    {
-                        LunBoId: $("#LunBoId3").val(),
-                        ImageUrl: $("#imageCover3").attr("src"),
-                        ClickUrl: $("#ClickUrl3").val()
-                    },
-                success: function (data, textStatus) {
-                    if (data == "200") {
-                        location.reload()
-                    } else if (data == "100") {
-                        alert("请重新编辑！");
-                    } else {
-                        alert("未知原因");
-                    }
-                },
-                complete: function (XMLHttpRequest, textStatus) {
-                    location.reload()
-                },
-                error: function () {
-                    alert("好像出错了，请刷新页面重试");
-                }
-            })
-    });
-</script>
-
 }

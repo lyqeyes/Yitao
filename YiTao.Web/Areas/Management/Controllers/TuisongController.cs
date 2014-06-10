@@ -8,15 +8,16 @@ using System.Web;
 using System.Web.Mvc;
 using YiTao.Modules.Bll.Models;
 using YiTao.Web.Areas.Management.Common;
+using Webdiyer.WebControls.Mvc;
 
 namespace YiTao.Web.Areas.Management.Controllers
 {
     public class TuisongController : BaseController
     {
         // GET: Management/Tuisong
-        public ActionResult Index()
+        public ActionResult Index(int id=0)
         {
-            return View();
+            return View(db.TuiSongs.OrderByDescending(a=>a.Id).ToPagedList(id,25));
         }
 
         public ActionResult Watch(int id)
@@ -31,8 +32,8 @@ namespace YiTao.Web.Areas.Management.Controllers
 
         public ActionResult Get(int? secho)
         {
-            var query = db.TuiSongs.Select
-                (a => new { a.Id, a.Title, a.CreateTime, action = "" });
+            var query = db.TuiSongs.OrderByDescending(a=>a.Id).Select
+                (a => new { a.Id, a.Title, a.CreateTime, a.Ok });
             var objs = new List<object>();
             foreach (var city in query)
             {
@@ -57,36 +58,74 @@ namespace YiTao.Web.Areas.Management.Controllers
         {
             if (tuisong.Id > 0)
             {
+                tuisong.Ok = 0;
+                tuisong.CreateTime = DateTime.Now;
                 db.TuiSongs.Attach(tuisong);
                 db.Entry(tuisong).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
             else
             {
+                tuisong.Ok = 0;
                 tuisong.CreateTime = DateTime.Now;
                 db.TuiSongs.Add(tuisong);
                 db.SaveChanges();
             }
+            return RedirectToAction("Index");
+            
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var v = db.TuiSongs.Find(id);
+            return View(v);
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult Edit(TuiSong tuisong)
+        {
+            if (tuisong.Id > 0)
+            {
+                tuisong.Ok = 0;
+                tuisong.CreateTime = DateTime.Now;
+                db.TuiSongs.Attach(tuisong);
+                db.Entry(tuisong).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+            else
+            {
+                tuisong.Ok = 0;
+                tuisong.CreateTime = DateTime.Now;
+                db.TuiSongs.Add(tuisong);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+
+        }
+
+        public string TuiSong(int id)
+        {
+            var tuisong = db.TuiSongs.Find(id);
             string s = JsonConvert.SerializeObject(new
             {
                 msg = tuisong.Title,
                 url = string.Format("http://{0}/Home/GetTuisong?id={1}", ConfigurationManager.AppSettings["hostname"], tuisong.Id)
             });
-            string resule = PushSDK.pushMessageToApp(tuisong.Title,s);
+            string resule = PushSDK.pushMessageToApp(tuisong.Title, s);
             if (resule.Contains("ok"))
             {
-                return RedirectToAction("Index");
+                tuisong.Ok = 1;
+                db.TuiSongs.Attach(tuisong);
+                db.Entry(tuisong).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return "1";
             }
             else
             {
-                var v = db.TuiSongs.Find(tuisong.Id);
-                db.TuiSongs.Remove(v);
-                db.SaveChanges();
-                ViewBag.msg = resule;
-                return View(tuisong);
+                return "0";
             }
         }
-
         public ActionResult Del(int id)
         {
             var v = db.TuiSongs.Find(id);
@@ -97,6 +136,11 @@ namespace YiTao.Web.Areas.Management.Controllers
             db.TuiSongs.Remove(v);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Detial(int id)
+        {
+            return View(db.TuiSongs.Find(id));
         }
 
         private List<string> GetPropertyList(object obj)

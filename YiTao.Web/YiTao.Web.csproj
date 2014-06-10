@@ -163,7 +163,6 @@
     <Folder Include="Areas\Watch\Views\file\" />
     <Folder Include="assets\plugins\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="file\image\" />
-    <Folder Include="Models\" />
     <Folder Include="Scripts\kindeditor\attached\" />
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +213,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\lunbo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\ueditor\net\Config.cs" />
     <Compile Include="Scripts\ueditor\net\Uploader.cs" />
@@ -2275,6 +2275,7 @@
     <Content Include="js\miaov_style.css" />
     <Content Include="js\reveal.css" />
     <Content Include="js\stickUp.min.js" />
+    <Content Include="lunbo.xml" />
     <Content Include="Scripts\123.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2609,6 +2610,9 @@
     <Content Include="file\Yitao.apk" />
     <Content Include="Areas\Watch\Views\Auth\Findpass.cshtml" />
     <Content Include="file\YitaoApp.apk" />
+    <Content Include="Areas\Management\Views\Tuisong\Edit.cshtml" />
+    <Content Include="Areas\Management\Views\Tuisong\Detial.cshtml" />
+    <Content Include="Areas\Management\Views\MainPage\AddLunBo.cshtml" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />

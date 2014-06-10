@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using YiTao.Web.Areas.Management.Common;
 using YiTao.Modules.Bll.Models;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Text;
+using System.Diagnostics;
 
 namespace YiTao.Web.Areas.Management.Controllers
 {
@@ -57,6 +60,7 @@ namespace YiTao.Web.Areas.Management.Controllers
             }
             else
             {
+                management.CreateTime = DateTime.Now;
                 db.Managements.Add(management);
                 db.SaveChanges();
                 return "200";
