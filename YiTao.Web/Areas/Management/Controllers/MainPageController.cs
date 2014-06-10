@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Webdiyer.WebControls.Mvc;
 using YiTao.Modules.Bll;
 using YiTao.Modules.Bll.Models;
 using YiTao.Web.Areas.Management.Common;
@@ -751,9 +752,10 @@ namespace YiTao.Web.Areas.Management.Controllers
         #endregion
 
         #region 聚折扣
-        public ActionResult JuZheKouItem()
+        public ActionResult JuZheKouItem(int? id)
         {
-            return View(db.JuZheKouItems.ToList());
+            PagedList<JuZheKouItem> m = db.JuZheKouItems.ToList().ToPagedList(id ?? 1, 5);
+            return View(m);
         }
 
         public ActionResult CreateJuZheKouItem()
@@ -1024,9 +1026,10 @@ namespace YiTao.Web.Areas.Management.Controllers
 
         #region 其他连接
 
-        public ActionResult OtherUrl()
+        public ActionResult OtherUrl(int? id)
         {
-            return View(db.OtherUrls.ToList());
+            PagedList<OtherUrl> m = db.OtherUrls.ToList().ToPagedList(id ?? 1, 5);
+            return View(m);
         }
         public ActionResult OtherUrlCreate(OtherUrl otherUrl)
         {
