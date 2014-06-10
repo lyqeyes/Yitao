@@ -3,59 +3,47 @@
 @{
     Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
 }
-<head>
-    <link href="~/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
-</head>
+<link href="~/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="~/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
 <div class="row">
     <div class="col-md-12">
         <!-- BEGIN SAMPLE FORM PORTLET-->
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-reorder"></i> 创建商品
+                    <i class="fa fa-reorder"></i> 编辑商品
                 </div>
             </div>
             <div class="portlet-body form">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">淘宝链接</label>
-                    <input type="text" class="form-control" id="taobaourl" placeholder="输入淘宝商品页面链接" />
-                    <button class="btn blue" id="taobao">从淘宝得到商品信息</button>
-                </div>
-                <form role="form" action="~/Management/ShangPin/CreateShangPin" method="post">
-                    <input type="hidden" value="@Model.CreateTime" name="CreateTime">
+                <form role="form" action="~/Management/ShangPin/CommonShangPinEdit" method="post"> 
+                    @Html.HiddenFor(a => a.XiaoLeiId)
+                    @Html.HiddenFor(a => a.ShangPinId)
                     <input type="hidden" value="@Model.XiaoLeiId" name="XiaoLeiId">
                     <div class="form-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">商品名</label>
-                            <input type="text" class="form-control" value="@Model.Name" name="Name" id="Name">
-
+                            @Html.TextBoxFor(a => a.Name, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">返积分</label>
-                            <input type="text" class="form-control" value="@Model.FanJiFen" name="FanJiFen">
-
+                            @Html.TextBoxFor(a => a.FanJiFen, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">月销量</label>
-                            <input type="text" class="form-control" value="@Model.MonthlySales" name="MonthlySales">
-
+                            @Html.TextBoxFor(a => a.MonthlySales, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">促销价</label>
-                            <input type="text" class="form-control" value="@Model.Price" name="Price">
-
+                            @Html.TextBoxFor(a => a.Price, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">原价</label>
-                            <input type="text" class="form-control" value="@Model.YuanPrice" name="YuanPrice" id="YuanPrice">
-
+                            @Html.TextBoxFor(a => a.YuanPrice, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">商品淘宝连接</label>
-                            <input type="text" class="form-control" value="@Model.Url" name="Url" id="Url">
-
+                            @Html.TextBoxFor(a => a.Url, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <input type="hidden" value="@Model.ImageUrl" name="ImageUrl" id="inputCover">
@@ -65,17 +53,27 @@
                         </div>
                         <div class="form-group">
                             <label>商品描述</label>
-                            <input type="text" class="form-control" value="@Model.Description" name="Description">
+                            @Html.TextBoxFor(a => a.Description, new { @class = "form-control" })
                         </div>
-
                         <div class="form-group">
                             <label class="">商品归属地</label>
                             <div class="checkbox-list">
-                                @foreach (var item in (ViewBag.guishudi as List<YiTao.Modules.Bll.Models.Area>))
-                                {
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox" id="inlineCheckbox1" name="guishudi" value="@item.Id">@item.Name
-                                    </label>
+                                @{
+                                    List<int> belongsTo = ViewBag.BelongGuishudiIdList as List<int>;
+                                    foreach (var item in (ViewBag.guishudi as List<YiTao.Modules.Bll.Models.Area>))
+                                    {
+                                        if(belongsTo.Contains(item.Id))
+                                        { 
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="guishudi" checked value="@item.Id">@item.Name
+                                        </label>
+                                }
+                                        else { 
+                                            <label class="checkbox-inline">
+                                            <input type="checkbox" name="guishudi" value="@item.Id">@item.Name
+                                        </label>
+                                        }
+                                    }
                                 }
                             </div>
                         </div>
@@ -83,12 +81,24 @@
                         <div class="form-group">
                             <label class="">是否包邮</label>
                             <div class="radio-list">
-                                <label class="radio-inline">
-                                    <div class="radio" id="uniform-optionsRadios4"><span class="checked"><input type="radio" name="BaoYou" value="1" checked=""></span></div>是
-                                </label>
-                                <label class="radio-inline">
-                                    <div class="radio" id="uniform-optionsRadios5"><span><input type="radio" name="BaoYou" value="2"></span></div> 否
-                                </label>
+                                @if (Model.BaoYou == 1)
+                                {
+                                    <label class="radio-inline">
+                                        <div class="radio"><span><input type="radio" name="BaoYou" value="1" checked></span></div>是
+                                    </label>
+                                    <label class="radio-inline">
+                                        <div class="radio"><span><input type="radio" name="BaoYou" value="2"></span></div> 否
+                                    </label>
+                                }
+                                else
+                                {
+                                    <label class="radio-inline">
+                                        <div class="radio"><span><input type="radio" name="BaoYou" value="1"></span></div>是
+                                    </label>
+                                    <label class="radio-inline">
+                                        <div class="radio"><span><input type="radio" name="BaoYou" checked value="2"></span></div> 否
+                                    </label>
+                                }
                             </div>
                         </div>
                     </div>
@@ -132,40 +142,8 @@
             });
         });
     </script>
-    <script type="text/javascript">
-        $("#taobao").click(function () {
-            $.ajax({
-                url: "/Management/MainPage/CreateJuZheKouAjax",
-                type: "GET",
-                data: {
-                    url: $("#taobaourl").val(),
-                },
-                beforeSend: function (XMLHttpRequest) {
-                    //$("#loading").style.display = "block";
-                    $("#basic").modal('hide');
-                },
-                success: function (data, textStatus) {
-                    if (data == "0") {
-                        alert("链接不能为空");
-                    } else {
-                        var object = $.parseJSON(data);
-                        $("#YuanPrice").val(object.price);
-                        $("#Name").val(object.title);
-                        $("#Url").val(object.url);
-                        $("#inputCover").val(object.src)
-                        $("#imageCover").attr("src", object.src);
-                    }
-
-                },
-                error: function () {
-                    alert("链接不能为空");
-                }
-            })
-        })
-    </script>
 <script>
     $("#index").removeClass("open");
     $("#goodSet").addClass("open");
 </script>
 }
-

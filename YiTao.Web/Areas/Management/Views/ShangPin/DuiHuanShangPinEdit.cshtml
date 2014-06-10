@@ -1,0 +1,125 @@
+﻿
+@{
+    Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
+}
+@model YiTao.Modules.Bll.Models.DuiHuanItem
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption"><i class="fa fa-edit"></i>编辑积分兑换商品</div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse"></a>
+            <a href="javascript:;" class="remove"></a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="btn-group">
+                <a class="btn green" href="/Management/Shangpin/DuiHuanShangPin?id=@Model.AreaId">
+                    <i class="glyphicon glyphicon-arrow-left"></i>  返回
+                </a>
+            </div>
+        </div>
+        <div class="modal-body">
+            <form action="~/management/shangpin/DuiHuanShangPinCreate" method="post" id="form_sample_3" class="form-horizontal">
+                <div class="form-body">
+                    <div class="form-group">
+                        <div>
+                            @Html.HiddenFor(a => a.DuiHuanItemId)
+                            @Html.HiddenFor(a => a.AreaId)
+                            @Html.HiddenFor(a => a.ImageUrl)
+                            <div class=" tile image double selected" style="vertical-align: middle; max-height: 100px; max-width: 200px;">
+                                <div class="tile-body">
+                                    <img id="imageCover" alt="" src="@Model.ImageUrl">
+                                </div>
+                            </div>
+                            <div class="editor-label">
+                                <span id="uploadify"></span>
+                            </div>
+                            <div class="editor-field">
+                                <div id="imagediv" style="margin-left: 210px;"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">商品名</label>
+                        <div class="input-icon">
+                            <i class="glyphicon glyphicon-edit"></i>                            
+                            @Html.TextBoxFor(a => a.Name, new { @class = "form-control placeholder-no-fix", type = "text"})
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">原价</label>
+                        <div class="input-icon">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            @Html.TextBoxFor(a => a.Price, new { @class = "form-control placeholder-no-fix", type = "text" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">所需积分</label>
+                        <div class="input-icon">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            @Html.TextBoxFor(a => a.JiFen, new { @class = "form-control placeholder-no-fix", type = "text" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">数量</label>
+                        <div class="input-icon">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            @Html.TextBoxFor(a => a.Count, new { @class = "form-control placeholder-no-fix", type = "text" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">描述</label>
+                        <div class="input-icon">
+                            @Html.TextAreaFor( a=>a.Description,new { @class = "form-control placeholder-no-fix",  placeholder = "商品描述" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn blue">保存修改</button>
+                    <button type="button" class="btn default" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section PageSpecificJavascriptIncludes{    
+<script src="~/Scripts/uploadify-v3.1/jquery.uploadify-3.1.min.js"></script>
+<link href="~/Scripts/uploadify-v3.1/uploadify.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+        $('#uploadify').uploadify({
+            uploader: '/Home/Upload',           // 服务器端处理地址
+            swf: '/Scripts/uploadify-v3.1/uploadify.swf',    // 上传使用的 Flash
+            width: 100,                          // 按钮的宽度
+            height: 40,                         // 按钮的高度
+            buttonText: "更换图片",                 // 按钮上的文字
+            buttonCursor: 'hand',                // 按钮的鼠标图标
+            fileObjName: 'Filedata',            // 上传参数名称
+            // 两个配套使用
+            fileTypeExts: "*.gif; *.jpg; *.png;*.bmp;*.jpeg;",             // 扩展名
+            fileTypeDesc: "图片文件",     // 文件说明
+            auto: true,                // 选择之后，自动开始上传
+            multi: false,               // 是否支持同时上传多个文件
+            //queueSizeLimit: 5,          // 允许多文件上传的时候，同时上传文件的个数
+            removeTimeout: 0,
+            'onUploadSuccess': function (file, data, response) {
+                if (data == "1") {
+                    alert('服务器错误，请重新上传');
+                }
+                else {
+                    console.log(data);
+                    $("#imageCover").attr("src", data);
+                    $("#ImageUrl").attr("value", data);
+                }
+            }
+        });
+    });
+</script>
+<script>
+    $("#index").removeClass("open");
+    $("#goodSet").addClass("open");
+</script>
+}

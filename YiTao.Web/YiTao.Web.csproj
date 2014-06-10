@@ -2611,6 +2611,8 @@
     <Content Include="file\YitaoApp.apk" />
     <Content Include="Areas\Management\Views\MainPage\EditJuZheKouItem.cshtml" />
     <Content Include="Areas\Management\Views\MainPage\EditShangPin.cshtml" />
+    <Content Include="Areas\Management\Views\ShangPin\DuiHuanShangPinEdit.cshtml" />
+    <Content Include="Areas\Management\Views\ShangPin\CommonShangPinEdit.cshtml" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
