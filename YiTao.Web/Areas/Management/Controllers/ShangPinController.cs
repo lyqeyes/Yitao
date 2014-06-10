@@ -105,11 +105,12 @@ namespace YiTao.Web.Areas.Management.Controllers
         #endregion
 
         #region 三类
-        public ActionResult ThreeLei(int TwoLeiId)
+        public ActionResult ThreeLei(int? id,int TwoLeiId)
         {
             TempData["TwoLeiId"] = TwoLeiId;
             TempData["daleiName"] = db.TowLeis.Find(TwoLeiId).Name;
-            return View(db.ThreeLeis.Where(e => e.TwoLeiId == TwoLeiId).ToList());
+            PagedList<ThreeLei> m = db.ThreeLeis.Where(e => e.TwoLeiId == TwoLeiId).OrderByDescending(a=>a.ThreeLeiId).ToList().ToPagedList(id??1, 5);
+            return View(m);
         }
 
         public ActionResult ThreeLeiCreate(YiTao.Modules.Bll.Models.ThreeLei xiaolei)
