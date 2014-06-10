@@ -141,7 +141,7 @@ namespace YiTao.Web.Areas.Management.Controllers
         {
             var xiaolei = db.ThreeLeis.Find(id);
             if (xiaolei == null)
-                return RedirectToAction("xiaolei", new { ThreeLei = TempData["ThreeLei"] });
+                return RedirectToAction("ThreeLei", new { ThreeLei = TempData["ThreeLei"] });
             db.ThreeLeis.Remove(xiaolei);
             db.SaveChanges();
             return RedirectToAction("ThreeLei", new { ThreeLei = TempData["ThreeLei"] });
