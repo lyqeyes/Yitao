@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Webdiyer.WebControls.Mvc;
 using YiTao.Modules.Bll;
 using YiTao.Modules.Bll.Models;
 using YiTao.Web.Areas.Management.Common;
@@ -16,9 +17,10 @@ namespace YiTao.Web.Areas.Management.Controllers
         #region 普通商品管理
 
         #region 大类
-        public ActionResult DaLei()
+        public ActionResult DaLei(int? id)
         {
-            return View(db.DaLeis.ToList());
+            PagedList<DaLei> m = db.DaLeis.ToList().ToPagedList(id ?? 1, 5);
+            return View(m);
         }
 
         public ActionResult DaLeiCreate(DaLei dalei)
@@ -57,11 +59,12 @@ namespace YiTao.Web.Areas.Management.Controllers
 
         #region 二级分类
 
-        public ActionResult XiaoLei(int DaLeiId)
+        public ActionResult XiaoLei(int DaLeiId,int ?id)
         {
             TempData["daleiID"] = DaLeiId;
             TempData["daleiName"] = db.DaLeis.Find(DaLeiId).Name;
-            return View(db.TowLeis.Where(e => e.DaLeiId == DaLeiId).ToList());
+            PagedList<TowLei> m = db.TowLeis.Where(e => e.DaLeiId == DaLeiId).ToList().ToPagedList(id ?? 1, 5);
+            return View(m);
         }
 
         public ActionResult XiaoLeiCreate(YiTao.Modules.Bll.Models.TowLei xiaolei)
@@ -145,10 +148,11 @@ namespace YiTao.Web.Areas.Management.Controllers
         }
         #endregion
 
-        public ActionResult CommonShangPin(int XiaoLeiId)
+        public ActionResult CommonShangPin(int XiaoLeiId,int? id)
         {
             ViewBag.id = XiaoLeiId;
-            return View(db.ShangPins.Where(e => e.XiaoLeiId == XiaoLeiId).ToList());
+            PagedList<ShangPin> m = db.ShangPins.Where(e => e.XiaoLeiId == XiaoLeiId).ToList().ToPagedList(id ?? 1, 5);
+            return View(m);
         }
 
         //public string CommonShangPinCreate(YiTao.Modules.Bll.Models.ShangPin shangpin)

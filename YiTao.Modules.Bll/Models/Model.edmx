@@ -278,6 +278,7 @@
           <Property Name="TuiSongContent" Type="nvarchar(max)" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ok" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserAddress">
           <Key>
@@ -652,6 +653,7 @@
           <Property Name="TuiSongContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ok" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="UserAddress">
           <Key>
@@ -1053,6 +1055,7 @@
           <EntitySetMapping Name="TuiSongs">
             <EntityTypeMapping TypeName="YiTaoModel.TuiSong">
               <MappingFragment StoreEntitySet="TuiSong">
+                <ScalarProperty Name="Ok" ColumnName="Ok" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TuiSongContent" ColumnName="TuiSongContent" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />

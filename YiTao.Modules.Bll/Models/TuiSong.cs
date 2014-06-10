@@ -18,5 +18,6 @@ namespace YiTao.Modules.Bll.Models
         public string TuiSongContent { get; set; }
         public System.DateTime CreateTime { get; set; }
         public string Title { get; set; }
+        public int Ok { get; set; }
     }
 }

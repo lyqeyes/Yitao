@@ -73,8 +73,11 @@ namespace YiTao.Web.Areas.Management.Controllers
                 jfls.JiFen = add;
                 jfls.AccountName = name;
                 jfls.Description = "人为添加积分";
+                jfls.CreateTime = DateTime.Now;
+                jfls.WhetherDealed = 0;
                 db.JiFenLiShis.Add(jfls);
                 account.JiFen += add;
+                db.Accounts.Attach(account);
                 db.Entry(account).State = EntityState.Modified;
                 db.SaveChanges();
                 return "200";

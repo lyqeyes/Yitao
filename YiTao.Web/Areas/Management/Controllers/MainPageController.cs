@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
@@ -11,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Webdiyer.WebControls.Mvc;
+using System.Xml;
 using YiTao.Modules.Bll;
 using YiTao.Modules.Bll.Models;
 using YiTao.Web.Areas.Management.Common;
@@ -18,32 +21,76 @@ namespace YiTao.Web.Areas.Management.Controllers
 {
     public class MainPageController : BaseController
     {
-
         #region 轮播
         [HttpGet]
         public ActionResult Lunbo()
         {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(AppDomain.CurrentDomain.BaseDirectory+"/lunbo.xml");
+            XmlNodeList nodeList = xmlDoc.SelectSingleNode("lunbo").ChildNodes;
+            foreach (var item in nodeList)
+            {
+                XmlElement xe = (XmlElement)item;
+                if (xe.GetAttribute("name") == "fx")
+                {
+                    ViewBag.leixing = xe.InnerText;
+                    break;
+                }
+            }
             return View(db.LunBoes.ToList());
         }
+
+        public string AddMet(string met)
+        {
+            string s = string.Empty;
+            if (met=="option1")
+            {
+                s = "从左往右";
+            }
+            else
+            {
+                s = "从右往左";
+            }
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(AppDomain.CurrentDomain.BaseDirectory + "/lunbo.xml");
+            XmlNodeList nodeList = xmlDoc.SelectSingleNode("lunbo").ChildNodes;
+            foreach (var item in nodeList)
+            {
+                XmlElement xe = (XmlElement)item;
+                if (xe.GetAttribute("name") == "fx")
+                {
+                    xe.InnerText = s;
+                    break;
+                }
+            }
+            xmlDoc.Save(AppDomain.CurrentDomain.BaseDirectory + "/lunbo.xml");
+            return "1";
+        }
+        public ActionResult AddLunBo()
+        {
+            return View();
+        }
+
+        public ActionResult DelLunBo(int id)
+        {
+            var v = db.LunBoes.Find(id);
+            db.LunBoes.Remove(v);
+            db.SaveChanges();
+            return RedirectToAction("Lunbo");
+        }
         [HttpPost]
-        public string Lunbo(YiTao.Modules.Bll.Models.LunBo newLunbo)
+        public ActionResult Lunbo(YiTao.Modules.Bll.Models.LunBo newLunbo)
         {
             try
             {
-                var lunbo = db.LunBoes.Find(newLunbo.LunBoId);
-                if (lunbo == null)
-                {
-                    return "100";
-                }
-                lunbo.ClickUrl = newLunbo.ClickUrl;
-                lunbo.ImageUrl = newLunbo.ImageUrl;
-                db.Entry(lunbo).State = EntityState.Modified;
+                newLunbo.CreateTime = DateTime.Now;
+                db.LunBoes.Add(newLunbo);
                 db.SaveChanges();
-                return "200";
+                return RedirectToAction("Lunbo");
             }
             catch (Exception)
             {
-                return "100";
+                return View(newLunbo);
             }
         }
 
@@ -581,17 +628,18 @@ namespace YiTao.Web.Areas.Management.Controllers
             return RedirectToAction("ShangPinItem", new { id = type });
         }
 
-        public ActionResult ShangPinItem(int id)
+        public ActionResult ShangPinItem(int type, int? id)
         {
-            ViewBag.id = id;
-            var temp = db.ZhuanTis.FirstOrDefault(z => z.Type == id);
+            ViewBag.id = type;
+            var temp = db.ZhuanTis.FirstOrDefault(z => z.Type == type);
             if (temp == null)
             {
                 return View();
             }
             else
             {
-                return View(db.ZhuanTiItems.Where(z => z.ZhuanTiId == temp.ZhuanTiId).ToList());
+                PagedList<ZhuanTiItem> m = db.ZhuanTiItems.Where(z => z.ZhuanTiId == temp.ZhuanTiId).ToList().ToPagedList(id ?? 1, 5);
+                return View(m);
             }
         }
         #endregion
@@ -751,9 +799,10 @@ namespace YiTao.Web.Areas.Management.Controllers
         #endregion
 
         #region 聚折扣
-        public ActionResult JuZheKouItem()
+        public ActionResult JuZheKouItem(int? id)
         {
-            return View(db.JuZheKouItems.ToList());
+            PagedList<JuZheKouItem> m = db.JuZheKouItems.ToList().ToPagedList(id ?? 1, 5);
+            return View(m);
         }
 
         public ActionResult CreateJuZheKouItem()
@@ -1024,9 +1073,10 @@ namespace YiTao.Web.Areas.Management.Controllers
 
         #region 其他连接
 
-        public ActionResult OtherUrl()
+        public ActionResult OtherUrl(int? id)
         {
-            return View(db.OtherUrls.ToList());
+            PagedList<OtherUrl> m = db.OtherUrls.ToList().ToPagedList(id ?? 1, 5);
+            return View(m);
         }
         public ActionResult OtherUrlCreate(OtherUrl otherUrl)
         {
