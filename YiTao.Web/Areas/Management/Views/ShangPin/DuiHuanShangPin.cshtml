@@ -76,7 +76,7 @@
                 <h4 class="modal-title">创建新兑换商品</h4>
             </div>
             <div class="modal-body">
-                <form action="~/management/shangpin/DuiHuanShangPinCreate" method="post" id="form_sample_3" class="form-horizontal">
+                <form onsubmit="return checkfun()" action="~/management/shangpin/DuiHuanShangPinCreate" method="post" id="form_sample_3" class="form-horizontal">
                     <div class="form-body">
                         <div class="form-group">
                             <div>
@@ -96,39 +96,40 @@
 
                         </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">商品名</label>
+                            <label class="control-label ">商品名</label>
                             <div class="input-icon">
                                 <i class="fa fa-lock"></i>
                                 <input type="text" style="display:none" name="AreaId" value="@ViewBag.id" />
-                                       @Html.TextBox("Name", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "商品名", id = "Name", name = "Name" })></div>
+                                @Html.TextBox("Name", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "商品名", id = "Name", name = "Name" })
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">描述</label>
+                            <label class="control-label ">描述</label>
                             <div class="input-icon">
                                 @Html.TextArea("description", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "商品描述", id = "description", name = "description" })
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">原价</label>
+                            <label class="control-label ">原价</label>
                             <div class="input-icon">
                                 <i class="fa fa-lock"></i>
                                 @Html.TextBox("Price", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "原价", id = "Price", name = "Price" })
                             </div>
-                        </div>    
+                        </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">所需积分</label>
+                            <label class="control-label ">所需积分</label>
                             <div class="input-icon">
                                 <i class="fa fa-lock"></i>
                                 @Html.TextBox("JiFen", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "所需积分", id = "JiFen", name = "JiFen" })
                             </div>
-                        </div>    
+                        </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">数量</label>
+                            <label class="control-label ">数量</label>
                             <div class="input-icon">
                                 <i class="fa fa-lock"></i>
                                 @Html.TextBox("Count", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "商品数量", id = "Count", name = "Count" })
                             </div>
-                        </div>             
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn blue">创建新商品</button>
@@ -141,57 +142,7 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<div class="modal fade" id="basic2" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">编辑兑换商品资料</h4>
-            </div>
-            <div class="modal-body">
-                <form action="DuiHuanShangPinEdit" id="form_sample_3" class="form-horizontal" method="post">
-                    <div class="form-body">
-                        <div class="form-group" hidden="hidden">
-                            <label class="control-label visible-ie8 visible-ie9">商品ID</label>
-                            <div class="input-icon">
-                                <i class="fa fa-user"></i>
-                                <input class="form-control placeholder-no-fix" type="text" readonly="readonly" autocomplete="off" placeholder="商品ID" id="DuiHuanItemId" name="DuiHuanItemId" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">商品名</label>
-                            <div class="input-icon">
-                                <i class="fa fa-user"></i>
-                                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="商品名" id="name" name="name" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">商品数量</label>
-                            <div class="input-icon">
-                                <i class="fa fa-user"></i>
-                                <input class="form-control placeholder-no-fix" type="text" placeholder="商品数量" id="count" name="count" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">描述</label>
-                            <div class="input-icon">                                
-                                @*<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="描述" id="description" name="description" />*@
-                                @Html.TextArea("description", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "商品描述", id = "description", name = "description" })
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn blue">确认修改</button>
-                        <button type="button" class="btn default" data-dismiss="modal">取消</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
+
 <div class="modal fade" id="basic3" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -200,36 +151,37 @@
                 <h4 class="modal-title">确认删除?</h4>
             </div>
             <div class="modal-body">
-                <form action="DuiHuanShangPinDel" method="post" id="form_sample_3" class="form-horizontal">
+                <form action="/management/ShangPin/DuiHuanShangPinDel" method="post" id="form_sample_3" class="form-horizontal">
                     <div class="form-body">
                         <div class="form-group" hidden="hidden">
-                            <label class="control-label visible-ie8 visible-ie9">商品ID</label>
+                            <label class="control-label ">商品ID</label>
                             <div class="input-icon">
                                 <i class="fa fa-user"></i>
                                 <input class="form-control placeholder-no-fix" type="text" readonly="readonly" id="DuiHuanItemId" name="DuiHuanItemId" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">商品名</label>
+                            <label class="control-label ">商品名</label>
                             <div class="input-icon">
                                 <i class="fa fa-user"></i>
+                                <input type="text" style="display:none" name="AreaId" value="@ViewBag.id" />
                                 <input class="form-control placeholder-no-fix" type="text" readonly="readonly" id="name" name="name" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">商品数量</label>
+                            <label class="control-label ">商品数量</label>
                             <div class="input-icon">
                                 <i class="fa fa-user"></i>
                                 <input class="form-control placeholder-no-fix" type="text" readonly="readonly" id="count" name="count" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label visible-ie8 visible-ie9">商品描述</label>
+                            <label class="control-label ">商品描述</label>
                             <div class="input-icon">
                                 @Html.TextArea("description", String.Empty, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "商品描述", id = "description", name = "description" })
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn blue">删除</button>
@@ -242,6 +194,7 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
 @section PageSpecificJavascriptIncludes{    
     <script type="text/javascript">
         $('button[my="edit"]', '#sample_1').die().live('click', function () {
@@ -305,6 +258,23 @@
             });
         });
     </script>
+
+<script type="text/javascript">
+    function checkfun() {
+        var obj = $("#basic").find("input[type='text']");
+        var i = 0;
+        $.each(obj, function (n, vaule) {
+            if ($(obj[n]).val() == "") {
+                alert("表单必须全都填写");
+                i++; return false;
+            }
+        })
+        if (i > 0) {
+            return false;
+        }
+        return true;
+    }
+</script>
 <script>
     $("#index").removeClass("open");
     $("#goodSet").addClass("open");

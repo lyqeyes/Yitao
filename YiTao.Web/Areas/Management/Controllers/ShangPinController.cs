@@ -136,17 +136,17 @@ namespace YiTao.Web.Areas.Management.Controllers
             xiaolei.Name = xiaolei.Name;
             db.Entry(xiaolei).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("ThreeLei", new { ThreeLei = TempData["ThreeLei"] });
+            return RedirectToAction("ThreeLei", new { TwoLeiId = TempData["TwoLeiId"] });
         }
 
         public ActionResult ThreeLeiDel(int id)
         {
             var xiaolei = db.ThreeLeis.Find(id);
             if (xiaolei == null)
-                return RedirectToAction("ThreeLei", new { ThreeLei = TempData["ThreeLei"] });
+                return RedirectToAction("ThreeLei", new { TwoLeiId = TempData["TwoLeiId"] });
             db.ThreeLeis.Remove(xiaolei);
             db.SaveChanges();
-            return RedirectToAction("ThreeLei", new { ThreeLei = TempData["ThreeLei"] });
+            return RedirectToAction("ThreeLei", new { TwoLeiId = TempData["TwoLeiId"] });
         }
         #endregion
 
@@ -154,7 +154,9 @@ namespace YiTao.Web.Areas.Management.Controllers
         {
             ViewBag.PreClass = db.ThreeLeis.FirstOrDefault(a => a.ThreeLeiId == XiaoLeiId).TwoLeiId;
             ViewBag.id = XiaoLeiId;
-            PagedList<ShangPin> m = db.ShangPins.Where(e => e.XiaoLeiId == XiaoLeiId).OrderByDescending(e=>e.ShangPinId).ToList().ToPagedList(id ?? 1, 5);
+            PagedList<ShangPin> m = db.ShangPins.
+                Where(e => e.XiaoLeiId == XiaoLeiId).
+                OrderByDescending(e=>e.ShangPinId).ToList().ToPagedList(id ?? 1, 5);
             return View(m);
         }
 
@@ -329,7 +331,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                 shangpin.CreateTime = System.DateTime.Now;
                 db.DuiHuanItems.Add(shangpin);
                 db.SaveChanges();
-                return RedirectToAction("DuiHuanShangPin");
+                return RedirectToAction("DuiHuanShangPin", new { id = shangpin.AreaId });
             }
             //如果是编辑
             else
@@ -347,30 +349,15 @@ namespace YiTao.Web.Areas.Management.Controllers
             return View(editOne);
         }
 
-        //public ActionResult DuiHuanShangPinEdit(DuiHuanItem newshangpin)
-        //{
-        //    var shangpin = db.DuiHuanItems.Find(newshangpin.DuiHuanItemId);
-        //    if (shangpin == null)
-        //        return RedirectToAction("DuiHuanShangPin", new { id = newshangpin.AreaId });
-        //    if (shangpin.Name != newshangpin.Name && db.DuiHuanItems.Count(e => e.Name == newshangpin.Name) != 0)
-        //        return RedirectToAction("DuiHuanShangPin", new { id = newshangpin.AreaId });
-        //    shangpin.CreateTime = System.DateTime.Now;
-        //    shangpin.Name = newshangpin.Name;
-        //    shangpin.Description = newshangpin.Description;
-        //    shangpin.Count = newshangpin.Count;
-        //    db.Entry(shangpin).State = EntityState.Modified;
-        //    db.SaveChanges();
-        //    return RedirectToAction("DuiHuanShangPin", new { id = newshangpin.AreaId });
-        //}
-
         public ActionResult DuiHuanShangPinDel(DuiHuanItem delItem)
         {
+            int id = delItem.AreaId;
             var shangpin = db.DuiHuanItems.Find(delItem.DuiHuanItemId);
             if (shangpin == null)
-                return RedirectToAction("DuiHuanShangPin", new { id = delItem.AreaId });
+                return RedirectToAction("DuiHuanShangPin", new { id = id });
             db.DuiHuanItems.Remove(shangpin);
             db.SaveChanges();
-            return RedirectToAction("DuiHuanShangPin", new { id = delItem.AreaId });
+            return RedirectToAction("DuiHuanShangPin", new { id = id });
         }
         #endregion
 

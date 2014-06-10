@@ -253,7 +253,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                     };
                     Web.Common.Searcher.Add(SearchShangPin);
                     #endregion
-                    return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.ShiJian });
+                    return RedirectToAction("ShangPinItem", new { type = (int)EnumZhuanTi.ShiJian });
                 }
                 else if (shangpin.ZhuanTiId ==
                     db.ZhuanTis.FirstOrDefault(z => z.Type ==
@@ -302,7 +302,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                     };
                     Web.Common.Searcher.Add(SearchShangPin);
                     #endregion
-                    return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.Zhauti1 });
+                    return RedirectToAction("ShangPinItem", new { type = (int)EnumZhuanTi.Zhauti1 });
                 }
                 else if (shangpin.ZhuanTiId == db.ZhuanTis.FirstOrDefault(z => z.Type == (int)EnumZhuanTi.Zhauti2).ZhuanTiId)
                 {
@@ -349,7 +349,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                     };
                     Web.Common.Searcher.Add(SearchShangPin);
                     #endregion
-                    return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.Zhauti2 });
+                    return RedirectToAction("ShangPinItem", new { type = (int)EnumZhuanTi.Zhauti2 });
                 }
                 else
                 {
@@ -396,7 +396,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                     };
                     Web.Common.Searcher.Add(SearchShangPin);
                     #endregion
-                    return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.Zhauti3 });
+                    return RedirectToAction("ShangPinItem", new { type = (int)EnumZhuanTi.Zhauti3 });
                 }
             }
             else
@@ -472,7 +472,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                     };
                     Web.Common.Searcher.Add(SearchShangPin);
                     #endregion
-                    return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.ShiJian });
+                    return RedirectToAction("ShangPinItem", new { type = (int)EnumZhuanTi.ShiJian });
                 }
                 else if (shangpin.ZhuanTiId ==
                     db.ZhuanTis.FirstOrDefault(z => z.Type ==
@@ -513,7 +513,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                     };
                     Web.Common.Searcher.Add(SearchShangPin);
                     #endregion
-                    return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.Zhauti1 });
+                    return RedirectToAction("ShangPinItem", new { type = (int)EnumZhuanTi.Zhauti1 });
                 }
                 else if (shangpin.ZhuanTiId == db.ZhuanTis.FirstOrDefault(z => z.Type == (int)EnumZhuanTi.Zhauti2).ZhuanTiId)
                 {
@@ -552,7 +552,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                     };
                     Web.Common.Searcher.Add(SearchShangPin);
                     #endregion
-                    return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.Zhauti2 });
+                    return RedirectToAction("ShangPinItem", new { type = (int)EnumZhuanTi.Zhauti2 });
                 }
                 else
                 {
@@ -590,7 +590,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                     };
                     Web.Common.Searcher.Add(SearchShangPin);
                     #endregion
-                    return RedirectToAction("ShangPinItem", new { id = (int)EnumZhuanTi.Zhauti3 });
+                    return RedirectToAction("ShangPinItem", new { type = (int)EnumZhuanTi.Zhauti3 });
                 }
             }
             else
