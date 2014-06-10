@@ -37,7 +37,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                     break;
                 }
             }
-            return View(db.LunBoes.ToList());
+            return View(db.LunBoes.OrderByDescending(e=>e.LunBoId).ToList());
         }
 
         public string AddMet(string met)
@@ -638,7 +638,7 @@ namespace YiTao.Web.Areas.Management.Controllers
             }
             else
             {
-                PagedList<ZhuanTiItem> m = db.ZhuanTiItems.Where(z => z.ZhuanTiId == temp.ZhuanTiId).ToList().ToPagedList(id ?? 1, 5);
+                PagedList<ZhuanTiItem> m = db.ZhuanTiItems.Where(z => z.ZhuanTiId == temp.ZhuanTiId).OrderByDescending(e=>e.ZhuanTiItemId).ToList().ToPagedList(id ?? 1, 5);
                 return View(m);
             }
         }
@@ -801,7 +801,7 @@ namespace YiTao.Web.Areas.Management.Controllers
         #region 聚折扣
         public ActionResult JuZheKouItem(int? id)
         {
-            PagedList<JuZheKouItem> m = db.JuZheKouItems.ToList().ToPagedList(id ?? 1, 5);
+            PagedList<JuZheKouItem> m = db.JuZheKouItems.OrderByDescending(e=>e.JuZheKouItemId).ToList().ToPagedList(id ?? 1, 5);
             return View(m);
         }
 
@@ -1075,7 +1075,7 @@ namespace YiTao.Web.Areas.Management.Controllers
 
         public ActionResult OtherUrl(int? id)
         {
-            PagedList<OtherUrl> m = db.OtherUrls.ToList().ToPagedList(id ?? 1, 5);
+            PagedList<OtherUrl> m = db.OtherUrls.OrderByDescending(e=>e.OtherUrlId).ToList().ToPagedList(id ?? 1, 5);
             return View(m);
         }
         public ActionResult OtherUrlCreate(OtherUrl otherUrl)

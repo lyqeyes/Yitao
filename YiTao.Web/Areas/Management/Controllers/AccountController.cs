@@ -14,13 +14,13 @@ namespace YiTao.Web.Areas.Management.Controllers
         [HttpGet]
         public ActionResult CommonManage(int id= 0)
         {
-            return View(db.Accounts.OrderByDescending(a => a.CreateTime).ToPagedList(id, 20));
+            return View(db.Accounts.OrderByDescending(a => a.AccountId).ToPagedList(id, 20));
         }
 
         [HttpGet]
         public ActionResult JiFenManage(int? id)
         {
-            return View(db.Accounts.OrderByDescending(a=>a.CreateTime).ToPagedList(id ?? 1, 20));
+            return View(db.Accounts.OrderByDescending(a=>a.AccountId).ToPagedList(id ?? 1, 20));
         }
 
         //注册新会员
@@ -113,7 +113,7 @@ namespace YiTao.Web.Areas.Management.Controllers
         [HttpGet]
         public ActionResult JiFenLiShi(int? id)
         {
-            return View(db.JiFenLiShis.OrderByDescending(a=>a.CreateTime).ToPagedList(id ?? 1, 20));
+            return View(db.JiFenLiShis.OrderByDescending(a=>a.JiFenLiShiId).ToPagedList(id ?? 1, 20));
         }
 	}    
 }

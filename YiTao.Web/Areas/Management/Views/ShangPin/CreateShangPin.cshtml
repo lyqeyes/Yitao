@@ -23,7 +23,7 @@
                     <input type="text" class="form-control" id="taobaourl" placeholder="输入淘宝商品页面链接" />
                     <button class="btn blue" id="taobao">从淘宝得到商品信息</button>
                 </div>
-                <form role="form" action="~/Management/ShangPin/CreateShangPin" method="post">
+                <form id="form1" role="form" action="~/Management/ShangPin/CreateShangPin" method="post" onsubmit="checkfun()">
                     <input type="hidden" value="@Model.CreateTime" name="CreateTime">
                     <input type="hidden" value="@Model.XiaoLeiId" name="XiaoLeiId">
                     <div class="form-body">
@@ -171,6 +171,16 @@
                 }
             })
         })
+    </script>
+    <script type="text/javascript">
+        function checkfun()
+        {
+            var obj = $("input[type='text']");
+            $.each(obj, function (n, vaule) {
+                alert(vaule);
+            })
+            return false;
+        }
     </script>
 <script>
     $("#index").removeClass("open");
