@@ -107,6 +107,7 @@ namespace YiTao.Web.Areas.Management.Controllers
         #region 三类
         public ActionResult ThreeLei(int TwoLeiId,int ?id)
         {
+            ViewBag.PreClass = db.TowLeis.FirstOrDefault(a => a.TwoLeiId == TwoLeiId).DaLeiId;
             TempData["TwoLeiId"] = TwoLeiId;
             TempData["daleiName"] = db.TowLeis.Find(TwoLeiId).Name;
             PagedList<ThreeLei> m = db.ThreeLeis.Where(e => e.TwoLeiId == TwoLeiId).OrderByDescending(e=>e.ThreeLeiId).ToList().ToPagedList(id ?? 1, 5);
@@ -151,6 +152,7 @@ namespace YiTao.Web.Areas.Management.Controllers
 
         public ActionResult CommonShangPin(int XiaoLeiId,int? id)
         {
+            ViewBag.PreClass = db.ThreeLeis.FirstOrDefault(a => a.ThreeLeiId == XiaoLeiId).TwoLeiId;
             ViewBag.id = XiaoLeiId;
             PagedList<ShangPin> m = db.ShangPins.Where(e => e.XiaoLeiId == XiaoLeiId).OrderByDescending(e=>e.ShangPinId).ToList().ToPagedList(id ?? 1, 5);
             return View(m);

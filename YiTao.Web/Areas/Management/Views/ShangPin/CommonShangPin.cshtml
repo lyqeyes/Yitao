@@ -4,7 +4,7 @@
     Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
 }
 <div>
-    <a class="btn btn-warning" style="margin-right:1em;" href="javascript:history.go(-1)"><i class="glyphicon glyphicon-arrow-left"></i> 返回 </a>
+    <a class="btn btn-warning" style="margin-right:1em;" href="/management/Shangpin/ThreeLei?TwoleiId=@ViewBag.PreClass"><i class="glyphicon glyphicon-arrow-left"></i> 返回三级类目 </a>
     <a class="btn btn-primary " data-toggle="modal" href="~/Management/ShangPin/CreateShangPin?XiaoLeiId=@ViewBag.id">上传商品</a>
     <hr />
 </div>
