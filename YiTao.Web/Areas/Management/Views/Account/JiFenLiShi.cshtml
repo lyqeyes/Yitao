@@ -23,7 +23,6 @@
                             <th class="col-md-1">积分值</th>
                             <th class="col-md-2">操作类型</th>
                             <th class="col-md-2">商品ID</th>
-                            <th class="col-md-1">管理</th>
                         </tr>
                         @foreach (var item in Model)
                         {
@@ -55,12 +54,7 @@
                                             break;
                                         }
                                 }
-                                <th>@item.ItemId</th>
-                                <th>
-                                    <button class="btn green" data-toggle="modal">
-                                        处理 <i class="fa fa-edit"></i>
-                                    </button>
-                                </th>                                
+                                <th>@item.ItemId</th>                                                         
                             </tr>
                         }
                     </thead>

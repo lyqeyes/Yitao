@@ -102,46 +102,46 @@ namespace YiTao.Web.Areas.Management.Controllers
         #endregion
 
         #region 三类
-        public ActionResult ThreeLei(int DaLeiId)
+        public ActionResult ThreeLei(int TwoLeiId)
         {
-            TempData["daleiID"] = DaLeiId;
-            TempData["daleiName"] = db.TowLeis.Find(DaLeiId).Name;
-            return View(db.ThreeLeis.Where(e => e.TwoLeiId == DaLeiId).ToList());
+            TempData["TwoLeiId"] = TwoLeiId;
+            TempData["daleiName"] = db.TowLeis.Find(TwoLeiId).Name;
+            return View(db.ThreeLeis.Where(e => e.TwoLeiId == TwoLeiId).ToList());
         }
 
         public ActionResult ThreeLeiCreate(YiTao.Modules.Bll.Models.ThreeLei xiaolei)
         {
-            xiaolei.TwoLeiId = (int)TempData["daleiID"];
+            xiaolei.TwoLeiId = (int)TempData["TwoLeiId"];
             xiaolei.CreateTime = System.DateTime.Now;
             if (db.TowLeis.Count(e => e.Name == xiaolei.Name) != 0)
-                return RedirectToAction("xiaolei", new { daleiID = TempData["daleiID"] });
+                return RedirectToAction("ThreeLei", new { TwoLeiId = TempData["TwoLeiId"] });
             db.ThreeLeis.Add(xiaolei);
             db.SaveChanges();
-            return RedirectToAction("ThreeLei", new { DaLeiId = TempData["daleiID"] });
+            return RedirectToAction("ThreeLei", new { TwoLeiId = TempData["TwoLeiId"] });
         }
 
         public ActionResult ThreeLeiEdit(YiTao.Modules.Bll.Models.ThreeLei newxiaolei)
         {
             var xiaolei = db.ThreeLeis.Find(newxiaolei.TwoLeiId);
             if (xiaolei == null)
-                return RedirectToAction("xiaolei", new { daleiID = TempData["daleiID"] });
+                return RedirectToAction("ThreeLei", new { TwoLeiId = TempData["TwoLeiId"] });
             if (xiaolei.Name != newxiaolei.Name && db.ThreeLeis.Count(e => e.Name == newxiaolei.Name) != 0)
-                return RedirectToAction("xiaolei", new { daleiID = TempData["daleiID"] });
+                return RedirectToAction("ThreeLei", new { TwoLeiId = TempData["TwoLeiId"] });
             xiaolei.ImageUrl = xiaolei.ImageUrl;
             xiaolei.Name = xiaolei.Name;
             db.Entry(xiaolei).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("ThreeLei", new { daleiID = TempData["daleiID"] });
+            return RedirectToAction("ThreeLei", new { ThreeLei = TempData["ThreeLei"] });
         }
 
         public ActionResult ThreeLeiDel(int id)
         {
             var xiaolei = db.ThreeLeis.Find(id);
             if (xiaolei == null)
-                return RedirectToAction("xiaolei", new { daleiID = TempData["daleiID"] });
+                return RedirectToAction("xiaolei", new { ThreeLei = TempData["ThreeLei"] });
             db.ThreeLeis.Remove(xiaolei);
             db.SaveChanges();
-            return RedirectToAction("ThreeLei", new { daleiID = TempData["daleiID"] });
+            return RedirectToAction("ThreeLei", new { ThreeLei = TempData["ThreeLei"] });
         }
         #endregion
 
@@ -222,7 +222,7 @@ namespace YiTao.Web.Areas.Management.Controllers
             };
             Web.Common.Searcher.Add(SearchShangPin);
             #endregion
-            return RedirectToAction("CommonShangPinEdit", new { ShangPinId = editOne.ShangPinId });
+            return RedirectToAction("CommonShangPin", new { XiaoLeiId = editOne.XiaoLeiId });
         }
         public ActionResult CreateShangPin(int XiaoLeiId)
         {
@@ -351,7 +351,7 @@ namespace YiTao.Web.Areas.Management.Controllers
                 shangpin.CreateTime = DateTime.Now;
                 db.Entry(shangpin).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("DuiHuanShangPinEdit", new { id = shangpin.DuiHuanItemId });
+                return RedirectToAction("DuiHuanShangPin", new { id = shangpin.AreaId });
             }
         }
         //添加编辑页面
