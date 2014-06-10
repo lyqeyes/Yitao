@@ -4,7 +4,23 @@
     Layout = "~/Areas/Management/Views/Shared/_Layout.cshtml";
 }
 <div>
-    <a class="btn btn-warning" style="margin-right:1em;" href="javascript:history.go(-1)"><i class="glyphicon glyphicon-arrow-left"></i> 返回 </a>
+    @if ((int)ViewBag.id == 4)
+{
+    <a class="btn btn-warning" style="margin-right:1em;" href="/management/mainpage/MeiRiShiJianCover"><i class="glyphicon glyphicon-arrow-left"></i> 返回 </a>
+}
+else if ((int)ViewBag.id == 3)
+{
+    <a class="btn btn-warning" style="margin-right:1em;" href="/management/mainpage/ZhuanTi3Cover"><i class="glyphicon glyphicon-arrow-left"></i> 返回 </a>
+}
+    else if ((int)ViewBag.id == 2)
+    {
+        <a class="btn btn-warning" style="margin-right:1em;" href="/management/mainpage/ZhuanTi2Cover"><i class="glyphicon glyphicon-arrow-left"></i> 返回 </a>
+    }
+    else if ((int)ViewBag.id == 1)
+    {
+        <a class="btn btn-warning" style="margin-right:1em;" href="/management/mainpage/ZhuanTi1Cover"><i class="glyphicon glyphicon-arrow-left"></i> 返回 </a>
+    }
+    
     <a class="btn btn-primary" data-toggle="modal" href="~/Management/MainPage/CreateShangPin/@ViewBag.id">上传商品</a>
     <hr />
 </div>
