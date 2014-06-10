@@ -57,11 +57,11 @@
     </Reference>
     <Reference Include="GetuiServerApiSDK, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\GetuiServerApiSDK.dll</HintPath>
+      <HintPath>.\GetuiServerApiSDK.dll</HintPath>
     </Reference>
     <Reference Include="Google.ProtocolBuffers, Version=2.4.1.473, Culture=neutral, PublicKeyToken=55f7125234beb589, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Google.ProtocolBuffers.dll</HintPath>
+      <HintPath>.\Google.ProtocolBuffers.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
@@ -2609,6 +2609,8 @@
     <Content Include="file\Yitao.apk" />
     <Content Include="Areas\Watch\Views\Auth\Findpass.cshtml" />
     <Content Include="file\YitaoApp.apk" />
+    <Content Include="Areas\Management\Views\MainPage\EditJuZheKouItem.cshtml" />
+    <Content Include="Areas\Management\Views\MainPage\EditShangPin.cshtml" />
     <None Include="Properties\PublishProfiles\3.27.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />

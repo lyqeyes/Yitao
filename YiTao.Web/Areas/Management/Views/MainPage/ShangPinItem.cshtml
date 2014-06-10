@@ -65,6 +65,10 @@ else
                         <p>@item.CollectCount</p>
                     </div>*@
                 <div>
+                    <a class="btn btn-primary btn-lg btn-success" href="/Management/MainPage/EditShangPin?ZhuanTiItemId=@item.ZhuanTiItemId&id=@item.ZhuanTiId">编辑</a>
+                </div>
+                <br />
+                <div>
                     <a onclick="javascript:return confirm('确认删除?')" class="btn btn-primary btn-lg btn-success" href="/Management/MainPage/DeleteShangPin/@item.ZhuanTiItemId?type=@ViewBag.id">删除</a>
                 </div>
             </div>
