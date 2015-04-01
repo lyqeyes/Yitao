@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YiTaoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountId" />
+    </Key>
+    <Property Name="AccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="JiFen" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AppImage">
+    <Key>
+      <PropertyRef Name="AppImageId" />
+    </Key>
+    <Property Name="AppImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Areas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChouJiangItem">
+    <Key>
+      <PropertyRef Name="ChouJiangId" />
+    </Key>
+    <Property Name="ChouJiangId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="AreaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Collection">
+    <Key>
+      <PropertyRef Name="CollertionId" />
+    </Key>
+    <Property Name="CollertionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="ShangPinId" Type="int" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="CommentContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="ForId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DaLei">
+    <Key>
+      <PropertyRef Name="DaLeiId" />
+    </Key>
+    <Property Name="DaLeiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DingDan">
+    <Key>
+      <PropertyRef Name="DingDanId" />
+    </Key>
+    <Property Name="DingDanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="ShangPinName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="int" Nullable="false" />
+    <Property Name="ShangPinCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Down">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DuiHuanItem">
+    <Key>
+      <PropertyRef Name="DuiHuanItemId" />
+    </Key>
+    <Property Name="DuiHuanItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="JiFen" Type="int" Nullable="false" />
+    <Property Name="AreaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HaoDian">
+    <Key>
+      <PropertyRef Name="HaoDianId" />
+    </Key>
+    <Property Name="HaoDianId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Url" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="JiFenLiShi">
+    <Key>
+      <PropertyRef Name="JiFenLiShiId" />
+    </Key>
+    <Property Name="JiFenLiShiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="JiFen" Type="int" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="ItemId" Type="int" />
+    <Property Name="AccountName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="WhetherDealed" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JuZheKouItem">
+    <Key>
+      <PropertyRef Name="JuZheKouItemId" />
+    </Key>
+    <Property Name="JuZheKouItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="YuanPrice" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MonthlySales" Type="int" />
+    <Property Name="CollectCount" Type="int" />
+    <Property Name="Url" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="TransportationPrice" Type="nvarchar" MaxLength="50" />
+    <Property Name="ToWhere" Type="nvarchar" MaxLength="50" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="FanJiFen" Type="int" />
+    <Property Name="BaoYou" Type="int" />
+  </EntityType>
+  <EntityType Name="LiuYan">
+    <Key>
+      <PropertyRef Name="LiuYanId" />
+    </Key>
+    <Property Name="LiuYanId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Detail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartTime" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="EndTime" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LiuYanComment">
+    <Key>
+      <PropertyRef Name="LiuYanCommentId" />
+    </Key>
+    <Property Name="LiuYanCommentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LiuYanId" Type="bigint" Nullable="false" />
+    <Property Name="Detail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AccountName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LunBo">
+    <Key>
+      <PropertyRef Name="LunBoId" />
+    </Key>
+    <Property Name="LunBoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ClickUrl" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Management">
+    <Key>
+      <PropertyRef Name="AccountId" />
+    </Key>
+    <Property Name="AccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OtherUrl">
+    <Key>
+      <PropertyRef Name="OtherUrlId" />
+    </Key>
+    <Property Name="OtherUrlId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Url" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Weight" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ShangPin">
+    <Key>
+      <PropertyRef Name="ShangPinId" />
+    </Key>
+    <Property Name="ShangPinId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="YuanPrice" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MonthlySales" Type="int" />
+    <Property Name="CollectCount" Type="int" />
+    <Property Name="Url" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="TransportationPrice" Type="nvarchar" MaxLength="50" />
+    <Property Name="ToWhere" Type="nvarchar" MaxLength="50" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="XiaoLeiId" Type="int" />
+    <Property Name="FanJiFen" Type="int" />
+    <Property Name="BaoYou" Type="int" />
+  </EntityType>
+  <EntityType Name="ShangPin2Areas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaId" Type="int" Nullable="false" />
+    <Property Name="ForId" Type="int" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="ThreeLei">
+    <Key>
+      <PropertyRef Name="ThreeLeiId" />
+    </Key>
+    <Property Name="ThreeLeiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="TwoLeiId" Type="int" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TowLei">
+    <Key>
+      <PropertyRef Name="TwoLeiId" />
+    </Key>
+    <Property Name="TwoLeiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="DaLeiId" Type="int" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TuiSong">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TuiSongContent" Type="nvarchar(max)" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ok" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserAddress">
+    <Key>
+      <PropertyRef Name="UserAddressId" />
+    </Key>
+    <Property Name="UserAddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ConsigneeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VoteAccount">
+    <Key>
+      <PropertyRef Name="RecordId" />
+    </Key>
+    <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="VoteGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="VoteItemId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VoteItem">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ItemGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="ImgURL" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsVoted" Type="int" />
+  </EntityType>
+  <EntityType Name="VoteTopic">
+    <Key>
+      <PropertyRef Name="TopicId" />
+    </Key>
+    <Property Name="TopicId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TopicName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TopicGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ZhuanTi">
+    <Key>
+      <PropertyRef Name="ZhuanTiId" />
+    </Key>
+    <Property Name="ZhuanTiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ZhuanTiItem">
+    <Key>
+      <PropertyRef Name="ZhuanTiItemId" />
+    </Key>
+    <Property Name="ZhuanTiItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="ZhuanTiId" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="YuanPrice" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MonthlySales" Type="int" />
+    <Property Name="CollectCount" Type="int" />
+    <Property Name="Url" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="TransportationPrice" Type="nvarchar" MaxLength="50" />
+    <Property Name="ToWhere" Type="nvarchar" MaxLength="50" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="FanJiFen" Type="int" />
+    <Property Name="BaoYou" Type="int" />
+  </EntityType>
+  <EntityContainer Name="YiTaoModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppImage" EntityType="Self.AppImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Areas" EntityType="Self.Areas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChouJiangItem" EntityType="Self.ChouJiangItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Collection" EntityType="Self.Collection" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DaLei" EntityType="Self.DaLei" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DingDan" EntityType="Self.DingDan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Down" EntityType="Self.Down" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DuiHuanItem" EntityType="Self.DuiHuanItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HaoDian" EntityType="Self.HaoDian" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JiFenLiShi" EntityType="Self.JiFenLiShi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JuZheKouItem" EntityType="Self.JuZheKouItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LiuYan" EntityType="Self.LiuYan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LiuYanComment" EntityType="Self.LiuYanComment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LunBo" EntityType="Self.LunBo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Management" EntityType="Self.Management" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OtherUrl" EntityType="Self.OtherUrl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShangPin" EntityType="Self.ShangPin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShangPin2Areas" EntityType="Self.ShangPin2Areas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ThreeLei" EntityType="Self.ThreeLei" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TowLei" EntityType="Self.TowLei" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TuiSong" EntityType="Self.TuiSong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAddress" EntityType="Self.UserAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VoteAccount" EntityType="Self.VoteAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VoteItem" EntityType="Self.VoteItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VoteTopic" EntityType="Self.VoteTopic" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ZhuanTi" EntityType="Self.ZhuanTi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ZhuanTiItem" EntityType="Self.ZhuanTiItem" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

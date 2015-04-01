@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="YiTaoModelStoreContainer" CdmEntityContainer="YiTaoContext">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="YiTaoModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="JiFen" ColumnName="JiFen" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppImages">
+      <EntityTypeMapping TypeName="YiTaoModel.AppImage">
+        <MappingFragment StoreEntitySet="AppImage">
+          <ScalarProperty Name="AppImageId" ColumnName="AppImageId" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Areas">
+      <EntityTypeMapping TypeName="YiTaoModel.Area">
+        <MappingFragment StoreEntitySet="Areas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChouJiangItems">
+      <EntityTypeMapping TypeName="YiTaoModel.ChouJiangItem">
+        <MappingFragment StoreEntitySet="ChouJiangItem">
+          <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+          <ScalarProperty Name="ChouJiangId" ColumnName="ChouJiangId" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Collections">
+      <EntityTypeMapping TypeName="YiTaoModel.Collection">
+        <MappingFragment StoreEntitySet="Collection">
+          <ScalarProperty Name="CollertionId" ColumnName="CollertionId" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="ShangPinId" ColumnName="ShangPinId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="YiTaoModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ForId" ColumnName="ForId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DaLeis">
+      <EntityTypeMapping TypeName="YiTaoModel.DaLei">
+        <MappingFragment StoreEntitySet="DaLei">
+          <ScalarProperty Name="DaLeiId" ColumnName="DaLeiId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DingDans">
+      <EntityTypeMapping TypeName="YiTaoModel.DingDan">
+        <MappingFragment StoreEntitySet="DingDan">
+          <ScalarProperty Name="DingDanId" ColumnName="DingDanId" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ShangPinName" ColumnName="ShangPinName" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ShangPinCount" ColumnName="ShangPinCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DuiHuanItems">
+      <EntityTypeMapping TypeName="YiTaoModel.DuiHuanItem">
+        <MappingFragment StoreEntitySet="DuiHuanItem">
+          <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+          <ScalarProperty Name="DuiHuanItemId" ColumnName="DuiHuanItemId" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="JiFen" ColumnName="JiFen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HaoDians">
+      <EntityTypeMapping TypeName="YiTaoModel.HaoDian">
+        <MappingFragment StoreEntitySet="HaoDian">
+          <ScalarProperty Name="HaoDianId" ColumnName="HaoDianId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JiFenLiShis">
+      <EntityTypeMapping TypeName="YiTaoModel.JiFenLiShi">
+        <MappingFragment StoreEntitySet="JiFenLiShi">
+          <ScalarProperty Name="JiFenLiShiId" ColumnName="JiFenLiShiId" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="JiFen" ColumnName="JiFen" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="WhetherDealed" ColumnName="WhetherDealed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JuZheKouItems">
+      <EntityTypeMapping TypeName="YiTaoModel.JuZheKouItem">
+        <MappingFragment StoreEntitySet="JuZheKouItem">
+          <ScalarProperty Name="JuZheKouItemId" ColumnName="JuZheKouItemId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="YuanPrice" ColumnName="YuanPrice" />
+          <ScalarProperty Name="MonthlySales" ColumnName="MonthlySales" />
+          <ScalarProperty Name="CollectCount" ColumnName="CollectCount" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="TransportationPrice" ColumnName="TransportationPrice" />
+          <ScalarProperty Name="ToWhere" ColumnName="ToWhere" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="FanJiFen" ColumnName="FanJiFen" />
+          <ScalarProperty Name="BaoYou" ColumnName="BaoYou" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LiuYans">
+      <EntityTypeMapping TypeName="YiTaoModel.LiuYan">
+        <MappingFragment StoreEntitySet="LiuYan">
+          <ScalarProperty Name="LiuYanId" ColumnName="LiuYanId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LiuYanComments">
+      <EntityTypeMapping TypeName="YiTaoModel.LiuYanComment">
+        <MappingFragment StoreEntitySet="LiuYanComment">
+          <ScalarProperty Name="LiuYanCommentId" ColumnName="LiuYanCommentId" />
+          <ScalarProperty Name="LiuYanId" ColumnName="LiuYanId" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LunBoes">
+      <EntityTypeMapping TypeName="YiTaoModel.LunBo">
+        <MappingFragment StoreEntitySet="LunBo">
+          <ScalarProperty Name="LunBoId" ColumnName="LunBoId" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="ClickUrl" ColumnName="ClickUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Managements">
+      <EntityTypeMapping TypeName="YiTaoModel.Management">
+        <MappingFragment StoreEntitySet="Management">
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OtherUrls">
+      <EntityTypeMapping TypeName="YiTaoModel.OtherUrl">
+        <MappingFragment StoreEntitySet="OtherUrl">
+          <ScalarProperty Name="OtherUrlId" ColumnName="OtherUrlId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShangPins">
+      <EntityTypeMapping TypeName="YiTaoModel.ShangPin">
+        <MappingFragment StoreEntitySet="ShangPin">
+          <ScalarProperty Name="ShangPinId" ColumnName="ShangPinId" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="YuanPrice" ColumnName="YuanPrice" />
+          <ScalarProperty Name="MonthlySales" ColumnName="MonthlySales" />
+          <ScalarProperty Name="CollectCount" ColumnName="CollectCount" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="TransportationPrice" ColumnName="TransportationPrice" />
+          <ScalarProperty Name="ToWhere" ColumnName="ToWhere" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="XiaoLeiId" ColumnName="XiaoLeiId" />
+          <ScalarProperty Name="FanJiFen" ColumnName="FanJiFen" />
+          <ScalarProperty Name="BaoYou" ColumnName="BaoYou" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShangPin2Areas">
+      <EntityTypeMapping TypeName="YiTaoModel.ShangPin2Areas">
+        <MappingFragment StoreEntitySet="ShangPin2Areas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+          <ScalarProperty Name="ForId" ColumnName="ForId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="YiTaoModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThreeLeis">
+      <EntityTypeMapping TypeName="YiTaoModel.ThreeLei">
+        <MappingFragment StoreEntitySet="ThreeLei">
+          <ScalarProperty Name="ThreeLeiId" ColumnName="ThreeLeiId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="TwoLeiId" ColumnName="TwoLeiId" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TowLeis">
+      <EntityTypeMapping TypeName="YiTaoModel.TowLei">
+        <MappingFragment StoreEntitySet="TowLei">
+          <ScalarProperty Name="TwoLeiId" ColumnName="TwoLeiId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="DaLeiId" ColumnName="DaLeiId" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TuiSongs">
+      <EntityTypeMapping TypeName="YiTaoModel.TuiSong">
+        <MappingFragment StoreEntitySet="TuiSong">
+          <ScalarProperty Name="Ok" ColumnName="Ok" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TuiSongContent" ColumnName="TuiSongContent" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAddresses">
+      <EntityTypeMapping TypeName="YiTaoModel.UserAddress">
+        <MappingFragment StoreEntitySet="UserAddress">
+          <ScalarProperty Name="UserAddressId" ColumnName="UserAddressId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ConsigneeName" ColumnName="ConsigneeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoteAccounts">
+      <EntityTypeMapping TypeName="YiTaoModel.VoteAccount">
+        <MappingFragment StoreEntitySet="VoteAccount">
+          <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="VoteGuid" ColumnName="VoteGuid" />
+          <ScalarProperty Name="VoteItemId" ColumnName="VoteItemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoteItems">
+      <EntityTypeMapping TypeName="YiTaoModel.VoteItem">
+        <MappingFragment StoreEntitySet="VoteItem">
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemGuid" ColumnName="ItemGuid" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="ImgURL" ColumnName="ImgURL" />
+          <ScalarProperty Name="IsVoted" ColumnName="IsVoted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoteTopics">
+      <EntityTypeMapping TypeName="YiTaoModel.VoteTopic">
+        <MappingFragment StoreEntitySet="VoteTopic">
+          <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+          <ScalarProperty Name="TopicName" ColumnName="TopicName" />
+          <ScalarProperty Name="TopicGuid" ColumnName="TopicGuid" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZhuanTis">
+      <EntityTypeMapping TypeName="YiTaoModel.ZhuanTi">
+        <MappingFragment StoreEntitySet="ZhuanTi">
+          <ScalarProperty Name="ZhuanTiId" ColumnName="ZhuanTiId" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZhuanTiItems">
+      <EntityTypeMapping TypeName="YiTaoModel.ZhuanTiItem">
+        <MappingFragment StoreEntitySet="ZhuanTiItem">
+          <ScalarProperty Name="ZhuanTiItemId" ColumnName="ZhuanTiItemId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ZhuanTiId" ColumnName="ZhuanTiId" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="YuanPrice" ColumnName="YuanPrice" />
+          <ScalarProperty Name="MonthlySales" ColumnName="MonthlySales" />
+          <ScalarProperty Name="CollectCount" ColumnName="CollectCount" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="TransportationPrice" ColumnName="TransportationPrice" />
+          <ScalarProperty Name="ToWhere" ColumnName="ToWhere" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="FanJiFen" ColumnName="FanJiFen" />
+          <ScalarProperty Name="BaoYou" ColumnName="BaoYou" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Downs">
+      <EntityTypeMapping TypeName="YiTaoModel.Down">
+        <MappingFragment StoreEntitySet="Down">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

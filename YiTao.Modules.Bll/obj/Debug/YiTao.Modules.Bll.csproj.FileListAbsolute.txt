@@ -1,0 +1,15 @@
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\bin\Debug\YiTao.Modules.Bll.dll.config
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\bin\Debug\YiTao.Modules.Bll.dll
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\bin\Debug\YiTao.Modules.Bll.pdb
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\bin\Debug\EntityFramework.dll
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\bin\Debug\EntityFramework.SqlServer.dll
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\bin\Debug\EntityFramework.xml
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\bin\Debug\EntityFramework.SqlServer.xml
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\obj\Debug\YiTao.Modules.Bll.csprojResolveAssemblyReference.cache
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\obj\Debug\YiTao.Modules.Bll.dll
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\obj\Debug\YiTao.Modules.Bll.pdb
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\bin\Debug\MvcPager.dll
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\bin\Debug\GetuiServerApiSDK.dll
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\bin\Debug\Google.ProtocolBuffers.dll
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\bin\Debug\log4net.dll
+F:\code\_亿淘_Git_2\YiTao.Modules.Bll\bin\Debug\log4net.xml
